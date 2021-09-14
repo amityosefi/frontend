@@ -1,12 +1,12 @@
 <template>
 <div
-  :id="this.board_id"
+    id="image_id"
   class="board"
   @dragover.prevent
   @drop.prevent="drop"
   >
-  <Card :id="this.image_id" :draggable="true">
-    <p>{{ this.image_id }}</p>
+  <Card :image_id="image_id" :draggable="true">
+    <p>{{ image_id }}</p>
   </Card>
   <slot/>
 </div>
