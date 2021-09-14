@@ -20,6 +20,9 @@
     <div >
       <Pictures class="pics" v-if="ImageArr.length > 0" :Images = this.ImageArr ></Pictures>
     </div>
+      <div>
+        <Bining></Bining>
+      </div>
       
   </div>
 
@@ -33,7 +36,7 @@ export default {
   name: 'Main',
   components:
   {
-    Pictures 
+    Pictures
   },
   data() {
       return {
