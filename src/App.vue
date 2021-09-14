@@ -1,5 +1,7 @@
 <template>
-  <div id="app">
+  <div id="app"
+       @dragover.prevent
+       @drop.prevent="drop">
     <router-view />
     <main class="flexbox">
       <div class="Row">
