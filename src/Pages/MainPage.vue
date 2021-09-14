@@ -1,8 +1,9 @@
 <template>
+  <div>
     <div id="main" v-if="this.show">
     <h1 class="header">Welcome to our ImageApp!</h1>
     <div id = "wrapper">
-      
+
     <b-form @submit="onSubmit"   style="width:200px">
       <b-form-group  id="input-group-3" label="Number of Pictures to retrieve:" label-for="input-3" style="width:300px">
         <b-form-select style="width:200px"
@@ -14,16 +15,20 @@
       </b-form-group>
 
       <b-button type="submit" variant="primary" style="width:200px; margin-bottom:10%" >Apply</b-button>
-      
+
     </b-form>
     </div>
     <div >
       <Pictures class="pics" v-if="ImageArr.length > 0" :Images = this.ImageArr ></Pictures>
     </div>
-      
+
   </div>
 
- 
+    <div class="Row">
+      <div class="Column" v-for="item in 10" :key="item">Bin {{item}}</div>
+    </div>
+
+  </div>
 </template>
 
 
@@ -33,7 +38,7 @@ export default {
   name: 'Main',
   components:
   {
-    Pictures 
+    Pictures
   },
   data() {
       return {
@@ -48,10 +53,10 @@ export default {
     methods: {
       onSubmit(event) {
         event.preventDefault();
-        
+
         this.getImages();
         localStorage.setItem("start_time",new Date());
-        
+
       },
       async getImages(){
         try {
@@ -61,16 +66,16 @@ export default {
           this.ImageArr = [];
           response.data.map((x)=>{
             this.ImageArr.push(x.PicUrl);
-            
+
           });
         //   console.log(this.ImageArr);    
-        
+
         }catch(err){
           console.log("There was a problem", err)
         }
 
       },
-      
+
     }
   }
 </script>
@@ -80,9 +85,9 @@ export default {
 {
   display:flex;
   justify-content: center;
-  
-  
-  
+
+
+
 }
 .header
 {
@@ -100,5 +105,22 @@ export default {
 {
   display: flex;
   justify-content: center;
+}
+.Row {
+  display: table;
+  width: 100%; /*Optional*/
+  table-layout: fixed; /*Optional*/
+  border-spacing: 10px; /*Optional*/
+}
+.Column {
+  text-align: center;
+  display: table-cell;
+  border-bottom-style: solid;
+  border-bottom-color: black;
+  border-left-style: solid;
+  border-right-style: solid;
+  border-left-color: black;
+  border-right-color: black;
+  padding-bottom: 15vh;
 }
 </style>
