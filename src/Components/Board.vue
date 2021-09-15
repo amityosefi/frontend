@@ -1,38 +1,36 @@
 <template>
 <div
-    id="image_id"
+    id="board_id"
   class="board"
   @dragover.prevent
   @drop.prevent="drop"
   >
-  <Card :image_id="image_id" :draggable="true">
-    <p>{{ image_id }}</p>
-  </Card>
+
   <slot/>
 </div>
 </template>
 
 <script>
-import Card from "../Card";
 export default {
   name: "Board",
-  components: {
-    Card
-  },
+
   data(){
     return {
     }
   },
   props: {
-    image_id: {
+    board_id: {
       type: Number, required: true
     }
   },
   methods: {
     drop: e => {
+      e.dataTransfer.setData('last_board', e.target);
       const card_id = e.dataTransfer.getData('card_id');
       const card = document.getElementById(card_id);
       card.style.display = "block";
+      card.style.width = "100%";
+      card.style.height = "10%";
       e.target.appendChild(card);
     }
   }

@@ -21,7 +21,13 @@
       <Pictures class="pics" v-if="ImageArr.length > 0" :Images = this.ImageArr ></Pictures>
     </div>
       <div>
-        <Bining></Bining>
+        <Card :image_id="1" :draggable="true" class="card">
+          <p>{{ 1 }}</p>
+        </Card>
+
+        <Card :image_id="2" :draggable="true" class="card">
+          <p>{{ 2 }}</p>
+        </Card>
       </div>
       
   </div>
@@ -32,11 +38,13 @@
 
 <script>
  import Pictures from "../Components/Pictures.vue"
+ import Card from "../Card";
 export default {
   name: 'Main',
   components:
   {
-    Pictures
+    Pictures,
+    Card
   },
   data() {
       return {
@@ -103,5 +111,16 @@ export default {
 {
   display: flex;
   justify-content: center;
+}
+
+.card
+{
+  width: 5%;
+  height: 5%;
+  text-align: center;
+  padding: 5px 15px;
+  background-color: #D4F5FD;
+  cursor: pointer;
+  margin-bottom: 5px;
 }
 </style>

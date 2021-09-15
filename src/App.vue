@@ -6,9 +6,9 @@
     <main class="flexbox">
       <div class="Row">
       <Board class="Column"
-          v-for="im in Images"
-          :image_id="im"
-          :key="im"
+             v-for="index in 10"
+          :board_id="index"
+          :key="index"
       ></Board>
       </div>
     </main>
@@ -27,7 +27,19 @@ data() {
   return {
       Images: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   };
-}
+},
+  methods: {
+    drop: e => {
+      const card_id = e.dataTransfer.getData('card_id');
+      const last_board = e.dataTransfer.getData('last_board');
+      const card = document.getElementById(card_id);
+      const board = document.getElementById(last_board);
+      card.style.display = "block";
+      // card.style.width = "100%";
+      // card.style.height = "10%";
+      board.appendChild(card);
+    }
+  }
 }
 </script>
 
@@ -91,10 +103,4 @@ body {
 /*  !*padding-bottom: 15vh;*!*/
 /*}*/
 
-.flexbox .board .card {
-  padding: 5px 15px;
-  background-color: #D4F5FD;
-  cursor: pointer;
-  margin-bottom: 5px;
-}
 </style>
