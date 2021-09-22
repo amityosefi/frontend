@@ -20,9 +20,6 @@
     <div >
       <Pictures class="pics" v-if="ImageArr.length > 0" :Images = this.ImageArr ></Pictures>
     </div>
-      <div>
-        <Bining></Bining>
-      </div>
       
   </div>
 
@@ -95,13 +92,24 @@ export default {
   text-shadow: 1px 2px black;
   font-weight: bold;
 }
-#app
-{
-  text-align: center;
-}
+/*#app*/
+/*{*/
+/*  text-align: center;*/
+/*}*/
 .pics
 {
   display: flex;
   justify-content: center;
 }
+
+/*.card*/
+/*{*/
+/*  width: 5%;*/
+/*  height: 5%;*/
+/*  text-align: center;*/
+/*  padding: 5px 15px;*/
+/*  background-color: #D4F5FD;*/
+/*  cursor: pointer;*/
+/*  margin-bottom: 5px;*/
+/*}*/
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div @click="Zoom()"> 
+    <div> 
         <img id ="pic" v-bind:src = this.link>
     </div>
 </template>
@@ -13,48 +13,49 @@
             link:
             {
                 type: String,
-                require: true
+                require: true,
+                default:"http://somethingstudio.co.il/wp-content/uploads/2017/12/logo-something.png"
             }
         },
         methods:
         {
-            async Zoom()
-            {
-                let start =new Date(localStorage.start_time);
-                let end = new Date();
-                // console.log(Date.parse(start),Date.parse(end));
-                // let diff = (Date.parse(end) - Date.parse(start))/1000;
-                let diff = end.getTime() - start.getTime();
-                let url = this.link;
-                try {
+            // async Zoom()
+            // {
+            //     let start =new Date(localStorage.start_time);
+            //     let end = new Date();
+            //     // console.log(Date.parse(start),Date.parse(end));
+            //     // let diff = (Date.parse(end) - Date.parse(start))/1000;
+            //     let diff = end.getTime() - start.getTime();
+            //     let url = this.link;
+            //     try {
                     
                     
-                    const response = await this.axios.post(
-                    `http://localhost:3001/images/timestamp`,
-                    {
-                        "diff": diff,
-                        "PicURL": url
-                    });
+            //         const response = await this.axios.post(
+            //         `http://localhost:3001/images/timestamp`,
+            //         {
+            //             "diff": diff,
+            //             "PicURL": url
+            //         });
                     
                     
-                    console.log(response);    
+            //         console.log(response);    
                 
-                }
-                catch(err){
-                    console.log("There was a problem", err)
-                }
-                this.$router.push({name:"FullImagePage",params:{data: url} });
+            //     }
+            //     catch(err){
+            //         console.log("There was a problem", err)
+            //     }
+            //     this.$router.push({name:"FullImagePage",params:{data: url} });
                 
-            }
+            // }
         }
     }
 </script>
 <style scoped>
 #pic
 {
-    width:300px;
-    height:200px;
-    padding: 5%;
+    width:50px;
+    height:50px;
+    
     
 }
 #pic:hover
