@@ -22,9 +22,6 @@ export default {
     image_id: {
       type: Number, required: true
     },
-    draggable: {
-      type: Boolean, required: true
-    },
   },
   methods: {
     dragStart: e => {
