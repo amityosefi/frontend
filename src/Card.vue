@@ -8,12 +8,19 @@
       @dragover.prevent
       @drop.prevent="drop"
   >
-    <slot/>
+    <Picture :link="somethingstudio.co.il/wp-content/uploads/2017/12/logo-something.png"></Picture>
+    <slot>
+      
+    </slot>
   </div>
 </template>
 
 <script>
 export default {
+  components:
+    {
+        Picture:()=>import ("./Components/Picture.vue")
+    },
   data(){
     return {
     }
@@ -22,6 +29,10 @@ export default {
     image_id: {
       type: Number, required: true
     },
+    // src:
+    // {
+    //   type:String,
+    // },
   },
   methods: {
     dragStart: e => {

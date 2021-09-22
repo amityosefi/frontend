@@ -7,6 +7,7 @@
         <draggable :list="Images" group="tasks">
           <div class="image" v-for="im in Images" :key="im">
             {{im}}
+            <Picture></Picture>
 <!--          <Card :image_id="3"><p>{{3}}</p></Card>-->
           </div>
 
@@ -16,7 +17,10 @@
 <!--          :key="index"-->
 <!--      ></Board>-->
         </draggable>
-      <div class="Row">
+        <br>
+        <br>
+        <br>
+      <div class="Row" style="margin:10%">
         <div class="Column">
           <draggable :list="arrGrade1" group="tasks" >
             <div v-for="element in arrGrade1" :key="element">
@@ -104,10 +108,12 @@
 <script>
 // import Board from "./Components/Board";
 import draggable from "vuedraggable";
+import Picture from "./Components/Picture.vue"
 export default {
   name: 'app',
   components: {
     draggable,
+    Picture,
     // Board
   },
 
