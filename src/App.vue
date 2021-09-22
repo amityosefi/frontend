@@ -5,11 +5,14 @@
     <router-view />
     <main class="flexbox">
         <draggable :list="Images" group="tasks">
-          <div class="image" v-for="im in Images" :key="im">
-            {{im}}
-            <Picture></Picture>
-<!--          <Card :image_id="3"><p>{{3}}</p></Card>-->
+          <div v-for="(image, imageIndex) in Images" :key="imageIndex" class="im">
+<!--            {{image}}-->
+            <img v-bind:src="image" width="150px" height="100px" alt="..">
+<!--            <img :src="image" :key="imageIndex">-->
           </div>
+<!--          <div v-for="(image, imageIndex) in Images">-->
+<!--            <img :src="image" :key="imageIndex" />-->
+<!--          </div>-->
 
 <!--      <Board class="Column"-->
 <!--             v-for="index in 10"-->
@@ -17,90 +20,88 @@
 <!--          :key="index"-->
 <!--      ></Board>-->
         </draggable>
-        <br>
-        <br>
-        <br>
-      <div class="Row" style="margin:10%">
+      <div class="Row">
         <div class="Column">
           <draggable :list="arrGrade1" group="tasks" >
-            <div v-for="element in arrGrade1" :key="element">
-              {{element}}
+            <div v-for="(image, imageIndex) in arrGrade1" :key="imageIndex" class="bin">
+              <img v-bind:src="image" width="85px" height="55px" alt="..">
             </div>
           </draggable>
           </div>
 
         <div class="Column">
           <draggable :list="arrGrade2" group="tasks" >
-            <div v-for="element in arrGrade2" :key="element">
-              {{element}}
+            <div v-for="(image, imageIndex) in arrGrade2" :key="imageIndex" class="bin">
+              <img v-bind:src="image" width="85px" height="55px" alt="..">
             </div>
           </draggable>
         </div>
 
         <div class="Column">
           <draggable :list="arrGrade3" group="tasks" >
-            <div v-for="element in arrGrade3" :key="element">
-              {{element}}
+            <div v-for="(image, imageIndex) in arrGrade3" :key="imageIndex" class="bin">
+              <img v-bind:src="image" width="85px" height="55px" alt="..">
             </div>
           </draggable>
         </div>
 
         <div class="Column">
           <draggable :list="arrGrade4" group="tasks" >
-            <div v-for="element in arrGrade4" :key="element">
-              {{element}}
+            <div v-for="(image, imageIndex) in arrGrade4" :key="imageIndex" class="bin">
+              <img v-bind:src="image" width="85px" height="55px" alt="..">
             </div>
           </draggable>
         </div>
 
         <div class="Column">
           <draggable :list="arrGrade5" group="tasks" >
-            <div v-for="element in arrGrade5" :key="element">
-              {{element}}
+            <div v-for="(image, imageIndex) in arrGrade5" :key="imageIndex" class="bin">
+              <img v-bind:src="image" width="85px" height="55px" alt="..">
             </div>
           </draggable>
         </div>
 
         <div class="Column">
           <draggable :list="arrGrade6" group="tasks" >
-            <div v-for="element in arrGrade6" :key="element">
-              {{element}}
+            <div v-for="(image, imageIndex) in arrGrade6" :key="imageIndex" class="bin">
+              <img v-bind:src="image" width="85px" height="55px" alt="..">
             </div>
           </draggable>
         </div>
 
         <div class="Column">
           <draggable :list="arrGrade7" group="tasks" >
-            <div v-for="element in arrGrade7" :key="element">
-              {{element}}
+            <div v-for="(image, imageIndex) in arrGrade7" :key="imageIndex" class="bin">
+              <img v-bind:src="image" width="85px" height="55px" alt="..">
             </div>
           </draggable>
         </div>
 
         <div class="Column">
           <draggable :list="arrGrade8" group="tasks" >
-            <div v-for="element in arrGrade8" :key="element">
-              {{element}}
+            <div v-for="(image, imageIndex) in arrGrade8" :key="imageIndex" class="bin">
+              <img v-bind:src="image" width="85px" height="55px" alt="..">
             </div>
           </draggable>
         </div>
 
         <div class="Column">
           <draggable :list="arrGrade9" group="tasks" >
-            <div v-for="element in arrGrade9" :key="element">
-              {{element}}
+            <div v-for="(image, imageIndex) in arrGrade9" :key="imageIndex" class="bin">
+              <img v-bind:src="image" width="85px" height="55px" alt="..">
             </div>
           </draggable>
         </div>
 
         <div class="Column">
           <draggable :list="arrGrade10" group="tasks" >
-            <div v-for="element in arrGrade10" :key="element">
-              {{element}}
+            <div v-for="(image, imageIndex) in arrGrade10" :key="imageIndex" class="bin">
+              <img v-bind:src="image" width="85px" height="55px" alt="..">
             </div>
           </draggable>
         </div>
       </div>
+<!--      <img src="https://i.guim.co.uk/img/media/684c9d087dab923db1ce4057903f03293b07deac/205_132_1915_1150/master/1915.jpg?width=645&quality=45&auto=format&fit=max&dpr=2&s=ed077231d111576ab4fb10018272a232" width="200px" height="100px">-->
     </main>
     </div>
 </template>
@@ -108,18 +109,16 @@
 <script>
 // import Board from "./Components/Board";
 import draggable from "vuedraggable";
-import Picture from "./Components/Picture.vue"
 export default {
   name: 'app',
   components: {
     draggable,
-    Picture,
     // Board
   },
 
 data() {
   return {
-    Images: [1, 2, 3, 4, 5],
+    Images: [],
     arrGrade1: [],
     arrGrade2: [],
     arrGrade3: [],
@@ -142,16 +141,30 @@ data() {
       // card.style.width = "100%";
       // card.style.height = "10%";
       board.appendChild(card);
+    },
+
+    uploadImages() {
+      this.Images[0] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+      this.Images[1] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+      this.Images[2] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+      this.Images[3] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+      this.Images[4] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+      this.Images[5] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
     }
+
+  },
+  created() {
+    this.uploadImages();
   }
 }
+
 </script>
 
 <style>
 * {
   margin: 0;
   padding: 0;
-  /*box-sizing: border-box;*/
+  box-sizing: border-box;
 }
 
 body {
@@ -160,19 +173,20 @@ body {
 
 .Row {
   position: absolute;
-  top: 50vh;
-  right: 50vh;
 
-  margin: 0 auto;
+  top: 50vh;
+  right: 30vh;
+
+  /*margin: 0 auto;*/
   display: table;
-  width: 50%;
+  width: 70%;
   table-layout: fixed;
   border-spacing: 10px;
   height: 3vh;
 }
 .Column {
-  vertical-align: auto;
-  align-items: end;
+  vertical-align: center;
+  align-items: baseline;
   /*position: absolute;*/
   text-align: center;
   display: table-cell;
@@ -186,13 +200,19 @@ body {
   height: 5vh;
 }
 
-.image {
-  margin: 0 auto;
+.im {
+  /*margin: 0 auto;*/
   text-align: center;
   font-size: large;
   cursor: pointer;
-  width: 10px;
+  float: left;
+  margin-left: 5px;
   /*border-width: 5px;*/
+}
+
+.bin {
+  cursor: pointer;
+  margin-top: 2px;
 }
 
 /*.flexbox {*/
