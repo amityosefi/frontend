@@ -1,13 +1,13 @@
 <template>
   <div id="binning" @dragover.prevent>
-  <draggable :list="Images" group="tasks">
-    <div v-for="(image, imageIndex) in Images" :key="imageIndex" class="im">
-      <img v-bind:src="image" width="150px" height="100px" alt="..">
+  <draggable class="drag"  :list="Images" group="tasks">
+    <div  v-for="(image, imageIndex) in Images" :key="imageIndex" class="im">
+      <img class="pic" v-bind:src="image" width="150px" height="100px" alt="..">
     </div>
   </draggable>
   <div class="Row">
     <div class="Column">
-      <draggable :list="arrGrade1" group="tasks" >
+      <draggable  :list="arrGrade1" group="tasks" >
         <div v-for="(image, imageIndex) in arrGrade1" :key="imageIndex" class="bin">
           <img v-bind:src="image" width="85px" height="55px" alt="..">
         </div>
@@ -120,7 +120,8 @@ export default {
       this.Images[3] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
       this.Images[4] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
       this.Images[5] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-    }
+    },
+    
 
   },
   created() {
@@ -141,6 +142,7 @@ body {
   background-color: #fff0f0;
 }
 
+
 .Row {
   position: absolute;
   top: 50vh;
@@ -150,6 +152,7 @@ body {
   table-layout: fixed;
   border-spacing: 10px;
   height: 3vh;
+  
 }
 .Column {
   vertical-align: center;
@@ -171,12 +174,24 @@ body {
   cursor: pointer;
   float: left;
   margin-left: 5px;
+  
 }
-
+.drag
+{
+  display: flex;
+  justify-content: center;
+ 
+}
 .bin {
   cursor: pointer;
   margin-top: 2px;
+  
 }
 
-
+/* .pic:hover
+{
+  height:50%;
+  width:50%;
+  overflow:-moz-hidden-unscrollable;
+} */
 </style>
