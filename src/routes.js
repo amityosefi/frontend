@@ -6,9 +6,19 @@ const routes = [{
     component: Main
 },
 {
-    path: "/main",
-    name: "main",
-    component: Main
+    path: "/register",
+    name: "register",
+    component: () => import("./Pages/RegisterPage")
+},
+{
+    path: "/login",
+    name: "login",
+    component: () => import("./Pages/LoginPage")
+},
+{
+    path: "/About",
+    name: "About",
+    component: () => import("./Pages/AboutPage")
 },
 {
     path: "/FullImagePage",
