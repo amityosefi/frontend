@@ -1,12 +1,21 @@
-<template>
+<template >
   <div id="binning" @dragover.prevent>
+    <!-- <b-form @submit.prevent="onRegister">
+      <b-button
+        type="submit"
+        variant="primary"
+        style="width:250px;"
+        class="ml-5 w-75"
+        >Register</b-button
+      >
+    </b-form> -->
   <draggable class="drag"  :list="Images" group="tasks">
-    <div  v-for="(image, imageIndex) in Images" :key="imageIndex" class="im">
-      <img class="pic" v-bind:src="image" width="150px" height="100px" alt="..">
+    <div  v-for="(image,idx) in this.Images" :key="idx"  class="im">
+      <img class="pic" v-bind:src="image" width="150px" height="100px" >
     </div>
   </draggable>
   <div class="Row">
-    <div class="Column">
+    <div  class="Column">
       <draggable  :list="arrGrade1" group="tasks" >
         <div v-for="(image, imageIndex) in arrGrade1" :key="imageIndex" class="bin">
           <img v-bind:src="image" width="85px" height="55px" alt="..">
@@ -91,8 +100,12 @@
 
 <script>
 import draggable from "vuedraggable";
+const axios = require("axios");
+const api_domain = "http://localhost:3001";
+const categories = 3;
+const pics = 4;
 export default {
-  name: 'app',
+  name: 'binning',
   components: {
     draggable,
   },
@@ -109,23 +122,36 @@ export default {
       arrGrade7: [],
       arrGrade8: [],
       arrGrade9: [],
-      arrGrade10: []
+      arrGrade10: [],
     }
   },
   methods: {
-    uploadImages() {
-      this.Images[0] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[1] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[2] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[3] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[4] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[5] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+     uploadImages: async function() {
+      let src = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+      this.axios.defaults.withCredentials = true;
+      console.log("hello")
+      let size = await axios.get(`${api_domain}/images/${categories}/${pics}`,{});
+      size = size.data.urls;
+      console.log(size.length);
+      for(var i = 0 ; i <size.length ; i++)
+      {
+        this.Images[i] = src;
+      }
     },
     
 
   },
-  created() {
-    this.uploadImages();
+  beforeCreate: async function() {
+    let src ='~https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg';
+      this.axios.defaults.withCredentials = true;
+      console.log("hello")
+      let size = await axios.get(`${api_domain}/images/${categories}/${pics}`,{});
+      size = size.data.urls;
+      console.log(size.length);
+      for(var i = 0 ; i <size.length ; i++)
+      {
+        this.Images[i] = src;
+      }
   }
 }
 

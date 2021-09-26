@@ -1,6 +1,7 @@
 <template>
   <div>
   <h1 class="header">Welcome to our image app!</h1>
+  <br><br><br><br><br><br>
     <binning/>
   </div>
  
