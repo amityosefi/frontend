@@ -10,8 +10,8 @@
       >
     </b-form> -->
   <draggable class="drag"  :list="Images" group="tasks">
-    <div  v-for="(image,idx) in this.Images" :key="idx"  class="im">
-      <img class="pic" v-bind:src="image" width="150px" height="100px" >
+    <div  v-for="{source,idx} in this.Images" :key="idx"  class="im">
+      <img class="pic" v-bind:src="source" width="150px" height="100px" >
     </div>
   </draggable>
   <div class="Row">
@@ -150,7 +150,7 @@ export default {
       console.log(size.length);
       for(var i = 0 ; i <size.length ; i++)
       {
-        this.Images[i] = src;
+        this.Images[i] = {source:src,idx:i};
       }
   }
 }
