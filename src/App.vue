@@ -33,7 +33,7 @@ export default {
     async Logout() {
       try {
         const response = await this.axios.post(
-            "http://localhost:3000/Logout",
+            "http://localhost:3001/Logout",
         );
         console.log(response.data)
       } catch (error) {
@@ -54,9 +54,9 @@ export default {
 <!--<style lang="scss">-->
 <!--@import "./scss/form-style.scss";-->
 
-<Style>
+<style>
 .app {
-  // font-family: Avenir, Helvetica, Arial, sans-serif;
+   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;

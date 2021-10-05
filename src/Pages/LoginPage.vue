@@ -159,9 +159,7 @@
   display: inline-block;
 }
 
-.button-container a{
 
-}
 
 .button-container a h3{
   display: inline-block;
