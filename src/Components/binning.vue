@@ -11,12 +11,13 @@
     </b-form> -->
   <draggable  class="drag"  :list="this.Images" group="tasks">
     
-    <div  v-for="idx in this.Images" :key="idx"  class="im">
-          <Picture  />
-    
+    <div class="im">
+          <Picture v-for="(image,idx) in this.Images"
+          :link="image"
+          :key="idx" /> 
     </div>
-    
-    <h1>hello</h1>
+    <!-- <Picture /> -->
+    <Picture v-if="this.Images.length == 100" />
   </draggable>
   <!-- <h1 v-else>asdasdasd</h1> -->
   <div class="Row">
@@ -149,18 +150,9 @@ export default {
     
 
   },
-  created: async function() {
-    let src =`www.wanderingowl.com/wp-content/uploads/2020/09/blog_images_aurora_sunset_love.jpg`;
-      this.axios.defaults.withCredentials = true;
-      console.log(src)
-      let size = await axios.get(`${api_domain}/images/${categories}/${pics}`,{});
-      size = size.data.urls;
-      console.log(size.length);
-      for(var i = 0 ; i <size.length ; i++)
-      {
-        this.Images[i] = i;
-      }
-  }
+  created:async function() {
+    await this.uploadImages();
+  },
 }
 
 </script>
