@@ -9,8 +9,8 @@
 
 
 <script>
-import Binning from '../Components/binning.vue';
- 
+
+ const Binning = () =>import("../Components/binning.vue")
 export default {
   name: 'Main',
   components:

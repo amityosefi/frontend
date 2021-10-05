@@ -1,5 +1,5 @@
 <template >
-  <div id="binning" @dragover.prevent>
+  <div id="binning"  @dragover.prevent>
     <!-- <b-form @submit.prevent="onRegister">
       <b-button
         type="submit"
@@ -9,11 +9,16 @@
         >Register</b-button
       >
     </b-form> -->
-  <draggable class="drag"  :list="Images" group="tasks">
-    <div  v-for="{source,idx} in this.Images" :key="idx"  class="im">
-      <img class="pic" v-bind:src="source" width="150px" height="100px" >
+  <draggable  class="drag"  :list="this.Images" group="tasks">
+    
+    <div  v-for="idx in this.Images" :key="idx"  class="im">
+          <Picture  />
+    
     </div>
+    
+    <h1>hello</h1>
   </draggable>
+  <!-- <h1 v-else>asdasdasd</h1> -->
   <div class="Row">
     <div  class="Column">
       <draggable  :list="arrGrade1" group="tasks" >
@@ -100,6 +105,7 @@
 
 <script>
 import draggable from "vuedraggable";
+import Picture from "./Picture.vue"
 const axios = require("axios");
 const api_domain = "http://localhost:3001";
 const categories = 3;
@@ -108,6 +114,7 @@ export default {
   name: 'binning',
   components: {
     draggable,
+    Picture,
   },
 
   data() {
@@ -123,6 +130,7 @@ export default {
       arrGrade8: [],
       arrGrade9: [],
       arrGrade10: [],
+      source:"www.wanderingowl.com/wp-content/uploads/2020/09/blog_images_aurora_sunset_love.jpg",
     }
   },
   methods: {
@@ -141,16 +149,16 @@ export default {
     
 
   },
-  beforeCreate: async function() {
-    let src ='~https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg';
+  created: async function() {
+    let src =`www.wanderingowl.com/wp-content/uploads/2020/09/blog_images_aurora_sunset_love.jpg`;
       this.axios.defaults.withCredentials = true;
-      console.log("hello")
+      console.log(src)
       let size = await axios.get(`${api_domain}/images/${categories}/${pics}`,{});
       size = size.data.urls;
       console.log(size.length);
       for(var i = 0 ; i <size.length ; i++)
       {
-        this.Images[i] = {source:src,idx:i};
+        this.Images[i] = i;
       }
   }
 }
