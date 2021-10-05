@@ -1,21 +1,23 @@
 <template>
   <div>
-  <h1 class="header">Welcome to our image app!</h1>
-    <binning/>
+    <h1 class="header">Welcome to our image app!</h1>
+<!--    <LoginPage v-if="!$root.store.username"></LoginPage>-->
+<!--    <binning v-else></binning>-->
+    <binning></binning>
   </div>
- 
 </template>
 
 
 <script>
 import Binning from '../Components/binning.vue';
- 
+// import LoginPage from "../Pages/LoginPage";
+
 export default {
   name: 'Main',
   components:
   {
-    Binning
-    
+    Binning,
+    // LoginPage
   },
   data() {
       return {
