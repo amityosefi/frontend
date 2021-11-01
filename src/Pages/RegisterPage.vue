@@ -125,8 +125,8 @@ export default {
         email: null,
         password: "",
         confirmedPassword: "",
-        gender: "",
-        age: ""
+        gender: 0,
+        age: 0
       },
       genderList: [
         {value: "Female", text: "Female"},
@@ -148,8 +148,31 @@ export default {
       }
       this.Register();
     },
-    Register() {
-      alert("succeed!");
+    async Register() {
+        try {
+
+          let genderToSend = 0;
+          if (this.form.gender == "Male") {
+              genderToSend = 1;
+          }
+
+            await this.axios.post(
+              "http://localhost:443/Register",
+              {
+                Email: this.form.email,
+                Password: this.form.password,
+                FirstName:  this.form.firstname,
+                LastName: this.form.lastName,
+                Gender: genderToSend,
+                Age: Number(this.form.age),
+              }
+            );
+            this.$router.push("/");
+      } catch (err) {
+        alert(err.response.data);
+        // alert(err.response.request.status);
+        this.form.submitError = err.response.data.message;
+      }
     }
   },
   validations: {

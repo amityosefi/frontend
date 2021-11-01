@@ -99,7 +99,6 @@ export default {
 
   data() {
     return {
-      Images: [],
       arrGrade1: [],
       arrGrade2: [],
       arrGrade3: [],
@@ -112,20 +111,28 @@ export default {
       arrGrade10: []
     }
   },
+  props: {
+    Images: {
+      require: true,
+      type: Array
+    }
+  },
   methods: {
-    uploadImages() {
-      this.Images[0] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[1] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[2] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[3] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[4] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[5] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-    },
+    // uploadImages() {
+
+    //  // const response = await this.axios.get(`http://localhost:8110/images/getImages/${this.categorySelected}/${this.image}`, {});
+    //   this.Images[0] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+    //   this.Images[1] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+    //   this.Images[2] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+    //   this.Images[3] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+    //   this.Images[4] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+    //   this.Images[5] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+    // },
     
 
   },
   created() {
-    this.uploadImages();
+    //this.uploadImages();
   }
 }
 

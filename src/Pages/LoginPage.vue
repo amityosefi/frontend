@@ -6,7 +6,7 @@
           <div class="col-12 col-md-9 col-lg-7 col-xl-6">
             <div class="card" style="border-radius: 15px;">
               <div class="card-body p-5">
-                <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                <h2 class="text-uppercase text-center mb-5">Sign In</h2>
 
                 <form>
                   <b-form-group id="input-group-email" label-cols-sm="3" label="Email" label-for="email" >
@@ -89,8 +89,22 @@
         }
         this.Login();
       },
-      Login() {
-        alert("succeed!");
+      async Login() {
+          try {
+            await this.axios.post(
+              "http://localhost:443/Login",
+              {
+                Email: this.form.email,
+                Password: this.form.password
+              }
+            );
+            // console.log(response);
+            // axios.defaults.withCredentials = true;
+            this.$router.push("/");
+      } catch (err) {
+        console.log(err.response);
+        this.form.submitError = err.response.data.message;
+      }
       }
     },
     validations: {

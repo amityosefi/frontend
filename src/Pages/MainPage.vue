@@ -2,8 +2,7 @@
   <div>
     <h1 class="header">Welcome to our image app!</h1>
 <!--    <LoginPage v-if="!$root.store.username"></LoginPage>-->
-<!--    <binning v-else></binning>-->
-    <binning></binning>
+    <binning :Images=this.Images></binning>
   </div>
 </template>
 
@@ -21,12 +20,19 @@ export default {
   },
   data() {
       return {
-        
+        Images: []
       }
     },
     methods: {
+        async uploadImages() {
+
+            const response = await this.axios.get(`http://localhost:443/images/getImages/7/6`, {});
+            this.Images = response.data.urls;
+     }
       
-      
+    },
+    created() {
+      this.uploadImages();
     }
   }
 </script>
