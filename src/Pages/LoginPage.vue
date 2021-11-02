@@ -82,30 +82,39 @@
         const {$dirty, $error} = this.$v.form[param];
         return $dirty ? !$error : null;
       },
-      onLogin() {
-        this.$v.form.$touch();
-        if (this.$v.form.$anyError) {
-          return;
-        }
-        this.Login();
-      },
       async Login() {
           try {
-            await this.axios.post(
-              "http://localhost:443/Login",
+            const response = await this.axios.post(
+              "http://localhost:443/login",
               {
                 Email: this.form.email,
                 Password: this.form.password
               }
             );
-            // console.log(response);
-            // axios.defaults.withCredentials = true;
-            this.$router.push("/");
+
+            if(response.data.message != 'There is no Email or password'){
+              this.$router.push("/");
+              // axios.defaults.withCredentials = true;
+            }
+            else{
+              alert("Username or password incorrect");
+              this.form.email = '';
+              this.form.password = '';
+            }
       } catch (err) {
         console.log(err.response);
         this.form.submitError = err.response.data.message;
       }
-      }
+      },
+      onLogin() {
+        this.$v.form.$touch();
+        // if (this.$v.form.$anyError) {
+        //   console.log("not good");
+        //   return;
+        // }
+        this.Login();
+      },
+      
     },
     validations: {
       form: {

@@ -126,7 +126,7 @@ export default {
         password: "",
         confirmedPassword: "",
         gender: 0,
-        age: 0
+        age: 25
       },
       genderList: [
         {value: "Female", text: "Female"},
@@ -151,24 +151,30 @@ export default {
     async Register() {
         try {
 
-          let genderToSend = 0;
+          let genderToSend = 1;
           if (this.form.gender == "Male") {
-              genderToSend = 1;
+              genderToSend = 2;
           }
-
-            await this.axios.post(
-              "http://localhost:443/Register",
+            const response = await this.axios.post(
+              "http://localhost:443/register",
               {
                 Email: this.form.email,
                 Password: this.form.password,
                 FirstName:  this.form.firstname,
-                LastName: this.form.lastName,
+                LastName: this.form.lastname,
                 Gender: genderToSend,
                 Age: Number(this.form.age),
               }
             );
-            this.$router.push("/");
+            if(response.data.message == 'User was added successfully'){
+              this.$router.push("/");
+              // axios.defaults.withCredentials = true;
+            }
+            else{
+              alert(response.data.message);
+            }
       } catch (err) {
+        console.log(err.response.data);
         alert(err.response.data);
         // alert(err.response.request.status);
         this.form.submitError = err.response.data.message;
