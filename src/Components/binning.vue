@@ -1,10 +1,18 @@
 <template>
   <div id="binning" @dragover.prevent>
-  <draggable class="drag"  :list="Images" group="tasks">
-    <div  v-for="(image, imageIndex) in Images" :key="imageIndex" class="im">
-      <img class="pic" v-bind:src="image" width="150px" height="100px" alt="..">
+  <draggable class="drag"  :list="Images" group="tasks" >
+    <div  v-for="row in rows" :key="row" class="im">
+        <div class="row">
+          <div  v-for="col in cols" :key="col" class="im">
+            <div class="column">
+              <img class="pic" :src="Images[index++]" width="150px" height="100px" alt=".." />
+            </div>
+        </div>
+      </div>
+      <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
     </div>
   </draggable>
+  
   <div class="Row">
     <div class="Column">
       <draggable  :list="arrGrade1" group="tasks" >
@@ -99,6 +107,7 @@ export default {
 
   data() {
     return {
+      index: 0 ,
       arrGrade1: [],
       arrGrade2: [],
       arrGrade3: [],
@@ -115,6 +124,16 @@ export default {
     Images: {
       require: true,
       type: Array
+    },
+    rows:
+    {
+      require: true,
+      type: Number
+    },
+    cols:
+    {
+      require: true,
+      type: Number
     }
   },
   methods: {
