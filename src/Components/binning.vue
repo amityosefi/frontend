@@ -5,7 +5,7 @@
         <div class="row">
           <div  v-for="col in cols" :key="col" class="im">
             <div class="column">
-              <img class="pic" :src="Images[index++]" width="150px" height="100px" alt=".." />
+              <img class="pic" :src="Images[row*(cols-1)+col]" width="150px" height="100px" alt=".." />
             </div>
         </div>
       </div>
@@ -152,6 +152,7 @@ export default {
   },
   created() {
     //this.uploadImages();
+    this.index = 0;
   }
 }
 
