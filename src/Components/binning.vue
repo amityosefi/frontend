@@ -1,17 +1,19 @@
 <template>
   <div id="binning" @dragover.prevent>
-  <draggable class="drag"  :list="Images" group="tasks" >
+  
     <div  v-for="row in rows" :key="row" class="im">
         <div class="row">
           <div  v-for="col in cols" :key="col" class="im">
             <div class="column">
+              <draggable class="drag"  :list="Images" group="tasks" >
               <img class="pic" :src="Images[row*(cols-1)+col]" width="150px" height="100px" alt=".." />
+              </draggable>
             </div>
         </div>
       </div>
       <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
     </div>
-  </draggable>
+  
   
   <div class="Row">
     <div class="Column">
