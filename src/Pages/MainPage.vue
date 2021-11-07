@@ -3,6 +3,8 @@
     <h1 class="header">Welcome to our image app!</h1>
 <!--    <LoginPage v-if="!$root.store.username"></LoginPage>-->
     <binning :Images=this.Images :rows = this.topics :cols = this.pictures></binning>
+    <img :src="Image" width="150px" height="100px">
+      <!-- <img src=this.Image alt="Red dot" /> -->
   </div>
 </template>
 
@@ -23,10 +25,20 @@ export default {
         Images: [],
         topics: 7,
         pictures: 6,
+        Image: "",
       }
     },
     methods: {
         async uploadImages() {
+
+              const response2 = await this.axios.get(`http://localhost:443/images/checkCompress`, {});
+              console.log(response2.data);
+              // const buffer = Buffer.from(response2.data, "base64");
+              this.Image = "data:image/png;base64, " + response2.data;
+              
+              // console.log(this.Image);
+
+              // fs.writeFileSync("new-path.jpg", buffer);
 
             const response = await this.axios.get(`http://localhost:443/images/getImages/${this.topics}/${this.pictures}`, {});
             this.Images = response.data.urls;

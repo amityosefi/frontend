@@ -6,13 +6,15 @@
           <div  v-for="col in cols" :key="col" class="im">
             <div class="column">
               <draggable class="drag"  :list="Images" group="tasks" >
-              <img class="pic" :src="Images[row*(cols-1)+col]" width="150px" height="100px" alt=".." />
+               <!-- <img class="pic" :src="Images[row*(cols-1)+col]" width="150px" height="100px" alt=".." /> -->
+          
               </draggable>
             </div>
         </div>
       </div>
       <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
     </div>
+
   
   
   <div class="Row">
@@ -150,11 +152,17 @@ export default {
     //   this.Images[5] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
     // },
     
+    
 
   },
   created() {
     //this.uploadImages();
     this.index = 0;
+
+    document.getElementById('img')
+    .setAttribute(
+        'src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAF0lEQVR4AWNkYGD4DwQMDP+BgIGB4T8ATNcI+TGhvfIAAAAASUVORK5CYII=='
+    );
   }
 }
 
