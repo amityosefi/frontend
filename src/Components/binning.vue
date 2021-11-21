@@ -1,12 +1,12 @@
 <template>
   <div id="binning" @dragover.prevent>
-  
-    <div  v-for="row in rows" :key="row" class="im">
+    <div class="im" >
+    <div  v-for="row in rows" :key="row" >
         <div class="row">
-          <div  v-for="col in cols" :key="col" class="im">
-            <div class="column">
+          <div  v-for="col in cols" :key="col" >
+            <div class="cols">
               <draggable class="drag"  :list="Images" group="tasks" >
-               <!-- <img class="pic" :src="Images[row*(cols-1)+col]" width="150px" height="100px" alt=".." /> -->
+               <img class="pic" :src="Images[(row-1)*(cols-1)+col-1]" width="150px" height="100px" alt=".." />
           
               </draggable>
             </div>
@@ -14,9 +14,9 @@
       </div>
       <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
     </div>
-
+    </div>
   
-  
+  <div >
   <div class="Row">
     <div class="Column">
       <draggable  :list="arrGrade1" group="tasks" >
@@ -99,6 +99,7 @@
     </div>
   </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -157,12 +158,7 @@ export default {
   },
   created() {
     //this.uploadImages();
-    this.index = 0;
-
-    document.getElementById('img')
-    .setAttribute(
-        'src', 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAF0lEQVR4AWNkYGD4DwQMDP+BgIGB4T8ATNcI+TGhvfIAAAAASUVORK5CYII=='
-    );
+    
   }
 }
 
@@ -178,17 +174,21 @@ export default {
 body {
   background-color: #fff0f0;
 }
-
+/* .display
+{
+  height:100px;
+  overflow: scroll;
+} */
 
 .Row {
-  position: absolute;
-  top: 50vh;
-  right: 30vh;
+  position:absolute;
+  top: 55vh;
+  margin-left:15%;
   display: table;
-  width: 70%;
+  width:70%;
   table-layout: fixed;
   border-spacing: 10px;
-  height: 3vh;
+  
   
 }
 .Column {
@@ -203,14 +203,23 @@ body {
   border-left-color: black;
   border-right-color: black;
   height: 5vh;
+  
 }
 
 .im {
-  text-align: center;
-  font-size: large;
-  cursor: pointer;
-  float: left;
-  margin-left: 5px;
+  position:fixed;
+  width:70%;
+  height:400px;
+  overflow: scroll;
+  margin-left:20%;
+  margin-bottom: 10%;
+  display: flex;
+  border-spacing: 10px;
+
+  
+  
+  
+  
   
 }
 .drag

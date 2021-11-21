@@ -3,7 +3,7 @@
     <h1 class="header">Welcome to our image app!</h1>
 <!--    <LoginPage v-if="!$root.store.username"></LoginPage>-->
     <binning :Images=this.Images :rows = this.topics :cols = this.pictures></binning>
-    <img :src="Image" width="150px" height="100px">
+    <!-- <img :src="Image" width="150px" height="100px"> -->
       <!-- <img src=this.Image alt="Red dot" /> -->
   </div>
 </template>
@@ -23,8 +23,8 @@ export default {
   data() {
       return {
         Images: [],
-        topics: 7,
-        pictures: 6,
+        topics: 6,
+        pictures: 7,
         Image: "",
       }
     },
@@ -41,7 +41,13 @@ export default {
               // fs.writeFileSync("new-path.jpg", buffer);
 
             const response = await this.axios.get(`http://localhost:443/images/getImages/${this.topics}/${this.pictures}`, {});
-            this.Images = response.data.urls;
+            let arr = [];
+            response.data.urls.map((img)=>
+            {
+              let str = "data:image/jpg;base64, " + img;
+              arr.push(str);
+            })
+            this.Images = arr;
      }
       
     },
