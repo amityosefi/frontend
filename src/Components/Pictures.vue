@@ -29,7 +29,7 @@ props:
 components:
     {
         sixPics:()=>import ('../Components/sixPics.vue') ,
-        eightPics:()=>import ('../Components/eightPics.vue') ,
+        eightPics:()=>import ('./secondGame.vue') ,
         ninePics:()=>import ('../Components/ninePics.vue') ,
         tenPics:()=>import ('../Components/tenPics.vue') ,
     },

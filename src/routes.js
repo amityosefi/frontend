@@ -20,6 +20,11 @@ const routes = [{
     name: "About",
     component: () => import("./Pages/AboutPage")
 },
+// {
+//     path: "/eight",
+//     name: "eight",
+//     component: () => import("./Pages/eightPics")
+// },
 {
     path: "/FullImagePage",
     name: "FullImagePage",
