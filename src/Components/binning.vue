@@ -6,7 +6,7 @@
           <div  v-for="col in cols" :key="col" >
             <div class="cols">
               <draggable class="drag"  :list="Images" group="tasks" >
-               <img class="pic" :src="Images[(row-1)*(cols-1)+col-1]" width="150px" height="100px" alt=".." />
+               <img class="pic" v-if="Images[(row-1)*(cols-1)+col-1] != undefined" :src="Images[(row-1)*(cols-1)+col-1]" width="150px" height="100px" alt=".." />
           
               </draggable>
             </div>
@@ -122,7 +122,8 @@ export default {
       arrGrade7: [],
       arrGrade8: [],
       arrGrade9: [],
-      arrGrade10: []
+      arrGrade10: [],
+      
     }
   },
   props: {
@@ -142,6 +143,11 @@ export default {
     }
   },
   methods: {
+
+    imagesCounter(){
+      return this.arrGrade1.length + this.arrGrade2.length + this.arrGrade3.length + this.arrGrade4.length + this.arrGrade5.length + this.arrGrade6.length + this.arrGrade7.length + this.arrGrade8.length + this.arrGrade9.length + this.arrGrade10.length; 
+    },
+
     // uploadImages() {
 
     //  // const response = await this.axios.get(`http://localhost:8110/images/getImages/${this.categorySelected}/${this.image}`, {});

@@ -21,11 +21,10 @@ const routes = [{
     component: () => import("./Pages/AboutPage")
 },
 {
-    path: "/FullImagePage",
-    name: "FullImagePage",
-    component: () =>
-    import ("./Pages/FullImagePage.vue")
-}
+    path: "/FirstGame",
+    name: "FirstGame",
+    component: () => import("./Pages/FirstGamePage")
+},
 ]
 
 export default routes;
