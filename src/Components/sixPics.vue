@@ -10,16 +10,22 @@
             <div class="column">
                 <Picture :link = this.Images[2]></Picture>
             </div>
-        </div>
-        <div class="row">
             <div class="column">
                 <Picture :link = this.Images[3]></Picture>
             </div>
+        </div>
+        <div class="row">
             <div class="column">
                 <Picture :link = this.Images[4]></Picture>
             </div>
             <div class="column">
                 <Picture :link = this.Images[5]></Picture>
+            </div>
+            <div class="column">
+                <Picture :link = this.Images[6]></Picture>
+            </div>
+            <div class="column">
+                <Picture :link = this.Images[7]></Picture>
             </div>
         </div>
     </div>

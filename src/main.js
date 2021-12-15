@@ -1,6 +1,7 @@
 import Vue from "vue";
 import App from "./App.vue";
 import VueAxios from "vue-axios";
+require('vue-select-image/dist/vue-select-image.css')
 import axios from "axios";
 import './assets/style.css';
 import routes from "./routes";
@@ -12,6 +13,9 @@ const router = new VueRouter({
 });
 
 import Vuelidate from "vuelidate";
+import vSelect from 'vue-select';
+
+import VueSelectImage from 'vue-select-image'
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
 import {
@@ -41,7 +45,8 @@ import {
     InputGroupPlugin
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
-
+Vue.use(VueSelectImage)
+Vue.component('v-select', vSelect)
 
 axios.interceptors.request.use(
     function(config) {
