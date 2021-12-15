@@ -20,17 +20,11 @@ const routes = [{
     name: "About",
     component: () => import("./Pages/AboutPage")
 },
-// {
-//     path: "/eight",
-//     name: "eight",
-//     component: () => import("./Pages/eightPics")
-// },
 {
-    path: "/FullImagePage",
-    name: "FullImagePage",
-    component: () =>
-    import ("./Pages/FullImagePage.vue")
-}
+    path: "/FirstGame",
+    name: "FirstGame",
+    component: () => import("./Pages/FirstGamePage")
+},
 ]
 
 export default routes;
