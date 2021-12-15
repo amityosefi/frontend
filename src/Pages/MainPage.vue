@@ -31,10 +31,10 @@ export default {
     methods: {
         async uploadImages() {
 
-              const response2 = await this.axios.get(`http://localhost:443/images/checkCompress`, {});
-              console.log(response2.data);
-              // const buffer = Buffer.from(response2.data, "base64");
-              this.Image = "data:image/png;base64, " + response2.data;
+              // const response2 = await this.axios.get(`http://localhost:443/images/checkCompress`, {});
+              // console.log(response2.data);
+              // // const buffer = Buffer.from(response2.data, "base64");
+              // this.Image = "data:image/png;base64, " + response2.data;
               
               // console.log(this.Image);
 
