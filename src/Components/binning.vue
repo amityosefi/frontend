@@ -1,10 +1,22 @@
 <template>
   <div id="binning" @dragover.prevent>
-  <draggable class="drag"  :list="Images" group="tasks">
-    <div  v-for="(image, imageIndex) in Images" :key="imageIndex" class="im">
-      <img class="pic" v-bind:src="image" width="150px" height="100px" alt="..">
+    <div class="im" >
+    <div  v-for="row in rows" :key="row" >
+        <div class="row">
+          <div  v-for="col in cols" :key="col" >
+            <div class="cols">
+              <draggable class="drag"  :list="Images" group="tasks" >
+               <img class="pic" :src="Images[(row-1)*(cols-1)+col-1]" width="150px" height="100px" alt=".." />
+          
+              </draggable>
+            </div>
+        </div>
+      </div>
+      <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
     </div>
-  </draggable>
+    </div>
+  
+  <div >
   <div class="Row">
     <div class="Column">
       <draggable  :list="arrGrade1" group="tasks" >
@@ -87,6 +99,7 @@
     </div>
   </div>
   </div>
+  </div>
 </template>
 
 <script>
@@ -99,7 +112,7 @@ export default {
 
   data() {
     return {
-      Images: [],
+      index: 0 ,
       arrGrade1: [],
       arrGrade2: [],
       arrGrade3: [],
@@ -112,20 +125,40 @@ export default {
       arrGrade10: []
     }
   },
-  methods: {
-    uploadImages() {
-      this.Images[0] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[1] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[2] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[3] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[4] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-      this.Images[5] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+  props: {
+    Images: {
+      require: true,
+      type: Array
     },
+    rows:
+    {
+      require: true,
+      type: Number
+    },
+    cols:
+    {
+      require: true,
+      type: Number
+    }
+  },
+  methods: {
+    // uploadImages() {
+
+    //  // const response = await this.axios.get(`http://localhost:8110/images/getImages/${this.categorySelected}/${this.image}`, {});
+    //   this.Images[0] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+    //   this.Images[1] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+    //   this.Images[2] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+    //   this.Images[3] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+    //   this.Images[4] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+    //   this.Images[5] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
+    // },
+    
     
 
   },
   created() {
-    this.uploadImages();
+    //this.uploadImages();
+    
   }
 }
 
@@ -141,17 +174,21 @@ export default {
 body {
   background-color: #fff0f0;
 }
-
+/* .display
+{
+  height:100px;
+  overflow: scroll;
+} */
 
 .Row {
-  position: absolute;
-  top: 50vh;
-  right: 30vh;
+  position:absolute;
+  top: 55vh;
+  margin-left:15%;
   display: table;
-  width: 70%;
+  width:70%;
   table-layout: fixed;
   border-spacing: 10px;
-  height: 3vh;
+  
   
 }
 .Column {
@@ -166,14 +203,23 @@ body {
   border-left-color: black;
   border-right-color: black;
   height: 5vh;
+  
 }
 
 .im {
-  text-align: center;
-  font-size: large;
-  cursor: pointer;
-  float: left;
-  margin-left: 5px;
+  position:fixed;
+  width:70%;
+  height:400px;
+  overflow: scroll;
+  margin-left:20%;
+  margin-bottom: 10%;
+  display: flex;
+  border-spacing: 10px;
+
+  
+  
+  
+  
   
 }
 .drag

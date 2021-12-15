@@ -3,81 +3,62 @@
     <h1>Second game</h1>
     <!-- <h1 class="header">Welcome to our image app!</h1> -->
 <!--    <LoginPage v-if="!$root.store.username"></LoginPage>-->
-<!--    <binning v-else></binning>-->
-    <!-- <binning></binning> -->
-    <secondGame :Images="Images" />
+    <binning :Images=this.Images :rows = this.topics :cols = this.pictures></binning>
+    <!-- <secondGame :Images=this.Images></secondGame> -->
+    <!-- <img :src="Image" width="150px" height="100px"> -->
+      <!-- <img src=this.Image alt="Red dot" /> -->
   </div>
 </template>
 
 
 <script>
-import secondGame from '../Components/secondGame';
+// import secondGame from '../Components/secondGame';
 // import LoginPage from "../Pages/LoginPage";
 
 export default {
   name: 'Main',
   components:
   {
-    secondGame,
+    // secondGame,
     // LoginPage
   },
   data() {
       return {
         Images: [],
+        topics: 6,
+        pictures: 7,
+        Image: "",
       }
     },
     methods: {
-      viewPictures() {
-      this.Images[0] = {
-        id: 0,
-        src:
-          "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg",
-      };
-      this.Images[1] = {
-        id: 1,
-        src:
-          "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg",
-      };
-      this.Images[2] = {
-        id: 2,
-        src:
-          "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg",
-      };
-      this.Images[3] = {
-        id: 3,
-        src:
-          "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg",
-      };
-      this.Images[4] = {
-        id: 4,
-        src:
-          "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg",
-      };
-      this.Images[5] = {
-        id: 5,
-        src:
-          "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg",
-      };
-      this.Images[6] = {
-        id: 6,
-        src:
-          "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg",
-      };
-      this.Images[7] = {
-        id: 7,
-        src:
-          "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg",
-      };
+        async uploadImages() {
+
+              // const response2 = await this.axios.get(`http://localhost:443/images/checkCompress`, {});
+              // console.log(response2.data);
+              // const buffer = Buffer.from(response2.data, "base64");
+              // this.Image = "data:image/png;base64, " + response2.data;
+              
+              // console.log(this.Image);
+
+              // fs.writeFileSync("new-path.jpg", buffer);
+
+            const response = await this.axios.get(`http://localhost:443/images/getImages/${this.topics}/${this.pictures}`, {});
+            let arr = [];
+            response.data.urls.map((img)=>
+            {
+              let str = "data:image/jpg;base64, " + img;
+              arr.push(str);
+            })
+            this.Images = arr;
+     }
       
     },
-
-  },
-  created(){
-    this.viewPictures();
-  },
-}
-
+    created() {
+      this.uploadImages();
+    }
+  }
 </script>
-<style>
+<style scoped>
+
 
 </style>

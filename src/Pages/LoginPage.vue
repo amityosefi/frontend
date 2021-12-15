@@ -6,7 +6,7 @@
           <div class="col-12 col-md-9 col-lg-7 col-xl-6">
             <div class="card" style="border-radius: 15px;">
               <div class="card-body p-5">
-                <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                <h2 class="text-uppercase text-center mb-5">Sign In</h2>
 
                 <form>
                   <b-form-group id="input-group-email" label-cols-sm="3" label="Email" label-for="email" >
@@ -82,16 +82,39 @@
         const {$dirty, $error} = this.$v.form[param];
         return $dirty ? !$error : null;
       },
+      async Login() {
+          try {
+            const response = await this.axios.post(
+              "http://localhost:443/login",
+              {
+                Email: this.form.email,
+                Password: this.form.password
+              }
+            );
+
+            if(response.data.message != 'There is no Email or password'){
+              this.$router.push("/");
+              // axios.defaults.withCredentials = true;
+            }
+            else{
+              alert("Username or password incorrect");
+              this.form.email = '';
+              this.form.password = '';
+            }
+      } catch (err) {
+        console.log(err.response);
+        this.form.submitError = err.response.data.message;
+      }
+      },
       onLogin() {
         this.$v.form.$touch();
-        if (this.$v.form.$anyError) {
-          return;
-        }
+        // if (this.$v.form.$anyError) {
+        //   console.log("not good");
+        //   return;
+        // }
         this.Login();
       },
-      Login() {
-        alert("succeed!");
-      }
+      
     },
     validations: {
       form: {

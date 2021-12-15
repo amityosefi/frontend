@@ -32,8 +32,9 @@ export default {
   methods: {
     async Logout() {
       try {
+        console.log("good")
         const response = await this.axios.post(
-            "http://localhost:3001/Logout",
+            "http://localhost:3001/logout",
         );
         console.log(response.data)
       } catch (error) {
