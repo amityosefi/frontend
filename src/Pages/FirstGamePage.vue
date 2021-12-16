@@ -11,11 +11,7 @@
       <!-- <img src=this.Image alt="Red dot" /> -->
     </div>
     <div class="submitDiv">
-      <button
-        id="terms"
-        class="submitButton"
-        v-on:click="submit"
-      >
+      <button id="terms" class="submitButton" v-on:click="submit">
         Submit
       </button>
     </div>
@@ -40,24 +36,20 @@ export default {
   },
 
   methods: {
-
     async submit() {
-        console.log(this.$children[0].imagesCounter());
-        if (this.$children[0].imagesCounter().length != 4){
-            alert("Need to rank all images");
-        }
-        else{
-            console.log(this.$children[0].imagesCounter());
-        }
-      //   console.log(this.fromChildarrGrade10.length);
-
-      //       const response = await this.axios.post(
-      //     `http://localhost:443/submitRatings`,
-      //     {
-      //         data_ratings: "d"
-      //     }
-      //   );
-      //   console.log(response);
+      if (this.$children[0].imagesCounter().length != 4) {
+        // 72
+        alert("Need to rank all images");
+      } else {
+          console.log(this.$children[0].aaa());
+        const response = await this.axios.post(
+          `http://localhost:443/submitRatings`,
+          {
+            data_ratings: this.$children[0].imagesList(),
+          }
+        );
+        console.log(response.data);
+      }
     },
     async uploadImages() {
       // const response2 = await this.axios.get(`http://localhost:443/images/checkCompress`, {});

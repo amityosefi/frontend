@@ -147,6 +147,12 @@ export default {
     imagesCounter(){
       return this.arrGrade1.concat(this.arrGrade2 , this.arrGrade3 , this.arrGrade4 , this.arrGrade5 , this.arrGrade6 , this.arrGrade7 , this.arrGrade8 , this.arrGrade9 , this.arrGrade10); 
     },
+    aaa(){
+      return [ this.arrGrade1 ,  this.arrGrade2 ,  this.arrGrade3 ,  this.arrGrade4 , this.arrGrade5 , this.arrGrade6 , this.arrGrade7 , this.arrGrade8 , this.arrGrade9 ,  this.arrGrade10]; 
+    },
+    imagesList(){
+      return {arr1: this.arrGrade1 , arr2: this.arrGrade2 , arr3: this.arrGrade3 , arr4: this.arrGrade4 , arr5:this.arrGrade5 , arr6:this.arrGrade6 , arr7:this.arrGrade7 , arr8:this.arrGrade8 , arr9:this.arrGrade9 , arr10: this.arrGrade10}; 
+    },
 
     // uploadImages() {
 

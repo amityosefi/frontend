@@ -25,6 +25,11 @@ const routes = [{
     name: "FirstGame",
     component: () => import("./Pages/FirstGamePage")
 },
+{
+    path: "/SecondGamePage",
+    name: "SecondGamePage",
+    component: () => import("./Pages/SecondGamePage")
+},
 ]
 
 export default routes;
