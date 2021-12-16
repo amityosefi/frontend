@@ -111,6 +111,7 @@ export default {
   },
 
   data() {
+    
     return {
       index: 0 ,
       arrGrade1: [],
@@ -123,7 +124,6 @@ export default {
       arrGrade8: [],
       arrGrade9: [],
       arrGrade10: [],
-      
     }
   },
   props: {
@@ -145,7 +145,7 @@ export default {
   methods: {
 
     imagesCounter(){
-      return this.arrGrade1.length + this.arrGrade2.length + this.arrGrade3.length + this.arrGrade4.length + this.arrGrade5.length + this.arrGrade6.length + this.arrGrade7.length + this.arrGrade8.length + this.arrGrade9.length + this.arrGrade10.length; 
+      return this.arrGrade1.concat(this.arrGrade2 , this.arrGrade3 , this.arrGrade4 , this.arrGrade5 , this.arrGrade6 , this.arrGrade7 , this.arrGrade8 , this.arrGrade9 , this.arrGrade10); 
     },
 
     // uploadImages() {
