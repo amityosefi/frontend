@@ -67,8 +67,9 @@ export default {
       );
       let arr = [];
       response.data.urls.map((img) => {
-        let str = "data:image/jpg;base64, " + img;
+        let str = "data:image/jpg;base64, " + img.src;
         arr.push(str);
+        console.log(img.id);
       });
       this.Images = arr;
     },
