@@ -2,8 +2,6 @@
   <div>
     <div>
       <h1>First game</h1>
-      <!-- <h1 class="header">Welcome to our image app!</h1> -->
-      <!--    <LoginPage v-if="!$root.store.username"></LoginPage>-->
       <binning
         :Images="this.Images"
         :rows="this.topics"
@@ -13,51 +11,46 @@
       <!-- <img src=this.Image alt="Red dot" /> -->
     </div>
     <div class="submitDiv">
-      <button class="submitButton" v-on:click="submit">Submit</button>
+      <button id="terms" class="submitButton" v-on:click="submit">
+        Submit
+      </button>
     </div>
   </div>
 </template>
 
 <script>
 import binning from "../Components/binning.vue";
-// import secondGame from '../Components/secondGame';
-// import LoginPage from "../Pages/LoginPage";
 
 export default {
   name: "FirstGame",
   components: {
     binning,
-    // secondGame,
-    // LoginPage
   },
   data() {
     return {
-      binningImages: binning.data,
-        // x: 0,
       Images: [],
       topics: 2,
       pictures: 2,
       Image: "",
     };
   },
-  methods: {
-      isDisabled(){
-          console.log(this.binningImages.imagesCounter());
-          if(this.binningImages.imagesCounter() == 0){
-              return false;
-          }
-          return true;
-      },
-      async submit(){
 
-          const response = await this.axios.post(
-        `http://localhost:443/submitRatings`,
-        {
-            data_ratings: "d"
-        }
-      );
-      console.log(response);
-      },
+  methods: {
+    async submit() {
+      if (this.$children[0].imagesCounter().length != 4) {
+        // 72
+        alert("Need to rank all images");
+      } else {
+          console.log(this.$children[0].aaa());
+        const response = await this.axios.post(
+          `http://localhost:443/submitRatings`,
+          {
+            data_ratings: this.$children[0].imagesList(),
+          }
+        );
+        console.log(response.data);
+      }
+    },
     async uploadImages() {
       // const response2 = await this.axios.get(`http://localhost:443/images/checkCompress`, {});
       // console.log(response2.data);
@@ -80,18 +73,17 @@ export default {
       this.Images = arr;
     },
   },
+
   created() {
-    //   console.log(this.$emit('imagesCounter', binning));
-    console.log(this.binningImages);
     this.uploadImages();
   },
 };
 </script>
 <style scoped>
-.submitButton{
-    margin-top: 57vh;
-    margin-left:45%;
-    width:200px;
-    /* width: 50vh; */
+.submitButton {
+  margin-top: 57vh;
+  margin-left: 45%;
+  width: 200px;
+  /* width: 50vh; */
 }
 </style>
