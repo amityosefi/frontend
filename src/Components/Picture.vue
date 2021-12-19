@@ -1,5 +1,8 @@
 <template>
-    <div> 
+    <div v-if="draggable"> 
+        <img id ="pic2" v-bind:src = this.link>
+    </div>
+    <div v-else> 
         <img id ="pic" v-bind:src = this.link>
     </div>
 </template>
@@ -13,8 +16,18 @@
             link:
             {
                 type: String,
-                require: true,
+                require: false,
                 default:"http://somethingstudio.co.il/wp-content/uploads/2017/12/logo-something.png"
+            },
+            id:
+            {
+                type: Number,
+                require:false,
+            },
+            draggable:
+            {
+                type: Boolean,
+                require:true
             }
         },
         methods:
@@ -53,8 +66,15 @@
 <style scoped>
 #pic
 {
-    width:50px;
-    height:50px;
+    width:150px;
+    height:100px;
+    
+    
+}
+#pic2
+{
+    width:85px;
+    height:55px;
     
     
 }
