@@ -1,27 +1,27 @@
 <template>
   <div id="binning" @dragover.prevent>
-    <div class="im" >
-    <div  v-for="row in rows" :key="row" >
-        <div class="row">
-          <div  v-for="col in cols" :key="col" >
-            <div class="cols">
-              <draggable class="drag"  :list="Images" group="tasks" >
-               <img class="pic" v-if="Images[(row-1)*(cols-1)+col-1] != undefined" :src="Images[(row-1)*(cols-1)+col-1]" width="150px" height="100px" alt=".." />
+    <div  class="selection">
+    
+      <draggable class="im" @dragend="remove(item)" :list="listLocal" group="tasks" >
+         <li style="list-style-type: none;" v-for="(Image,idx) in listLocal" :key="idx">      
           
-              </draggable>
-            </div>
-        </div>
-      </div>
+          <Picture :link="Image.src" :id="Image.id" :draggable="false" />
+        </li>
+       </draggable>
+        
+    </div>
       <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
-    </div>
-    </div>
+
+    
+   <br><br><br> 
   
-  <div >
+  <div class="bins">
   <div class="Row">
     <div class="Column">
       <draggable  :list="arrGrade1" group="tasks" >
-        <div v-for="(image, imageIndex) in arrGrade1" :key="imageIndex" class="bin">
-          <img v-bind:src="image" width="85px" height="55px" alt="..">
+        <div v-for="image in arrGrade1" :key="image.id" class="bin">
+          <!-- <img v-bind:src="image" width="85px" height="55px" alt=".."> -->
+          <Picture :link ="image.src" :id="image.id" :draggable="true"/>
         </div>
       </draggable>
     </div>
@@ -29,7 +29,7 @@
     <div class="Column">
       <draggable :list="arrGrade2" group="tasks" >
         <div v-for="(image, imageIndex) in arrGrade2" :key="imageIndex" class="bin">
-          <img v-bind:src="image" width="85px" height="55px" alt="..">
+          <Picture :link ="image.src" :id="image.id" :draggable="true"/>
         </div>
       </draggable>
     </div>
@@ -37,7 +37,7 @@
     <div class="Column">
       <draggable :list="arrGrade3" group="tasks" >
         <div v-for="(image, imageIndex) in arrGrade3" :key="imageIndex" class="bin">
-          <img v-bind:src="image" width="85px" height="55px" alt="..">
+          <Picture :link ="image.src" :id="image.id" :draggable="true"/>
         </div>
       </draggable>
     </div>
@@ -45,7 +45,7 @@
     <div class="Column">
       <draggable :list="arrGrade4" group="tasks" >
         <div v-for="(image, imageIndex) in arrGrade4" :key="imageIndex" class="bin">
-          <img v-bind:src="image" width="85px" height="55px" alt="..">
+          <Picture :link ="image.src" :id="image.id" :draggable="true"/>
         </div>
       </draggable>
     </div>
@@ -53,7 +53,7 @@
     <div class="Column">
       <draggable :list="arrGrade5" group="tasks" >
         <div v-for="(image, imageIndex) in arrGrade5" :key="imageIndex" class="bin">
-          <img v-bind:src="image" width="85px" height="55px" alt="..">
+          <Picture :link ="image.src" :id="image.id" :draggable="true"/>
         </div>
       </draggable>
     </div>
@@ -61,7 +61,7 @@
     <div class="Column">
       <draggable :list="arrGrade6" group="tasks" >
         <div v-for="(image, imageIndex) in arrGrade6" :key="imageIndex" class="bin">
-          <img v-bind:src="image" width="85px" height="55px" alt="..">
+          <Picture :link ="image.src" :id="image.id" :draggable="true"/>
         </div>
       </draggable>
     </div>
@@ -69,7 +69,7 @@
     <div class="Column">
       <draggable :list="arrGrade7" group="tasks" >
         <div v-for="(image, imageIndex) in arrGrade7" :key="imageIndex" class="bin">
-          <img v-bind:src="image" width="85px" height="55px" alt="..">
+          <Picture :link ="image.src" :id="image.id" :draggable="true"/>
         </div>
       </draggable>
     </div>
@@ -77,7 +77,7 @@
     <div class="Column">
       <draggable :list="arrGrade8" group="tasks" >
         <div v-for="(image, imageIndex) in arrGrade8" :key="imageIndex" class="bin">
-          <img v-bind:src="image" width="85px" height="55px" alt="..">
+          <Picture :link ="image.src" :id="image.id" :draggable="true"/>
         </div>
       </draggable>
     </div>
@@ -85,7 +85,7 @@
     <div class="Column">
       <draggable :list="arrGrade9" group="tasks" >
         <div v-for="(image, imageIndex) in arrGrade9" :key="imageIndex" class="bin">
-          <img v-bind:src="image" width="85px" height="55px" alt="..">
+          <Picture :link ="image.src" :id="image.id" :draggable="true"/>
         </div>
       </draggable>
     </div>
@@ -93,7 +93,7 @@
     <div class="Column">
       <draggable :list="arrGrade10" group="tasks" >
         <div v-for="(image, imageIndex) in arrGrade10" :key="imageIndex" class="bin">
-          <img v-bind:src="image" width="85px" height="55px" alt="..">
+          <Picture :link ="image.src" :id="image.id" :draggable="true"/>
         </div>
       </draggable>
     </div>
@@ -104,10 +104,12 @@
 
 <script>
 import draggable from "vuedraggable";
+import Picture from './Picture.vue'
 export default {
   name: 'binning',
   components: {
     draggable,
+    Picture,
   },
 
   data() {
@@ -142,36 +144,72 @@ export default {
       type: Number
     }
   },
+  model: {
+        prop: 'Images',
+        event: 'listchange'
+    },
+  computed: {
+        listLocal: {
+            get: function() {
+                return this.Images;
+            },
+            set: function(value) {
+                this.$emit('listchange', value)
+            }
+        },
+        sizeFull:function()
+        {
+          return this.arrGrade1.length + this.arrGrade2.length + this.arrGrade3.length + this.arrGrade4.length + this.arrGrade5.length + this.arrGrade6.length + this.arrGrade7.length + this.arrGrade8.length + this.arrGrade9.length + this.arrGrade10.length;
+        }
+    },
   methods: {
+    rating(Arr,ratings)
+    {
+      
+      let arr = []
+      if(Arr.length == 0)
+        return null
+      // console.log(Arr);
+      for(const img in Arr)
+      {
+        let pic =Arr[img];
+        // console.log("pic",pic.id);
+        arr.push({"picId":pic.id,"rating":ratings})
+      }
+      // console.log("arr",arr);
+      return arr;
 
-    imagesCounter(){
-      return this.arrGrade1.concat(this.arrGrade2 , this.arrGrade3 , this.arrGrade4 , this.arrGrade5 , this.arrGrade6 , this.arrGrade7 , this.arrGrade8 , this.arrGrade9 , this.arrGrade10); 
     },
-    aaa(){
-      return [ this.arrGrade1 ,  this.arrGrade2 ,  this.arrGrade3 ,  this.arrGrade4 , this.arrGrade5 , this.arrGrade6 , this.arrGrade7 , this.arrGrade8 , this.arrGrade9 ,  this.arrGrade10]; 
-    },
-    imagesList(){
-      return {arr1: this.arrGrade1 , arr2: this.arrGrade2 , arr3: this.arrGrade3 , arr4: this.arrGrade4 , arr5:this.arrGrade5 , arr6:this.arrGrade6 , arr7:this.arrGrade7 , arr8:this.arrGrade8 , arr9:this.arrGrade9 , arr10: this.arrGrade10}; 
-    },
-
-    // uploadImages() {
-
-    //  // const response = await this.axios.get(`http://localhost:8110/images/getImages/${this.categorySelected}/${this.image}`, {});
-    //   this.Images[0] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-    //   this.Images[1] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-    //   this.Images[2] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-    //   this.Images[3] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-    //   this.Images[4] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-    //   this.Images[5] = "https://booking.pvtravels.com/public/files/PERUANOS/Huaraz/HUA_3.jpg";
-    // },
-    
-    
-
+    ratingAll()
+    {
+      let arr = [this.arrGrade1,this.arrGrade2,this.arrGrade3,this.arrGrade4,this.arrGrade5,this.arrGrade6,this.arrGrade7,this.arrGrade8,this.arrGrade9,this.arrGrade10];
+      let res = [];
+      
+      
+      for( var i = 0 ; i < arr.length; i++)
+      {
+        let temp = arr[i];
+        temp = this.rating(temp,i+1);
+        if(temp!=null)
+        {
+          
+          for(const dict in temp)
+          {
+            
+            res.push(temp[dict]);
+          }
+        }
+      }
+      
+      return res;
+    }
   },
+
   created() {
-    //this.uploadImages();
     
-  }
+    
+  },
+  
 }
 
 </script>
@@ -182,7 +220,11 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
-
+.selection
+{
+  display: block;
+  
+}
 body {
   background-color: #fff0f0;
 }
@@ -193,13 +235,13 @@ body {
 } */
 
 .Row {
-  position:absolute;
-  top: 55vh;
+  /* position:absolute;
+  top: 55vh; */
   margin-left:15%;
   display: table;
   width:70%;
   table-layout: fixed;
-  border-spacing: 10px;
+  
   
   
 }
@@ -219,20 +261,18 @@ body {
 }
 
 .im {
-  position:fixed;
+  
   width:70%;
-  height:400px;
+  max-height: 400px;
   overflow: scroll;
-  margin-left:20%;
-  margin-bottom: 10%;
+  justify-self: center;
+  margin-bottom: 3%;
+  margin-left:auto;
+  margin-right:auto;
   display: flex;
+  flex-wrap: wrap;
   border-spacing: 10px;
-
-  
-  
-  
-  
-  
+ 
 }
 .drag
 {
@@ -245,7 +285,15 @@ body {
   margin-top: 2px;
   
 }
-
+.break
+{
+  flex-basis: 100%;
+  height:0;
+}
+.bins
+{
+  align-items: center;
+}
 /* .pic:hover
 {
   height:50%;

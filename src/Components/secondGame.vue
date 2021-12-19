@@ -1,7 +1,7 @@
 <template>
   <div>
     <div>
-      <vue-select-image
+      <vue-select-image 
         :dataImages="Images"
         :is-multiple="true"
         :h="height"
@@ -10,6 +10,7 @@
         @onselectmultipleimage="onSelectMultipleImage"
         @onreachlimit="onreachlimit"
       >
+      
       </vue-select-image>
     </div>
     <div class="submitDiv">
@@ -37,6 +38,8 @@ export default {
       height: "250px",
       weight: "250px",
       selectedImages: [],
+      correct_ids:["4","6"],
+      
     };
   },
   methods: {
@@ -52,6 +55,19 @@ export default {
       if (this.selectedImages.length == 2) {
         console.log("good 2");
         console.log(this.selectedImages);
+        let arr = []
+        this.selectedImages.map((x)=>{arr.push(x.id);});
+        let flag = true;
+        for(var i = 0 ; i < arr.length ; i++)
+        {
+          if(!this.correct_ids.includes(arr[i]))
+            flag = false;
+
+        }
+        if(flag)
+          window.alert("you've chosen correctly!");
+        else
+          window.alert("you've chosen incorrectly!");
       } else {
         alert("Need to choose two pictures");
       }
