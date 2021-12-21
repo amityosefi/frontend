@@ -9,6 +9,8 @@
             <b-nav-item :to="{ name: 'login' }">login</b-nav-item>
             <b-nav-item :to="{ name: 'register' }">register</b-nav-item>
             <b-nav-item :to="{ name: 'About' }">About</b-nav-item>
+            <b-nav-item :to="{ name: 'FirstGame' }">First Game</b-nav-item>
+            <b-nav-item :to="{ name: 'SecondGamePage' }">Second Game</b-nav-item>
             <b-nav-item v-on:click="Logout">Log Out</b-nav-item>
           </b-navbar-nav>
           <!-- right side -->

@@ -1,26 +1,22 @@
 <template>
   <div>
-    <h1>Second game</h1>
-    <!-- <h1 class="header">Welcome to our image app!</h1> -->
-<!--    <LoginPage v-if="!$root.store.username"></LoginPage>-->
-    <binning :Images=this.Images :rows = this.topics :cols = this.pictures></binning>
-    <!-- <secondGame :Images=this.Images></secondGame> -->
-    <!-- <img :src="Image" width="150px" height="100px"> -->
-      <!-- <img src=this.Image alt="Red dot" /> -->
+    <h1>Main page</h1>
+      <LoginPage v-if="!$root.store.username"></LoginPage>
+      <!-- <FavoriteGames v-else></FavoriteGames> -->
   </div>
 </template>
 
 
 <script>
-// import secondGame from '../Components/secondGame';
-// import LoginPage from "../Pages/LoginPage";
+// import FirstGamePage from '../Pages/FirstGamePage.vue';
+import LoginPage from "../Pages/LoginPage";
 
 export default {
   name: 'Main',
   components:
   {
-    // secondGame,
-    // LoginPage
+    // FirstGamePage
+    LoginPage
   },
   data() {
       return {
@@ -59,6 +55,5 @@ export default {
   }
 </script>
 <style scoped>
-
 
 </style>
