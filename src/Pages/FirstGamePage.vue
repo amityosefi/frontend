@@ -22,7 +22,7 @@
 import binning from "../Components/binning.vue";
 
 export default {
-  name: "FirstGame",
+  name: "FirstGamePage",
   components: {
     binning,
   },
@@ -31,24 +31,32 @@ export default {
       Images: [],
       topics: 2,
       pictures: 2,
+      size: 4,
       Image: "",
       disableButton:true,
     };
   },
-  computed:
-  {
-    size: function(){return this.topics*this.pictures},
+  // computed:
+  // {
     
-  },
+  //   size: function(){
+      
+  //     return this.topics*this.pictures},
+    
+  // },
   methods: {
+    
     async checkFull()
     {
       let sizeFull = this.$refs;
       
+      console.log(sizeFull.bins);
+
       if(sizeFull == undefined || sizeFull == {})
         return this.disableButton;
-      console.log(sizeFull.bins.sizeFull != this.size);
-      return  sizeFull.bins.sizeFull != this.size;
+      
+      // console.log(sizeFull.bins.sizeFull);
+      return sizeFull.bins.sizeFull != this.size;
     },
     async submit() {
       let rates = this.$refs.bins.ratingAll();
@@ -64,12 +72,17 @@ export default {
       this.$router.push('/SecondGamePage');
     },
     async uploadImages() {
-      
+      try{
 
+      this.size = this.topics*this.pictures;
+      console.log("uploadImages 1");
+      console.log(this.size);
       const response = await this.axios.get(
         `http://localhost:443/images/getImages/${this.topics}/${this.pictures}`,
-        {}
+        {
+              }
       );
+      console.log(response.data);
       let arr = [];
       
       response.data.urls.map((img) => {
@@ -78,10 +91,18 @@ export default {
         
       });
       this.Images = arr;
+      } catch(err){
+        console.log(err.response);
+      }
     },
   },
 
   created() {
+    if (this.$root.store.username) {
+      this.$root.store.login("");
+    } else {
+      console.log(this.$root.store.username);
+    }
     this.uploadImages();
   },
 };

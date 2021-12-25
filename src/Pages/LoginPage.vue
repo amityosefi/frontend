@@ -77,6 +77,7 @@
         validated: false
       }
     },
+
     methods: {
       validateState(param) {
         const {$dirty, $error} = this.$v.form[param];
@@ -89,12 +90,16 @@
               {
                 Email: this.form.email,
                 Password: this.form.password
+              },
+              {
+                headers: {
+                  user_id: this.$root.username
+                }
               }
             );
-
             if(response.data.message != 'There is no Email or password'){
-              this.$router.push("/");
-              // axios.defaults.withCredentials = true;
+              this.$root.store.login(this.form.email);
+              this.$router.push("/FirstGamePage")
             }
             else{
               alert("Username or password incorrect");

@@ -2,7 +2,7 @@ import Main from "./Pages/MainPage.vue";
 
 const routes = [{
     path: "/",
-    name: "main",
+    name: "Main",
     component: Main
 },
 {
@@ -21,8 +21,8 @@ const routes = [{
     component: () => import("./Pages/AboutPage")
 },
 {
-    path: "/FirstGame",
-    name: "FirstGame",
+    path: "/FirstGamePage",
+    name: "FirstGamePage",
     component: () => import("./Pages/FirstGamePage")
 },
 {
