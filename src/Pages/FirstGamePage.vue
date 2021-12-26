@@ -22,7 +22,7 @@
 import binning from "../Components/binning.vue";
 
 export default {
-  name: "FirstGamePage",
+  name: "FirstGame",
   components: {
     binning,
   },
@@ -98,11 +98,11 @@ export default {
   },
 
   created() {
-    if (this.$root.store.username) {
-      this.$root.store.login("");
-    } else {
-      console.log(this.$root.store.username);
-    }
+    // if (this.$root.store.username) {
+    //   this.$root.store.login("");
+    // } else {
+    //   console.log(this.$root.store.username);
+    // }
     this.uploadImages();
   },
 };
