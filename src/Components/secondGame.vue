@@ -53,8 +53,8 @@ export default {
     },
     submit() {
       if (this.selectedImages.length == 2) {
-        console.log("good 2");
-        console.log(this.selectedImages);
+        // console.log("good 2");
+        // console.log(this.selectedImages);
         let arr = []
         this.selectedImages.map((x)=>{arr.push(x.id);});
         let flag = true;
@@ -74,8 +74,8 @@ export default {
     },
   },
   created() {
-    console.log("created");
-    console.log(this.Images);
+    // console.log("created");
+    // console.log(this.Images);
   },
 };
 </script>

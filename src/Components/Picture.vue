@@ -11,6 +11,11 @@
     export default
     {
         name : "picture",
+        data() {
+        return {
+        dialog: null
+        }
+        },
         props:
         {
             link:
@@ -83,4 +88,9 @@
     box-shadow: 2px 2px 2px 2px grey;
     cursor:pointer;
 }
+.dialog
+{
+     position: fixed
+}
+
 </style>

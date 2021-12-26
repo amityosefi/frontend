@@ -1,6 +1,6 @@
 <template>
   <div id="binning" @dragover.prevent>
-    <div  class="selection">
+    <div  class="selection" v-viewer>
     
       <draggable class="im" @dragend="remove(item)" :list="listLocal" group="tasks" >
          <li style="list-style-type: none;" v-for="(Image,idx) in listLocal" :key="idx">      
@@ -105,6 +105,10 @@
 <script>
 import draggable from "vuedraggable";
 import Picture from './Picture.vue'
+  import 'viewerjs/dist/viewer.css'
+  import VueViewer from 'v-viewer'
+  import Vue from 'vue'
+  Vue.use(VueViewer)
 export default {
   name: 'binning',
   components: {
@@ -163,6 +167,11 @@ export default {
         }
     },
   methods: {
+      show() {
+          this.$viewerApi({
+          images: this.images,
+          })
+      },
     rating(Arr,ratings)
     {
       

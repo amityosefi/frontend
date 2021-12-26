@@ -2,14 +2,14 @@
   <div id="app">
     <div class="app" v-if="!$root.store.username" >
       <b-navbar toggleable="lg" type="dark" variant="info">
-        <b-navbar-brand :to="{ name: 'main' }">Home page</b-navbar-brand>
+        <b-navbar-brand :to="{ name: 'Main' }">Home page</b-navbar-brand>
         <!-- left side -->
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item :to="{ name: 'login' }">login</b-nav-item>
             <b-nav-item :to="{ name: 'register' }">register</b-nav-item>
             <b-nav-item :to="{ name: 'About' }">About</b-nav-item>
-            <b-nav-item :to="{ name: 'FirstGame' }">First Game</b-nav-item>
+            <b-nav-item :to="{ name: 'FirstGamePage' }">First Game</b-nav-item>
             <b-nav-item :to="{ name: 'SecondGamePage' }">Second Game</b-nav-item>
             <b-nav-item v-on:click="Logout">Log Out</b-nav-item>
           </b-navbar-nav>
@@ -31,7 +31,11 @@
 
 export default {
   name: 'app',
+   
   methods: {
+    aa(){
+      this.$root.store.login("");
+    },
     async Logout() {
       try {
         console.log("good")
@@ -49,7 +53,11 @@ export default {
         // this.$forceUpdate();
       });
     }
-  }
+  },
+  created() {
+      // this.aa();
+    }
+
 }
 
 </script>
