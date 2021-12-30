@@ -7,11 +7,10 @@
         :rows="this.topics"
         :cols="this.pictures"
       ></binning>
-      <!-- <img :src="Image" width="150px" height="100px"> -->
-      <!-- <img src=this.Image alt="Red dot" /> -->
+   
     </div>
     <div class="submitDiv">
-      <button id="terms" class="submitButton" :disabled="checkFull() == 1" v-on:click="submit">
+      <button id="terms" class="submitButton"  v-on:click="submit">
         Submit
       </button>
     </div>
@@ -29,8 +28,8 @@ export default {
   data() {
     return {
       Images: [],
-      topics: 2,
-      pictures: 2,
+      topics: 5,
+      pictures: 5,
       Image: "",
       disableButton:true,
     };
@@ -41,15 +40,7 @@ export default {
     
   },
   methods: {
-    async checkFull()
-    {
-      let sizeFull = this.$refs;
-      
-      if(sizeFull == undefined || sizeFull == {})
-        return this.disableButton;
-      console.log(sizeFull.bins.sizeFull != this.size);
-      return  sizeFull.bins.sizeFull != this.size;
-    },
+    
     async submit() {
       let rates = this.$refs.bins.ratingAll();
       // let user_id = 1;

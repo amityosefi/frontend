@@ -83,28 +83,31 @@
         return $dirty ? !$error : null;
       },
       async Login() {
-          try {
-            const response = await this.axios.post(
-              "http://localhost:443/login",
-              {
-                Email: this.form.email,
-                Password: this.form.password
-              }
-            );
+      //     try {
+      //       const response = await this.axios.post(
+      //         "http://localhost:443/login",
+      //         {
+      //           Email: this.form.email,
+      //           Password: this.form.password
+      //         }
+      //       );
 
-            if(response.data.message != 'There is no Email or password'){
-              this.$router.push("/");
-              // axios.defaults.withCredentials = true;
-            }
-            else{
-              alert("Username or password incorrect");
-              this.form.email = '';
-              this.form.password = '';
-            }
-      } catch (err) {
-        console.log(err.response);
-        this.form.submitError = err.response.data.message;
-      }
+      //       if(response.data.message != 'There is no Email or password'){
+              
+      //         // axios.defaults.withCredentials = true;
+              
+      //       }
+      //       else{
+      //         alert("Email or password incorrect");
+      //         this.form.email = '';
+      //         this.form.password = '';
+      //       }
+      // } catch (err) {
+        
+      //   console.log(err.response);
+      //   this.form.submitError = err.response.data.message;
+      // }
+      this.$router.push('/FirstGame');
       },
       onLogin() {
         this.$v.form.$touch();

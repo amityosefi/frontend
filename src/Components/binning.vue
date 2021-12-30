@@ -2,9 +2,8 @@
   <div id="binning" @dragover.prevent>
     <div  class="selection">
     
-      <draggable class="im" @dragend="remove(item)" :list="listLocal" group="tasks" >
-         <li style="list-style-type: none;" v-for="(Image,idx) in listLocal" :key="idx">      
-          
+      <draggable class="im" :list="listLocal" group="tasks" >
+         <li style="list-style-type: none;" v-for="(Image,idx) in listLocal" :key="idx">                
           <Picture :link="Image.src" :id="Image.id" :draggable="false" />
         </li>
        </draggable>
