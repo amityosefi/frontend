@@ -91,15 +91,15 @@
                 Email: this.form.email,
                 Password: this.form.password
               },
-              {
-                headers: {
-                  user_id: this.$root.username
-                }
-              }
+              // {
+              //   headers: {
+              //     user_id: this.$root.username
+              //   }
+              // }
             );
             if(response.data.message != 'There is no Email or password'){
-              this.$root.store.login(this.form.email);
-              this.$router.push("/FirstGamePage")
+              // this.$root.store.login(this.form.email);
+              this.$router.push("/FirstGame")
             }
             else{
               alert("Username or password incorrect");
