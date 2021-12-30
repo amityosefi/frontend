@@ -1,5 +1,5 @@
 <template>
-    <secondgame :Images="this.Images"></secondgame>
+  <secondgame :Images="this.Images"></secondgame>
 </template>
 <script>
 import secondgame from "../Components/secondGame.vue";
@@ -11,39 +11,34 @@ export default {
   },
   data() {
     return {
-        Images: [{
-  id: '1',
-  src: 'https://unsplash.it/200?random',
-  alt: 'Alt Image 1'
-}, {
-  id: '2',
-  src: 'https://unsplash.it/200?random',
-  alt: 'Alt Image 2'
-}, {
-  id: '3',
-  src: 'https://unsplash.it/200?random',
-  alt: 'Alt Image 3',
-  
-},{
-  id: '4',
-  src: 'https://unsplash.it/200?random',
-  alt: 'Alt Image 4'
-},{
-  id: '5',
-  src: 'https://unsplash.it/200?random',
-  alt: 'Alt Image 5'
-},{
-  id: '6',
-  src: 'https://unsplash.it/200?random',
-  alt: 'Alt Image 6'
-}]
+      Images: [],
     };
   },
 
   methods: {
-  }
-}
-</script>
-<style>
+    async uploadImages() {
+      try {
+        const response = await this.axios.get(
+          `http://localhost:443/images/getSecondGameImages`,
+          {}
+        );
+        const arr = response.data.best.concat(response.data.worst);
+        const res = [];
+      arr.map((img) => {
+        let str = "data:image/jpg;base64, " + img.src;
+        res.push({id: img.id, src:str});
+      });
+      this.Images = res;
+      console.log(this.Images);
 
-</style>
+      } catch (err) {
+        console.log(err.response);
+      }
+    },
+  },
+  created() {
+      this.uploadImages();
+    },
+};
+</script>
+<style></style>

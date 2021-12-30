@@ -2,7 +2,7 @@ import Main from "./Pages/MainPage.vue";
 
 const routes = [{
     path: "/",
-    name: "main",
+    name: "Main",
     component: Main
 },
 {

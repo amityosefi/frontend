@@ -2,7 +2,7 @@
   <div id="app">
     <div class="app" v-if="!$root.store.username" >
       <b-navbar toggleable="lg" type="dark" variant="info">
-        <b-navbar-brand :to="{ name: 'main' }">Home page</b-navbar-brand>
+        <b-navbar-brand :to="{ name: 'Main' }">Home page</b-navbar-brand>
         <!-- left side -->
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
@@ -31,7 +31,9 @@
 
 export default {
   name: 'app',
+   
   methods: {
+    
     async Logout() {
       try {
         console.log("good")
@@ -49,7 +51,9 @@ export default {
         // this.$forceUpdate();
       });
     }
-  }
+  },
+
+
 }
 
 </script>

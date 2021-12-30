@@ -1,17 +1,16 @@
 <template>
-  <div id="binning" @dragover.prevent>
+<div id="binning" @dragover.prevent>
     <div  class="selection">
-    
-      <draggable class="im" :list="listLocal" group="tasks" >
-         <li style="list-style-type: none;" v-for="(Image,idx) in listLocal" :key="idx">                
+      <viewer ref="viewer" :images="listLocal" rebuild class="viewer" @inited="inited">
+      <draggable class="im" @dragend="remove(item)" :list="listLocal" group="tasks">
+         <li style="list-style-type: none;" v-for="(Image,idx) in listLocal" :key="idx">      
+          
           <Picture :link="Image.src" :id="Image.id" :draggable="false" />
         </li>
        </draggable>
-        
+    </viewer>   
     </div>
       <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
-
-    
    <br><br><br> 
   
   <div class="bins">
@@ -104,15 +103,21 @@
 <script>
 import draggable from "vuedraggable";
 import Picture from './Picture.vue'
+// import 'viewerjs/dist/viewer.css'
+// import VueViewer from 'v-viewer'
+// import Vue from 'vue'
+// Vue.use(VueViewer)
+import 'viewerjs/dist/viewer.css'
+import { component as Viewer } from "v-viewer"
 export default {
   name: 'binning',
   components: {
+    Viewer,
     draggable,
     Picture,
   },
 
   data() {
-    
     return {
       index: 0 ,
       arrGrade1: [],
@@ -162,6 +167,12 @@ export default {
         }
     },
   methods: {
+    inited (viewer) {
+      this.$viewer = viewer
+    },
+    // show () {
+    //   this.$viewer.show()
+    // },
     rating(Arr,ratings)
     {
       

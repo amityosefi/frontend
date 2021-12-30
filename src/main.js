@@ -1,12 +1,15 @@
+require('vue-select-image/dist/vue-select-image.css')
 import Vue from "vue";
 import App from "./App.vue";
 import VueAxios from "vue-axios";
-require('vue-select-image/dist/vue-select-image.css')
 import axios from "axios";
+axios.defaults.withCredentials = true;
 import './assets/style.css';
 import routes from "./routes";
 import VueRouter from "vue-router";
+
 Vue.use(VueRouter);
+
 const router = new VueRouter({
     routes: routes,
     
@@ -78,36 +81,37 @@ Vue.config.productionTip = false;
 const shared_data = {
   // username: localStorage.username,
   username: localStorage.username,
-  title: localStorage.title,
-  u_id :localStorage.id,
+//   title: localStorage.title,
+//   u_id :localStorage.id,
 
   login(username) {
-    if(username)
-    {
-      localStorage.setItem("username", username.username);
-      this.username = username.username;
-      localStorage.setItem("title", username.title);
-      this.title = username.title;
-      localStorage.setItem("id", username.u_id);
-      this.u_id = username.u_id;
+    // if(username)
+    // {
+      localStorage.setItem("username", username);
+      this.username = username;
+    //   localStorage.setItem("title", username.title);
+    //   this.title = username.title;
+    //   localStorage.setItem("id", username.u_id);
+    //   this.u_id = username.u_id;
       console.log("login", this.username);
-    }
+    // }
   },
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
-    localStorage.removeItem("result");
-    localStorage.removeItem("query");
-    localStorage.removeItem("picked");
-    localStorage.removeItem("username");
-    localStorage.removeItem("id");
-    localStorage.removeItem("title");
-    this.username = undefined;
-    this.title = undefined;
-    this.u_id = undefined;
+    // localStorage.removeItem("result");
+    // localStorage.removeItem("query");
+    // localStorage.removeItem("picked");
+    // localStorage.removeItem("username");
+    // localStorage.removeItem("id");
+    // localStorage.removeItem("title");
+    this.username = "";
+    // this.title = undefined;
+    // this.u_id = undefined;
   }
 };
 
+// shared_data.username = "s" 
 
 new Vue({
     router,
