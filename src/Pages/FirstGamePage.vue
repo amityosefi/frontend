@@ -49,8 +49,7 @@ export default {
     {
       let sizeFull = this.$refs;
       
-      console.log(sizeFull.bins);
-
+      
       if(sizeFull == undefined || sizeFull == {})
         return this.disableButton;
       
@@ -59,13 +58,15 @@ export default {
     },
     async submit() {
       let rates = this.$refs.bins.ratingAll();
-      // let user_id = 1;
-      console.log(rates);
+      let user_id = this.$root.store.u_id;
+      
+
       await this.axios.post(
         `http://localhost:443/images/submitRatings`,
         {
           data_ratings:rates,
-
+          id:user_id,
+          
         }
       );
       this.$router.push('/SecondGamePage');
@@ -74,22 +75,22 @@ export default {
       try{
 
       this.size = this.topics*this.pictures;
-      console.log("uploadImages 1");
-      console.log(this.size);
+
       const response = await this.axios.get(
         `http://localhost:443/images/getImages/${this.topics}/${this.pictures}`,
         {
               }
       );
-      console.log(response.data);
+    
       let arr = [];
       
       response.data.urls.map((img) => {
         let str = "data:image/jpg;base64, " + img.src;
-        arr.push({id:img.Id, src:str});
+        arr.push({id:img.id, src:str});
         
       });
       this.Images = arr;
+
       } catch(err){
         console.log(err.response);
       }
@@ -97,11 +98,6 @@ export default {
   },
 
   created() {
-    // if (this.$root.store.username) {
-    //   this.$root.store.login("");
-    // } else {
-    //   console.log(this.$root.store.username);
-    // }
     this.uploadImages();
   },
 };

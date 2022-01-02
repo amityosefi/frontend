@@ -1,7 +1,8 @@
 <template>
   <div>
     <div>
-      <vue-select-image
+      <VueSelectImage
+        ref="selector"
         :dataImages="this.Images"
         :is-multiple="true"
         :h="height"
@@ -9,8 +10,9 @@
         :limit="2"
         @onselectmultipleimage="onSelectMultipleImage"
         @onreachlimit="onreachlimit"
+        
       >
-      </vue-select-image>
+      </VueSelectImage>
     </div>
     <div class="submitDiv">
       <button class="submitButton" v-on:click="submit">Submit</button>
@@ -19,11 +21,19 @@
 </template>
 
 <script>
+import VueSelectImage from 'vue-select-image'
 export default {
   name: "secondGame",
-
+  components:
+  {
+    VueSelectImage,
+  },
   props: {
     Images: {
+      type: Array,
+      require: true,
+    },
+    best: {
       type: Array,
       require: true,
     },
@@ -37,52 +47,67 @@ export default {
       selectedImages: [],
       // correct_ids: ["4", "6"],
       res: [],
-      best: [],
+      wins: [],
+      
     };
   },
   methods: {
     onSelectMultipleImage(selectedImages) {
-      console.log(this.Images);
+      // console.log(this.Images);
       this.selectedImages = selectedImages;
       return selectedImages;
+    },
+    resetMultipleSelection()
+    {
+      return [];
     },
     onreachlimit() {
       alert("got the limit selected images");
     },
-    submit() {
+    async submit() {
       if (this.selectedImages.length == 2) {
-        // console.log("good 2");
-
-        // this.selectedImages.map((x)=>{arr.push(x.id);});
-        // console.log(this.selectedImages);
         let result = 0;
-        this.best = this.Images.slice(0, 2).map(img => img.id);
+        
         console.log(this.best);
-        // console.log(this.selectedImages);
         for (let i = 0; i < this.selectedImages.length; i++) {
+          console.log(this.selectedImages[i].id);
           if (this.best.includes(this.selectedImages[i].id)) result += 1;
         }
-        if (result == 2) window.alert("you've chosen correctly 2 from 2! you are malic of");
-        else if (result == 1) window.alert("you've chosen correctly 1 from 2");
-        else window.alert("you've chosen incorrectly - looser!!!!!!");
+        // if (result == 2) window.alert("you've chosen correctly 2 from 2");
+        // else if (result == 1) window.alert("you've chosen correctly 1 from 2");
+        // else window.alert("you've chosen incorrectly");
+        
+        this.$refs.selector.resetMultipleSelection(1);
+        let app = this.$parent;
+        // console.log(app);
+        // app.wins.push(result);
+        let wins = app.wins;
+        wins.push(result);
+        let no_runs = app.runs;
+        if(no_runs == 4)
+        {         
+          let score = wins.reduce((x,y)=>x+y);
+          let fin_score = (score/8)*100
+          window.alert("you scored "+fin_score+"%");
+          app.runs = 0;
+          app.wins = []
+        }
+        
+        app.runs++;
+        await app.uploadImages()
+        app.key++;
+        
       } else {
-        alert("Need to choose two pictures");
+        window.alert("Need to choose two pictures");
       }
     },
     randomImages() {
       
-      const tmp = this.Images;
-      console.log(this.Images);
-      this.best = this.Images.slice(0, 2).map(img => img.id);
-      console.log(this.best);
-      this.res = tmp.sort(() => Math.random() - 0.5);
-      // console.log(this.Images);
-      // console.log(this.res);
-    },
+    }
   },
   created() {
       this.randomImages();
-      console.log(this.Images);
+      // console.log(this.Images);
     },
 };
 </script>
