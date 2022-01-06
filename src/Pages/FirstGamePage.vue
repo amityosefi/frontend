@@ -27,9 +27,9 @@ export default {
   },
   data() {
     return {
-      Images: [],
-      topics: 2,
-      pictures: 2,
+      Images: this.$root.store.first_game_images,
+      topics: 7,
+      pictures: 7,
       size: 4,
       Image: "",
       disableButton:true,
@@ -71,35 +71,39 @@ export default {
       );
       this.$router.push('/SecondGamePage');
     },
-    async uploadImages() {
-      try{
+    // async uploadImages() {
+    //   try{
 
-      this.size = this.topics*this.pictures;
+    //   this.size = this.topics*this.pictures;
 
-      const response = await this.axios.get(
-        `http://localhost:443/images/getImages/${this.topics}/${this.pictures}`,
-        {
-              }
-      );
+    //   const response = await this.axios.get(
+    //     `http://localhost:443/images/getImages/${this.topics}/${this.pictures}`,
+    //     {
+    //           }
+    //   );
     
-      let arr = [];
+    //   let arr = [];
       
-      response.data.urls.map((img) => {
-        let str = "data:image/jpg;base64, " + img.src;
-        arr.push({id:img.id, src:str});
+    //   response.data.urls.map((img) => {
+    //     let str = "data:image/jpg;base64, " + img.src;
+    //     arr.push({id:img.id, src:str});
         
-      });
-      this.Images = arr;
+    //   });
+    //   this.Images = arr;
+    //   this.$root.store.saveFirstGameImages(arr);
 
-      } catch(err){
-        console.log(err.response);
-      }
-    },
+    //   } catch(err){
+    //     console.log(err.response);
+    //   }
+    // },
   },
 
-  created() {
-    this.uploadImages();
-  },
+  // created() {
+    // if (this.$root.store.first_game_images.length > 0){
+    //   console.log("good jobbbbbb");
+    // this.Images = this.$root.store.first_game_images;
+    // }
+  // },
 };
 </script>
 <style scoped>
