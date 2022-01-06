@@ -1,7 +1,6 @@
 <template>
   <div>
     <div>
-      <h1>First game</h1>
       <binning ref="bins"
         :Images="this.Images"
         :rows="this.topics"
