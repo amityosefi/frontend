@@ -1,7 +1,6 @@
 <template>
   <div>
-    <h1>Main page</h1>
-    <LoginPage v-if="!$root.store.username"></LoginPage>
+    <LoginPage v-if="!$root.store.email"></LoginPage>
     <FirstGamePage v-else></FirstGamePage>
   </div>
 </template>
@@ -16,6 +15,16 @@ export default {
     FirstGamePage,
     LoginPage,
   },
-};
+  methods:
+  {
+    
+    
+  },
+  created()
+  {
+    
+  
+  }
+}
 </script>
 <style scoped></style>

@@ -12,7 +12,7 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     routes: routes,
-    
+    mode: "history"
 });
 
 import Vuelidate from "vuelidate";
@@ -79,35 +79,26 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 const shared_data = {
-  // username: localStorage.username,
-  username: localStorage.username,
-//   title: localStorage.title,
-//   u_id :localStorage.id,
+  username: undefined,
+  email: localStorage.email,
+  u_id :localStorage.id,
 
   login(username) {
-    // if(username)
-    // {
-      localStorage.setItem("username", username);
-      this.username = username;
-    //   localStorage.setItem("title", username.title);
-    //   this.title = username.title;
-    //   localStorage.setItem("id", username.u_id);
-    //   this.u_id = username.u_id;
+    if(username)
+    {
+      localStorage.setItem("email", username.username);
+      this.email = username.username;
+      localStorage.setItem("id", username.u_id);
+      this.u_id = username.u_id;
       console.log("login", this.username);
-    // }
+    }
   },
   logout() {
     console.log("logout");
     localStorage.removeItem("username");
-    // localStorage.removeItem("result");
-    // localStorage.removeItem("query");
-    // localStorage.removeItem("picked");
-    // localStorage.removeItem("username");
-    // localStorage.removeItem("id");
-    // localStorage.removeItem("title");
-    this.username = "";
-    // this.title = undefined;
-    // this.u_id = undefined;
+    this.username = undefined;
+    this.u_id = undefined;
+    this.email = undefined;
   }
 };
 

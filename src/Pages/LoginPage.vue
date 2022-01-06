@@ -91,14 +91,19 @@
                 Email: this.form.email,
                 Password: this.form.password
               },
-              // {
-              //   headers: {
-              //     user_id: this.$root.username
-              //   }
-              // }
+             
             );
-            if(response.data.message != 'There is no Email or password'){
-              // this.$root.store.login(this.form.email);
+           
+            if(response.status == 200){
+              let user = {
+               username: this.form.email,
+               u_id: response.data.Id,
+             
+            }
+              
+              this.$root.store.login(user)
+              
+              
               this.$router.push("/FirstGame")
             }
             else{
@@ -113,10 +118,6 @@
       },
       onLogin() {
         this.$v.form.$touch();
-        // if (this.$v.form.$anyError) {
-        //   console.log("not good");
-        //   return;
-        // }
         this.Login();
       },
       

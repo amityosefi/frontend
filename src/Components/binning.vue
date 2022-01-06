@@ -179,14 +179,11 @@ export default {
       let arr = []
       if(Arr.length == 0)
         return null
-      // console.log(Arr);
       for(const img in Arr)
       {
         let pic =Arr[img];
-        // console.log("pic",pic.id);
         arr.push({"picId":pic.id,"rating":ratings})
       }
-      // console.log("arr",arr);
       return arr;
 
     },
