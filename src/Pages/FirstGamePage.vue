@@ -28,9 +28,9 @@ export default {
   data() {
     return {
       Images: [],
-      topics: 2,
-      pictures: 2,
-      size: 4,
+      topics: 7,
+      pictures: 7,
+      size: 49,
       Image: "",
       disableButton:true,
     };
