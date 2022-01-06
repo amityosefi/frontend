@@ -1,5 +1,3 @@
-# app
-
 ## Web page
 
 ### Registration
@@ -26,7 +24,9 @@ Every user needs to rank at least 72 images based on personal preferences
 ## First game
 
 After submit and rank all 72 images, the first game will apear.
+<bn>
 The game is to determine which 2 images are most beautiful from 8 picture.
+<bn>
 The game repeat 4 times, while every iteration the score appear.
 
 <p align="center">
