@@ -91,15 +91,10 @@
                 Email: this.form.email,
                 Password: this.form.password
               },
-              // {
-              //   headers: {
-              //     user_id: this.$root.username
-              //   }
-              // }
+             
             );
            
             if(response.status == 200){
-            //   // this.$root.store.login(this.form.email);
               let user = {
                username: this.form.email,
                u_id: response.data.Id,
@@ -123,10 +118,6 @@
       },
       onLogin() {
         this.$v.form.$touch();
-        // if (this.$v.form.$anyError) {
-        //   console.log("not good");
-        //   return;
-        // }
         this.Login();
       },
       

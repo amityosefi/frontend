@@ -46,12 +46,8 @@ export default {
 
   // While there remain elements to shuffle...
       while (currentIndex != 0) {
-      
-        // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
-
-        // And swap it with the current element.
         [this.Images[currentIndex], this.Images[randomIndex]] = [
           this.Images[randomIndex], this.Images[currentIndex]];
       }

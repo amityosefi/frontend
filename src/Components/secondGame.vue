@@ -73,14 +73,12 @@ export default {
           console.log(this.selectedImages[i].id);
           if (this.best.includes(this.selectedImages[i].id)) result += 1;
         }
-        // if (result == 2) window.alert("you've chosen correctly 2 from 2");
-        // else if (result == 1) window.alert("you've chosen correctly 1 from 2");
-        // else window.alert("you've chosen incorrectly");
+        if (result == 2) window.alert("you've chosen correctly 2 from 2");
+        else if (result == 1) window.alert("you've chosen correctly 1 from 2");
+        else window.alert("you've chosen incorrectly");
         
         this.$refs.selector.resetMultipleSelection(1);
         let app = this.$parent;
-        // console.log(app);
-        // app.wins.push(result);
         let wins = app.wins;
         wins.push(result);
         let no_runs = app.runs;

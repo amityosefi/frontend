@@ -6,20 +6,20 @@
         <!-- left side -->
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item v-if="!$root.store.email" :to="{ name: 'login' }">Login</b-nav-item>
-            <b-nav-item v-if="!$root.store.email" :to="{ name: 'register' }">Register</b-nav-item>
             <b-nav-item :to="{ name: 'About' }">About</b-nav-item>
-            <b-nav-item v-if="$root.store.email" :to="{ name: 'FirstGame' }">First Game</b-nav-item>
-            <b-nav-item v-if="$root.store.email" :to="{ name: 'SecondGamePage' }">Second Game</b-nav-item>
-            <b-nav-item v-on:click="Logout">Log Out</b-nav-item>
+            <b-nav-item v-if="!$root.store.email" :to="{ name: 'login' }">Login</b-nav-item>
+            <b-nav-item v-if="!$root.store.email" :to="{ name: 'register' }">Register</b-nav-item>           
+            <b-nav-item v-if="$root.store.email" :to="{ name: 'FirstGame' }">Image rating</b-nav-item>
+            <b-nav-item v-if="$root.store.email" :to="{ name: 'SecondGamePage' }">Play Against Me</b-nav-item>
+            <!-- <b-nav-item v-on:click="Logout">Log Out</b-nav-item> -->
           </b-navbar-nav>
           <!-- right side -->
-          <!-- <b-navbar-nav class="ml-auto">
-            <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
+          <b-navbar-nav class="ml-auto">
+            <!-- <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
             <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
-            <b-nav-item :to="{ name: 'About' }">About</b-nav-item>
-            <b-nav-item v-on:click="Logout">Log Out</b-nav-item>
-          </b-navbar-nav> -->
+            <b-nav-item :to="{ name: 'About' }">About</b-nav-item> -->
+            <b-nav-item v-if="$root.store.email" v-on:click="Logout">Log Out</b-nav-item>
+          </b-navbar-nav>
         </b-collapse>
       </b-navbar>
       <router-view />
