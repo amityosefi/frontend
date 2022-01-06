@@ -1,5 +1,5 @@
 <template>
-<div></div>
+<div>Good work Daniel!</div>
 </template>
 
 <script>
