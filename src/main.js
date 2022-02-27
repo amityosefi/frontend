@@ -54,11 +54,11 @@ Vue.use(VueSelectImage)
 Vue.component('v-select', vSelect)
 
 axios.interceptors.request.use(
-    function(config) {
+    function (config) {
         // Do something before request is sent
         return config;
     },
-    function(error) {
+    function (error) {
         // Do something with request error
         return Promise.reject(error);
     }
@@ -66,11 +66,11 @@ axios.interceptors.request.use(
 
 // Add a response interceptor
 axios.interceptors.response.use(
-    function(response) {
+    function (response) {
         // Do something with response data
         return response;
     },
-    function(error) {
+    function (error) {
         // Do something with response error
         return Promise.reject(error);
     }
@@ -81,27 +81,36 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 const shared_data = {
-  username: undefined,
-  email: localStorage.email,
-  u_id :localStorage.id,
+    username: undefined,
+    email: localStorage.email,
+    u_id: localStorage.id,
+    first_game_images: localStorage.firstGameImages,
+    // is_created_images: localStorage.isCreatedImages,
 
   login(username) {
-    if(username)
-    {
-      localStorage.setItem("email", username.username);
-      this.email = username.username;
-      localStorage.setItem("id", username.u_id);
-      this.u_id = username.u_id;
-      console.log("login", this.username);
-    }
-  },
-  logout() {
-    console.log("logout");
-    localStorage.removeItem("username");
-    this.username = undefined;
-    this.u_id = undefined;
-    this.email = undefined;
-  }
+        if (username) {
+            localStorage.setItem("email", username.username);
+            this.email = username.username;
+            localStorage.setItem("id", username.u_id);
+            this.u_id = username.u_id;
+            console.log("login", this.username);
+            // localStorage.setItem("firstGameImages", []);
+            
+        }
+    },
+    logout() {
+        console.log("logout");
+        localStorage.removeItem("username");
+        this.username = undefined;
+        this.u_id = undefined;
+        this.email = undefined;
+        this.first_game_images = undefined;
+        localStorage.removeItem("firstGameImages");
+    },
+    saveFirstGameImages(images){
+        localStorage.setItem("firstGameImages", images);
+        this.first_game_images = images;
+    },
 };
 
 // shared_data.username = "s" 
