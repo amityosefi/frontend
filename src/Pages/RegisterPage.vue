@@ -90,7 +90,7 @@
                       </a>
                     </div>
                   </div>
-                  <p class="text-center text-muted mt-4 mb-0">Have already an account?
+                  <p class="text-center text-muted mt-4 mb-0">Already have an account?
                     <router-link to="login"> Login here</router-link></p>
 <!--                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>-->
                 </form>
@@ -126,7 +126,7 @@ export default {
         password: "",
         confirmedPassword: "",
         gender: 0,
-        age: 25
+        age: ""
       },
       genderList: [
         {value: "Female", text: "Female"},
@@ -221,13 +221,13 @@ export default {
 <style scoped>
 .gradient-custom-3 {
   /* fallback for old browsers */
-  background: #84fab0;
+  /* background: #84fab0; */
 
   /* Chrome 10-25, Safari 5.1-6 */
-  background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+  /* background: -webkit-linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5)); */
 
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5));
+  /* background: linear-gradient(to right, rgba(132, 250, 176, 0.5), rgba(143, 211, 244, 0.5)); */
 
   height: 100%;
   overflow: auto;
@@ -247,9 +247,7 @@ export default {
   display: inline-block;
 }
 
-.button-container a{
 
-}
 
 .button-container a h3{
   display: inline-block;
@@ -258,8 +256,8 @@ export default {
   font-size: 20px;
   padding: 8px 155px;
   /*border: 1px solid;*/
-  border-image-source: -webkit-linear-gradient(-45deg, rgb(68, 195, 224) 0%, rgb(255, 255, 255) 100%);
-  background: -webkit-linear-gradient(-45deg, rgb(131, 234, 192) 0%, rgb(32, 153, 157) 100%);
+  border-image-source: -webkit-linear-gradient(-45deg, rgb(255, 255, 255) 0%, rgb(255, 183, 183) 100%);
+  background: -webkit-linear-gradient(-45deg, rgb(248, 206, 196) 0%, rgb(241, 140, 115) 100%);
 }
 
 .button-container a h3:after {
@@ -285,7 +283,7 @@ export default {
 }
 
 .bg {
-  background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.jpg');
+  /* background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.jpg'); */
   /* The image used */
   overflow: auto;
 

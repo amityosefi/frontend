@@ -1,5 +1,12 @@
 <template>
-  <secondgame :key="this.key" :Images="this.Images" :best="this.best" ></secondgame>
+
+    <!-- <div  class="selection">
+         <li style="list-style-type: none;"> -->
+             <secondgame :key="this.key" :Images="this.Images" :best="this.best" ></secondgame>     
+        <!-- </li>
+    </div> -->
+
+
 </template>
 <script>
 import secondgame from "../Components/secondGame.vue";
@@ -63,4 +70,6 @@ export default {
     },
 };
 </script>
-<style></style>
+<style>
+
+</style>

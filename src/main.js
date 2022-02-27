@@ -7,6 +7,8 @@ axios.defaults.withCredentials = true;
 import './assets/style.css';
 import routes from "./routes";
 import VueRouter from "vue-router";
+import { ModalPlugin } from 'bootstrap-vue'
+Vue.use(ModalPlugin)
 
 Vue.use(VueRouter);
 

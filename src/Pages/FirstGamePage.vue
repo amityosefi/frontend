@@ -1,7 +1,6 @@
 <template>
   <div>
     <div>
-      <h1>First game</h1>
       <binning ref="bins"
         :Images="this.Images"
         :rows="this.topics"
@@ -9,11 +8,18 @@
       ></binning>
    
     </div>
-    <div class="submitDiv">
+    <!-- <div class="submitDiv">
       <button id="terms" class="submitButton"  v-on:click="submit">
         Submit
       </button>
-    </div>
+    </div> -->
+
+    <br>
+    <br>
+
+<div class="d-flex justify-content-center">
+<button type="button" class="btn btn-outline-danger" v-on:click="submit">Submit</button>
+   </div>
   </div>
 </template>
 
@@ -28,8 +34,8 @@ export default {
   data() {
     return {
       Images: [],
-      topics: 2,
-      pictures: 2,
+      topics: 7,
+      pictures: 7,
       size: 4,
       Image: "",
       disableButton:true,
@@ -109,4 +115,8 @@ export default {
   width: 200px;
   /* width: 50vh; */
 }
+
+/* .submitDiv{
+    margin-left: 45%;
+} */
 </style>

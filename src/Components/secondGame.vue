@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div>
+    <br><br>
+    <div class = "selector">
+
       <VueSelectImage
         ref="selector"
         :dataImages="this.Images"
@@ -10,14 +12,20 @@
         :limit="2"
         @onselectmultipleimage="onSelectMultipleImage"
         @onreachlimit="onreachlimit"
-        
       >
       </VueSelectImage>
     </div>
-    <div class="submitDiv">
-      <button class="submitButton" v-on:click="submit">Submit</button>
-    </div>
+
+<br><br>
+    <div class="d-flex justify-content-center">
+<button type="button" class="btn btn-outline-danger" v-on:click="submit">Submit</button>
+   </div>
   </div>
+
+    <!-- <div class="submitDiv">
+      <button class="submitButton" v-on:click="submit">Submit</button>
+    </div> -->
+  <!-- </div> -->
 </template>
 
 <script>
@@ -119,5 +127,17 @@ img {
   height: 10px;
   vertical-align: middle;
   border-style: double;
+}
+
+.order {
+  margin-right: 50px;
+}
+
+.selector
+{
+  display: flexbox;
+  flex-direction: row;
+  max-width: 1250px;
+  margin: 0 auto;
 }
 </style>

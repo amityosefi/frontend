@@ -1,5 +1,6 @@
 <template>
 <div id="binning" @dragover.prevent>
+  <br><br>
     <div  class="selection">
       <viewer ref="viewer" :images="listLocal" rebuild class="viewer" @inited="inited">
       <draggable class="im" @dragend="remove(item)" :list="listLocal" group="tasks">
