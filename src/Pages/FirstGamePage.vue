@@ -3,8 +3,8 @@
     <div>
       <binning ref="bins"
         :Images="this.Images"
-        :rows="this.topics"
-        :cols="this.pictures"
+        :rows="8"
+        :cols="72/8"
       ></binning>
    
     </div>
@@ -34,8 +34,6 @@ export default {
   data() {
     return {
       Images: [],
-      topics: 7,
-      pictures: 7,
       size: 4,
       Image: "",
       disableButton:true,
@@ -80,13 +78,9 @@ export default {
     async uploadImages() {
       try{
 
-      this.size = this.topics*this.pictures;
+      this.size = 72;
 
-      const response = await this.axios.get(
-        `http://localhost:443/images/getImages/${this.topics}/${this.pictures}`,
-        {
-              }
-      );
+      const response = await this.axios.get(`http://localhost:443/images/getImages`,);
     
       let arr = [];
       

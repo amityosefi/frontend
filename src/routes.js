@@ -34,6 +34,11 @@ const routes = [{
     path: "/StructionsFirstGame",
     name: "StructionsFirstGame",
     component: () => import("./Pages/StructionsFirstGame")
+}, 
+{
+    path: "/AdminPage",
+    name: "AdminPage",
+    component: () => import("./Pages/AdminPage")
 },
 ]
 

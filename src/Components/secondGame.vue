@@ -50,8 +50,8 @@ export default {
   data() {
     this.randomImages();
     return {
-      height: "250px",
-      weight: "250px",
+      height: "180px",
+      weight: "320px",
       selectedImages: [],
       // correct_ids: ["4", "6"],
       res: [],

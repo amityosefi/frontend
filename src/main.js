@@ -85,6 +85,7 @@ const shared_data = {
     email: localStorage.email,
     u_id: localStorage.id,
     first_game_images: localStorage.firstGameImages,
+    isAdmin: 0,
     // is_created_images: localStorage.isCreatedImages,
 
   login(username) {
@@ -93,7 +94,11 @@ const shared_data = {
             this.email = username.username;
             localStorage.setItem("id", username.u_id);
             this.u_id = username.u_id;
-            console.log("login", this.username);
+            localStorage.setItem("isAdmin", username.isAdmin)
+            this.isAdmin = username.isAdmin
+            console.log("login", this.email);
+            console.log("login", this.u_id);
+            console.log("login", this.isAdmin);
             // localStorage.setItem("firstGameImages", []);
             
         }
