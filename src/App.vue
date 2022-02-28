@@ -11,8 +11,9 @@
             <b-nav-item v-if="!$root.store.email" :to="{ name: 'register' }">Register</b-nav-item>           
             <b-nav-item v-if="$root.store.email" :to="{ name: 'FirstGame' }">Rate</b-nav-item>
             <b-nav-item v-if="$root.store.email" :to="{ name: 'SecondGamePage' }">Play</b-nav-item>
-            <!-- <b-nav-item v-on:click="Logout">Log Out</b-nav-item> -->
+            <b-nav-item v-if="$root.store.isAdmin" :to="{ name: 'AdminPage' }">Admin</b-nav-item>
           </b-navbar-nav>
+
           <!-- right side -->
           <b-navbar-nav class="ml-auto">
             <!-- <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
@@ -40,7 +41,6 @@ export default {
     
     async Logout() {
       try {
-        console.log("good")
         const response = await this.axios.post(
             "http://localhost:443/logout",
         );
