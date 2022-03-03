@@ -118,14 +118,23 @@ export default {
           Password: this.form.password,
         });
         if (response.status == 200) {
-          let user = {
+          const user = {
             username: this.form.email,
             u_id: response.data.Id,
             isAdmin: response.data.IsAdmin
           };
+
+          const globalSettings = {
+            rankImages: response.data.globalSettings.rankImages,
+            firstGameImages: response.data.globalSettings.firstGameImages,
+            firstGameImagesSelected: response.data.globalSettings.firstGameImagesSelected
+          };
+
           this.$root.store.login(user);
+          this.$root.store.setGlobalSettings(globalSettings);
+
           this.$root.toast("Login", "User logged in successfully", "success");
-          this.$router.push("/FirstGame");
+          this.$router.push("/RatePage");
         } 
         else {
           this.$root.toast("Can't login", "Username or password incorrect", "warning");

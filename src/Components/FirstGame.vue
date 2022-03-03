@@ -21,7 +21,7 @@
 <button type="button" class="btn btn-outline-danger" v-on:click="submit">Submit</button>
    </div>
    <div>
-     <instructions :Text="'Welcome to the First Game! \nIn front of you are 8 pictures you have rated previously\n2 of which you have rated high and the others low, can you guess which ones?'"/>
+     <instructions :Text="`Welcome to the First Game! \nIn front of you are ${$root.store.firstGameImages} pictures you have rated previously.\n${$root.store.firstGameImagesSelected} of which you have rated high and the others low, can you guess which ones?`"/>
    </div>
   </div>
 
@@ -35,7 +35,7 @@
 import VueSelectImage from 'vue-select-image'
 import Instructions from './Instructions.vue'
 export default {
-  name: "secondGame",
+  name: "FirstGame",
   components:
   {
     VueSelectImage,

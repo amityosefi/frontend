@@ -1,18 +1,18 @@
 <template>
   <div>
     <LoginPage v-if="!$root.store.email"></LoginPage>
-    <FirstGamePage v-else></FirstGamePage>
+    <RatePage v-else></RatePage>
   </div>
 </template>
 
 <script>
-import FirstGamePage from "../Pages/FirstGamePage.vue";
+import RatePage from "../Pages/RatePage.vue";
 import LoginPage from "../Pages/LoginPage";
 
 export default {
   name: "Main",
   components: {
-    FirstGamePage,
+    RatePage,
     LoginPage,
   },
   methods:

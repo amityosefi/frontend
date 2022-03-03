@@ -1,116 +1,75 @@
 <template>
-  <div>
-    <div>
-      <binning ref="bins"
-        :Images="this.Images"
-        :rows="8"
-        :cols="72/8"
-      ></binning>
-   
-    </div>
-    <!-- <div class="submitDiv">
-      <button id="terms" class="submitButton"  v-on:click="submit">
-        Submit
-      </button>
+
+    <!-- <div  class="selection">
+         <li style="list-style-type: none;"> -->
+             <FirstGame :key="this.key" :Images="this.Images" :best="this.best" ></FirstGame>     
+        <!-- </li>
     </div> -->
 
-    <br>
-    <br>
 
-<div class="d-flex justify-content-center">
-<button type="button" class="btn btn-outline-danger" v-on:click="submit">Submit</button>
-   </div>
-  </div>
 </template>
-
 <script>
-import binning from "../Components/binning.vue";
+import FirstGame from "../Components/FirstGame.vue";
 
 export default {
-  name: "FirstGame",
+  name: "FirstGamePage",
   components: {
-    binning,
+    FirstGame,
   },
   data() {
     return {
       Images: [],
-      size: 4,
-      Image: "",
-      disableButton:true,
+      best: [],
+      key: 0 ,
+      runs: 1,
+      wins: [],
     };
   },
-  // computed:
-  // {
-    
-  //   size: function(){
-      
-  //     return this.topics*this.pictures},
-    
-  // },
+
   methods: {
-    
-    async checkFull()
-    {
-      let sizeFull = this.$refs;
-      
-      
-      if(sizeFull == undefined || sizeFull == {})
-        return this.disableButton;
-      
-      // console.log(sizeFull.bins.sizeFull);
-      return sizeFull.bins.sizeFull != this.size;
-    },
-    async submit() {
-      let rates = this.$refs.bins.ratingAll();
-      let user_id = this.$root.store.u_id;
-      
-
-      await this.axios.post(
-        `http://localhost:443/images/submitRatings`,
-        {
-          data_ratings:rates,
-          id:user_id,
-          
-        }
-      );
-      this.$router.push('/SecondGamePage');
-    },
     async uploadImages() {
-      try{
-
-      this.size = 72;
-
-      const response = await this.axios.get(`http://localhost:443/images/getImages`,);
-    
-      let arr = [];
-      
-      response.data.urls.map((img) => {
-        let str = "data:image/jpg;base64, " + img.src;
-        arr.push({id:img.id, src:str});
+      try {
+        console.log("here");
         
+        const response = await this.axios.post(
+          `http://localhost:443/images/getSecondGameImages`,
+          {
+            id:this.$root.store.u_id,
+          }
+        );
+        const arr = response.data.best.concat(response.data.worst);
+        this.Images = []
+        this.best = []
+        const res = [];
+      arr.map((img) => {
+        let str = "data:image/jpg;base64, " + img.src;
+        res.push({id: img.id, src:str});
       });
-      this.Images = arr;
+      this.Images = res;
+      let best_pics = []
+      this.Images.slice(0,2).map((x)=>best_pics.push(x.id));
+      this.best = best_pics.slice(0,2);
+      let currentIndex = this.Images.length,  randomIndex;
 
-      } catch(err){
+  // While there remain elements to shuffle...
+      while (currentIndex != 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        [this.Images[currentIndex], this.Images[randomIndex]] = [
+          this.Images[randomIndex], this.Images[currentIndex]];
+      }
+      console.log("Images:",res);
+
+      } catch (err) {
         console.log(err.response);
       }
     },
   },
-
   created() {
-    this.uploadImages();
-  },
+      this.uploadImages();
+    },
 };
 </script>
-<style scoped>
-.submitButton {
-  margin-top: 3%;
-  margin-left: 40%;
-  width: 200px;
-  /* width: 50vh; */
-}
+<style>
 
-/* .submitDiv{
-    margin-left: 45%;
-} */
 </style>

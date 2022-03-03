@@ -9,8 +9,8 @@
             <b-nav-item :to="{ name: 'About' }">About</b-nav-item>
             <b-nav-item v-if="!$root.store.email" :to="{ name: 'login' }">Login</b-nav-item>
             <b-nav-item v-if="!$root.store.email" :to="{ name: 'register' }">Register</b-nav-item>           
-            <b-nav-item v-if="$root.store.email" :to="{ name: 'FirstGame' }">Rate</b-nav-item>
-            <b-nav-item v-if="$root.store.email" :to="{ name: 'SecondGamePage' }">Play</b-nav-item>
+            <b-nav-item v-if="$root.store.email" :to="{ name: 'RatePage' }">Rate</b-nav-item>
+            <b-nav-item v-if="$root.store.email" :to="{ name: 'FirstGamePage' }">Play</b-nav-item>
             <b-nav-item v-if="$root.store.isAdmin" :to="{ name: 'AdminPage' }">Admin</b-nav-item>
           </b-navbar-nav>
 

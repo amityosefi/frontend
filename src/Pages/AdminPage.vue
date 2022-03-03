@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <b-form @submit="onSubmit" @reset="onReset">
+  <div id="admin" >
+    <br>
+    <h1>Settings</h1>
+    <b-form id="form" @submit="onSubmit" @reset="onReset">
       <div>
         <label for="range-1">Number of images for rank:</label>
         <b-form-input
@@ -85,6 +87,15 @@ export default {
               "All settings saved successfully!",
               "success"
             );
+            const globalSettings = {
+            rankImages: Number(this.form.rankImages),
+            firstGameImages: Number(this.form.firstGameImages),
+            firstGameImagesSelected: Number(
+                this.form.firstGameImagesSelected
+              ),
+          };
+            this.$root.store.setGlobalSettings(globalSettings);
+
           } else {
             this.form.rankImages = "72";
             this.form.firstGameImages = "8";
@@ -113,5 +124,18 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>
+  
+<style scoped>
+  #admin{
+    text-align: center;
+    }
+    .custom-range {
+      width: 40%;
+      margin-left: 5%;
+      margin-top: 5%;
+    }
+    .btn{
+      margin: 1%;
+      margin-top: 5%;
+    }
+</style>

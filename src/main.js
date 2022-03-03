@@ -81,12 +81,14 @@ Vue.use(VueAxios, axios);
 Vue.config.productionTip = false;
 
 const shared_data = {
-    username: undefined,
     email: localStorage.email,
     u_id: localStorage.id,
-    first_game_images: localStorage.firstGameImages,
     isAdmin: localStorage.isAdmin,
-    // is_created_images: localStorage.isCreatedImages,
+
+    rankImages: localStorage.rankImages,
+    firstGameImages: localStorage.firstGameImages,
+    firstGameImagesSelected: localStorage.firstGameImagesSelected,
+
 
   login(username) {
         if (username) {
@@ -96,25 +98,23 @@ const shared_data = {
             this.u_id = username.u_id;
             localStorage.setItem("isAdmin", username.isAdmin)
             this.isAdmin = username.isAdmin
-            console.log("login", this.email);
-            console.log("login", this.u_id);
-            console.log("login", this.isAdmin);
-            // localStorage.setItem("firstGameImages", []);
-            
+            console.log("login", this.u_id);            
         }
     },
     logout() {
-        console.log("logout");
         localStorage.removeItem("username");
-        this.username = undefined;
         this.u_id = undefined;
         this.email = undefined;
-        this.first_game_images = undefined;
-        localStorage.removeItem("firstGameImages");
+        console.log("logout");
     },
-    saveFirstGameImages(images){
-        localStorage.setItem("firstGameImages", images);
-        this.first_game_images = images;
+    setGlobalSettings(globalSettings){
+        localStorage.setItem("rankImages", globalSettings.rankImages);
+        this.rankImages = globalSettings.rankImages;
+        localStorage.setItem("firstGameImages", globalSettings.firstGameImages);
+        this.firstGameImages = globalSettings.firstGameImages;
+        localStorage.setItem("firstGameImagesSelected", globalSettings.firstGameImagesSelected)
+        this.firstGameImagesSelected = globalSettings.firstGameImagesSelected;
+        console.log("setGlobalSettings", this.rankImages, this.firstGameImages, this.firstGameImagesSelected);
     },
 };
 

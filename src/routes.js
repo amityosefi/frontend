@@ -21,14 +21,14 @@ const routes = [{
     component: () => import("./Pages/AboutPage")
 },
 {
-    path: "/FirstGame",
-    name: "FirstGame",
-    component: () => import("./Pages/FirstGamePage")
+    path: "/RatePage",
+    name: "RatePage",
+    component: () => import("./Pages/RatePage")
 },
 {
-    path: "/SecondGamePage",
-    name: "SecondGamePage",
-    component: () => import("./Pages/SecondGamePage")
+    path: "/FirstGamePage",
+    name: "FirstGamePage",
+    component: () => import("./Pages/FirstGamePage")
 },
 {
     path: "/StructionsFirstGame",
