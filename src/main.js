@@ -85,7 +85,7 @@ const shared_data = {
     email: localStorage.email,
     u_id: localStorage.id,
     first_game_images: localStorage.firstGameImages,
-    isAdmin: 0,
+    isAdmin: localStorage.isAdmin,
     // is_created_images: localStorage.isCreatedImages,
 
   login(username) {

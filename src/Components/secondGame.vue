@@ -20,6 +20,9 @@
     <div class="d-flex justify-content-center">
 <button type="button" class="btn btn-outline-danger" v-on:click="submit">Submit</button>
    </div>
+   <div>
+     <instructions :Text="'Welcome to the First Game! \nIn front of you are 8 pictures you have rated previously\n2 of which you have rated high and the others low, can you guess which ones?'"/>
+   </div>
   </div>
 
     <!-- <div class="submitDiv">
@@ -30,11 +33,13 @@
 
 <script>
 import VueSelectImage from 'vue-select-image'
+import Instructions from './Instructions.vue'
 export default {
   name: "secondGame",
   components:
   {
     VueSelectImage,
+    Instructions
   },
   props: {
     Images: {
@@ -81,9 +86,7 @@ export default {
           console.log(this.selectedImages[i].id);
           if (this.best.includes(this.selectedImages[i].id)) result += 1;
         }
-        if (result == 2) window.alert("you've chosen correctly 2 from 2");
-        else if (result == 1) window.alert("you've chosen correctly 1 from 2");
-        else window.alert("you've chosen incorrectly");
+        
         
         this.$refs.selector.resetMultipleSelection(1);
         let app = this.$parent;
@@ -93,8 +96,7 @@ export default {
         if(no_runs == 4)
         {         
           let score = wins.reduce((x,y)=>x+y);
-          let fin_score = (score/8)*100
-          window.alert("you scored "+fin_score+"%");
+          this.$root.toast("Score", "you scored "+score+" out of 8", "success");
           app.runs = 0;
           app.wins = []
         }
@@ -137,7 +139,7 @@ img {
 {
   display: flexbox;
   flex-direction: row;
-  max-width: 1250px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 </style>
