@@ -31,8 +31,8 @@
     <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
     <br /><br /><br />
 
-    <!-- <div class="same-divs" style="float: left; width: 200px;">The list beautiful</div> -->
-    <!-- <div class="same-divs" style="float: left; width: 100px;">The most beautiful</div> -->
+    <div class="same-divs" style="float: left; width: 200px;">The least beautiful</div>
+    <div class="same-divs" style="float: right; width: 100px;">The most beautiful</div>
 
     <div class="bins">
       <div class="Row">
@@ -161,11 +161,6 @@
 import draggable from "vuedraggable";
 import Picture from "./Picture.vue";
 import Instructions from './Instructions.vue'
-
-// import 'viewerjs/dist/viewer.css'
-// import VueViewer from 'v-viewer'
-// import Vue from 'vue'
-// Vue.use(VueViewer)
 import "viewerjs/dist/viewer.css";
 import { component as Viewer } from "v-viewer";
 export default {
