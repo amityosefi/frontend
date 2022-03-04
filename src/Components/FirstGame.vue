@@ -9,7 +9,7 @@
         :is-multiple="true"
         :h="height"
         :w="weight"
-        :limit="2"
+        :limit="Number(this.$root.store.firstGameImagesSelected)"
         @onselectmultipleimage="onSelectMultipleImage"
         @onreachlimit="onreachlimit"
       >
@@ -78,7 +78,7 @@ export default {
       alert("got the limit selected images");
     },
     async submit() {
-      if (this.selectedImages.length == 2) {
+      if (this.selectedImages.length == Number(this.$root.store.firstGameImagesSelected)) {
         let result = 0;
         
         console.log(this.best);
@@ -99,6 +99,9 @@ export default {
           this.$root.toast("Score", "you scored "+score+" out of 8", "success");
           app.runs = 0;
           app.wins = []
+
+          
+
         }
         
         app.runs++;

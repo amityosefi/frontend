@@ -82,7 +82,7 @@ Vue.config.productionTip = false;
 
 const shared_data = {
     email: localStorage.email,
-    u_id: localStorage.id,
+    u_id: localStorage.u_id,
     isAdmin: localStorage.isAdmin,
 
     rankImages: localStorage.rankImages,
@@ -94,7 +94,7 @@ const shared_data = {
         if (username) {
             localStorage.setItem("email", username.username);
             this.email = username.username;
-            localStorage.setItem("id", username.u_id);
+            localStorage.setItem("u_id", username.u_id);
             this.u_id = username.u_id;
             localStorage.setItem("isAdmin", username.isAdmin)
             this.isAdmin = username.isAdmin

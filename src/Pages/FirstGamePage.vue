@@ -29,7 +29,7 @@ export default {
   methods: {
     async uploadImages() {
       try {
-        console.log("here");
+        console.log(this.$root.store.u_id)
         
         const response = await this.axios.post(
           `http://localhost:443/images/getSecondGameImages`,
