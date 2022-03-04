@@ -23,14 +23,13 @@ export default {
       key: 0 ,
       runs: 1,
       wins: [],
+      goodImages: [],
     };
   },
 
   methods: {
     async uploadImages() {
-      try {
-        console.log(this.$root.store.u_id)
-        
+      try {        
         const response = await this.axios.post(
           `http://localhost:443/images/getSecondGameImages`,
           {
@@ -58,7 +57,6 @@ export default {
         [this.Images[currentIndex], this.Images[randomIndex]] = [
           this.Images[randomIndex], this.Images[currentIndex]];
       }
-      console.log("Images:",res);
 
       } catch (err) {
         console.log(err.response);

@@ -1,5 +1,9 @@
 <template>
   <div>
+    <br>
+    <div>
+     <Instructions :Text="`Welcome to the First Game! \nIn front of you are ${$root.store.firstGameImages} pictures you have rated previously.\n${$root.store.firstGameImagesSelected} of which you have rated high and the others low, can you guess which ones?`"/>
+   </div>
     <br><br>
     <div class = "selector">
 
@@ -16,13 +20,11 @@
       </VueSelectImage>
     </div>
 
-<br><br>
+<br>
     <div class="d-flex justify-content-center">
 <button type="button" class="btn btn-outline-danger" v-on:click="submit">Submit</button>
    </div>
-   <div>
-     <instructions :Text="`Welcome to the First Game! \nIn front of you are ${$root.store.firstGameImages} pictures you have rated previously.\n${$root.store.firstGameImagesSelected} of which you have rated high and the others low, can you guess which ones?`"/>
-   </div>
+   <br>
   </div>
 
     <!-- <div class="submitDiv">
@@ -60,8 +62,7 @@ export default {
       selectedImages: [],
       // correct_ids: ["4", "6"],
       res: [],
-      wins: [],
-      
+      wins: [],      
     };
   },
   methods: {
@@ -75,33 +76,43 @@ export default {
       return [];
     },
     onreachlimit() {
-      alert("got the limit selected images");
+      this.$root.toast("warning", "got the limit selected images \r You have to choose up to " + this.$root.store.firstGameImagesSelected + " images.", "warning");
     },
     async submit() {
+      let app = this.$parent;
       if (this.selectedImages.length == Number(this.$root.store.firstGameImagesSelected)) {
         let result = 0;
         
-        console.log(this.best);
         for (let i = 0; i < this.selectedImages.length; i++) {
-          console.log(this.selectedImages[i].id);
-          if (this.best.includes(this.selectedImages[i].id)) result += 1;
+          if (this.best.includes(this.selectedImages[i].id)){ 
+            result += 1;
+            app.goodImages.push(this.selectedImages[i].id);
+          }
         }
-        
-        
+
         this.$refs.selector.resetMultipleSelection(1);
-        let app = this.$parent;
+        
         let wins = app.wins;
         wins.push(result);
         let no_runs = app.runs;
         if(no_runs == 4)
         {         
           let score = wins.reduce((x,y)=>x+y);
-          this.$root.toast("Score", "you scored "+score+" out of 8", "success");
+          this.$root.toast("Score", "you scored "+score+" out of " + this.$root.store.firstGameImages, "success");
           app.runs = 0;
-          app.wins = []
-
-          
-
+          app.wins = [];
+          try {
+            await this.axios.post("http://localhost:443/images/submitFirstGame", {
+              id: this.$root.store.u_id,
+              score: score,
+              result: app.goodImages,
+            });
+            app.goodImages = [];
+            this.$router.push("/HomePage");  // cahnge to HomePage
+          }
+          catch (err){
+            console.log(err);
+          }          
         }
         
         app.runs++;
@@ -109,7 +120,7 @@ export default {
         app.key++;
         
       } else {
-        window.alert("Need to choose two pictures");
+        this.$root.toast("warning", "Need to choose " + this.$root.store.selectedImages + " pictures", "warning");
       }
     },
     randomImages() {

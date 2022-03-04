@@ -2,7 +2,7 @@
   <div id="binning" @dragover.prevent>
     <br /><br />
       <div id="instructor">
-     <instructions :Text="`Welcome to Rate images! \n In front of you are ${$root.store.rankImages} images you need to rate.\n Every image supposed to be dragging with the mouse to every specific bin`"/>
+     <Instructions :Text="`Welcome to Rate images! \n In front of you are ${$root.store.rankImages} images you need to rate.\n Every image supposed to be dragging with the mouse to every specific bin`"/>
    </div>
     <div class="selection">
       <viewer

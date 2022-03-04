@@ -6,6 +6,11 @@ const routes = [{
     component: Main
 },
 {
+    path: "/HomePage",
+    name: "HomePage",
+    component: () => import("./Pages/HomePage")
+},
+{
     path: "/register",
     name: "register",
     component: () => import("./Pages/RegisterPage")
