@@ -1,14 +1,14 @@
-import Main from "./Pages/MainPage.vue";
+import HomePage from "./Pages/HomePage.vue";
 
 const routes = [{
     path: "/",
-    name: "Main",
-    component: Main
+    name: "HomePage",
+    component: HomePage
 },
 {
-    path: "/HomePage",
-    name: "HomePage",
-    component: () => import("./Pages/HomePage")
+    path: "/MainPage",
+    name: "MainPage",
+    component: () => import("./Pages/MainPage")
 },
 {
     path: "/register",
@@ -34,6 +34,11 @@ const routes = [{
     path: "/FirstGamePage",
     name: "FirstGamePage",
     component: () => import("./Pages/FirstGamePage")
+},
+{
+    path: "/SecondGamePage",
+    name: "SecondGamePage",
+    component: () => import("./Pages/SecondGamePage")
 },
 {
     path: "/StructionsFirstGame",

@@ -41,7 +41,7 @@
 <script>
 import VueSelectImage from "vue-select-image";
 export default {
-  name: "FirstGame",
+  name: "SecondGame",
   components: {
     VueSelectImage,
   },
@@ -54,7 +54,11 @@ export default {
       type: Array,
       require: true,
     },
+    other_id: {
+        type: Number,
+        require: true
   },
+},
 
   data() {
     this.randomImages();
@@ -120,15 +124,16 @@ export default {
           app.wins = [];
           try {
             await this.axios.post(
-              "http://localhost:443/images/submitFirstGame",
+              "http://localhost:443/images/submitSecondGame",
               {
                 id: this.$root.store.u_id,
+                other_id: this.other_id,
                 score: score,
                 result: app.goodImages,
               }
             );
             app.goodImages = [];
-            this.$router.push("/SecondGamePage");
+            this.$router.push("/"); // cahnge to HomePage
           } catch (err) {
             console.log(err);
           }

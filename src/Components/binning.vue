@@ -1,9 +1,7 @@
 <template>
   <div id="binning" @dragover.prevent>
-    <br /><br />
-      <div id="instructor">
-     <Instructions :Text="`Welcome to Rate images! \n In front of you are ${$root.store.rankImages} images you need to rate.\n Every image supposed to be dragging with the mouse to every specific bin`"/>
-   </div>
+    
+   <div>
     <div class="selection">
       <viewer
         ref="viewer"
@@ -154,13 +152,14 @@
         </div>
       </div>
     </div>
+    </div>
+
   </div>
 </template>
 
 <script>
 import draggable from "vuedraggable";
 import Picture from "./Picture.vue";
-import Instructions from './Instructions.vue'
 import "viewerjs/dist/viewer.css";
 import { component as Viewer } from "v-viewer";
 export default {
@@ -169,7 +168,6 @@ export default {
     Viewer,
     draggable,
     Picture,
-    Instructions,
   },
 
   data() {
@@ -185,6 +183,8 @@ export default {
       arrGrade8: [],
       arrGrade9: [],
       arrGrade10: [],
+      flag: true,
+      text: "Start rate images"
     };
   },
   props: {
@@ -230,6 +230,13 @@ export default {
     },
   },
   methods: {
+    changeDivs(){
+      this.flag = !this.flag;
+      if (this.flag)
+        this.text = "Back to instructions";
+      else
+        this.text = 'Back to rate images'
+    },
     inited(viewer) {
       this.$viewer = viewer;
     },

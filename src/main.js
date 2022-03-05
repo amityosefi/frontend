@@ -102,9 +102,12 @@ const shared_data = {
         }
     },
     logout() {
-        localStorage.removeItem("username");
+        localStorage.removeItem("u_id");
         this.u_id = undefined;
+        localStorage.removeItem("email");
         this.email = undefined;
+        localStorage.removeItem("isAdmin");
+        this.isAdmin = undefined
         console.log("logout");
     },
     setGlobalSettings(globalSettings){

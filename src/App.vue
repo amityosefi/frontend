@@ -10,8 +10,9 @@
             <b-nav-item v-if="!$root.store.email" :to="{ name: 'login' }">Login</b-nav-item>
             <b-nav-item v-if="!$root.store.email" :to="{ name: 'register' }">Register</b-nav-item>           
             <b-nav-item v-if="$root.store.email" :to="{ name: 'RatePage' }">Rate</b-nav-item>
-            <b-nav-item v-if="$root.store.email" :to="{ name: 'FirstGamePage' }">Play</b-nav-item>
-            <b-nav-item v-if="$root.store.isAdmin" :to="{ name: 'AdminPage' }">Admin</b-nav-item>
+            <b-nav-item v-if="$root.store.email" :to="{ name: 'FirstGamePage' }">Play 1</b-nav-item>
+            <b-nav-item v-if="$root.store.email" :to="{ name: 'SecondGamePage' }">Play 2</b-nav-item>
+            <b-nav-item v-if="$root.store.email && $root.store.isAdmin" :to="{ name: 'AdminPage' }">Admin</b-nav-item>
           </b-navbar-nav>
 
           <!-- right side -->
@@ -51,7 +52,7 @@ export default {
       this.$root.store.logout();
       this.$root.toast("Logout", "User logged out successfully", "success");
       this.axios.defaults.withCredentials = false;
-      this.$router.push("/").catch(() => {
+      this.$router.push("/MainPage").catch(() => {
         // this.$forceUpdate();
       });
     }

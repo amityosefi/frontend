@@ -4,12 +4,12 @@
     <div v-if="this.flag">
       <Instructions
         :Text="
-          `Welcome to the First Game! \nIn front of you are ${$root.store.firstGameImages} pictures you have rated previously.\n${$root.store.firstGameImagesSelected} of which you have rated high and the others low, can you guess which ones?`
+          `Welcome to the Second Game! \nIn front of other are ${$root.store.firstGameImages} pictures other person rated previously.\n${$root.store.firstGameImagesSelected} of which he/she have rated high and the others low, can you guess which ones?`
         "
       />
     </div>
   <div v-else>
-  <FirstGame  :key="this.key" :Images="this.Images" :best="this.best" ></FirstGame>
+  <SecondGame :other_id="this.other_id" :key="this.key" :Images="this.Images" :best="this.best" ></SecondGame>
 </div>
     <br>
     <div class="d-flex justify-content-center">
@@ -25,13 +25,13 @@
   </div>
 </template>
 <script>
-import FirstGame from "../Components/FirstGame.vue";
+import SecondGame from "../Components/SecondGame.vue";
 import Instructions from "../Components/Instructions.vue";
 
 export default {
-  name: "FirstGamePage",
+  name: "SecondGamePage",
   components: {
-    FirstGame,
+    SecondGame,
     Instructions,
   },
   data() {
@@ -43,7 +43,8 @@ export default {
       wins: [],
       goodImages: [],
       flag: true,
-      text: "Start game"
+      text: "Start game",
+      other_id: undefined,
     };
   },
 
@@ -58,12 +59,13 @@ export default {
     async uploadImages() {
       try {        
         const response = await this.axios.post(
-          `http://localhost:443/images/getSecondGameImages`,
+          `http://localhost:443/images/getSecondGameImagesOtherPerson`,
           {
             id:this.$root.store.u_id,
           }
         );
-        const arr = response.data.best.concat(response.data.worst);
+        this.other_id = response.data.other_id;
+        const arr = response.data.ans.best.concat(response.data.ans.worst);
         this.Images = []
         this.best = []
         const res = [];
