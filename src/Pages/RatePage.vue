@@ -1,7 +1,7 @@
 <template>
   <div>
     <br /><br />
-    <div v-if="this.flag" id="instructor">
+    <div v-if="this.flag" id="instructor" style="margin-bottom: 25px">
       <Instructions
         :Text="
           `Welcome to Rate images! \n In front of you are ${$root.store.rankImages} images you need to rate.\n Every image supposed to be dragging with the mouse to every specific bin`
@@ -15,8 +15,7 @@
         :rows="8"
         :cols="72 / 8"
       ></binning>
-      <br>
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center" style="margin-bottom: 15px; margin-top: 30px">
         <button
           type="button"
           class="btn btn-outline-danger"
@@ -27,10 +26,7 @@
       </div>
     </div>
 
-    <br />
-
-    <br />
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center" style="margin-bottom: 15px">
       <button
         type="button"
         class="btn btn-outline-danger"
@@ -119,6 +115,9 @@ export default {
 };
 </script>
 <style scoped>
+.instructor{
+  margin-bottom: 0px;
+}
 .submitButton {
   margin-top: 3%;
   margin-left: 40%;

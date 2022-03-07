@@ -135,16 +135,23 @@ export default {
 
           this.$root.toast("Login", "User logged in successfully", "success");
           this.$router.push("/RatePage");
+          // if (this.$root.store.isAgreed == true) {
+          //   this.$router.push("/RatePage");
+          // }
+          // else {
+          //   this.$router.push("/HomePage");
+          // }
+
         } 
         else {
           this.$root.toast("Can't login", "Username or password incorrect", "warning");
-          this.form.email = "";
-          this.form.password = "";
+          // this.form.email = "";
+          // this.form.password = "";
         }
       } catch (err) {
           this.$root.toast("Can't login", "Username or password incorrect", "warning");
-          this.form.email = "";
-          this.form.password = "";
+          // this.form.email = "";
+          // this.form.password = "";
           // console.log(err.response);
           this.form.submitError = err.response.data.message;
       }

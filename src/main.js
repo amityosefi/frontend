@@ -88,6 +88,7 @@ const shared_data = {
     rankImages: localStorage.rankImages,
     firstGameImages: localStorage.firstGameImages,
     firstGameImagesSelected: localStorage.firstGameImagesSelected,
+    isAgreed: localStorage.isAgreed,
 
 
   login(username) {
@@ -107,7 +108,9 @@ const shared_data = {
         localStorage.removeItem("email");
         this.email = undefined;
         localStorage.removeItem("isAdmin");
-        this.isAdmin = undefined
+        this.isAdmin = undefined;
+        localStorage.removeItem("isAgreed");
+        this.isAgreed = false;
         console.log("logout");
     },
     setGlobalSettings(globalSettings){
@@ -119,6 +122,10 @@ const shared_data = {
         this.firstGameImagesSelected = globalSettings.firstGameImagesSelected;
         console.log("setGlobalSettings", this.rankImages, this.firstGameImages, this.firstGameImagesSelected);
     },
+    setAgree() {
+        localStorage.setItem("isAgreed", true);
+        this.isAgreed = true;
+    }
 };
 
 // shared_data.username = "s" 

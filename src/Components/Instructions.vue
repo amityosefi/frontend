@@ -1,8 +1,8 @@
 <template >
 <div class="wrapper">
 <div class= "div">
-    <h1 class="header">Instructions:</h1>
-    <p class="content" style="font-weight: bold; font-size: 20px">{{this.text}}</p>
+    <h1 class="header">Instructions</h1>
+    <p class="content" style="font-weight: bold; font-size: 20px; margin-bottom: 0px;">{{this.text}}</p>
 </div> 
 </div>
 </template>
@@ -35,6 +35,7 @@ export default {
 <style>
 .div
 {
+    padding: 20px;
     background-color: beige;
     width: 30%;
     height: fit-content;
@@ -47,7 +48,7 @@ export default {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: black;
     text-shadow: 1px 1px #599e93;
-    margin-left:5%;
+    /* margin-left:5%; */
 }
 .wrapper
 {
@@ -61,6 +62,6 @@ export default {
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: black;
     text-shadow: 1px 1px #599e93;
-    margin-left:5%;
+    /* margin-left:5%; */
 }
 </style>

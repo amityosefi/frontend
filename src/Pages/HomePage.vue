@@ -1,7 +1,7 @@
 <template>
   <div>
     <br>
-    <p class="par">
+    <div class="par">
       שלום רב,
       <br>
 ברוכים הבאים למשחק העדפת תמונות.
@@ -23,16 +23,17 @@
 אנו מתחייבים:
 <br><br>
 1. לעדכן אתכם לגבי ההישג שלכם במשחק עם סיום תקופת המשחק.
-<br><br>
+<br>
 2. שכל הנתונים על המשחק ישמרו על מחשב מאובטח וישמשו אך ורק לניתוחים סטטיסטיים. בשום אופן לא יפורסמו נתונים אישיים לגביכם.
 <br><br>
-    </p>
-    <div class="d-flex justify-content-center">
-      <button type="button" class="btn btn-outline-danger" v-on:click="submit">
-        אני מסכים/ה להשתתף במשחק העדפת התמונות בהתאם לתנאים שפורטו לעיל
-      </button>
+<br>
     </div>
-    <br><br>
+    <div class="d-flex justify-content-center">
+      <br>
+      <button type="button" class="btn btn-outline-danger" v-on:click="submit">
+        I Agree      </button>
+    </div>
+    <br>
   </div>
 </template>
 
@@ -44,6 +45,7 @@ export default {
   },
   methods: {
       submit(){
+        this.$root.store.setAgree();
         this.$router.push("MainPage");
       }
   },
@@ -53,6 +55,17 @@ export default {
 <style scoped>
 .par{
  text-align: right;
- margin-right: 5%; 
+ font-family: Calibri;
+ /* margin-right: 5%;  */
+ margin: 0 auto;
+ margin-bottom: 10px;
+ width: 60%;
+ border: 5xp;
+ border-style: groove;
+ /* margin: auto; */
+/* width: 60%; */
+/* border: 5px solid #FFFF00; */
+padding: 10px;
+ 
 }
 </style>

@@ -1,18 +1,14 @@
 <template>
   <div>
     <br />
-    <div v-if="this.flag">
-      <Instructions
-        :Text="
-          `Welcome to the First Game! \nIn front of you are ${$root.store.firstGameImages} pictures you have rated previously.\n${$root.store.firstGameImagesSelected} of which you have rated high and the others low, can you guess which ones?`
-        "
-      />
+    <div class="ins" v-if="this.flag">
+      <Instructions :Text="`Welcome to the First Game! \nIn front of you are ${$root.store.firstGameImages} pictures you have rated previously.\n${$root.store.firstGameImagesSelected} of which you have rated high and the others low, can you guess which ones?`"/>
     </div>
   <div v-else>
   <FirstGame  :key="this.key" :Images="this.Images" :best="this.best" ></FirstGame>
 </div>
     <br>
-    <div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-center" style="margin-top: 0px;">
         <button
           type="button"
           class="btn btn-outline-danger"
@@ -96,5 +92,8 @@ export default {
 };
 </script>
 <style>
-
+.ins{
+  /* background-color: lawngreen; */
+  margin-bottom: 0px;
+}
 </style>

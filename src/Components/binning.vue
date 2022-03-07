@@ -29,8 +29,8 @@
     <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
     <br /><br /><br />
 
-    <div class="same-divs" style="float: left; width: 200px;">The least beautiful</div>
-    <div class="same-divs" style="float: right; width: 100px;">The most beautiful</div>
+    <!-- <div class="same-divs" style="float: left; width: 200px;">The least beautiful</div>
+    <div class="same-divs" style="float: right; width: 100px;">The most beautiful</div> -->
 
     <div class="bins">
       <div class="Row">
@@ -285,16 +285,17 @@ export default {
 };
 </script>
 
+
 <style>
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-.same-divs{
-  /* padding-top: 5%; */
-}
 .selection {
+  width: 1000px;
+  margin: 0 auto;
+  padding: 0;
   display: block;
 }
 body {
@@ -329,9 +330,9 @@ body {
 }
 
 .im {
-  width: 70%;
+  width: 922px;
   max-height: 400px;
-  overflow: scroll;
+  overflow-y: scroll;
   justify-self: center;
   margin-bottom: 3%;
   margin-left: auto;

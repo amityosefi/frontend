@@ -2,7 +2,7 @@
   <div id="app">
     <div class="app" v-if="!$root.store.username" >
       <b-navbar toggleable="lg" type="dark"  class="navn">
-        <b-navbar-brand :to="{ name: 'Main' }">Home page</b-navbar-brand>
+        <b-navbar-brand :to="{ name: 'HomePage' }">Home page</b-navbar-brand>
         <!-- left side -->
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
