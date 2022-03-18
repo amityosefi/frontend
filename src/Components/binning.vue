@@ -29,8 +29,8 @@
     <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
     <br /><br /><br />
 
-    <!-- <div class="same-divs" style="float: left; width: 200px;">The least beautiful</div>
-    <div class="same-divs" style="float: right; width: 100px;">The most beautiful</div> -->
+    <div class="same-divs" style="float: left; width: 200px;">The least beautiful</div>
+    <div class="same-divs" style="float: right; width: 100px;">The most beautiful</div>
 
     <div class="bins">
       <div class="Row">

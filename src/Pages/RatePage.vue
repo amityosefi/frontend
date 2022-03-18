@@ -2,13 +2,25 @@
   <div>
     <br /><br />
     <div v-if="this.flag" id="instructor" style="margin-bottom: 25px">
+      <div>
       <Instructions
         :Text="
           `Welcome to Rate images! \n In front of you are ${$root.store.rankImages} images you need to rate.\n Every image supposed to be dragging with the mouse to every specific bin`
         "
       />
     </div>
-    <div v-else>
+          <div class="d-flex justify-content-center" style="margin-bottom: 15px; margin-top: 20px">
+      <button
+        type="button"
+        class="btn btn-outline-danger"
+        v-on:click="changeDivs"
+      >
+        {{ this.text }}
+      </button>
+    </div>
+    </div>
+
+   <div v-else>
       <binning
         ref="bins"
         :Images="this.Images"
@@ -24,18 +36,10 @@
           Submit ratings
         </button>
       </div>
-    </div>
-
-    <div class="d-flex justify-content-center" style="margin-bottom: 15px">
-      <button
-        type="button"
-        class="btn btn-outline-danger"
-        v-on:click="changeDivs"
-      >
-        {{ this.text }}
-      </button>
-    </div>
   </div>
+
+
+  </div> 
 </template>
 
 <script>
@@ -68,8 +72,8 @@ export default {
   methods: {
     changeDivs() {
       this.flag = !this.flag;
-      if (this.flag) this.text = "Back to rate";
-      else this.text = "Back to instructions";
+      // if (this.flag) this.text = "Back to rate";
+      // else this.text = "Back to instructions";
     },
 
     async checkFull() {

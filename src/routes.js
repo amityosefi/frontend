@@ -1,9 +1,20 @@
-import HomePage from "./Pages/HomePage.vue";
+// import Instructions from "./Pages/Instructions.vue";
 
 const routes = [{
     path: "/",
     name: "HomePage",
-    component: HomePage
+    // component: Instructions
+    component: () => import("./Pages/HomePage")
+},
+{
+    path: "/Leaderboard",
+    name: "Leaderboard",
+    component: () => import("./Pages/Leaderboard")
+},
+{
+    path: "/InstructionsPage",
+    name: "InstructionsPage",
+    component: () => import("./Pages/InstructionsPage")
 },
 {
     path: "/MainPage",

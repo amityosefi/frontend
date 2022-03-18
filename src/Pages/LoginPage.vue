@@ -134,7 +134,7 @@ export default {
           this.$root.store.setGlobalSettings(globalSettings);
 
           this.$root.toast("Login", "User logged in successfully", "success");
-          this.$router.push("/RatePage");
+          this.$router.push("RatePage");
           // if (this.$root.store.isAgreed == true) {
           //   this.$router.push("/RatePage");
           // }

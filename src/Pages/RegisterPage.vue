@@ -9,17 +9,17 @@
                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
                 <form>
-                  <b-form-group id="input-group-firstname" label-cols-sm="3" label="First Name" label-for="firstname">
-                    <b-form-input id="firstname" v-model="$v.form.firstname.$model" type="text" :state="validateState('firstname')" style="width: 300px;" > </b-form-input>
-                    <b-form-invalid-feedback v-if="!$v.form.firstname.required">
-                      First name is required
+                  <b-form-group id="input-group-fullname" label-cols-sm="3" label="Full Name / Nickname" label-for="fullname">
+                    <b-form-input id="fullname" v-model="$v.form.fullname.$model" type="text" :state="validateState('fullname')" style="width: 300px;" > </b-form-input>
+                    <b-form-invalid-feedback v-if="!$v.form.fullname.required">
+                      Name is required
                     </b-form-invalid-feedback>
-                    <b-form-invalid-feedback v-if="!$v.form.firstname.alpha">
-                      First name should contain only letters
+                    <b-form-invalid-feedback v-if="!$v.form.fullname.alpha">
+                      Name should contain only letters
                     </b-form-invalid-feedback>
                   </b-form-group>
 
-                  <b-form-group id="input-group-lastname" label-cols-sm="3" label="Last Name" label-for="lastname">
+                  <!-- <b-form-group id="input-group-lastname" label-cols-sm="3" label="Last Name" label-for="lastname">
                     <b-form-input id="lastname" v-model="$v.form.lastname.$model" type="text" :state="validateState('lastname')" style="width: 300px;" > </b-form-input>
                     <b-form-invalid-feedback v-if="!$v.form.lastname.required">
                       Last name is required
@@ -27,7 +27,7 @@
                     <b-form-invalid-feedback v-if="!$v.form.lastname.alpha">
                       Last name should contain only letters
                     </b-form-invalid-feedback>
-                  </b-form-group>
+                  </b-form-group> -->
 
                   <b-form-group id="input-group-email" label-cols-sm="3" label="Email" label-for="email" >
                     <b-form-input id="email" type="text" v-model="$v.form.email.$model" :state="validateState('email')" style="width: 300px;"></b-form-input>
@@ -120,8 +120,8 @@ export default {
   data() {
     return {
       form: {
-        firstname: "",
-        lastname: "",
+        fullname: "",
+        // lastname: "",
         email: null,
         password: "",
         confirmedPassword: "",
@@ -160,15 +160,43 @@ export default {
               {
                 Email: this.form.email,
                 Password: this.form.password,
-                FirstName:  this.form.firstname,
-                LastName: this.form.lastname,
+                Fullname:  this.form.fullname,
+                // LastName: this.form.lastname,
                 Gender: genderToSend,
                 Age: Number(this.form.age),
               }
             );
             if(response.data.message == 'User was added successfully'){
-              this.$router.push("/");
+
+              try {
+                const response2 = await this.axios.post("http://localhost:443/login", {
+                  Email: this.form.email,
+                  Password: this.form.password,
+                });
+                if (response2.status == 200) {
+                  const user = {
+                    username: this.form.email,
+                    u_id: response2.data.Id,
+                    isAdmin: response2.data.IsAdmin
+                  };
+
+                  const globalSettings = {
+                    rankImages: response2.data.globalSettings.rankImages,
+                    firstGameImages: response2.data.globalSettings.firstGameImages,
+                    firstGameImagesSelected: response2.data.globalSettings.firstGameImagesSelected
+                  };
+
+                  this.$root.store.login(user);
+                  this.$root.store.setGlobalSettings(globalSettings);
+
+                  this.$root.toast("Register", "The user has registered successfully", "success");
+                  this.$router.push("RatePage");
+                }
+              }
+              catch (err) {
+                this.$root.toast("Register", "The user has registered unsuccessfully", "fail");
               // axios.defaults.withCredentials = true;
+              }
             }
             else{
               alert(response.data.message);
@@ -183,14 +211,14 @@ export default {
   },
   validations: {
     form: {
-      firstname: {
+      fullname: {
         required,
         alpha
       },
-      lastname: {
-        required,
-        alpha
-      },
+      // lastname: {
+      //   required,
+      //   alpha
+      // },
       email: {
         required,
         style: (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v)

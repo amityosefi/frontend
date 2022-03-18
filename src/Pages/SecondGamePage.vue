@@ -7,12 +7,8 @@
           `Welcome to the Second Game! \nIn front of other are ${$root.store.firstGameImages} pictures other person rated previously.\n${$root.store.firstGameImagesSelected} of which he/she have rated high and the others low, can you guess which ones?`
         "
       />
-    </div>
-  <div v-else>
-  <SecondGame :other_id="this.other_id" :key="this.key" :Images="this.Images" :best="this.best" ></SecondGame>
-</div>
-    <br>
-    <div class="d-flex justify-content-center">
+
+      <div class="d-flex justify-content-center" style="margin-top: 20px">
         <button
           type="button"
           class="btn btn-outline-danger"
@@ -21,6 +17,10 @@
           {{this.text}}
         </button>
     </div>
+    </div>
+  <div v-else>
+  <SecondGame :other_id="this.other_id" :key="this.key" :Images="this.Images" :best="this.best" ></SecondGame>
+</div>
 
   </div>
 </template>
@@ -51,10 +51,10 @@ export default {
   methods: {
     changeDivs(){
       this.flag = !this.flag;
-      if (this.flag)
-        this.text = 'Back to game';
-      else
-        this.text = 'Back to instructions';
+      // if (this.flag)
+      //   this.text = 'Back to game';
+      // else
+      //   this.text = 'Back to instructions';
     },
     async uploadImages() {
       try {        
