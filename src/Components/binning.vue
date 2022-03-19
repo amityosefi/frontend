@@ -184,7 +184,8 @@ export default {
       arrGrade9: [],
       arrGrade10: [],
       flag: true,
-      text: "Start rate images"
+      text: "Start rate images",
+      numrank: this.sizeFull,
     };
   },
   props: {
@@ -212,6 +213,8 @@ export default {
       },
       set: function(value) {
         this.$emit("listchange", value);
+        
+        
       },
     },
     sizeFull: function() {

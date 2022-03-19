@@ -89,7 +89,8 @@ const shared_data = {
     firstGameImages: localStorage.firstGameImages,
     firstGameImagesSelected: localStorage.firstGameImagesSelected,
     isAgreed: localStorage.isAgreed,
-
+    numRanked:localStorage.numRanked,
+    
 
   login(username) {
         if (username) {
