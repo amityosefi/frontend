@@ -32,6 +32,7 @@ import {
     NavbarPlugin,
     FormSelectPlugin,
     AlertPlugin,
+    SpinnerPlugin,
     ToastPlugin,
     LayoutPlugin,
     InputGroupPlugin
@@ -43,6 +44,7 @@ import {
     ButtonPlugin,
     CardPlugin,
     NavbarPlugin,
+    SpinnerPlugin,
     FormSelectPlugin,
     AlertPlugin,
     ToastPlugin,
