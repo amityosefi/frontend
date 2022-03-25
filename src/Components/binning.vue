@@ -2,14 +2,14 @@
   <div id="binning" @dragover.prevent>
     
    <div>
-    <div class="selection">
-      <viewer
+    <div class="selection" >
+      <!-- <viewer
         ref="viewer"
         :images="listLocal"
         rebuild
         class="viewer"
         @inited="inited"
-      >
+      > -->
         <draggable
           class="im"
           @dragend="remove(item)"
@@ -20,11 +20,12 @@
             style="list-style-type: none;"
             v-for="(Image, idx) in listLocal"
             :key="idx"
+            @click="currPic=Image.src"
           >
-            <Picture :link="Image.src" :id="Image.id" :draggable="false" />
+            <Picture :link="Image.src" :id="Image.id" :draggable="false" v-b-modal.modal-1/>
           </li>
         </draggable>
-      </viewer>
+      <!-- </viewer> -->
     </div>
     <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
     <br /><br /><br />
@@ -36,9 +37,9 @@
       <div class="Row">
         <div class="Column">1
           <draggable :list="arrGrade1" group="tasks">
-            <div v-for="image in arrGrade1" :key="image.id" class="bin">
+            <div v-for="image in arrGrade1" :key="image.id" class="bin" @click="currPic=image.src">
               <!-- <img v-bind:src="image" width="85px" height="55px" alt=".."> -->
-              <Picture :link="image.src" :id="image.id" :draggable="true" />
+              <Picture :link="image.src" :id="image.id" :draggable="true" v-b-modal.modal-1/>
             </div>
           </draggable>
         </div>
@@ -49,8 +50,9 @@
               v-for="(image, imageIndex) in arrGrade2"
               :key="imageIndex"
               class="bin"
+              @click="currPic=image.src"
             >
-              <Picture :link="image.src" :id="image.id" :draggable="true" />
+              <Picture :link="image.src" :id="image.id" :draggable="true" v-b-modal.modal-1/>
             </div>
           </draggable>
         </div>
@@ -61,8 +63,9 @@
               v-for="(image, imageIndex) in arrGrade3"
               :key="imageIndex"
               class="bin"
+              @click="currPic=image.src"
             >
-              <Picture :link="image.src" :id="image.id" :draggable="true" />
+              <Picture :link="image.src" :id="image.id" :draggable="true" v-b-modal.modal-1/>
             </div>
           </draggable>
         </div>
@@ -73,8 +76,9 @@
               v-for="(image, imageIndex) in arrGrade4"
               :key="imageIndex"
               class="bin"
+              @click="currPic=image.src"
             >
-              <Picture :link="image.src" :id="image.id" :draggable="true" />
+              <Picture :link="image.src" :id="image.id" :draggable="true" v-b-modal.modal-1/>
             </div>
           </draggable>
         </div>
@@ -85,8 +89,9 @@
               v-for="(image, imageIndex) in arrGrade5"
               :key="imageIndex"
               class="bin"
+              @click="currPic=image.src"
             >
-              <Picture :link="image.src" :id="image.id" :draggable="true" />
+              <Picture :link="image.src" :id="image.id" :draggable="true" v-b-modal.modal-1/>
             </div>
           </draggable>
         </div>
@@ -97,8 +102,9 @@
               v-for="(image, imageIndex) in arrGrade6"
               :key="imageIndex"
               class="bin"
+              @click="currPic=image.src"
             >
-              <Picture :link="image.src" :id="image.id" :draggable="true" />
+              <Picture :link="image.src" :id="image.id" :draggable="true" v-b-modal.modal-1/>
             </div>
           </draggable>
         </div>
@@ -109,8 +115,9 @@
               v-for="(image, imageIndex) in arrGrade7"
               :key="imageIndex"
               class="bin"
+              @click="currPic=image.src"
             >
-              <Picture :link="image.src" :id="image.id" :draggable="true" />
+              <Picture :link="image.src" :id="image.id" :draggable="true" v-b-modal.modal-1/>
             </div>
           </draggable>
         </div>
@@ -121,8 +128,9 @@
               v-for="(image, imageIndex) in arrGrade8"
               :key="imageIndex"
               class="bin"
+              @click="currPic=image.src"
             >
-              <Picture :link="image.src" :id="image.id" :draggable="true" />
+              <Picture :link="image.src" :id="image.id" :draggable="true" v-b-modal.modal-1/>
             </div>
           </draggable>
         </div>
@@ -133,8 +141,9 @@
               v-for="(image, imageIndex) in arrGrade9"
               :key="imageIndex"
               class="bin"
+              @click="currPic=image.src"
             >
-              <Picture :link="image.src" :id="image.id" :draggable="true" />
+              <Picture :link="image.src" :id="image.id" :draggable="true" v-b-modal.modal-1/>
             </div>
           </draggable>
         </div>
@@ -145,8 +154,9 @@
               v-for="(image, imageIndex) in arrGrade10"
               :key="imageIndex"
               class="bin"
+              @click="currPic=image.src"
             >
-              <Picture :link="image.src" :id="image.id" :draggable="true" />
+              <Picture :link="image.src" :id="image.id" :draggable="true" v-b-modal.modal-1/>
             </div>
           </draggable>
         </div>
@@ -154,18 +164,34 @@
     </div>
     </div>
 
+<br>
+<br>
+<div>
+  <!-- <b-button v-b-modal.modal-1>Launch demo modal</b-button> -->
+ <b-modal v-model="show" id="modal-1" class="modalPic" size="lg">
+    <p class="my-4"><img v-bind:src = this.currPic width="100%" height="50%"></p>
+          <template #modal-footer>
+        <div class="w-100">
+          <b-button variant="primary" size="sm" class="float-right" @click="show=false">Close</b-button>
+        </div>
+      </template>
+  </b-modal>
+  <!-- <b-modal class="modal" id="modal-1" hide-footer title="BootstrapVue">
+    <img v-bind:src = this.currPic width="200px" height="100px">
+  </b-modal> -->
+</div>
   </div>
 </template>
 
 <script>
 import draggable from "vuedraggable";
 import Picture from "./Picture.vue";
-import "viewerjs/dist/viewer.css";
-import { component as Viewer } from "v-viewer";
+// import "viewerjs/dist/viewer.css";
+// import { component as Viewer } from "v-viewer";
 export default {
   name: "binning",
   components: {
-    Viewer,
+    // Viewer,
     draggable,
     Picture,
   },
@@ -184,7 +210,10 @@ export default {
       arrGrade9: [],
       arrGrade10: [],
       flag: true,
-      text: "Start rate images"
+      text: "Start rate images",
+      currPic: "",
+      show: false,
+      instructionsModal: false
     };
   },
   props: {
@@ -230,6 +259,10 @@ export default {
     },
   },
   methods: {
+    update(src) {
+      this.currPic = src;
+      console.log(this.currPic);
+    },
     changeDivs(){
       this.flag = !this.flag;
       if (this.flag)
@@ -281,7 +314,9 @@ export default {
     },
   },
 
-  created() {},
+  created() {
+    this.instructionsModal = true
+  },
 };
 </script>
 
@@ -359,6 +394,16 @@ body {
 #instructor{
   margin-bottom: 5%;
 }
+
+.modalPic {
+    height:400px;
+  width:700px;
+}
+
+div.modal.model-1{
+  width: 400px;
+}
+
 /* .pic:hover
 {
   height:50%;

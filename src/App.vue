@@ -21,6 +21,7 @@
             <!-- <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
             <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
             <b-nav-item :to="{ name: 'About' }">About</b-nav-item> -->
+            <b-nav-item class="name" v-if="$root.store.fullname"> Hello {{$root.store.fullname}} </b-nav-item>
             <b-nav-item v-if="$root.store.email" v-on:click="Logout">Log Out</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
@@ -96,6 +97,10 @@ export default {
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+.name {
+  pointer-events: none;
 }
 
 </style>

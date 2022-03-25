@@ -8,8 +8,13 @@ import './assets/style.css';
 import routes from "./routes";
 import VueRouter from "vue-router";
 import { ModalPlugin } from 'bootstrap-vue'
+import { VBModal } from 'bootstrap-vue'
+// Note: Vue automatically prefixes the directive name with 'v-'
+// import { TablePlugin } from 'bootstrap-vue'
+// Vue.use(TablePlugin)
+import { BTable } from 'bootstrap-vue'
 Vue.use(ModalPlugin)
-
+Vue.directive('b-modal', VBModal)
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -32,9 +37,11 @@ import {
     NavbarPlugin,
     FormSelectPlugin,
     AlertPlugin,
+    SpinnerPlugin,
     ToastPlugin,
     LayoutPlugin,
-    InputGroupPlugin
+    InputGroupPlugin,
+    TablePlugin
 } from "bootstrap-vue";
 [
     FormGroupPlugin,
@@ -42,16 +49,19 @@ import {
     FormInputPlugin,
     ButtonPlugin,
     CardPlugin,
+    SpinnerPlugin,
     NavbarPlugin,
     FormSelectPlugin,
     AlertPlugin,
     ToastPlugin,
     LayoutPlugin,
-    InputGroupPlugin
+    InputGroupPlugin,
+    TablePlugin
 ].forEach((x) => Vue.use(x));
 Vue.use(Vuelidate);
 Vue.use(VueSelectImage)
 Vue.component('v-select', vSelect)
+Vue.component('b-table', BTable)
 
 axios.interceptors.request.use(
     function (config) {
@@ -84,7 +94,7 @@ const shared_data = {
     email: localStorage.email,
     u_id: localStorage.u_id,
     isAdmin: localStorage.isAdmin,
-
+    fullname: localStorage.fullname,
     rankImages: localStorage.rankImages,
     firstGameImages: localStorage.firstGameImages,
     firstGameImagesSelected: localStorage.firstGameImagesSelected,
@@ -98,7 +108,9 @@ const shared_data = {
             localStorage.setItem("u_id", username.u_id);
             this.u_id = username.u_id;
             localStorage.setItem("isAdmin", username.isAdmin)
-            this.isAdmin = username.isAdmin
+            this.isAdmin = username.isAdmin;
+            localStorage.setItem("fullname", username.fullname)
+            this.fullname = username.fullname;
             console.log("login", this.u_id);            
         }
     },
@@ -111,6 +123,8 @@ const shared_data = {
         this.isAdmin = undefined;
         localStorage.removeItem("isAgreed");
         this.isAgreed = false;
+        localStorage.removeItem("fullname");
+        this.fullname = false;
         console.log("logout");
     },
     setGlobalSettings(globalSettings){

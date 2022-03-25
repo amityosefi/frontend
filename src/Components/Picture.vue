@@ -1,10 +1,12 @@
 <template>
+<div>
     <div v-if="draggable"> 
         <img id ="pic2" v-bind:src = this.link>
     </div>
     <div v-else> 
         <img id ="pic" v-bind:src = this.link>
     </div>
+</div>
 </template>
 
 <script>
