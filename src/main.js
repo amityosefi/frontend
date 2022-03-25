@@ -51,6 +51,7 @@ import {
     CardPlugin,
     SpinnerPlugin,
     NavbarPlugin,
+    SpinnerPlugin,
     FormSelectPlugin,
     AlertPlugin,
     ToastPlugin,
