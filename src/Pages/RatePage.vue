@@ -87,7 +87,23 @@ export default {
     async submit() {
       let rates = this.$refs.bins.ratingAll();
       let user_id = this.$root.store.u_id;
-
+      localStorage.setItem("numRanked", this.$refs.bins.sizeFull);
+      localStorage.setItem("RankedImages", this.$refs.bins.ratingAll());
+      localStorage.setItem("unRankedImages", this.$refs.bins.unrated());
+      this.$root.store.numRanked = localStorage.numRanked;
+      this.$root.store.RankedImages = localStorage.RankedImages;
+      this.$root.store.unRankedImages = localStorage.unRankedImages;
+      if(this.$root.store.numRanked < 72)
+      {
+        
+        console.log(this.$root.store.numRanked)
+        console.log(this.$root.store.RankedImages)
+        console.log(this.$root.store.unRankedImages)
+      }
+      else
+      {
+        this.$root.store.ratedImages = []
+      }
       await this.axios.post(`http://localhost:443/images/submitRatings`, {
         data_ratings: rates,
         id: user_id,
@@ -114,6 +130,13 @@ export default {
   },
 
   created() {
+    if(localStorage.numRanked == undefined)
+      {
+       
+        localStorage.setItem("numRanked", 0);
+        this.$root.store.numRanked = 0;
+
+      }
     this.uploadImages();
   },
 };

@@ -65,8 +65,6 @@ export default {
     },
     async uploadImages() {
       try {      
-         console.log("pin be pita");
-      console.log("Ranked so far",this.$root.store.numRanked);  
         const response = await this.axios.post(
           `http://localhost:443/images/getSecondGameImages`,
           {
@@ -103,14 +101,11 @@ export default {
   created() {
       if(localStorage.numRanked == undefined)
       {
-        window.alert("aaaaaaaaaaaaaaaaa")
+       
         localStorage.setItem("numRanked", 0);
         this.$root.store.numRanked = 0;
 
       }
-      window.alert("aaaaaaaaaaaaaaaaa");
-      console.log("pin be pita");
-      console.log("Ranked so far",this.$root.store.numRanked);
       this.uploadImages();
     },
 };

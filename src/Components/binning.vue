@@ -213,7 +213,7 @@ export default {
       },
       set: function(value) {
         this.$emit("listchange", value);
-        
+        this.$root.store.numRank = this.numrank;
         
       },
     },
@@ -252,6 +252,15 @@ export default {
       for (const img in Arr) {
         let pic = Arr[img];
         arr.push({ picId: pic.id, rating: ratings });
+      }
+      return arr;
+    },
+    unrated()
+    {
+      let arr = []
+      for(var img in this.listLocal)
+      {
+        arr.push(this.listLocal[img].id)
       }
       return arr;
     },
