@@ -3,43 +3,56 @@
     <br /><br />
     <div v-if="this.flag" id="instructor" style="margin-bottom: 25px">
       <div>
-      <Instructions
-        :Text="
-          `Welcome to Rate images! \n In front of you are ${$root.store.rankImages} images you need to rate.\n Every image supposed to be dragging with the mouse to every specific bin`
-        "
-      />
-    </div>
-          <div class="d-flex justify-content-center" style="margin-bottom: 15px; margin-top: 20px">
-      <button
-        type="button"
-        class="btn btn-outline-danger"
-        v-on:click="changeDivs"
+        <Instructions
+          :Text="
+            `Welcome to Rate images! \n In front of you are ${$root.store.rankImages} images you need to rate.\n Every image supposed to be dragging with the mouse to every specific bin`
+          "
+        />
+      </div>
+      <div
+        class="d-flex justify-content-center"
+        style="margin-bottom: 15px; margin-top: 20px"
       >
-        {{ this.text }}
-      </button>
-    </div>
-    </div>
-
-   <div v-else>
-      <binning
-        ref="bins"
-        :Images="this.Images"
-        :rows="8"
-        :cols="72 / 8"
-      ></binning>
-      <div class="d-flex justify-content-center" style="margin-bottom: 15px; margin-top: 30px">
         <button
           type="button"
           class="btn btn-outline-danger"
-          v-on:click="submit"
+          v-on:click="changeDivs"
         >
-          Submit ratings
+          {{ this.text }}
         </button>
       </div>
+    </div>
+
+    <div v-else>
+      <div v-if="this.isLoading">
+        <b-spinner
+          variant="info"
+          style="width: 5rem; height: 5rem; margin-left: 50%;"
+          label="Large Spinner"
+        ></b-spinner>
+      </div>
+      <div v-else>
+        <binning
+          ref="bins"
+          :Images="this.Images"
+          :rows="8"
+          :cols="72 / 8"
+        ></binning>
+        <div
+          class="d-flex justify-content-center"
+          style="margin-bottom: 15px; margin-top: 30px"
+        >
+          <button
+            type="button"
+            class="btn btn-outline-danger"
+            v-on:click="submit"
+          >
+            Submit ratings
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
-
-
-  </div> 
 </template>
 
 <script>
@@ -58,6 +71,7 @@ export default {
       Image: "",
       disableButton: true,
       flag: true,
+      isLoading: true,
       text: "Start rate",
     };
   },
@@ -123,6 +137,7 @@ export default {
           arr.push({ id: img.id, src: str });
         });
         this.Images = arr;
+        this.isLoading = false;
       } catch (err) {
         console.log(err.response);
       }
@@ -142,7 +157,7 @@ export default {
 };
 </script>
 <style scoped>
-.instructor{
+.instructor {
   margin-bottom: 0px;
 }
 .submitButton {

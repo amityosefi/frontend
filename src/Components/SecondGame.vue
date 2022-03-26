@@ -66,7 +66,6 @@ export default {
       height: "180px",
       weight: "320px",
       selectedImages: [],
-      // correct_ids: ["4", "6"],
       res: [],
       wins: [],
     };
@@ -130,6 +129,7 @@ export default {
                 other_id: this.other_id,
                 score: score,
                 result: app.goodImages,
+                allImages: app.allImagesId,
               }
             );
             app.goodImages = [];
@@ -139,8 +139,8 @@ export default {
           }
         }
 
+        app.shuffleArr(app.allImages.slice(2*app.runs,2*app.runs+2).concat(app.allImages.slice(8*app.runs,8*app.runs+6))) //2,4 - 14,20 app.runs=2
         app.runs++;
-        await app.uploadImages();
         app.key++;
       } else {
         this.$root.toast(

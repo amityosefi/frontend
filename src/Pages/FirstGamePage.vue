@@ -51,7 +51,9 @@ export default {
       wins: [],
       goodImages: [],
       flag: true,
-      text: "Start game"
+      text: "Start game",
+      allImages: [],
+      allImagesId: [],
     };
   },
 
@@ -63,6 +65,16 @@ export default {
       // else
       //   this.text = 'Back to instructions';
     },
+    shuffleArr(array){
+      let currentIndex = array.length,  randomIndex;
+        while (currentIndex != 0) {
+          randomIndex = Math.floor(Math.random() * currentIndex);
+          currentIndex--;
+          [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
+        }
+      this.Images = array;
+    },
     async uploadImages() {
       try {      
         const response = await this.axios.post(
@@ -71,27 +83,17 @@ export default {
             id:this.$root.store.u_id,
           }
         );
-        const arr = response.data.best.concat(response.data.worst);
-        this.Images = []
-        this.best = []
+        const arr = response.data.best.concat(response.data.worst); // best: 8, worst: 24 by default
         const res = [];
-      arr.map((img) => {
-        let str = "data:image/jpg;base64, " + img.src;
-        res.push({id: img.id, src:str});
-      });
-      this.Images = res;
-      let best_pics = []
-      this.Images.slice(0,2).map((x)=>best_pics.push(x.id));
-      this.best = best_pics.slice(0,2);
-      let currentIndex = this.Images.length,  randomIndex;
-
-  // While there remain elements to shuffle...
-      while (currentIndex != 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex--;
-        [this.Images[currentIndex], this.Images[randomIndex]] = [
-          this.Images[randomIndex], this.Images[currentIndex]];
-      }
+        arr.map((img) => {
+          let str = "data:image/jpg;base64, " + img.src;
+          res.push({id: img.id, src:str});
+        });
+        this.allImages = res;
+        this.allImagesId = this.allImages.map(image => image.id);
+        const first_iteration = this.allImages.slice(0,2).concat(this.allImages.slice(8,14));
+        this.shuffleArr(first_iteration);
+        this.best = (this.allImages.slice(0,8)).map((x)=>x.id);
 
       } catch (err) {
         console.log(err.response);

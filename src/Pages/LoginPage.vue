@@ -117,11 +117,17 @@ export default {
           Email: this.form.email,
           Password: this.form.password,
         });
+
+        const response2 = await this.axios.post("http://localhost:443/getFullname", {
+          Email: this.form.email,
+        });
+
         if (response.status == 200) {
           const user = {
             username: this.form.email,
             u_id: response.data.Id,
-            isAdmin: response.data.IsAdmin
+            isAdmin: response.data.IsAdmin,
+            fullname: response2.data
           };
 
           const globalSettings = {
