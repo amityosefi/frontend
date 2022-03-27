@@ -196,7 +196,7 @@ export default {
                   this.$root.store.setGlobalSettings(globalSettings);
 
                   this.$root.toast("Register", "The user has registered successfully", "success");
-                  this.$router.push("RatePage");
+                  this.$router.push("MainPage");
                 }
               }
               catch (err) {
