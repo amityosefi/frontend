@@ -35,6 +35,7 @@
         <binning
           ref="bins"
           :Images="this.Images"
+          :Bins="this.Bins"
           :rows="8"
           :cols="72 / 8"
         ></binning>
@@ -69,6 +70,7 @@ export default {
     return {
       Images: [],
       Image: "",
+      Bins: [],
       disableButton: true,
       flag: true,
       isLoading: true,
@@ -101,22 +103,27 @@ export default {
     async submit() {
       let rates = this.$refs.bins.ratingAll();
       let user_id = this.$root.store.u_id;
-      localStorage.setItem("numRanked", this.$refs.bins.sizeFull);
-      localStorage.setItem("RankedImages", this.$refs.bins.ratingAll());
-      localStorage.setItem("unRankedImages", this.$refs.bins.unrated());
-      this.$root.store.numRanked = localStorage.numRanked;
-      this.$root.store.RankedImages = localStorage.RankedImages;
-      this.$root.store.unRankedImages = localStorage.unRankedImages;
-      if(this.$root.store.numRanked < 72)
+      localStorage.setItem("numRanked", JSON.stringify(this.$refs.bins.sizeFull));
+      this.$root.store.numRanked = JSON.parse(localStorage.numRanked);
+      console.log("numRanked",this.$root.store.numRanked)
+      if(this.$root.store.numRanked < 64)
       {
+        localStorage.setItem("RankedImages", JSON.stringify(this.$refs.bins.ratingAll()));
+        localStorage.setItem("unRankedImages", JSON.stringify(this.$refs.bins.unrated()));
         
-        console.log(this.$root.store.numRanked)
-        console.log(this.$root.store.RankedImages)
-        console.log(this.$root.store.unRankedImages)
+        this.$root.store.RankedImages = JSON.parse(localStorage.RankedImages);
+        this.$root.store.unRankedImages = JSON.parse(localStorage.unRankedImages);
+ 
+        this.$router.push("/");
+        return;
       }
       else
       {
-        this.$root.store.ratedImages = []
+        localStorage.setItem("RankedImages", undefined);
+        localStorage.setItem("unRankedImages", undefined);
+        
+        this.$root.store.RankedImages = undefined;
+        this.$root.store.unRankedImages = undefined;
       }
       await this.axios.post(`http://localhost:443/images/submitRatings`, {
         data_ratings: rates,
@@ -142,17 +149,48 @@ export default {
         console.log(err.response);
       }
     },
+    async uploadAlt()
+    {
+      try {
+        console.log("pics" , this.$root.store.RankedImages)
+        const res = await this.axios.post(
+          `http://localhost:443/images/fetchSpecificImages`,
+          {
+            pics:this.$root.store.unRankedImages,
+            bins:this.$root.store.RankedImages
+          }
+        );
+        
+        let response = res.data[0]
+        let response2 = res.data[1]
+        
+        let arr = [];
+        let arr2 = [];
+        response.map((img) => {
+          let str = "data:image/jpg;base64, " + img.src;
+          arr.push({ id: img.id, src: str });
+        });
+        response2.map((img) => {
+          let str = "data:image/jpg;base64, " + img.src;
+          arr2.push({ id: img.id, src: str, rating:img.rating });
+        });
+        
+        this.Images = arr;
+        this.Bins = arr2;
+        
+        this.isLoading = false;
+      } catch (err) {
+        console.log(err.response);
+      }
+    },
   },
 
   created() {
-    if(localStorage.numRanked == undefined)
-      {
-       
-        localStorage.setItem("numRanked", 0);
-        this.$root.store.numRanked = 0;
-
-      }
-    this.uploadImages();
+    console.log(this.$root.store);
+    if(this.$root.store.RankedImages!=undefined)
+      this.uploadAlt();
+    else
+      this.uploadImages();
   },
 };
 </script>

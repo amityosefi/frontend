@@ -209,6 +209,7 @@ export default {
       arrGrade8: [],
       arrGrade9: [],
       arrGrade10: [],
+      
       flag: true,
       text: "Start rate images",
       numrank: this.sizeFull,
@@ -221,6 +222,10 @@ export default {
     Images: {
       require: true,
       type: Array,
+    },
+    Bins:
+    {
+      type:Array,
     },
     rows: {
       require: true,
@@ -328,7 +333,19 @@ export default {
 
   created() {
     this.instructionsModal = true
+    let binDict = {1:this.arrGrade1, 2:this.arrGrade2, 3:this.arrGrade3, 4:this.arrGrade4, 5:this.arrGrade5
+      , 6:this.arrGrade6, 7:this.arrGrade7, 8:this.arrGrade8, 9:this.arrGrade9, 10:this.arrGrade10}
+    for(var i in this.$props.Bins)
+    {
+      let img = this.$props.Bins[i]
+      let arr = binDict[img.rating];
+      arr.push({id:img.id,src:img.src})
+    }
   },
+  mounted()
+  {
+    
+  }
 };
 </script>
 
