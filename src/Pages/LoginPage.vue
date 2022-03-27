@@ -122,12 +122,16 @@ export default {
           Email: this.form.email,
         });
 
+        console.log(response.data.last_time);
+
         if (response.status == 200) {
           const user = {
             username: this.form.email,
             u_id: response.data.Id,
             isAdmin: response.data.IsAdmin,
-            fullname: response2.data
+            fullname: response2.data,
+            user_score: response.data.user_score,
+            last_time: response.data.last_time,
           };
 
           const globalSettings = {
@@ -140,14 +144,7 @@ export default {
           this.$root.store.setGlobalSettings(globalSettings);
 
           this.$root.toast("Login", "User logged in successfully", "success");
-          this.$router.push("RatePage");
-          // if (this.$root.store.isAgreed == true) {
-          //   this.$router.push("/RatePage");
-          // }
-          // else {
-          //   this.$router.push("/HomePage");
-          // }
-
+          this.$router.push("MainPage");
         } 
         else {
           this.$root.toast("Can't login", "Username or password incorrect", "warning");

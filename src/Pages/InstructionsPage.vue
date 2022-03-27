@@ -66,7 +66,7 @@ export default {
         }
         else
         {
-          alert("You must confirm the terms and conditions")
+          this.$root.toast("warning", "You must confirm the terms and conditions", "warning");
         }
       }
   },

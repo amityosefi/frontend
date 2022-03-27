@@ -44,21 +44,21 @@ export default {
   },
   components: {
   },
-  methods: {
-      submit(){
-        // console.log(this.checkSelect)
-        if (this.checkSelect != undefined)
-        {
-          this.$root.store.setAgree();
-          this.$router.push("MainPage");
-        }
-        else
-        {
-          alert("In order to proceed, you must confirm the terms and conditions")
-        }
-      }
-  },
-  created() {},
+//   methods: {
+//       submit(){
+//         // console.log(this.checkSelect)
+//         if (this.checkSelect != undefined)
+//         {
+//           this.$root.store.setAgree();
+//           this.$router.push("MainPage");
+//         }
+//         else
+//         {
+//           alert("In order to proceed, you must confirm the terms and conditions")
+//         }
+//       }
+//   },
+//   created() {},
 };
 </script>
 <style scoped>
