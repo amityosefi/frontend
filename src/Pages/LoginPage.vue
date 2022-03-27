@@ -118,8 +118,7 @@ export default {
           Password: this.form.password,
         });
 
-        const response2 = await this.axios.post("http://localhost:443/getFullname", {
-          Email: this.form.email,
+        const response2 = await this.axios.get(`http://localhost:443/getFullname/${this.form.email}`, {
         });
 
         if (response.status == 200) {
@@ -235,7 +234,7 @@ export default {
   color: #fff;
   font-size: 20px;
   padding: 8px 155px;
-  /*border: 1px solid;*/
+
   border-image-source: -webkit-linear-gradient(
     -45deg,
     rgb(255, 255, 255) 0%,
@@ -269,7 +268,6 @@ export default {
 
 .button-container a h3:hover:after {
   opacity: 1;
-  /* top: 0%; */
   left: 30%;
   transition-property: left, top, opacity;
   transition-duration: 0.7s, 0.7s, 0.15s;

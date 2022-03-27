@@ -18,7 +18,7 @@
       </VueSelectImage>
 
       <br />
-      <div class="d-flex justify-content-center">
+      <!-- <div class="d-flex justify-content-center">
         <button
           type="button"
           class="btn btn-outline-danger"
@@ -26,7 +26,14 @@
         >
           Submit
         </button>
-      </div>
+      </div> -->
+        <div
+          class="d-flex justify-content-center"
+          style="margin-bottom: 15px; margin-top: 30px;"
+        >
+        <a href="#" class="btn btn-white btn-animate" @click="show=true">Instructions</a>
+        <a href="#" class="btn btn-white btn-animate" id="butt2" @click="submit">Submit</a> 
+        </div>
       <br />
     </div>
 
@@ -152,24 +159,4 @@ export default {
 </script>
 <style scoped>
 @import "../assets/style.css";
-.submitButton {
-  margin-left: 50%;
-}
-
-img {
-  height: 10px;
-  vertical-align: middle;
-  border-style: double;
-}
-
-.order {
-  margin-right: 50px;
-}
-
-.selector {
-  display: flexbox;
-  flex-direction: row;
-  max-width: 1500px;
-  margin: 0 auto;
-}
 </style>

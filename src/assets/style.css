@@ -13,3 +13,25 @@
     display: table;
     
   }
+
+  .submitButton {
+    margin-left: 50%;
+  }
+  
+  img {
+    /* height: 10px; */
+    vertical-align: middle;
+    /* border-style: solid; */
+    /* border-width: 2px; */
+  }
+  
+  .order {
+    margin-right: 50px;
+  }
+  
+  .selector {
+    display: flexbox;
+    flex-direction: row;
+    max-width: 1500px;
+    margin: 0 auto;
+  }
