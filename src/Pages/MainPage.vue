@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!this.$root.store.last_time && this.now != this.$root.store.last_time">
+    <div v-if="this.$root.store.last_time && this.now != this.$root.store.last_time">
       <p class="par">
         hello {{ this.$root.store.fullname }}
         <br />
@@ -17,7 +17,7 @@
       <a href="RatePage" class="btn btn-white btn-animate">Image Ratings</a>
     </div>
 
-    <div v-if="this.$root.store.last_time">
+    <div v-if="!this.$root.store.last_time">
       <p class="par">
         hello {{ this.$root.store.fullname }}
         <br />
@@ -73,7 +73,10 @@ export default {
       this.$router.push("/FirstGamePage");
     },
   },
-  created() {},
+  created() {
+    console.log(this.$root.store.isAdmin)
+    console.log(this.$root.store.email && this.$root.store.isAdmin)
+  },
 };
 </script>
 <style>
