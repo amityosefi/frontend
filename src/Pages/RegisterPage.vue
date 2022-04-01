@@ -9,7 +9,7 @@
                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
                 <form>
-                  <b-form-group id="input-group-fullname" label-cols-sm="3" label="Full Name / Nickname" label-for="fullname">
+                  <b-form-group id="input-group-fullname" label-cols-sm="3" label="Name / Nickname" label-for="fullname">
                     <b-form-input id="fullname" v-model="$v.form.fullname.$model" type="text" :state="validateState('fullname')" style="width: 300px;" > </b-form-input>
                     <b-form-invalid-feedback v-if="!$v.form.fullname.required">
                       Name is required
