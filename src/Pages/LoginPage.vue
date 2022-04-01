@@ -118,17 +118,15 @@ export default {
           Password: this.form.password,
         });
 
-        const response2 = await this.axios.get(`http://localhost:443/getFullname/${this.form.email}`, {
-        });
-
-        console.log(response.data.last_time);
+        // const response2 = await this.axios.get(`http://localhost:443/getFullname/${this.form.email}`, {
+        // });
 
         if (response.status == 200) {
           const user = {
             username: this.form.email,
             u_id: response.data.Id,
             isAdmin: response.data.IsAdmin,
-            fullname: response2.data,
+            fullname: response.data.FullName,
             user_score: response.data.user_score,
             last_time: response.data.last_time,
           };
@@ -143,7 +141,12 @@ export default {
           this.$root.store.setGlobalSettings(globalSettings);
 
           this.$root.toast("Login", "User logged in successfully", "success");
-          this.$router.push("MainPage");
+          if (!this.$root.store.user_score){
+            this.$router.push("RatePage");
+          }
+          else{
+            this.$router.push("MainPage");
+          }
         } 
         else {
           this.$root.toast("Can't login", "Username or password incorrect", "warning");

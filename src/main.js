@@ -40,6 +40,8 @@ import {
     SpinnerPlugin,
     ToastPlugin,
     LayoutPlugin,
+    // BFormTextarea,
+    FormTextareaPlugin ,
     InputGroupPlugin,
     TablePlugin
 } from "bootstrap-vue";
@@ -48,6 +50,8 @@ import {
     FormPlugin,
     FormInputPlugin,
     ButtonPlugin,
+    // BFormTextarea,
+    FormTextareaPlugin ,
     CardPlugin,
     SpinnerPlugin,
     NavbarPlugin,
@@ -144,6 +148,13 @@ const shared_data = {
         this.firstGameImagesSelected = globalSettings.firstGameImagesSelected;
         console.log("setGlobalSettings", this.rankImages, this.firstGameImages, this.firstGameImagesSelected);
     },
+    setUserScoreAndDate(score){
+        localStorage.setItem("user_score", this.score + score)
+        this.user_score = score;
+        const now = new Date().getDate() + "-" + String(Number(new Date().getMonth()) + 1) + "-" + new Date().getFullYear();
+        localStorage.setItem("last_time", now);
+        this.last_time = now;
+    }
 };
 
 // shared_data.username = "s" 
