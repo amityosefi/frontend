@@ -1,67 +1,53 @@
 <template>
   <div>
-    <b-card
-      overlay
-      img-src="https://picsum.photos/id/1015/6000/4000"
-      img-alt="Card Image"
-      text-variant="white"
-    >
-      <b-card-text v-if="!this.$root.store.user_score">
-        <p>
-          hello {{this.$root.store.fullname}}
-          <br>
-          Lets rate some images
-        </p>
-        <b-button href="RatePage">Start rate pictures</b-button>
-      </b-card-text>
+    <div v-if="this.now != this.$root.store.last_time">
+      <p class="par">
+        hello {{ this.$root.store.fullname }}
+        <br />
+        Your last time you played was in {{ this.$root.store.last_time }}
+        <br />
+        Until now you earn: {{ this.$root.store.user_score }} points
+      </p>
+      <br />
+      <p class="par">For starting the game please choose: Take me to the game</p>
+      <a href="FirstGamePage" class="btn btn-white btn-animate" id="butt2"
+        >Take me to the game!</a
+      >
+      <p class="par">For rating more images please choose: Image Ratings</p>
+      <a href="RatePage" class="btn btn-white btn-animate">Image Ratings</a>
+    </div>
 
-      <b-card-text v-if="this.$root.store.user_score && this.now != this.$root.store.last_time">
-        <p>
-          hello {{this.$root.store.fullname}}
-          <br>
-          Your last time you played was in {{this.$root.store.last_time }}
-          <br>
-          Until now you earn: {{ this.$root.store.user_score }} points</p>
+    <div v-else>
+      <p class="par">
+        hello {{ this.$root.store.fullname }}
         <br />
-        <p>For starting the game please chhose: Take me to the game</p>
-        <b-button href="FirstGamePage">Take me to the game!</b-button>
-        <p>For rating more images please chhose: Image Ratings</p>
-        <b-button href="RatePage">Image Ratings</b-button>
-      </b-card-text>
-      <b-card-text v-if="this.$root.store.user_score && this.now == this.$root.store.last_time">
-        <p>
-          hello {{this.$root.store.fullname}}
-          <br>
-          Your last time you played was today!
-          <br>
-          Until now you earn: {{ this.$root.store.user_score }} points</p>
+        Your last time you played was today!
         <br />
-        <p>If you want to play again, Come back tommorw</p>
-        <br>
-        <p>For rating more images please chhose: Image Ratings</p>
-        <b-button href="RatePage">Image Ratings</b-button>
-      </b-card-text>
-    </b-card>
-    <!-- <RatePage v-if="!$root.store.process"></RatePage> -->
-    <!-- <FirstGamePage v-else></FirstGamePage> -->
+        Until now you earn: {{ this.$root.store.user_score }} points
+      </p>
+      <br />
+      <p class="par">If you want to play again, Come back tommorw</p>
+      <br />
+      <p class="par">For rating more images please choose: Image Ratings</p>
+      <a href="RatePage" class="btn btn-white btn-animate" id="butt2"
+        >Image Ratings</a
+      >
+    </div>
   </div>
 </template>
 
 <script>
-// import RatePage from "../Pages/RatePage.vue";
-// import FirstGamePage from "../Pages/FirstGamePage";
-// import SecondGamePage from "../Pages/SecondGamePage";
-
 export default {
   name: "MainPage",
-  components: {
-    // RatePage,
-    // FirstGamePage,
-    // SecondGamePage,
-  },
+
   data() {
     return {
-      now: new Date().getDate()+'-'+String(Number(new Date().getMonth())+1)+'-'+new Date().getFullYear(),
+      now:
+        new Date().getDate() +
+        "-" +
+        String(Number(new Date().getMonth()) + 1) +
+        "-" +
+        new Date().getFullYear(),
     };
   },
   methods: {
@@ -71,26 +57,26 @@ export default {
     firstGame() {
       this.$router.push("/FirstGamePage");
     },
-    // secondGame() {
-    //   this.$router.push("/SecondGamePage");
-    // },
   },
-  created(){
-    console.log(new Date().getDate()+'-'+String(Number(new Date().getMonth())+1)+'-'+new Date().getFullYear())
-  }
+  created() {},
 };
 </script>
-<style scoped>
+<style>
+@import "../assets/style.css";
+
 h4 {
   font-size: 4ch;
 }
 .card-title {
   text-align: center;
 }
-p{
+.par{
   padding-top: 1%;
-  color: white;
+  color: black;
   font-size: 2.5ch;
   text-align: center;
+}
+.btn {
+  padding-left: 44%
 }
 </style>

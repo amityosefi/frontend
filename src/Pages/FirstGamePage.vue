@@ -142,6 +142,7 @@ export default {
                 allImages: this.allImagesId,
               }
             );
+            this.$root.store.setUserScoreAndDate(score);
             this.goodImages = [];
             this.$router.push("/SecondGamePage");
           } catch (err) {
