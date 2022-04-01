@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div v-if="this.now != this.$root.store.last_time">
+    <div v-if="!this.$root.store.last_time && this.now != this.$root.store.last_time">
       <p class="par">
         hello {{ this.$root.store.fullname }}
         <br />
         Your last time you played was in {{ this.$root.store.last_time }}
         <br />
-        Until now you earn: {{ this.$root.store.user_score }} points
+        Until now you earned: {{ this.$root.store.user_score }} points
       </p>
       <br />
       <p class="par">For starting the game please choose: Take me to the game</p>
@@ -17,13 +17,28 @@
       <a href="RatePage" class="btn btn-white btn-animate">Image Ratings</a>
     </div>
 
-    <div v-else>
+    <div v-if="this.$root.store.last_time">
+      <p class="par">
+        hello {{ this.$root.store.fullname }}
+        <br />
+        Until now you earned: {{ this.$root.store.user_score }} points
+      </p>
+      <br />
+      <p class="par">For starting the game please choose: Take me to the game</p>
+      <a href="FirstGamePage" class="btn btn-white btn-animate" id="butt2"
+        >Take me to the game!</a
+      >
+      <p class="par">For rating more images please choose: Image Ratings</p>
+      <a href="RatePage" class="btn btn-white btn-animate">Image Ratings</a>
+    </div>
+
+    <div v-if="this.$root.store.last_time && this.now == this.$root.store.last_time">
       <p class="par">
         hello {{ this.$root.store.fullname }}
         <br />
         Your last time you played was today!
         <br />
-        Until now you earn: {{ this.$root.store.user_score }} points
+        Until now you earned: {{ this.$root.store.user_score }} points
       </p>
       <br />
       <p class="par">If you want to play again, Come back tommorw</p>
