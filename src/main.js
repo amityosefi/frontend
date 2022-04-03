@@ -104,9 +104,9 @@ const shared_data = {
     firstGameImages: localStorage.firstGameImages,
     firstGameImagesSelected: localStorage.firstGameImagesSelected,
     isAgreed: localStorage.isAgreed,
-    numRanked:JSON.parse(localStorage.numRanked),
-    RankedImages:JSON.parse(localStorage.RankedImages),
-    unRankedImages:JSON.parse(localStorage.unRankedImages),
+    numRanked:undefined,
+    RankedImages:undefined,
+    unRankedImages:undefined,
     
     user_score: localStorage.user_score,
     last_time: localStorage.last_time,
@@ -142,6 +142,12 @@ const shared_data = {
         this.user_score = undefined;
         localStorage.removeItem("last_time");
         this.last_time = undefined;
+        localStorage.removeItem("numRanked");
+        this.numRanked = undefined;
+        localStorage.removeItem("RankedImages");
+        this.RankedImages = undefined;
+        localStorage.removeItem("unRankedImages");
+        this.unRankedImages = undefined;
         console.log("logout");
     },
     setGlobalSettings(globalSettings){

@@ -111,6 +111,9 @@ export default {
     async uploadAlt()
     {
       try {
+        this.$root.store.unRankedImages = JSON.parse(localStorage.unRankedImages)
+        this.$root.store.RankedImages = JSON.parse(localStorage.RankedImages)
+        this.$root.store.numRanked = JSON.parse(localStorage.numRanked)
         console.log("pics" , this.$root.store.RankedImages)
         const res = await this.axios.post(
           `http://localhost:443/images/fetchSpecificImages`,
@@ -146,7 +149,7 @@ export default {
 
   created() {
     console.log(this.$root.store);
-    if(this.$root.store.RankedImages!=undefined)
+    if(localStorage.RankedImages!=undefined)
       this.uploadAlt();
     else
       this.uploadImages();
