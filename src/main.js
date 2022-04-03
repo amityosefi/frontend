@@ -40,6 +40,8 @@ import {
     SpinnerPlugin,
     ToastPlugin,
     LayoutPlugin,
+    // BFormTextarea,
+    FormTextareaPlugin ,
     InputGroupPlugin,
     TablePlugin
 } from "bootstrap-vue";
@@ -48,6 +50,8 @@ import {
     FormPlugin,
     FormInputPlugin,
     ButtonPlugin,
+    // BFormTextarea,
+    FormTextareaPlugin ,
     CardPlugin,
     SpinnerPlugin,
     NavbarPlugin,
@@ -104,6 +108,9 @@ const shared_data = {
     RankedImages:JSON.parse(localStorage.RankedImages),
     unRankedImages:JSON.parse(localStorage.unRankedImages),
     
+    user_score: localStorage.user_score,
+    last_time: localStorage.last_time,
+
 
   login(username) {
         if (username) {
@@ -115,6 +122,10 @@ const shared_data = {
             this.isAdmin = username.isAdmin;
             localStorage.setItem("fullname", username.fullname)
             this.fullname = username.fullname;
+            localStorage.setItem("user_score", username.user_score)
+            this.user_score = username.user_score;
+            localStorage.setItem("last_time", username.last_time);
+            this.last_time = username.last_time;
             console.log("login", this.u_id);            
         }
     },
@@ -125,10 +136,12 @@ const shared_data = {
         this.email = undefined;
         localStorage.removeItem("isAdmin");
         this.isAdmin = undefined;
-        localStorage.removeItem("isAgreed");
-        this.isAgreed = false;
         localStorage.removeItem("fullname");
         this.fullname = false;
+        localStorage.removeItem("user_score");
+        this.user_score = undefined;
+        localStorage.removeItem("last_time");
+        this.last_time = undefined;
         console.log("logout");
     },
     setGlobalSettings(globalSettings){
@@ -140,9 +153,12 @@ const shared_data = {
         this.firstGameImagesSelected = globalSettings.firstGameImagesSelected;
         console.log("setGlobalSettings", this.rankImages, this.firstGameImages, this.firstGameImagesSelected);
     },
-    setAgree() {
-        localStorage.setItem("isAgreed", true);
-        this.isAgreed = true;
+    setUserScoreAndDate(score){
+        localStorage.setItem("user_score", this.score + score)
+        this.user_score = score;
+        const now = new Date().getDate() + "-" + String(Number(new Date().getMonth()) + 1) + "-" + new Date().getFullYear();
+        localStorage.setItem("last_time", now);
+        this.last_time = now;
     }
 };
 

@@ -118,16 +118,17 @@ export default {
           Password: this.form.password,
         });
 
-        const response2 = await this.axios.post("http://localhost:443/getFullname", {
-          Email: this.form.email,
-        });
+        // const response2 = await this.axios.get(`http://localhost:443/getFullname/${this.form.email}`, {
+        // });
 
         if (response.status == 200) {
           const user = {
             username: this.form.email,
             u_id: response.data.Id,
             isAdmin: response.data.IsAdmin,
-            fullname: response2.data
+            fullname: response.data.FullName,
+            user_score: response.data.user_score,
+            last_time: response.data.last_time,
           };
 
           const globalSettings = {
@@ -140,14 +141,12 @@ export default {
           this.$root.store.setGlobalSettings(globalSettings);
 
           this.$root.toast("Login", "User logged in successfully", "success");
-          this.$router.push("RatePage");
-          // if (this.$root.store.isAgreed == true) {
-          //   this.$router.push("/RatePage");
-          // }
-          // else {
-          //   this.$router.push("/HomePage");
-          // }
-
+          if (!this.$root.store.user_score){
+            this.$router.push("RatePage");
+          }
+          else{
+            this.$router.push("MainPage");
+          }
         } 
         else {
           this.$root.toast("Can't login", "Username or password incorrect", "warning");
@@ -235,7 +234,7 @@ export default {
   color: #fff;
   font-size: 20px;
   padding: 8px 155px;
-  /*border: 1px solid;*/
+
   border-image-source: -webkit-linear-gradient(
     -45deg,
     rgb(255, 255, 255) 0%,
@@ -269,7 +268,6 @@ export default {
 
 .button-container a h3:hover:after {
   opacity: 1;
-  /* top: 0%; */
   left: 30%;
   transition-property: left, top, opacity;
   transition-duration: 0.7s, 0.7s, 0.15s;

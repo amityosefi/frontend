@@ -61,12 +61,11 @@ export default {
       submit(){
         if (this.checkSelect == true)
         {
-          this.$root.store.setAgree();
           this.$router.push("Register");
         }
         else
         {
-          alert("You must confirm the terms and conditions")
+          this.$root.toast("warning", "You must confirm the terms and conditions", "warning");
         }
       }
   },

@@ -9,7 +9,7 @@
                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
                 <form>
-                  <b-form-group id="input-group-fullname" label-cols-sm="3" label="Full Name / Nickname" label-for="fullname">
+                  <b-form-group id="input-group-fullname" label-cols-sm="3" label="Name / Nickname" label-for="fullname">
                     <b-form-input id="fullname" v-model="$v.form.fullname.$model" type="text" :state="validateState('fullname')" style="width: 300px;" > </b-form-input>
                     <b-form-invalid-feedback v-if="!$v.form.fullname.required">
                       Name is required
@@ -166,51 +166,52 @@ export default {
                 Age: Number(this.form.age),
               }
             );
+            console.log(response.data)
             if(response.data.message == 'User was added successfully'){
 
-              try {
-                const response2 = await this.axios.post("http://localhost:443/login", {
-                  Email: this.form.email,
-                  Password: this.form.password,
-                });
+              // try {
+              //   const response2 = await this.axios.post("http://localhost:443/login", {
+              //     Email: this.form.email,
+              //     Password: this.form.password,
+              //   });
 
-                const response3 = await this.axios.post("http://localhost:443/getFullname", {
-                  Email: this.form.email,
-                  });
+              //   const response3 = await this.axios.post("http://localhost:443/getFullname", {
+              //     Email: this.form.email,
+              //     });
 
-                if (response2.status == 200) {
+                // if (response2.status == 200) {
                   const user = {
                     username: this.form.email,
-                    u_id: response2.data.Id,
-                    isAdmin: response2.data.IsAdmin,
-                    fullname: response3.data
+                    u_id: response.data.Id,
+                    isAdmin: response.data.IsAdmin,
+                    fullname: response.data.FullName,
+                    user_score: 0,
+                    last_time: undefined
                   };
 
-                  const globalSettings = {
-                    rankImages: response2.data.globalSettings.rankImages,
-                    firstGameImages: response2.data.globalSettings.firstGameImages,
-                    firstGameImagesSelected: response2.data.globalSettings.firstGameImagesSelected
-                  };
+                  // const globalSettings = {
+                  //   rankImages: response2.data.globalSettings.rankImages,
+                  //   firstGameImages: response2.data.globalSettings.firstGameImages,
+                  //   firstGameImagesSelected: response2.data.globalSettings.firstGameImagesSelected
+                  // };
 
                   this.$root.store.login(user);
-                  this.$root.store.setGlobalSettings(globalSettings);
+                  this.$root.store.setGlobalSettings(response.data.globalSettings);
 
                   this.$root.toast("Register", "The user has registered successfully", "success");
                   this.$router.push("RatePage");
-                }
+                // }
               }
-              catch (err) {
-                this.$root.toast("Register", "The user has registered unsuccessfully", "fail");
-              // axios.defaults.withCredentials = true;
-              }
-            }
+              // catch (err) {
+              //   this.$root.toast("Register", "The user has registered unsuccessfully", "fail");
+              // // axios.defaults.withCredentials = true;
+              // }
+            // }
             else{
-              alert(response.data.message);
+              this.$root.toast("Register", response.data.message, "fail");
             }
       } catch (err) {
         console.log(err.response.data);
-        alert(err.response.data);
-        // alert(err.response.request.status);
         this.form.submitError = err.response.data.message;
       }
     }

@@ -13,6 +13,7 @@
             <b-nav-item v-if="$root.store.email" :to="{ name: 'RatePage' }">Rate</b-nav-item>
             <b-nav-item v-if="$root.store.email" :to="{ name: 'FirstGamePage' }">Play 1</b-nav-item>
             <b-nav-item v-if="$root.store.email" :to="{ name: 'SecondGamePage' }">Play 2</b-nav-item>
+            <b-nav-item v-if="$root.store.email" :to="{ name: 'ReviewPage' }">Review</b-nav-item>
             <b-nav-item v-if="$root.store.email && $root.store.isAdmin" :to="{ name: 'AdminPage' }">Admin</b-nav-item>
           </b-navbar-nav>
 

@@ -19,17 +19,18 @@
 </div>
 <br>
 <div class="start">
-    <div v-if="!$root.store.email" >
+    <div class="sign" v-if="!$root.store.email" >
     <p class="text-center text-muted mt-4 mb-0">In order to play,
-    <router-link to="InstructionsPage"> sign up here</router-link></p>
+    <router-link to="InstructionsPage"> Sign up here</router-link></p>
      <p class="text-center text-muted mt-4 mb-0">If you have an acoount,
-    <router-link to="login"> sign in here</router-link></p>
+    <router-link to="login"> Log in here</router-link></p>
     </div>
     <div v-if="$root.store.email">
-             <p class="text-center text-muted mt-4 mb-0">In order to start, 
-    <router-link to="InstructionsPage">click here</router-link></p>
+        <!-- <p class="mt-4 mb-0"> -->
+          <!-- <router-link to="RatePage">Click here</router-link> to start the game </p> -->
+          <a href="#" class="btn btn-white btn-animate" id="butt2" @click="submit">Start Play</a>  
     </div>
-</div>
+    </div>
   </div>
 </template>
 
@@ -38,25 +39,25 @@
 export default {
   name: "HomePage",
   date() {
-    return {
-      checkSelect: undefined
-    }
   },
   components: {
   },
   methods: {
-      submit(){
-        // console.log(this.checkSelect)
-        if (this.checkSelect != undefined)
-        {
-          this.$root.store.setAgree();
-          this.$router.push("MainPage");
-        }
-        else
-        {
-          alert("In order to proceed, you must confirm the terms and conditions")
-        }
-      }
+    submit() {
+      this.$router.push("RatePage");
+    }
+      // submit(){
+      //   // console.log(this.checkSelect)
+      //   if (this.checkSelect != undefined)
+      //   {
+      //     this.$root.store.setAgree();
+      //     this.$router.push("MainPage");
+      //   }
+      //   else
+      //   {
+      //     alert("In order to proceed, you must confirm the terms and conditions")
+      //   }
+      // }
   },
   created() {},
 };
@@ -153,9 +154,17 @@ padding: 10px;
   background-image: linear-gradient(
     -225deg,
     /* #df9a74 0%, */
-     #dbbaa6 29%,
+     #ce9b7a 29%,
+    #FFFBD0 70%,
+    #c0562f 100%
+/* 
+        #da9e7a 29%,
+    #ca7858 70%,
+    #eedad4 100% */
+
+         /* #dbbaa6 29%,
     #ca927b 70%,
-    #eedad4 100%
+    #eedad4 100% */
 
         /* #ACCFCB 29%,
     #E4A9A8 67%,
@@ -189,8 +198,11 @@ padding: 10px;
     text-align: center;
     /* font-family: "Montserrat", sans-serif; */
     font-weight: 600;
-    font-size: 18px;
-    font-style: italic;
+    font-size: 20px;
     /* font-family: 'Blippo, fantasy' */
+}
+
+.sign {
+    font-style: italic;
 }
 </style>

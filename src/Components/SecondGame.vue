@@ -160,24 +160,4 @@ export default {
 </script>
 <style scoped>
 @import "../assets/style.css";
-.submitButton {
-  margin-left: 50%;
-}
-
-img {
-  height: 10px;
-  vertical-align: middle;
-  border-style: double;
-}
-
-.order {
-  margin-right: 50px;
-}
-
-.selector {
-  display: flexbox;
-  flex-direction: row;
-  max-width: 1500px;
-  margin: 0 auto;
-}
 </style>

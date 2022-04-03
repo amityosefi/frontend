@@ -1,70 +1,39 @@
 <template>
   <div>
-    <br /><br />
-    <div v-if="this.flag" id="instructor" style="margin-bottom: 25px">
-      <div>
-        <Instructions
-          :Text="
-            `Welcome to Rate images! \n In front of you are ${$root.store.rankImages} images you need to rate.\n Every image supposed to be dragging with the mouse to every specific bin`
-          "
-        />
-      </div>
-      <div
-        class="d-flex justify-content-center"
-        style="margin-bottom: 15px; margin-top: 20px"
-      >
-        <button
-          type="button"
-          class="btn btn-outline-danger"
-          v-on:click="changeDivs"
-        >
-          {{ this.text }}
-        </button>
-      </div>
-    </div>
 
-    <div v-else>
+    <Modal ref="modal" :Text="this.text"> </Modal>
+    <br /><br />
+    <div>
       <div v-if="this.isLoading">
         <b-spinner
-          variant="info"
-          style="width: 5rem; height: 5rem; margin-left: 50%;"
+          variant="danger"
+          style="width: 4rem; height: 4rem; margin-left: 50%;"
           label="Large Spinner"
         ></b-spinner>
       </div>
       <div v-else>
-        <binning
-          ref="bins"
-          :Images="this.Images"
-          :Bins="this.Bins"
-          :rows="8"
-          :cols="72 / 8"
-        ></binning>
-        <div
-          class="d-flex justify-content-center"
-          style="margin-bottom: 15px; margin-top: 30px"
-        >
-          <button
-            type="button"
-            class="btn btn-outline-danger"
-            v-on:click="submit"
-          >
-            Submit ratings
-          </button>
+            <!-- <b-button variant="outline-secondary" class="but" @click="show=true">Instructions</b-button> -->
+        <div class="secondery">
+        <binning ref="bins" :Bins="this.Bins" :Images="this.Images" :rows="8" :cols="72 / 8"></binning>
+        <div class="d-flex justify-content-center" style="margin-bottom: 15px; margin-top: 30px;">
+        <a href="#" class="btn btn-white btn-animate" @click.prevent="showModal">Instructions</a>
+        <a href="#" class="btn btn-white btn-animate" id="butt2" @click="submit">Submit</a> 
         </div>
       </div>
+    </div>
     </div>
   </div>
 </template>
 
 <script>
 import binning from "../Components/binning.vue";
-import Instructions from "../Components/Instructions.vue";
+import Modal from "../Components/Modal.vue";
 
 export default {
   name: "RatePage",
   components: {
     binning,
-    Instructions,
+    Modal,
   },
   data() {
     return {
@@ -74,30 +43,18 @@ export default {
       disableButton: true,
       flag: true,
       isLoading: true,
-      text: "Start rate",
+      text: `Welcome to images rating page! In front of you there are ${this.$root.store.rankImages}  images you need to rate. Each image supposed to be dragging with the mouse to a specific bin;`
     };
   },
-  // computed:
-  // {
-
-  //   size: function(){
-
-  //     return this.topics*this.pictures},
-
-  // },
   methods: {
-    changeDivs() {
-      this.flag = !this.flag;
-      // if (this.flag) this.text = "Back to rate";
-      // else this.text = "Back to instructions";
+    showModal() {
+      this.$refs.modal.setShow();
     },
-
     async checkFull() {
       let sizeFull = this.$refs;
 
       if (sizeFull == undefined || sizeFull == {}) return this.disableButton;
 
-      // console.log(sizeFull.bins.sizeFull);
       return sizeFull.bins.sizeFull != this.size;
     },
     async submit() {
@@ -145,6 +102,8 @@ export default {
         });
         this.Images = arr;
         this.isLoading = false;
+        this.showModal();
+ 
       } catch (err) {
         console.log(err.response);
       }
@@ -194,16 +153,37 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style>
+@import "../assets/style.css";
+/* .main {
+  overflow: auto;
+  float: right;
+} */
+
+/* .moda {
+margin-left: 10px;
+} */
+
+/* .but {
+  outline: none !important;
+} */
 .instructor {
   margin-bottom: 0px;
 }
-.submitButton {
+/* .submitButton {
   margin-top: 3%;
   margin-left: 40%;
   width: 200px;
-  /* width: 50vh; */
-}
+} */
+
+/* #button1{
+margin-right: 50px;
+} */
+
+/* .text-box {
+    margin-left: 10px;
+
+} */
 
 /* .submitDiv{
     margin-left: 45%;
