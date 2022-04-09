@@ -15,8 +15,8 @@
             <!-- <b-button variant="outline-secondary" class="but" @click="show=true">Instructions</b-button> -->
         <div class="secondery">
         <binning ref="bins" :Bins="this.Bins" :Images="this.Images" :rows="8" :cols="72 / 8"></binning>
-        <div class="d-flex justify-content-center" style="margin-bottom: 15px; margin-top: 30px;">
-        <a href="#" class="btn btn-white btn-animate" @click.prevent="showModal">Instructions</a>
+        <div class="d-flex justify-content-center" style="margin-bottom: 15px; margin-top: 15px;">
+        <a href="#" class="btn btn-white btn-animate" id="butt1" @click.prevent="showModal">Instructions</a>
         <a href="#" class="btn btn-white btn-animate" id="butt2" @click="submit">Submit</a> 
         </div>
       </div>

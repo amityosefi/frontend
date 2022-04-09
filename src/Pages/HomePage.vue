@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style="{'background-image':'url(https://ibb.co/HpZF7Ww)'}">
     <!-- <div class="container">
     <h2 class="title">
         <span class="title-word title-word-1">Welcome</span>
@@ -28,7 +28,7 @@
     <div v-if="$root.store.email">
         <!-- <p class="mt-4 mb-0"> -->
           <!-- <router-link to="RatePage">Click here</router-link> to start the game </p> -->
-          <a href="#" class="btn btn-white btn-animate" id="butt2" @click="submit">Start Play</a>  
+          <a href="#" class="btn btn-white btn-animate" @click="submit">Start Play</a>  
     </div>
     </div>
   </div>
@@ -39,6 +39,10 @@
 export default {
   name: "HomePage",
   date() {
+    return {
+      image: "back.png",
+      backgroundImage: 'url(./back.jpg)'
+    }
   },
   components: {
   },
@@ -63,6 +67,16 @@ export default {
 };
 </script>
 <style scoped>
+/* body  { */
+  /* background-image: url("https://ibb.co/HpZF7Ww"); */
+  /* background-size: cover; */
+  /* height: 120px; */
+  /* width: 100px; */
+  /* background-color: #cccccc; */
+  /* background-image: url("back.jpg"); */
+  /* background-image: url("back.jpg"); */
+/* } */
+
 .par{
  text-align: right;
  font-family: Calibri;

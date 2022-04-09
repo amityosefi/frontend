@@ -94,7 +94,4 @@ h4 {
   font-size: 2.5ch;
   text-align: center;
 }
-.btn {
-  padding-left: 44%
-}
 </style>
