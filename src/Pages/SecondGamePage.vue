@@ -158,7 +158,7 @@ export default {
         this.allImagesId = this.allImages.map(image => image.id);
         const first_iteration = this.allImages.slice(0,this.$root.store.firstGameImagesSelected).concat(this.allImages.slice(this.$root.store.firstGameImages,this.$root.store.firstGameImages*2-this.$root.store.firstGameImagesSelected));
         this.shuffleArr(first_iteration);
-        this.best = (this.allImages.slice(0,response.data.best.length)).map((x)=>x.id);
+        this.best = (this.allImages.slice(0,response.data.ans.best.length)).map((x)=>x.id);
         this.other_id = response.data.other_id;
         this.isLoading = false;
         this.showModal();
