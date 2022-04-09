@@ -116,7 +116,14 @@ export default {
           }
         }
 
-        this.shuffleArr(this.allImages.slice(2*this.runs,2*this.runs+2).concat(this.allImages.slice(8*this.runs,8*this.runs+6))) //2,4 - 14,20 app.runs=2
+        let select = Number(this.$root.store.firstGameImagesSelected);
+        let runImages = Number(this.$root.store.firstGameImages);
+
+        let goodSection = this.allImages.slice(select*this.runs,2*select*this.runs);
+        let badSection = this.allImages.slice(runImages*this.runs,runImages*this.runs+runImages-select);
+
+        this.shuffleArr(goodSection.concat(badSection)) //2,4 - 14,20 app.runs=2
+
         this.runs++;
         this.key++;
       } else {
@@ -149,9 +156,9 @@ export default {
         });
         this.allImages = res;
         this.allImagesId = this.allImages.map(image => image.id);
-        const first_iteration = this.allImages.slice(0,2).concat(this.allImages.slice(8,14));
+        const first_iteration = this.allImages.slice(0,this.$root.store.firstGameImagesSelected).concat(this.allImages.slice(this.$root.store.firstGameImages,this.$root.store.firstGameImages*2-this.$root.store.firstGameImagesSelected));
         this.shuffleArr(first_iteration);
-        this.best = (this.allImages.slice(0,8)).map((x)=>x.id);
+        this.best = (this.allImages.slice(0,response.data.best.length)).map((x)=>x.id);
         this.other_id = response.data.other_id;
         this.isLoading = false;
         this.showModal();
