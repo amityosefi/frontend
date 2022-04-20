@@ -18,8 +18,8 @@ data() {
         sortBy: 'TotalScore',
         sortDesc: false,
         fields: [
-          { key: 'FullName'},
-          { key: 'TotalScore'},
+          { key: 'FullName', label: 'Name'},
+          { key: 'TotalScore', label: 'Score'},
         ],
         // fields: ['FullName', 'TotalScore'],
         selected: [],

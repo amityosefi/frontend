@@ -3,6 +3,7 @@ import Vue from "vue";
 import App from "./App.vue";
 import VueAxios from "vue-axios";
 import axios from "axios";
+// import JsonCSV from "vue-json-csv";
 axios.defaults.withCredentials = true;
 import './assets/style.css';
 import routes from "./routes";
@@ -16,6 +17,7 @@ import { BTable } from 'bootstrap-vue'
 Vue.use(ModalPlugin)
 Vue.directive('b-modal', VBModal)
 Vue.use(VueRouter);
+// Vue.component("downloadCsv", JsonCSV);
 
 const router = new VueRouter({
     routes: routes,

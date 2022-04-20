@@ -1,14 +1,14 @@
 <template>
   <div class="mainDiv">
     <h3>
-      You can leave a review or comment to the webmasters
+      Leave here a review for the webmasters
     </h3>
     <br>
     <div class="text">
       <b-form-textarea
         id="textarea"
         v-model="text"
-        placeholder="Enter something..."
+        placeholder="Write something..."
         rows="4"
         max-rows="6"
       ></b-form-textarea>
@@ -17,7 +17,7 @@
       class="d-flex justify-content-center"
       style="margin-bottom: 15px; margin-top: 30px;"
     >
-      <a href="#" class="btn btn-white btn-animate" id="butt2" @click="submit"
+      <a href="#" class="btn btn-white btn-animate" @click="submit"
         >Submit</a
       >
     </div>

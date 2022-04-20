@@ -30,12 +30,12 @@
     <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
     <br /><br /><br />
 
-    <!-- <div class="same-divs" style="float: left; width: 200px;">The least beautiful</div>
-    <div class="same-divs" style="float: right; width: 100px;">The most beautiful</div> -->
+    <div class="same-divs" style="float: left; width: 200px;">The least beautiful</div>
+    <div class="same-divs" style="float: right; width: 100px;">The most beautiful</div>
 
     <div class="bins">
       <div class="Row">
-        <div class="Column">1 - Least beautiful
+        <div class="Column">
           <draggable :list="arrGrade1" group="tasks">
             <div v-for="image in arrGrade1" :key="image.id" class="bin" @click="currPic=image.src">
               <!-- <img v-bind:src="image" width="85px" height="55px" alt=".."> -->
@@ -148,7 +148,7 @@
           </draggable>
         </div>
 
-        <div class="Column">10 - Most beautiful
+        <div class="Column">
           <draggable :list="arrGrade10" group="tasks">
             <div
               v-for="(image, imageIndex) in arrGrade10"

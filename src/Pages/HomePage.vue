@@ -1,5 +1,5 @@
 <template>
-  <div :style="{'background-image':'url(https://ibb.co/HpZF7Ww)'}">
+  <div class="home">
     <!-- <div class="container">
     <h2 class="title">
         <span class="title-word title-word-1">Welcome</span>
@@ -12,15 +12,18 @@
     </div> -->
     <div class="container">
   <div class="row">
-    <div class="col-md-12 text-center">
+    <div class="col-md-12 text-center" style="margin-bottom: 5px">
       <h3 class="animate-charcter"> Welcome To Beautiful Images Game</h3>
     </div>
   </div>
 </div>
+<div class="imgg">
+  <img v-bind:src="'https://i.ibb.co/KGG6TW1/15.jpg'" alt="..." class="img-thumbnail" style="width: 600px; height: 400px;">
+</div>
 <br>
 <div class="start">
     <div class="sign" v-if="!$root.store.email" >
-    <p class="text-center text-muted mt-4 mb-0">In order to play,
+    <p class="text-center text-muted mt-4 mb-0">In order to play, 
     <router-link to="InstructionsPage"> Sign up here</router-link></p>
      <p class="text-center text-muted mt-4 mb-0">If you have an acoount,
     <router-link to="login"> Log in here</router-link></p>
@@ -41,7 +44,7 @@ export default {
   date() {
     return {
       image: "back.png",
-      backgroundImage: 'url(./back.jpg)'
+      // backgroundImage: 'url(./back.jpg)'
     }
   },
   components: {
@@ -49,7 +52,13 @@ export default {
   methods: {
     submit() {
       this.$router.push("RatePage");
-    }
+    },
+    login() {
+      this.$router.push("login");
+    },
+    register() {
+      this.$router.push("InstructionsPage");
+    },
       // submit(){
       //   // console.log(this.checkSelect)
       //   if (this.checkSelect != undefined)
@@ -61,21 +70,22 @@ export default {
       //   {
       //     alert("In order to proceed, you must confirm the terms and conditions")
       //   }
-      // }
+      // }vh;
   },
   created() {},
 };
 </script>
-<style scoped>
-/* body  { */
-  /* background-image: url("https://ibb.co/HpZF7Ww"); */
-  /* background-size: cover; */
-  /* height: 120px; */
-  /* width: 100px; */
-  /* background-color: #cccccc; */
-  /* background-image: url("back.jpg"); */
-  /* background-image: url("back.jpg"); */
-/* } */
+<style >
+/* .home  {  */
+    /* height: 100%; */
+
+  /* background-image: url("15.jpg");
+  overflow: hidden;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  overflow-y: hidden; */
+ /* } */
 
 .par{
  text-align: right;
@@ -145,16 +155,18 @@ padding: 10px;
 /* Here are just some visual styles. 🖌 */
 
 .container {
-  display: grid;
+  /* display: grid; */
   place-items: center;  
   text-align: center;
-  height: 50vh
+  /* margin-top: 30px; */
+  /* height: 33vh */
 }
 
 .title {
   font-family: "Montserrat", sans-serif;
   font-weight: 800;
-  font-size: 4.5vw;
+  font-size: 4vw;
+  /* margin-top: 30px; */
   text-transform: uppercase;
 }
 
@@ -164,36 +176,25 @@ padding: 10px;
      font-family: "Montserrat", sans-serif;
      text-transform: uppercase;
   font-weight: 800;
-  font-size: 4.2vw;
-  background-image: linear-gradient(
+  font-size: 4vw;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  /* background-image: linear-gradient(
     -225deg,
-    /* #df9a74 0%, */
      #ce9b7a 29%,
     #FFFBD0 70%,
     #c0562f 100%
-/* 
-        #da9e7a 29%,
-    #ca7858 70%,
-    #eedad4 100% */
 
-         /* #dbbaa6 29%,
-    #ca927b 70%,
-    #eedad4 100% */
-
-        /* #ACCFCB 29%,
-    #E4A9A8 67%,
-    #ACCFCB 100% */
-
-  );
-  background-size: auto auto;
-  background-clip: border-box;
-  background-size: 200% auto;
-  color: #fff;
+  ); */
+  color: #9e8672;
+  /* background-size: auto auto; */
+  /* background-clip: border-box; */
+  /* background-size: 200% auto; */
   background-clip: text;
   /* text-fill-color: transparent; */
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: textclip 2s linear infinite;
+  /* -webkit-text-fill-color: transparent; */
+  /* animation: textclip 2s linear infinite; */
   display: inline-block;
   margin-bottom: 15px;
   /* height: 50vh */
@@ -209,6 +210,7 @@ padding: 10px;
 .start
 {
     /* margin-left: 400px; */
+    margin-top: 15px;
     text-align: center;
     /* font-family: "Montserrat", sans-serif; */
     font-weight: 600;
@@ -219,4 +221,93 @@ padding: 10px;
 .sign {
     font-style: italic;
 }
+
+.imgg {
+  width: 600px;
+  height: 400px;
+  margin: 0 auto;
+      display:block;
+    margin:auto;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    /* border: 2px solid rgba(197, 197, 197, 0.918); */
+}
+
+  #butt2 {
+    margin-left: 25%;
+  }
+  
+  #butt1 {
+    margin-right: 25%;
+  }
+
+  .btn:link,
+  .btn:visited {
+    margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 16px;
+      font-family:Arial, Helvetica, sans-serif;
+      /* text-transform: uppercase; */
+      text-decoration: none;
+      padding: 12px 30px;
+      display: inline-block;
+      border-radius: 100px;
+      transition: all .2s;
+      /* position: absolute; */
+       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn:active {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-white {
+      background-color: #fff;
+      color: rgb(133, 133, 133);
+  }
+  
+  .btn::after {
+      content: "";
+      display: inline-block;
+      /* height: 100%;
+      width: 100%; */
+      border-radius: 100px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transition: all .4s;
+  }
+  
+  .btn-white::after {
+      background-color: #fff;
+  }
+  
+  .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+  }
+  
+  .btn-animated {
+      animation: moveInBottom 5s ease-out;
+      animation-fill-mode: backwards;
+  }
+  
+  @keyframes moveInBottom {
+      0% {
+          opacity: 0;
+          transform: translateY(30px);
+      }
+  
+      100% {
+          opacity: 1;
+          transform: translateY(0px);
+      }
+  }
 </style>

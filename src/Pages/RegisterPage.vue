@@ -84,8 +84,8 @@
                   </b-form-group>
 
                   <div class="button-container">
-                    <div class="btn btn-succes btn-lg text-body">
-                      <a class="btn" @click="this.onRegister">
+                    <div class="btnn btnn-succes btnn-lg text-body">
+                      <a class="btnn" @click="this.onRegister">
                         <h3>Register</h3>
                       </a>
                     </div>
@@ -266,7 +266,7 @@ export default {
 
   height: 100%;
   overflow: auto;
-  position: fixed;
+  /* position: fixed; */
 
   /* Preserve aspet ratio */
   min-width: 100%;
@@ -334,5 +334,9 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 
+}
+
+.btnn {
+  cursor: pointer;
 }
 </style>

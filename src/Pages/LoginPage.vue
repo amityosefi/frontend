@@ -61,8 +61,8 @@
                   </b-form-group>
 
                   <div class="button-container">
-                    <div class="btn btn-succes btn-lg text-body">
-                      <a class="btn" @click="this.onLogin">
+                    <div class="btnn btnn-succes btnn-lg text-body">
+                      <a class="btnn" @click="this.onLogin">
                         <h3>Login</h3>
                       </a>
                     </div>
@@ -215,36 +215,33 @@ export default {
 
   height: 100%;
   overflow: auto;
-  position: fixed;
+  /* position: fixed; */
 
   /* Preserve aspet ratio */
   min-width: 100%;
   min-height: 100%;
+
+
 }
 
-.button-container {
+
+.button-container{
   position: relative;
   overflow: hidden !important;
   display: inline-block;
 }
 
-.button-container a h3 {
+
+
+.button-container a h3{
   display: inline-block;
   margin: auto;
   color: #fff;
   font-size: 20px;
   padding: 8px 155px;
-
-  border-image-source: -webkit-linear-gradient(
-    -45deg,
-    rgb(255, 255, 255) 0%,
-    rgb(255, 183, 183) 100%
-  );
-  background: -webkit-linear-gradient(
-    -45deg,
-    rgb(248, 206, 196) 0%,
-    rgb(241, 140, 115) 100%
-  );
+  /*border: 1px solid;*/
+  border-image-source: -webkit-linear-gradient(-45deg, rgb(255, 255, 255) 0%, rgb(255, 183, 183) 100%);
+  background: -webkit-linear-gradient(-45deg, rgb(248, 206, 196) 0%, rgb(241, 140, 115) 100%);
 }
 
 .button-container a h3:after {
@@ -257,17 +254,12 @@ export default {
   opacity: 0;
   transform: skew(-40deg);
   background: rgb(98, 250, 232);
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.13) 77%,
-    rgba(255, 255, 255, 0.5) 92%,
-    rgba(255, 255, 255, 0) 100%
-  );
+  background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.13) 77%, rgba(255, 255, 255, 0.5) 92%, rgba(255, 255, 255, 0.0) 100%);
 }
 
 .button-container a h3:hover:after {
   opacity: 1;
+  /* top: 0%; */
   left: 30%;
   transition-property: left, top, opacity;
   transition-duration: 0.7s, 0.7s, 0.15s;
@@ -290,5 +282,10 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+}
+
+.btnn {
+  cursor: pointer;
 }
 </style>

@@ -43,7 +43,8 @@ export default {
       disableButton: true,
       flag: true,
       isLoading: true,
-      text: `Welcome to images rating page! In front of you there are ${this.$root.store.rankImages}  images you need to rate. Each image supposed to be dragging with the mouse to a specific bin;`
+      text:
+            "בשלב הראשון של המשחק, עליכם לצפות ב- 72 תמונות, ולתת להן ציון שמשקף עד כמה אתם אוהבים אותן. \n\n\n אנחנו נציג בפניכם את כל 72 התמונות בתוך חלון כשהן מוקטנות. השהיית העכבר על כל תמונה תגדיל אותה קצת, ולחיצה עם העכבר על התמונה תגדיל אותה עוד.  \n הציונים לכל תמונה נותנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.  \n כדי שתצליחו במשחק, אנחנו ממליצים מאד שתהיה כמות דומה (לא בהכרח זהה) של תמונות בתאי הציון השונים.  \nתנו ציונים נמוכים יותר. \n אחר שתסיימו לתת ציונים ל-72 התמונות, תוכלו לבחור בין האפשרות לראות עוד תמונות ולתת להם ציונים או לעבור לשלב המשחק. ",
     };
   },
   methods: {
@@ -157,7 +158,6 @@ export default {
 };
 </script>
 <style>
-@import "../assets/style.css";
 /* .main {
   overflow: auto;
   float: right;
@@ -173,22 +173,82 @@ margin-left: 10px;
 .instructor {
   margin-bottom: 0px;
 }
-/* .submitButton {
-  margin-top: 3%;
-  margin-left: 40%;
-  width: 200px;
-} */
 
-/* #button1{
-margin-right: 50px;
-} */
+  #butt2 {
+    margin-left: 25%;
+  }
+  
+  #butt1 {
+    margin-right: 25%;
+  }
 
-/* .text-box {
-    margin-left: 10px;
-
-} */
-
-/* .submitDiv{
-    margin-left: 45%;
-} */
+  .btn:link,
+  .btn:visited {
+    margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 16px;
+      font-family:Arial, Helvetica, sans-serif;
+      /* text-transform: uppercase; */
+      text-decoration: none;
+      padding: 12px 30px;
+      display: inline-block;
+      border-radius: 100px;
+      transition: all .2s;
+      /* position: absolute; */
+       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn:active {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-white {
+      background-color: #fff;
+      color: rgb(133, 133, 133);
+  }
+  
+  .btn::after {
+      content: "";
+      display: inline-block;
+      /* height: 100%;
+      width: 100%; */
+      border-radius: 100px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transition: all .4s;
+  }
+  
+  .btn-white::after {
+      background-color: #fff;
+  }
+  
+  .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+  }
+  
+  .btn-animated {
+      animation: moveInBottom 5s ease-out;
+      animation-fill-mode: backwards;
+  }
+  
+  @keyframes moveInBottom {
+      0% {
+          opacity: 0;
+          transform: translateY(30px);
+      }
+  
+      100% {
+          opacity: 1;
+          transform: translateY(0px);
+      }
+  }
 </style>

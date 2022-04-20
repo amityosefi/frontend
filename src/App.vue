@@ -11,9 +11,9 @@
             <b-nav-item v-if="!$root.store.email" :to="{ name: 'login' }">Login</b-nav-item>
             <b-nav-item v-if="!$root.store.email" :to="{ name: 'InstructionsPage' }">Register</b-nav-item>           
             <b-nav-item v-if="$root.store.email" :to="{ name: 'RatePage' }">Rate</b-nav-item>
-            <b-nav-item v-if="$root.store.email" :to="{ name: 'FirstGamePage' }">Play 1</b-nav-item>
-            <b-nav-item v-if="$root.store.email" :to="{ name: 'SecondGamePage' }">Play 2</b-nav-item>
-            <b-nav-item v-if="$root.store.email" :to="{ name: 'ReviewPage' }">Review</b-nav-item>
+            <b-nav-item v-if="$root.store.email" :to="{ name: 'FirstGamePage' }">Game-1</b-nav-item>
+            <b-nav-item v-if="$root.store.email" :to="{ name: 'SecondGamePage' }">Game-2</b-nav-item>
+            <b-nav-item v-if="$root.store.email" :to="{ name: 'ReviewPage' }">Contact us</b-nav-item>
             <b-nav-item v-if="$root.store.email && $root.store.isAdmin" :to="{ name: 'AdminPage' }">Admin</b-nav-item>
           </b-navbar-nav>
 
@@ -71,7 +71,7 @@ export default {
 .app {
      background-image: url("view5.jpg");
    background-attachment: fixed;
-   height: 50%;
+   /* height: 50%; */
   background-repeat: no-repeat;
   background-size: cover;
 
@@ -84,7 +84,8 @@ export default {
 
 .navn {
   font-weight: 550;
-  background-color: #e4c8b1;
+  background-color: #e2c9af;
+  color: #ffffff;
 }
 
 #nav {
@@ -93,6 +94,7 @@ export default {
 
 #nav a {
   font-weight: 500;
+  /* color: black; */
 }
 
 

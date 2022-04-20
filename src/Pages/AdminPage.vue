@@ -1,51 +1,58 @@
 <template>
-  <div id="admin" >
-    <br>
+  <div id="admin">
+    <br />
     <h1>Settings</h1>
     <b-form id="form" @submit="onSubmit" @reset="onReset">
-      <div>
-        <label for="range-1">Number of images for rank:</label>
+      <div class="inputs">
+        <label for="range-1">Rank page - images amount</label>
         <b-form-input
           id="range-1"
           v-model="form.rankImages"
           type="range"
           min="60"
-          max="120"
-          step="8"
+          max="126"
+          step="6"
         ></b-form-input>
         <div class="mt-2">Value: {{ form.rankImages }}</div>
       </div>
-      <div>
-        <label for="range-2">First game images:</label>
-        <b-form-input
-          id="range-2"
+      <div class="inputs">
+        <label for="range-2">First game - images amount</label>
+        <b-form-select
           v-model="form.firstGameImages"
-          type="range"
-          min="4"
-          max="16"
-          step="1"
-        ></b-form-input>
-        <div class="mt-2">Value: {{ form.firstGameImages }}</div>
+          :options="[6, 8, 9, 10, 12, 16]"
+        ></b-form-select>
       </div>
-      <div>
-        <label for="range-3">First game images selected</label>
-        <b-form-input
-          id="range-3"
+      <div class="inputs">
+        <label for="range-3">First game - selected images amount</label>
+        <b-form-select
           v-model="form.firstGameImagesSelected"
-          type="range"
-          min="1"
-          max="4"
-          step="1"
-        ></b-form-input>
-        <div class="mt-2">Value: {{ form.firstGameImagesSelected }}</div>
+          :options="[1, 2, 3, 4, 5]"
+        ></b-form-select>
       </div>
       <b-button type="submit" variant="primary">Submit</b-button>
       <b-button type="reset" variant="danger">Reset</b-button>
     </b-form>
+
+    <br /><br />
+
+    <div class="getCSV">
+      <label for="range-3">Select here to downlowd users data</label>
+      <b-button @click="getAllUsers" variant="primary">download</b-button>
+    </div>
+    <!-- <div>
+      <download-csv
+        class="btn btn-default"
+        :data="json_data"
+        name="filename.csv"
+      >
+        Download CSV (This is a slot)
+      </download-csv>
+    </div> -->
   </div>
 </template>
 
 <script>
+
 export default {
   name: "AdminPage",
 
@@ -88,14 +95,13 @@ export default {
               "success"
             );
             const globalSettings = {
-            rankImages: Number(this.form.rankImages),
-            firstGameImages: Number(this.form.firstGameImages),
-            firstGameImagesSelected: Number(
+              rankImages: Number(this.form.rankImages),
+              firstGameImages: Number(this.form.firstGameImages),
+              firstGameImagesSelected: Number(
                 this.form.firstGameImagesSelected
               ),
-          };
+            };
             this.$root.store.setGlobalSettings(globalSettings);
-
           } else {
             this.form.rankImages = "72";
             this.form.firstGameImages = "8";
@@ -121,21 +127,59 @@ export default {
       this.form.firstGameImages = "8";
       this.form.firstGameImagesSelected = "2";
     },
+    async getAllUsers() {
+      try {
+        const response = await this.axios.post(
+          "http://localhost:443/admin/users",
+          {
+            isAdmin: this.$root.store.isAdmin,
+          }
+        );
+        console.log(response.data.data);
+
+        let csv = 'Id, Email,FullName,Gender,Age \n';
+            response.data.data.forEach((row) => {
+                    csv += row.Id + ',';
+                    csv += row.Email + ',';
+                    csv += row.FullName + ',';
+                    csv += row.Gender + ',';
+                    csv += row.Age + ',';
+                    csv += "\n";
+            });
+
+
+
+        const anchor = document.createElement('a');
+        anchor.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+        anchor.target = '_blank';
+        anchor.download = 'Users.csv';
+        anchor.click();
+      } catch (error) {
+        console.log(error);
+      }
+    },
   },
 };
 </script>
-  
+
 <style scoped>
-  #admin{
-    text-align: center;
-    }
-    .custom-range {
-      width: 40%;
-      margin-left: 5%;
-      margin-top: 5%;
-    }
-    .btn{
-      margin: 1%;
-      margin-top: 5%;
-    }
+#admin {
+  text-align: center;
+}
+.custom-range {
+  width: 40%;
+  margin-left: 5%;
+  margin-top: 5%;
+}
+.btn {
+  margin: 1%;
+  /* margin-top: 5%; */
+}
+.custom-select {
+  width: 10%;
+  margin-left: 3%;
+}
+.inputs {
+  margin-top: 3%;
+}
 </style>

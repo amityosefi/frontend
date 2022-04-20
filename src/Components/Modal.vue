@@ -4,15 +4,16 @@
     <h1 class="header">Instructions</h1>
     <p class="content" style="font-weight: bold; font-size: 20px; margin-bottom: 0px;">{{this.text}}</p>
 </div>  -->
-    <b-modal v-model="this.Show" title="Instructions">
+    <b-modal size="lg" v-model="this.Show" title="הוראות">
         <b-container fluid>
-        {{this.$props.Text}}
+        <div style="direction:rtl"  innerHTML="this.$props.Text">
+        </div>
         </b-container>
 
         <template #modal-footer>
         <div class="w-100">
             <b-button variant="primary" size="sm" class="float-right" @click="setShow">
-            Close
+            סגור
             </b-button>
         </div>
         </template>
@@ -43,6 +44,9 @@ export default {
 };
 </script>
 <style>
+.rtl {
+    direction: rtl;
+}
 /* .div
 {
     padding: 20px;
@@ -72,5 +76,8 @@ export default {
     color: black;
     text-shadow: 1px 1px #599e93;
 } */
+.modal-content{
+    text-align: right;
+}
 
 </style>

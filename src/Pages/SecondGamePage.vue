@@ -24,7 +24,7 @@
         </VueSelectImage>
           <br />
             <div class="d-flex justify-content-center" style="margin-bottom: 15px; margin-top: 30px;">
-            <a href="#" class="btn btn-white btn-animate" @click.prevent="showModal">Instructions</a>
+            <a href="#" class="btn btn-white btn-animate" id="butt1" @click.prevent="showModal">Instructions</a>
             <a href="#" class="btn btn-white btn-animate" id="butt2" @click="submit">Submit</a> 
             </div>
           <br />
@@ -57,8 +57,10 @@ export default {
       selectedImages: [],
       res: [],
       isLoading: true,
-      text: `Welcome to the Second Game! In front of you there are ${this.$root.store.firstGameImages} you need to rate, 
-          according to the choices of other user. You need guess which pictures he liked the most.`
+      text: `הגענו לשלב המשחק! כעת נציג בפניכם ארבעה מסכים. בכל מסך ${this.$root.store.firstGameImages} תמונות מוקטנות שלקוחות משלב הדירוג של משתמש אחר. מתוך ${this.$root.store.firstGameImages} התמונות עליכם לבחור את ${this.$root.store.firstGameImagesSelected} התמונות להן המשתמש נתן את הדירוגים הגבוהים ביותר. על כל תמונה שבחרתם נכון תקבלו נקודה.
+הבחירה בתמונה נעשית באמצעות לחיצה עם העכבר עליה. ניתן לבטל בחירה של תמונה מסוימת על ידי לחיצה נוספת עליה.`
+      // text: `Welcome to the Second Game! In front of you there are ${this.$root.store.firstGameImages} you need to rate, 
+      //     according to the choices of other user. You need guess which pictures he liked the most.`
     };
   },
 
@@ -95,7 +97,7 @@ export default {
         let no_runs = this.runs;
         if (no_runs == 4) {
           let score = wins.reduce((x, y) => x + y);
-          this.$root.toast( "Score", "you scored " + score + " out of " + this.$root.store.firstGameImages, "success");
+          this.$root.toast( "Score", "you scored " + score + " out of " + 4*this.$root.store.firstGameImagesSelected, "success");
           this.runs = 0;
           this.wins = [];
           try {
@@ -115,11 +117,14 @@ export default {
             console.log(err);
           }
         }
+        else {
+           this.$root.toast("Score", "you scored " + result +" out of " + this.$root.store.firstGameImagesSelected, "success");
+        }
 
         let select = Number(this.$root.store.firstGameImagesSelected);
         let runImages = Number(this.$root.store.firstGameImages);
 
-        let goodSection = this.allImages.slice(select*this.runs,2*select*this.runs);
+        let goodSection = this.allImages.slice(select*this.runs+1,select*this.runs+select+1);
         let badSection = this.allImages.slice(runImages*this.runs,runImages*this.runs+runImages-select);
 
         this.shuffleArr(goodSection.concat(badSection)) //2,4 - 14,20 app.runs=2
@@ -174,5 +179,81 @@ export default {
 };
 </script>
 <style>
-@import "../assets/style.css";
+  #butt2 {
+    margin-left: 25%;
+  }
+  
+  #butt1 {
+    margin-right: 25%;
+  }
+
+  .btn:link,
+  .btn:visited {
+    margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 16px;
+      font-family:Arial, Helvetica, sans-serif;
+      /* text-transform: uppercase; */
+      text-decoration: none;
+      padding: 12px 30px;
+      display: inline-block;
+      border-radius: 100px;
+      transition: all .2s;
+      /* position: absolute; */
+       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn:active {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-white {
+      background-color: #fff;
+      color: rgb(133, 133, 133);
+  }
+  
+  .btn::after {
+      content: "";
+      display: inline-block;
+      /* height: 100%;
+      width: 100%; */
+      border-radius: 100px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transition: all .4s;
+  }
+  
+  .btn-white::after {
+      background-color: #fff;
+  }
+  
+  .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+  }
+  
+  .btn-animated {
+      animation: moveInBottom 5s ease-out;
+      animation-fill-mode: backwards;
+  }
+  
+  @keyframes moveInBottom {
+      0% {
+          opacity: 0;
+          transform: translateY(30px);
+      }
+  
+      100% {
+          opacity: 1;
+          transform: translateY(0px);
+      }
+  }
 </style>
