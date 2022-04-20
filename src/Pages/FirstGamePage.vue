@@ -240,6 +240,10 @@ export default {
       z-index: -1;
       transition: all .4s;
   }
+
+  .vue-select-image__thumbnail{
+    padding: 10px;
+  }
   
   .btn-white::after {
       background-color: #fff;
