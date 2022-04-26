@@ -30,12 +30,13 @@
     <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
     <br /><br /><br />
 
-    <div class="same-divs" style="float: left; width: 200px;">The least beautiful</div>
-    <div class="same-divs" style="float: right; width: 100px;">The most beautiful</div>
+    <div class="same-divs" style="float: left; margin-left: 80px">Least liked</div>
+    <div class="same-divs" style="float: right; margin-right: 80px">Most liked</div>
 
     <div class="bins">
       <div class="Row">
-        <div class="Column">
+              <!-- The least liked -->
+        <div class="Column">1
           <draggable :list="arrGrade1" group="tasks">
             <div v-for="image in arrGrade1" :key="image.id" class="bin" @click="currPic=image.src">
               <!-- <img v-bind:src="image" width="85px" height="55px" alt=".."> -->
@@ -148,7 +149,7 @@
           </draggable>
         </div>
 
-        <div class="Column">
+        <div class="Column">10
           <draggable :list="arrGrade10" group="tasks">
             <div
               v-for="(image, imageIndex) in arrGrade10"
@@ -160,6 +161,7 @@
             </div>
           </draggable>
         </div>
+        <!-- The most liked -->
       </div>
     </div>
     </div>
@@ -419,6 +421,7 @@ body {
 }
 .bins {
   align-items: center;
+  margin-left: 5px;
 }
 #instructor{
   margin-bottom: 5%;

@@ -10,7 +10,8 @@
         <div v-else>
         <h3 style="text-align: center;">Page {{this.runs}} / 4</h3>
         <br>
-        <div class="selector">
+
+        <div v-if="this.Images.length==8">
           <VueSelectImage
             ref="selector"
             :dataImages="this.Images"
@@ -21,15 +22,31 @@
             @onselectmultipleimage="onSelectMultipleImage"
             @onreachlimit="onreachlimit">
           </VueSelectImage>
-
           <br />
-            <div class="d-flex justify-content-center" style="margin-bottom: 15px; margin-top: 30px;">
+          <br />
+        </div>
+
+         <div v-else class="selector">
+          <VueSelectImage
+            ref="selector"
+            :dataImages="this.Images"
+            :is-multiple="true"
+            :h="`180px`"
+            :w="`320px`"
+            :limit="Number(this.$root.store.firstGameImagesSelected)"
+            @onselectmultipleimage="onSelectMultipleImage"
+            @onreachlimit="onreachlimit"
+            class="aaa">
+          </VueSelectImage>
+          <br />
+          <br />
+        </div>
+        
+        </div>
+            <div v-if="!this.isLoading" style="margin-bottom: 15px; margin-top: 30px; margin-left: 18em; ">
             <a href="#" class="btn btn-white btn-animate" id="butt1" @click.prevent="showModal">Instructions</a>
             <a href="#" class="btn btn-white btn-animate" id="butt2" @click="submit">Submit</a> 
             </div>
-          <br />
-        </div>
-        </div>
         </div>
 
   </div>
@@ -96,7 +113,7 @@ export default {
         this.shuffleArr(first_iteration);
         this.best = (this.allImages.slice(0,response.data.best.length)).map((x)=>x.id);
         this.isLoading = false;
-        this.showModal();
+        // this.showModal();
 
       } catch (err) {
         console.log(err.response);
@@ -254,6 +271,31 @@ export default {
       animation: moveInBottom 5s ease-out;
       animation-fill-mode: backwards;
   }
+
+  .aaa {
+    /* display: inline; */
+    display: grid;
+    float: left;
+    /* margin: 0 auto; */
+    padding:10px;
+    /* width: 20%; */
+  }
+
+  .selector {
+    margin-left: 180px;
+  }
+
+  /* .bbb {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  grid-auto-rows: 100px;
+  } */
+
+  /* .selector {
+      display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  } */
   
   @keyframes moveInBottom {
       0% {

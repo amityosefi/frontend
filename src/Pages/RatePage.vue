@@ -103,7 +103,7 @@ export default {
         });
         this.Images = arr;
         this.isLoading = false;
-        this.showModal();
+        //this.showModal();
  
       } catch (err) {
         console.log(err.response);

@@ -18,6 +18,7 @@ data() {
         sortBy: 'TotalScore',
         sortDesc: false,
         fields: [
+          { key: 'Index', label: 'Index'},
           { key: 'FullName', label: 'Name'},
           { key: 'TotalScore', label: 'Score'},
         ],
@@ -38,8 +39,33 @@ async uploadLeaders() {
         );
 
         this.leaders = response.data;
-        // this.leaders = JSON.parse(response.data);
-        // console.log(this.leaders);
+        
+        let user_index = -1;
+        let user_score = -1;
+        let username = this.$root.store.fullname;
+        console.log(username);
+        for (let i=0; i<this.leaders.length; i++) {
+          if (this.leaders[i].FullName.localeCompare(username) == 0) {
+            console.log("here");
+            user_index = i+1;
+            user_score = this.leaders[i].TotalScore;
+            username = this.leaders[i].FullName;
+            this.leaders[i]._rowVariant = 'secondary';
+          }
+          this.leaders[i]["Index"] = i+1;
+        }
+
+        let max_leaders_len = 10;
+
+        if (this.leaders.length > max_leaders_len) {
+          this.leaders = response.data.slice(0,max_leaders_len);
+          if (user_index > max_leaders_len && user_index != -1) {
+            let user_fields = {"FullName": username, "Index": user_index, "TotalScore": user_score, _rowVariant: 'secondary'}
+            this.leaders.push(user_fields);
+          }
+        }
+
+        console.log(this.leaders);
       } catch (err) {
         console.log(err.response);
       }

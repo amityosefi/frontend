@@ -12,8 +12,10 @@
     </div> -->
     <div class="container">
   <div class="row">
-    <div class="col-md-12 text-center" style="margin-bottom: 5px">
-      <h3 class="animate-charcter"> Welcome To Beautiful Images Game</h3>
+    <div class="col-md-12 text-center" style="margin-bottom: 3px">
+      <div class="animate-charcter"> Welcome To Beautiful
+        <br>
+         Images Game</div>
     </div>
   </div>
 </div>
@@ -23,9 +25,9 @@
 <br>
 <div class="start">
     <div class="sign" v-if="!$root.store.email" >
-    <p class="text-center text-muted mt-4 mb-0">In order to play, 
+    <p class="text-center text-muted mt-2 mb-1">In order to play, 
     <router-link to="InstructionsPage"> Sign up here</router-link></p>
-     <p class="text-center text-muted mt-4 mb-0">If you have an acoount,
+     <p class="text-center text-muted mt-2 mb-1">If you have an acoount,
     <router-link to="login"> Log in here</router-link></p>
     </div>
     <div v-if="$root.store.email">
@@ -175,10 +177,10 @@ padding: 10px;
    /* text-transform: uppercase; */
      font-family: "Montserrat", sans-serif;
      text-transform: uppercase;
-  font-weight: 800;
-  font-size: 4vw;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  font-weight: 1000;
+  font-size: 3.5vw;
+  margin-top: 15px;
+  margin-bottom: 15px;
   /* background-image: linear-gradient(
     -225deg,
      #ce9b7a 29%,
@@ -187,16 +189,16 @@ padding: 10px;
 
   ); */
   color: #9e8672;
-  /* background-size: auto auto; */
-  /* background-clip: border-box; */
-  /* background-size: 200% auto; */
   background-clip: text;
-  /* text-fill-color: transparent; */
-  -webkit-background-clip: text;
-  /* -webkit-text-fill-color: transparent; */
-  /* animation: textclip 2s linear infinite; */
   display: inline-block;
-  margin-bottom: 15px;
+  margin-bottom: 5px;
+
+  -moz-text-fill-color: white;
+-webkit-text-fill-color: white;
+-moz-text-stroke-color: #beb7b0;
+-webkit-text-stroke-color: #beb7b0;
+-moz-text-stroke-width: 2px;  
+-webkit-text-stroke-width: 2px
   /* height: 50vh */
       /* font-size: 100px; */
 }
@@ -210,7 +212,7 @@ padding: 10px;
 .start
 {
     /* margin-left: 400px; */
-    margin-top: 15px;
+    margin-top: 5px;
     text-align: center;
     /* font-family: "Montserrat", sans-serif; */
     font-weight: 600;
@@ -228,8 +230,8 @@ padding: 10px;
   margin: 0 auto;
       display:block;
     margin:auto;
-    margin-top: 15px;
-    margin-bottom: 5px;
+    margin-top: 5px;
+    margin-bottom: 2px;
     /* border: 2px solid rgba(197, 197, 197, 0.918); */
 }
 
