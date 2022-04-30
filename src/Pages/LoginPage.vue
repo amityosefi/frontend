@@ -129,9 +129,11 @@ export default {
             fullname: response.data.FullName,
             user_score: response.data.user_score,
             last_time: response.data.last_time,
-            is_finish_rate: response.data.is_finish_rate
           };
 
+          this.$root.store.numRanked = response.data.numRanked;
+          localStorage.setItem(response.data.numRanked);
+          
           const globalSettings = {
             rankImages: response.data.globalSettings.rankImages,
             firstGameImages: response.data.globalSettings.firstGameImages,
@@ -142,7 +144,7 @@ export default {
           this.$root.store.setGlobalSettings(globalSettings);
 
           this.$root.toast("Login", "User logged in successfully", "success");
-          if (user.is_finish_rate){
+          if (user.is_finish_rate >= 72){
             this.$router.push("MainPage");
           }
           else{

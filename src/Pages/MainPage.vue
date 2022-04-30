@@ -23,7 +23,7 @@
 
   <!-- case 2 -->
     <div v-if="this.$root.store.numRanked >= this.$root.store.rankImages &&
-               this.$root.store.numRanked < 124 &&
+               this.$root.store.numRanked < 126 &&
                this.$root.store.last_time &&
                this.now != this.$root.store.last_time">
       <p class="parr">
@@ -43,7 +43,7 @@
     </div>
 
     <!-- case 3 -->
-    <div v-if="this.$root.store.numRanked == 124 &&
+    <div v-if="this.$root.store.numRanked == 126 &&
                this.$root.store.last_time &&
                this.now != this.$root.store.last_time">
       <p class="parr">
@@ -62,7 +62,7 @@
 
     <!-- case 4 -->
     <div v-if="this.$root.store.numRanked >= this.$root.store.rankImages &&
-               this.$root.store.numRanked < 124 &&
+               this.$root.store.numRanked < 126 &&
                this.$root.store.last_time &&
                this.now == this.$root.store.last_time">
       <p class="parr">
@@ -78,7 +78,7 @@
     </div>
 
     <!-- case 5 -->
-    <div v-if="this.$root.store.numRanked == 124 &&
+    <div v-if="this.$root.store.numRanked == 126 &&
                this.$root.store.last_time &&
                this.now == this.$root.store.last_time">
       <p class="parr">
@@ -116,8 +116,11 @@ export default {
     },
   },
   created() {
-    console.log(this.$root.store.isAdmin)
-    console.log(this.$root.store.email && this.$root.store.isAdmin)
+    console.log("numRanked ", this.$root.store.numRanked)
+    console.log("numRanked ", this.$root.store.rankImages)
+    console.log("now ", this.now)
+    console.log("last time ", this.$root.store.last_time)
+
   },
 };
 </script>

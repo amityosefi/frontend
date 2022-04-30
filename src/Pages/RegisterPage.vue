@@ -187,8 +187,10 @@ export default {
                     fullname: response.data.FullName,
                     user_score: 0,
                     last_time: undefined,
-                    is_finish_rate: false
                   };
+
+                  this.$root.store.numRanked = 0;
+                  localStorage.setItem(0);
 
                   // const globalSettings = {
                   //   rankImages: response2.data.globalSettings.rankImages,
