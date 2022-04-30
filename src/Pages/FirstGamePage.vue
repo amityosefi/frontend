@@ -164,7 +164,7 @@ export default {
             );
             this.$root.store.setUserScoreAndDate(score);
             this.goodImages = [];
-            this.$router.push("/SecondGamePage");
+            this.$router.push("/MainPage");
           } catch (err) {
             console.log(err);
           }

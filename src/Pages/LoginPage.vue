@@ -131,9 +131,9 @@ export default {
             last_time: response.data.last_time,
           };
 
+          localStorage.setItem("numRanked", response.data.numRanked);           
           this.$root.store.numRanked = response.data.numRanked;
-          localStorage.setItem(response.data.numRanked);
-          
+
           const globalSettings = {
             rankImages: response.data.globalSettings.rankImages,
             firstGameImages: response.data.globalSettings.firstGameImages,
@@ -144,7 +144,7 @@ export default {
           this.$root.store.setGlobalSettings(globalSettings);
 
           this.$root.toast("Login", "User logged in successfully", "success");
-          if (user.is_finish_rate >= 72){
+          if (response.data.numRanked >= 72){
             this.$router.push("MainPage");
           }
           else{
