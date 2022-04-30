@@ -1,7 +1,7 @@
 <template>
   <div>
 
-        <Modal ref="modal" :Text="this.text"> </Modal>
+        <!-- <Modal ref="modal" :Text="this.text"> </Modal>
         <br />
         <div>
         <div v-if="this.isLoading">
@@ -30,6 +30,53 @@
           <br />
         </div>
         </div>
+        </div> -->
+        <Modal ref="modal" :Text="this.text"> </Modal>
+        <br />
+        <div>
+        <div v-if="this.isLoading">
+        <b-spinner variant="danger" style="width: 4rem; height: 4rem; margin-left: 50%;" label="Large Spinner"></b-spinner>
+        </div>
+        <div v-else>
+        <h3 style="text-align: center;">Page {{this.runs}} / 4</h3>
+        <br>
+
+        <div v-if="this.Images.length==8">
+          <VueSelectImage
+            ref="selector"
+            :dataImages="this.Images"
+            :is-multiple="true"
+            :h="`180px`"
+            :w="`320px`"
+            :limit="Number(this.$root.store.firstGameImagesSelected)"
+            @onselectmultipleimage="onSelectMultipleImage"
+            @onreachlimit="onreachlimit">
+          </VueSelectImage>
+          <br />
+          <br />
+        </div>
+
+         <div v-else class="selector">
+          <VueSelectImage
+            ref="selector"
+            :dataImages="this.Images"
+            :is-multiple="true"
+            :h="`180px`"
+            :w="`320px`"
+            :limit="Number(this.$root.store.firstGameImagesSelected)"
+            @onselectmultipleimage="onSelectMultipleImage"
+            @onreachlimit="onreachlimit"
+            class="aaa">
+          </VueSelectImage>
+          <br />
+          <br />
+        </div>
+        
+        </div>
+            <div v-if="!this.isLoading" style="margin-bottom: 15px; margin-top: 30px; margin-left: 18em; ">
+            <a href="#" class="btn btn-white btn-animate" id="butt1" @click.prevent="showModal">Instructions</a>
+            <a href="#" class="btn btn-white btn-animate" id="butt2" @click="submit">Submit</a> 
+            </div>
         </div>
 
   </div>
@@ -102,7 +149,7 @@ export default {
           this.wins = [];
           try {
             await this.axios.post(
-              "http://localhost:443/images/submitSecondGame",
+              "https://coil2.cs.bgu.ac.il/images/submitSecondGame",
               {
                 id: this.$root.store.u_id,
                 other_id: this.other_id,
@@ -148,7 +195,7 @@ export default {
     async uploadImages() {
       try {        
         const response = await this.axios.post(
-          `http://localhost:443/images/getSecondGameImagesOtherPerson`,
+          `https://coil2.cs.bgu.ac.il/images/getSecondGameImagesOtherPerson`,
           {
             id:this.$root.store.u_id,
           }
@@ -166,7 +213,7 @@ export default {
         this.best = (this.allImages.slice(0,response.data.ans.best.length)).map((x)=>x.id);
         this.other_id = response.data.other_id;
         this.isLoading = false;
-        this.showModal();
+        // this.showModal();
 
       } catch (err) {
         console.log(err.response);
@@ -216,6 +263,9 @@ export default {
   .btn-white {
       background-color: #fff;
       color: rgb(133, 133, 133);
+  }
+  .vue-select-image__thumbnail{
+    padding: 10px;
   }
   
   .btn::after {

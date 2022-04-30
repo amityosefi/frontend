@@ -125,7 +125,7 @@ export default {
           app.wins = [];
           try { 
             await this.axios.post(
-              "http://localhost:443/images/submitFirstGame",
+              "https://coil2.cs.bgu.ac.il/images/submitFirstGame",
               {
                 id: this.$root.store.u_id,
                 score: score,

@@ -16,14 +16,14 @@
         <div class="mt-2">Value: {{ form.rankImages }}</div>
       </div>
       <div class="inputs">
-        <label for="range-2">First game - images amount</label>
+        <label for="range-2">Games - images amount</label>
         <b-form-select
           v-model="form.firstGameImages"
-          :options="[6, 8, 9, 10, 12, 16]"
+          :options="[6, 8, 9, 12]"
         ></b-form-select>
       </div>
       <div class="inputs">
-        <label for="range-3">First game - selected images amount</label>
+        <label for="range-3">Games - selected images amount</label>
         <b-form-select
           v-model="form.firstGameImagesSelected"
           :options="[1, 2, 3, 4, 5]"
@@ -59,9 +59,9 @@ export default {
   data() {
     return {
       form: {
-        rankImages: "72",
-        firstGameImages: "8",
-        firstGameImagesSelected: "2",
+        rankImages: "",
+        firstGameImages: "",
+        firstGameImagesSelected: "",
       },
     };
   },
@@ -77,7 +77,7 @@ export default {
       } else {
         try {
           const response = await this.axios.post(
-            "http://localhost:443/admin/changeSettings",
+            "https://coil2.cs.bgu.ac.il/admin/changeSettings",
             {
               isAdmin: this.$root.store.isAdmin,
               rankImages: Number(this.form.rankImages),
@@ -130,7 +130,7 @@ export default {
     async getAllUsers() {
       try {
         const response = await this.axios.post(
-          "http://localhost:443/admin/users",
+          "https://coil2.cs.bgu.ac.il/admin/users",
           {
             isAdmin: this.$root.store.isAdmin,
           }
