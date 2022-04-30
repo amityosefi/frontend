@@ -229,14 +229,6 @@ export default {
     {
       type:Array,
     },
-    rows: {
-      require: true,
-      type: Number,
-    },
-    cols: {
-      require: true,
-      type: Number,
-    },
   },
   model: {
     prop: "Images",
@@ -381,6 +373,7 @@ body {
   width: 70%;
   table-layout: fixed;
 }
+
 .Column {
   vertical-align: center;
   align-items: baseline;

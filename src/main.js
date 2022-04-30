@@ -128,6 +128,8 @@ const shared_data = {
             this.user_score = username.user_score;
             localStorage.setItem("last_time", username.last_time);
             this.last_time = username.last_time;
+            localStorage.setItem("is_finish_rate", username.is_finish_rate);
+            this.is_finish_rate = username.is_finish_rate;
             console.log("login", this.u_id);            
         }
     },
@@ -150,6 +152,8 @@ const shared_data = {
         this.RankedImages = undefined;
         localStorage.removeItem("unRankedImages");
         this.unRankedImages = undefined;
+        localStorage.removeItem("is_finish_rate");
+        this.is_finish_rate = undefined;
         console.log("logout");
     },
     setGlobalSettings(globalSettings){

@@ -149,7 +149,7 @@ export default {
           this.wins = [];
           try {
             await this.axios.post(
-              "http://localhost:443/images/submitSecondGame",
+              "https://coil2.cs.bgu.ac.il/images/submitSecondGame",
               {
                 id: this.$root.store.u_id,
                 other_id: this.other_id,
@@ -195,7 +195,7 @@ export default {
     async uploadImages() {
       try {        
         const response = await this.axios.post(
-          `http://localhost:443/images/getSecondGameImagesOtherPerson`,
+          `https://coil2.cs.bgu.ac.il/images/getSecondGameImagesOtherPerson`,
           {
             id:this.$root.store.u_id,
           }
@@ -263,6 +263,9 @@ export default {
   .btn-white {
       background-color: #fff;
       color: rgb(133, 133, 133);
+  }
+  .vue-select-image__thumbnail{
+    padding: 10px;
   }
   
   .btn::after {

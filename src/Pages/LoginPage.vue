@@ -113,12 +113,12 @@ export default {
     },
     async Login() {
       try {
-        const response = await this.axios.post("http://localhost:443/login", {
+        const response = await this.axios.post("https://coil2.cs.bgu.ac.il/login", {
           Email: this.form.email,
           Password: this.form.password,
         });
 
-        // const response2 = await this.axios.get(`http://localhost:443/getFullname/${this.form.email}`, {
+        // const response2 = await this.axios.get(`https://coil2.cs.bgu.ac.il/getFullname/${this.form.email}`, {
         // });
 
         if (response.status == 200) {
@@ -129,6 +129,7 @@ export default {
             fullname: response.data.FullName,
             user_score: response.data.user_score,
             last_time: response.data.last_time,
+            is_finish_rate: response.data.is_finish_rate
           };
 
           const globalSettings = {
@@ -141,11 +142,11 @@ export default {
           this.$root.store.setGlobalSettings(globalSettings);
 
           this.$root.toast("Login", "User logged in successfully", "success");
-          if (!this.$root.store.user_score){
-            this.$router.push("RatePage");
+          if (user.is_finish_rate){
+            this.$router.push("MainPage");
           }
           else{
-            this.$router.push("MainPage");
+            this.$router.push("RatePage");
           }
         } 
         else {

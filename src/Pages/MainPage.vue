@@ -1,7 +1,32 @@
 <template>
-  <div>
-    <div v-if="this.$root.store.last_time && this.now != this.$root.store.last_time">
-      <p class="par">
+ <div>
+  <!-- 5 possible cases:
+  1. didnt finish rating
+  2. didnt played today and can rate
+  3. didnt played today and can not rate because already rate 124 images
+  4. played today and can rate
+  5. played today and can not rate because already rate 124 images
+
+  rankImages = 72
+  numRanked = user ranks
+   -->
+  
+  <!-- case 1 -->
+ 
+    <div v-if="this.$root.store.numRanked < this.$root.store.rankImages">
+      <p class="parr">
+        hello {{ this.$root.store.fullname }}
+      <br />
+      <p class="parr">For rating more images please choose: Image Ratings</p>
+      <a href="RatePage" class="btn btn-white btn-animate" id="butt5">Continue Ratings</a>
+    </div>
+
+  <!-- case 2 -->
+    <div v-if="this.$root.store.numRanked >= this.$root.store.rankImages &&
+               this.$root.store.numRanked < 124 &&
+               this.$root.store.last_time &&
+               this.now != this.$root.store.last_time">
+      <p class="parr">
         hello {{ this.$root.store.fullname }}
         <br />
         Your last time you played was in {{ this.$root.store.last_time }}
@@ -9,45 +34,62 @@
         Until now you earned: {{ this.$root.store.user_score }} points
       </p>
       <br />
-      <p class="par">For starting the game please choose: Take me to the game</p>
-      <a href="FirstGamePage" class="btn btn-white btn-animate" id="butt2"
+      <p class="parr">For starting the game please choose: Take me to the game</p>
+      <a href="FirstGamePage" class="btn btn-white btn-animate" id="butt5"
         >Take me to the game!</a
       >
-      <p class="par">For rating more images please choose: Image Ratings</p>
-      <a href="RatePage" class="btn btn-white btn-animate">Image Ratings</a>
+      <p class="parr">For rating more images please choose: Image Ratings</p>
+      <a href="RatePage" class="btn btn-white btn-animate" id="butt5">Continue Ratings</a>
     </div>
 
-    <div v-if="!this.$root.store.last_time">
-      <p class="par">
+    <!-- case 3 -->
+    <div v-if="this.$root.store.numRanked == 124 &&
+               this.$root.store.last_time &&
+               this.now != this.$root.store.last_time">
+      <p class="parr">
         hello {{ this.$root.store.fullname }}
+        <br />
+        Your last time you played was in {{ this.$root.store.last_time }}
         <br />
         Until now you earned: {{ this.$root.store.user_score }} points
       </p>
       <br />
-      <p class="par">For starting the game please choose: Take me to the game</p>
-      <a href="FirstGamePage" class="btn btn-white btn-animate" id="butt2"
+      <p class="parr">For starting the game please choose: Take me to the game</p>
+      <a href="FirstGamePage" class="btn btn-white btn-animate" id="butt5"
         >Take me to the game!</a
       >
-      <p class="par">For rating more images please choose: Image Ratings</p>
-      <a href="RatePage" class="btn btn-white btn-animate">Image Ratings</a>
     </div>
 
-    <div v-if="this.$root.store.last_time && this.now == this.$root.store.last_time">
-      <p class="par">
+    <!-- case 4 -->
+    <div v-if="this.$root.store.numRanked >= this.$root.store.rankImages &&
+               this.$root.store.numRanked < 124 &&
+               this.$root.store.last_time &&
+               this.now == this.$root.store.last_time">
+      <p class="parr">
         hello {{ this.$root.store.fullname }}
         <br />
-        Your last time you played was today!
+        Your last time you played was today, you can play again tommorw!
         <br />
         Until now you earned: {{ this.$root.store.user_score }} points
       </p>
       <br />
-      <p class="par">If you want to play again, Come back tommorw</p>
-      <br />
-      <p class="par">For rating more images please choose: Image Ratings</p>
-      <a href="RatePage" class="btn btn-white btn-animate" id="butt2"
-        >Image Ratings</a
-      >
+      <p class="parr">For rating more images please choose: Image Ratings</p>
+      <a href="RatePage" class="btn btn-white btn-animate" id="butt5">Continue Ratings</a>
     </div>
+
+    <!-- case 5 -->
+    <div v-if="this.$root.store.numRanked == 124 &&
+               this.$root.store.last_time &&
+               this.now == this.$root.store.last_time">
+      <p class="parr">
+        hello {{ this.$root.store.fullname }}
+        <br />
+        Your last time you played was today, you can play again tommorw!
+        <br />
+        Until now you earned: {{ this.$root.store.user_score }} points
+      </p>
+    </div>
+
   </div>
 </template>
 
@@ -88,7 +130,7 @@ h4 {
 .card-title {
   text-align: center;
 }
-.par{
+.parr{
   padding-top: 1%;
   color: black;
   font-size: 2.5ch;

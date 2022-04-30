@@ -74,13 +74,13 @@
 #pic
 {
     width:150px;
-    height:100px;
+    height:85px;
     
     
 }
 #pic2
 {
-    width:85px;
+    width:100%;
     height:55px;
     
     

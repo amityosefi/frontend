@@ -35,7 +35,7 @@ onRowSelected(items) {
 async uploadLeaders() {
       try {
         const response = await this.axios.get(
-          `http://localhost:443/images/getLeaders`
+          `https://coil2.cs.bgu.ac.il/images/getLeaders`
         );
 
         this.leaders = response.data;
@@ -102,5 +102,6 @@ h3 {
     font-size: 16px;
     width: 900px;
     /* height: 1000px; */
+    text-align: right;
 }
 </style>

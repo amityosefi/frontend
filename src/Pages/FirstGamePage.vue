@@ -96,7 +96,7 @@ export default {
     async uploadImages() {
       try {       
         const response = await this.axios.post(
-          `http://localhost:443/images/getSecondGameImages`,
+          `https://coil2.cs.bgu.ac.il/images/getSecondGameImages`,
           {
             id:this.$root.store.u_id,
           }
@@ -154,7 +154,7 @@ export default {
           this.wins = [];
           try { 
             await this.axios.post(
-              "http://localhost:443/images/submitFirstGame",
+              "https://coil2.cs.bgu.ac.il/images/submitFirstGame",
               {
                 id: this.$root.store.u_id,
                 score: score,
@@ -270,6 +270,9 @@ export default {
   .btn-animated {
       animation: moveInBottom 5s ease-out;
       animation-fill-mode: backwards;
+  }
+  .vue-select-image__thumbnail{
+    padding: 10px;
   }
 
   .aaa {

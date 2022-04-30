@@ -88,7 +88,9 @@ export default {
   min-height: 100vh;
   overflow-y: hidden; */
  /* } */
-
+.lead{
+  text-align: right;
+}
 .par{
  text-align: right;
  font-family: Calibri;

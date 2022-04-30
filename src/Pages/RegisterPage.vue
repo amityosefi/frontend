@@ -156,7 +156,7 @@ export default {
               genderToSend = 2;
           }
             const response = await this.axios.post(
-              "http://localhost:443/register",
+              "https://coil2.cs.bgu.ac.il/register",
               {
                 Email: this.form.email,
                 Password: this.form.password,
@@ -170,12 +170,12 @@ export default {
             if(response.data.message == 'User was added successfully'){
 
               // try {
-              //   const response2 = await this.axios.post("http://localhost:443/login", {
+              //   const response2 = await this.axios.post("https://coil2.cs.bgu.ac.il/login", {
               //     Email: this.form.email,
               //     Password: this.form.password,
               //   });
 
-              //   const response3 = await this.axios.post("http://localhost:443/getFullname", {
+              //   const response3 = await this.axios.post("https://coil2.cs.bgu.ac.il/getFullname", {
               //     Email: this.form.email,
               //     });
 
@@ -186,7 +186,8 @@ export default {
                     isAdmin: response.data.IsAdmin,
                     fullname: response.data.FullName,
                     user_score: 0,
-                    last_time: undefined
+                    last_time: undefined,
+                    is_finish_rate: false
                   };
 
                   // const globalSettings = {
