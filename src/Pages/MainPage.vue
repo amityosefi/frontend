@@ -18,7 +18,7 @@
         hello {{ this.$root.store.fullname }}
       <br />
       <p class="parr">For rating more images please choose: Image Ratings</p>
-      <a href="RatePage#" class="btn btn-white btn-animate" id="butt5">Continue Ratings</a>
+      <a href="#" class="btn btn-white btn-animate" id="butt5" @click="rate">Continue Ratings</a>
     </div>
 
   <!-- case 2 -->
@@ -35,11 +35,11 @@
       </p>
       <br />
       <p class="parr">For starting the game please choose: Take me to the game</p>
-      <a href="FirstGamePage#" class="btn btn-white btn-animate" id="butt5"
+      <a href="#" class="btn btn-white btn-animate" id="butt5" firstGame
         >Take me to the game!</a
       >
       <p class="parr">For rating more images please choose: Image Ratings</p>
-      <a href="RatePage#" class="btn btn-white btn-animate" id="butt5">Continue Ratings</a>
+      <a href="#" class="btn btn-white btn-animate" id="butt5" @click="rate">Continue Ratings</a>
     </div>
 
     <!-- case 3 -->
@@ -55,7 +55,7 @@
       </p>
       <br />
       <p class="parr">For starting the game please choose: Take me to the game</p>
-      <a href="FirstGamePage#" class="btn btn-white btn-animate" id="butt5"
+      <a href="#" class="btn btn-white btn-animate" id="butt5" @click="firstGame"
         >Take me to the game!</a
       >
     </div>
@@ -74,7 +74,7 @@
       </p>
       <br />
       <p class="parr">For rating more images please choose: Image Ratings</p>
-      <a href="RatePage#" class="btn btn-white btn-animate" id="butt5">Continue Ratings</a>
+      <a href="#" class="btn btn-white btn-animate" id="butt5" @click="rate">Continue Ratings</a>
     </div>
 
     <!-- case 5 -->

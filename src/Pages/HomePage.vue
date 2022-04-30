@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     submit() {
-      this.$router.push("RatePage");
+      this.$router.push("MainPage");
     },
     login() {
       this.$router.push("login");

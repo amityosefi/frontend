@@ -144,7 +144,7 @@ export default {
           this.$root.store.setGlobalSettings(globalSettings);
 
           this.$root.toast("Login", "User logged in successfully", "success");
-          if (user.is_finish_rate >= 72){
+          if (response.data.numRanked >= 72){
             this.$router.push("MainPage");
           }
           else{

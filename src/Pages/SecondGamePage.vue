@@ -159,7 +159,7 @@ export default {
               }
             );
             this.goodImages = [];
-            this.$router.push("/"); // cahnge to HomePage
+            this.$router.push("/MainPage");
           } catch (err) {
             console.log(err);
           }
