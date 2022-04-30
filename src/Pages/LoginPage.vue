@@ -131,9 +131,9 @@ export default {
             last_time: response.data.last_time,
           };
 
+          localStorage.setItem("numRanked", response.data.numRanked);           
           this.$root.store.numRanked = response.data.numRanked;
-          localStorage.setItem(response.data.numRanked);
-          
+
           const globalSettings = {
             rankImages: response.data.globalSettings.rankImages,
             firstGameImages: response.data.globalSettings.firstGameImages,

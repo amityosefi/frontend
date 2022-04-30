@@ -159,7 +159,7 @@ export default {
       this.$root.store.RankedImages = undefined;
       this.$root.store.unRankedImages = undefined;
 
-      await this.axios.post(`http://localhost:443/images/submitRatings`, {
+      await this.axios.post(`https://coil2.cs.bgu.ac.il/images/submitRatings`, {
         data_ratings: rates,
         id: user_id,
       });

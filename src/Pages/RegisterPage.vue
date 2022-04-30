@@ -189,8 +189,8 @@ export default {
                     last_time: undefined,
                   };
 
+                  localStorage.setItem("numRanked", 0);           
                   this.$root.store.numRanked = 0;
-                  localStorage.setItem(0);
 
                   // const globalSettings = {
                   //   rankImages: response2.data.globalSettings.rankImages,
