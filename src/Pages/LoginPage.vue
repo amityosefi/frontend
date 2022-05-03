@@ -113,7 +113,7 @@ export default {
     },
     async Login() {
       try {
-        const response = await this.axios.post("https://coil2.cs.bgu.ac.il/login", {
+        const response = await this.axios.post(this.$root.store.address+"login", {
           Email: this.form.email,
           Password: this.form.password,
         });

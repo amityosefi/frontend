@@ -77,7 +77,7 @@ export default {
       } else {
         try {
           const response = await this.axios.post(
-            "https://coil2.cs.bgu.ac.il/admin/changeSettings",
+            (this.$root.store.address+"admin/changeSettings"),
             {
               isAdmin: this.$root.store.isAdmin,
               rankImages: Number(this.form.rankImages),
@@ -130,7 +130,7 @@ export default {
     async getAllUsers() {
       try {
         const response = await this.axios.post(
-          "https://coil2.cs.bgu.ac.il/admin/users",
+          this.$root.store.address+"admin/users",
           {
             isAdmin: this.$root.store.isAdmin,
           }
