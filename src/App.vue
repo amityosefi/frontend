@@ -46,7 +46,7 @@ export default {
     async Logout() {
       try {
         const response = await this.axios.post(
-            "https://coil2.cs.bgu.ac.il/logout",
+            this.$root.store.address+"logout",
         );
         console.log(response.data)
       } catch (error) {

@@ -39,7 +39,7 @@ export default {
       }
       else{
           try {
-            const response = await this.axios.post("https://coil2.cs.bgu.ac.il/admin/review", {
+            const response = await this.axios.post(this.$root.store.address+"admin/review", {
             text: this.text,
             });
             console.log(response);

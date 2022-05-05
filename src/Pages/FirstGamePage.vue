@@ -96,7 +96,7 @@ export default {
     async uploadImages() {
       try {       
         const response = await this.axios.post(
-          `https://coil2.cs.bgu.ac.il/images/getSecondGameImages`,
+          this.$root.store.address+`images/getSecondGameImages`,
           {
             id:this.$root.store.u_id,
           }
@@ -154,7 +154,7 @@ export default {
           this.wins = [];
           try { 
             await this.axios.post(
-              "https://coil2.cs.bgu.ac.il/images/submitFirstGame",
+              this.$root.store.address+"images/submitFirstGame",
               {
                 id: this.$root.store.u_id,
                 score: score,
