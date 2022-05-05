@@ -105,7 +105,7 @@ export default {
       res: [],
       isLoading: true,
       text: `הגענו לשלב המשחק! כעת נציג בפניכם ארבעה מסכים. בכל מסך ${this.$root.store.firstGameImages} תמונות מוקטנות שלקוחות משלב הדירוג של משתמש אחר. מתוך ${this.$root.store.firstGameImages} התמונות עליכם לבחור את ${this.$root.store.firstGameImagesSelected} התמונות להן המשתמש נתן את הדירוגים הגבוהים ביותר. על כל תמונה שבחרתם נכון תקבלו נקודה.
-הבחירה בתמונה נעשית באמצעות לחיצה עם העכבר עליה. ניתן לבטל בחירה של תמונה מסוימת על ידי לחיצה נוספת עליה.`
+הבחירה בתמונה נעשית באמצעות לחיצה עם העכבר עליה. ניתן לבטל בחירה של תמונה מסוימת על ידי לחיצה נוספת עליה`
       // text: `Welcome to the Second Game! In front of you there are ${this.$root.store.firstGameImages} you need to rate, 
       //     according to the choices of other user. You need guess which pictures he liked the most.`
     };
@@ -213,7 +213,7 @@ export default {
         this.best = (this.allImages.slice(0,response.data.ans.best.length)).map((x)=>x.id);
         this.other_id = response.data.other_id;
         this.isLoading = false;
-        // this.showModal();
+        this.showModal();
 
       } catch (err) {
         console.log(err.response);

@@ -35,7 +35,7 @@
       </p>
       <br />
       <p class="parr">For starting the game please choose: Take me to the game</p>
-      <a href="#" class="btn btn-white btn-animate" id="butt5" firstGame
+      <a href="#" class="btn btn-white btn-animate" id="butt5" @click="firstGame"
         >Take me to the game!</a
       >
       <p class="parr">For rating more images please choose: Image Ratings</p>
@@ -109,10 +109,10 @@ export default {
   },
   methods: {
     rate() {
-      this.$router.push("/RatePage");
+      this.$router.push("RatePage");
     },
     firstGame() {
-      this.$router.push("/FirstGamePage");
+      this.$router.push("FirstGamePage");
     },
   },
   created() {
@@ -138,5 +138,8 @@ h4 {
   color: black;
   font-size: 2.5ch;
   text-align: center;
+}
+#butt5 {
+    margin-left: 40%;
 }
 </style>
