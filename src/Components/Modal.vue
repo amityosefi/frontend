@@ -4,10 +4,9 @@
     <h1 class="header">Instructions</h1>
     <p class="content" style="font-weight: bold; font-size: 20px; margin-bottom: 0px;">{{this.text}}</p>
 </div>  -->
-    <b-modal size="lg" v-model="this.Show" title="הוראות">
+    <b-modal size="lg" v-model="this.Show" title="הוראות" style="width: 20px">
         <b-container fluid>
-        <div style="direction:rtl"  innerHTML="this.$props.Text">
-        </div>
+        {{this.$props.Text}}
         </b-container>
 
         <template #modal-footer>
@@ -38,6 +37,7 @@ export default {
   },
   methods: {
       setShow() {
+          console.log("vdfdvvffdfvvfvf");
           this.Show = !this.Show;
       },
   },

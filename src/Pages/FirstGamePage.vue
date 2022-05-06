@@ -74,7 +74,7 @@ export default {
       selectedImages: [],
       res: [],
       text: `הגענו לשלב המשחק! כעת נציג בפניכם ארבעה מסכים. בכל מסך ${this.$root.store.firstGameImages} תמונות מוקטנות שלקוחות מהתמונות שראיתם בשלב הקודם. מתוך ${this.$root.store.firstGameImages} התמונות עליכם לבחור את ${this.$root.store.firstGameImagesSelected} התמונות להן נתתם את הציונים הגבוהים ביותר בשלב הקודם. על כל תמונה שבחרתם נכון תקבלו נקודה.
-הבחירה בתמונה נעשית באמצעות לחיצה עם העכבר עליה. ניתן לבטל בחירה של תמונה מסוימת על ידי לחיצה נוספת עליה.`
+הבחירה בתמונה נעשית באמצעות לחיצה עם העכבר עליה. ניתן לבטל בחירה של תמונה מסוימת על ידי לחיצה נוספת עליה`
       // text: `Welcome to the First Game! In front of you there are ${this.$root.store.firstGameImages} pictures you have rated previously.
       //     ${this.$root.store.firstGameImagesSelected} of which you have rated high and the others low, can you guess which ones?`
     };
@@ -96,7 +96,7 @@ export default {
     async uploadImages() {
       try {       
         const response = await this.axios.post(
-          `https://coil2.cs.bgu.ac.il/images/getSecondGameImages`,
+          this.$root.store.address+`images/getSecondGameImages`,
           {
             id:this.$root.store.u_id,
           }
@@ -113,7 +113,7 @@ export default {
         this.shuffleArr(first_iteration);
         this.best = (this.allImages.slice(0,response.data.best.length)).map((x)=>x.id);
         this.isLoading = false;
-        // this.showModal();
+        this.showModal();
 
       } catch (err) {
         console.log(err.response);
@@ -154,7 +154,7 @@ export default {
           this.wins = [];
           try { 
             await this.axios.post(
-              "https://coil2.cs.bgu.ac.il/images/submitFirstGame",
+              this.$root.store.address+"images/submitFirstGame",
               {
                 id: this.$root.store.u_id,
                 score: score,

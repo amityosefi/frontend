@@ -156,7 +156,7 @@ export default {
               genderToSend = 2;
           }
             const response = await this.axios.post(
-              "https://coil2.cs.bgu.ac.il/register",
+              this.$root.store.address+"register",
               {
                 Email: this.form.email,
                 Password: this.form.password,

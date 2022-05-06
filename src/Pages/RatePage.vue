@@ -30,7 +30,7 @@
               class="btn btn-white btn-animate"
               id="butt2"
               @click="saveRate(true)"
-              >Save and continue</a
+              >Save</a
             >
             <a
               href="#"
@@ -71,8 +71,7 @@ export default {
       disableButton: true,
       flag: true,
       isLoading: true,
-      text:
-        "בשלב הראשון של המשחק, עליכם לצפות ב- 72 תמונות, ולתת להן ציון שמשקף עד כמה אתם אוהבים אותן. \n\n\n אנחנו נציג בפניכם את כל 72 התמונות בתוך חלון כשהן מוקטנות. השהיית העכבר על כל תמונה תגדיל אותה קצת, ולחיצה עם העכבר על התמונה תגדיל אותה עוד.  \n הציונים לכל תמונה נותנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.  \n כדי שתצליחו במשחק, אנחנו ממליצים מאד שתהיה כמות דומה (לא בהכרח זהה) של תמונות בתאי הציון השונים.  \nתנו ציונים נמוכים יותר. \n אחר שתסיימו לתת ציונים ל-72 התמונות, תוכלו לבחור בין האפשרות לראות עוד תמונות ולתת להם ציונים או לעבור לשלב המשחק. ",
+      text: "בשלב הראשון של המשחק, עליכם לצפות ב- 72 תמונות, ולתת להן ציון שמשקף עד כמה אתם אוהבים אותן. \n\n\n אנחנו נציג בפניכם את כל 72 התמונות בתוך חלון כשהן מוקטנות. השהיית העכבר על כל תמונה תגדיל אותה קצת, ולחיצה עם העכבר על התמונה תגדיל אותה עוד.  \n הציונים לכל תמונה נותנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.  \n כדי שתצליחו במשחק, אנחנו ממליצים מאד שתהיה כמות דומה (לא בהכרח זהה) של תמונות בתאי הציון השונים.  \nתנו ציונים נמוכים יותר. \n אחר שתסיימו לתת ציונים ל-72 התמונות, תוכלו לבחור בין האפשרות לראות עוד תמונות ולתת להם ציונים או לעבור לשלב המשחק ",
     };
   },
   methods: {
@@ -110,7 +109,7 @@ export default {
           localStorage.unRankedImages
         );
 
-        await this.axios.post(`http://localhost:443/images/submitRatings`, {
+        await this.axios.post(this.$root.store.address+`images/submitRatings`, {
           data_ratings: rates,
           id: user_id,
         });
@@ -159,7 +158,7 @@ export default {
       this.$root.store.RankedImages = undefined;
       this.$root.store.unRankedImages = undefined;
 
-      await this.axios.post(`https://coil2.cs.bgu.ac.il/images/submitRatings`, {
+      await this.axios.post(this.$root.store.address+`images/submitRatings`, {
         data_ratings: rates,
         id: user_id,
       });
@@ -168,7 +167,7 @@ export default {
     async uploadImages() {
       try {
         const response = await this.axios.get(
-          `https://coil2.cs.bgu.ac.il/images/getImages`
+          this.$root.store.address+`images/getImages`
         );
 
         let arr = [];
@@ -179,7 +178,7 @@ export default {
         });
         this.Images = arr;
         this.isLoading = false;
-        //this.showModal();
+        this.showModal();
       } catch (err) {
         console.log(err.response);
       }
@@ -193,7 +192,7 @@ export default {
         this.$root.store.numRanked = JSON.parse(localStorage.numRanked);
         console.log("pics", this.$root.store.RankedImages);
         const res = await this.axios.post(
-          `https://coil2.cs.bgu.ac.il/images/fetchSpecificImages`,
+          this.$root.store.address+`images/fetchSpecificImages`,
           {
             pics: this.$root.store.unRankedImages,
             bins: this.$root.store.RankedImages,
@@ -218,6 +217,7 @@ export default {
         this.Bins = arr2;
 
         this.isLoading = false;
+        this.showModal();
       } catch (err) {
         console.log(err.response);
       }
@@ -225,9 +225,14 @@ export default {
   },
 
   created() {
-    console.log(this.$root.store);
-    if (localStorage.RankedImages != undefined) this.uploadAlt();
-    else this.uploadImages();
+    // console.log(this.$root.store);
+
+    if (localStorage.RankedImages != undefined) {
+      this.uploadAlt();
+    }
+    else {
+      this.uploadImages();
+    }
   },
 };
 </script>
