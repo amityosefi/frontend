@@ -164,7 +164,7 @@ export default {
             );
             this.$root.store.setUserScoreAndDate(score);
             this.goodImages = [];
-            this.$router.push("/MainPage");
+            this.$router.push("LastPage");
           } catch (err) {
             console.log(err);
           }

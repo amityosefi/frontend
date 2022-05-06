@@ -3,9 +3,9 @@
   <!-- 5 possible cases:
   1. didnt finish rating
   2. didnt played today and can rate
-  3. didnt played today and can not rate because already rate 124 images
+  3. didnt played today and can not rate because already rate 126 images
   4. played today and can rate
-  5. played today and can not rate because already rate 124 images
+  5. played today and can not rate because already rate 126 images
 
   rankImages = 72
   numRanked = user ranks
@@ -17,7 +17,9 @@
       <p class="parr">
         hello {{ this.$root.store.fullname }}
       <br />
-      <p class="parr">For rating more images please choose: Image Ratings</p>
+      <p class="parr">To participate in the game you must first complete the grading of the pictures.
+        <br> Please choose "Continue Ratings"
+      </p>
       <a href="#" class="btn btn-white btn-animate" id="butt5" @click="rate">Continue Ratings</a>
     </div>
 
@@ -34,16 +36,16 @@
         Until now you earned: {{ this.$root.store.user_score }} points
       </p>
       <br />
-      <p class="parr">For starting the game please choose: Take me to the game</p>
+      <p class="parr">For starting the game please choose Take me to the game</p>
       <a href="#" class="btn btn-white btn-animate" id="butt5" @click="firstGame"
         >Take me to the game!</a
       >
-      <p class="parr">For rating more images please choose: Image Ratings</p>
+      <p class="parr">For rating more images please choose Continue Ratings</p>
       <a href="#" class="btn btn-white btn-animate" id="butt5" @click="rate">Continue Ratings</a>
     </div>
 
     <!-- case 3 -->
-    <div v-if="this.$root.store.numRanked == 126 &&
+    <div v-if="this.$root.store.numRanked >= 126 &&
                this.$root.store.last_time &&
                this.now != this.$root.store.last_time">
       <p class="parr">
@@ -68,25 +70,25 @@
       <p class="parr">
         hello {{ this.$root.store.fullname }}
         <br />
-        Your last time you played was today, you can play again tommorw!
+        According to our records you have already played today, and according to the rules of the game you can only play again tomorrow.
         <br />
-        Until now you earned: {{ this.$root.store.user_score }} points
+        However, you can continue to rate photos. To do this, please select Continue Ratings.
       </p>
       <br />
-      <p class="parr">For rating more images please choose: Image Ratings</p>
       <a href="#" class="btn btn-white btn-animate" id="butt5" @click="rate">Continue Ratings</a>
     </div>
 
     <!-- case 5 -->
-    <div v-if="this.$root.store.numRanked == 126 &&
+    <div v-if="this.$root.store.numRanked >= 126 &&
                this.$root.store.last_time &&
                this.now == this.$root.store.last_time">
       <p class="parr">
         hello {{ this.$root.store.fullname }}
         <br />
-        Your last time you played was today, you can play again tommorw!
-        <br />
         Until now you earned: {{ this.$root.store.user_score }} points
+        <br />
+        According to our records you have already played today, and according to the rules of the game you can only play again tomorrow. See you!
+
       </p>
     </div>
 
@@ -127,17 +129,12 @@ export default {
 <style>
 @import "../assets/style.css";
 
-h4 {
-  font-size: 4ch;
-}
-.card-title {
-  text-align: center;
-}
 .parr{
   padding-top: 1%;
   color: black;
   font-size: 2.5ch;
   text-align: center;
+  /* padding-right: 25%; */
 }
 #butt5 {
     margin-left: 40%;
