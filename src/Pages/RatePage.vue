@@ -133,15 +133,48 @@ export default {
     },
 
     async submit() {
-      let rates = this.$refs.bins.ratingAll();
-      let user_id = this.$root.store.u_id;
       localStorage.setItem(
         "numRanked",
         JSON.stringify(this.$refs.bins.sizeFull)
       );
       this.$root.store.numRanked = JSON.parse(localStorage.numRanked);
+      console.log(this.$root.store.numRanked);
+      if(this.$root.store.is_submitted == undefined || !this.$root.store.is_submitted)
+      {
+        try
+        {
+          await this.submit_regular(this.$root.store.rankImages);
+          localStorage.setItem("is_submitted", true);
+          this.$root.store.is_submitted = true
+
+        }
+        catch(err)
+        {
+          console.log(err.response);
+        }
+        
+      }
+      else
+      {
+        try
+        {
+          await this.submit_regular(6);
+        }
+        catch(err)
+        {
+          console.log(err.response);
+        }
+      }
+      
+    },
+    
+    async submit_regular(size_full)
+    {
+      let rates = this.$refs.bins.ratingAll();
+      let user_id = this.$root.store.u_id;
+      
       console.log("numRanked", this.$root.store.numRanked);
-      if (this.$root.store.numRanked < this.$root.store.rankImages) {
+      if (this.$root.store.numRanked < size_full) {
         this.$root.toast(
           "warning",
           "You must rate at least " +
@@ -162,6 +195,7 @@ export default {
         data_ratings: rates,
         id: user_id,
       });
+      
       this.$router.push("/FirstGamePage");
     },
     async uploadImages() {
@@ -171,7 +205,10 @@ export default {
         );
 
         let arr = [];
-
+        this.$root.store.extra_pics = response.data.extras;
+        localStorage.setItem("extra_pics", JSON.stringify(this.$root.store.extra_pics));
+        console.log(this.$root.store.extra_pics);
+        console.log(JSON.parse(localStorage.extra_pics));
         response.data.urls.map((img) => {
           let str = "data:image/jpg;base64, " + img.src;
           arr.push({ id: img.id, src: str });
@@ -182,6 +219,62 @@ export default {
       } catch (err) {
         console.log(err.response);
       }
+    },
+    async uploadExtra()
+    {
+      try
+      {
+        this.$root.store.extra_pics = JSON.parse(localStorage.extra_pics);
+        console.log(this.$root.store.extra_pics);
+        let arr1 = []
+        let len = this.$root.store.extra_pics.length;
+        
+        for(var i = 0; i < 6; i++)
+        {
+          arr1.push(this.$root.store.extra_pics[i])
+        }
+
+        let pic_arr = [];
+        arr1.map((x)=>pic_arr.push(x.id));
+        let temp = []
+        for(var j = 6 ; j < len ; j++)
+        {
+          temp.push(this.$root.store.extra_pics[j])
+        }
+        if(temp.length == 0)
+        {
+          localStorage.setItem("is_done",true);
+        }
+        this.$root.store.extra_pics = temp;
+        localStorage.extra_pics = JSON.stringify(this.$root.store.extra_pics);
+        
+        const res = await this.axios.post(
+          this.$root.store.address+`images/fetchSpecificImages`,
+          {
+            pics: pic_arr,
+            bins: [],
+          }
+        );
+        let response = res.data[0];
+
+
+        let arr = [];
+        let arr2 = [];
+        response.map((img) => {
+          let str = "data:image/jpg;base64, " + img.src;
+          arr.push({ id: img.id, src: str });
+        });
+        this.Images = arr;
+        this.Bins = arr2;
+        this.isLoading = false;
+        this.showModal()
+
+      }
+      catch(err)
+      {
+        console.log(err.response);
+      }
+      
     },
     async uploadAlt() {
       try {
@@ -226,12 +319,31 @@ export default {
 
   created() {
     // console.log(this.$root.store);
-
-    if (localStorage.RankedImages != undefined) {
+    // localStorage.removeItem("is_submitted");
+    if(localStorage.is_done)
+    {
+      
+      this.$root.toast(
+      "warning",
+      "get yo' broke ass outta here nigga",
+       "warning"
+      );
+     this.$router.push("/MainPage");
+     return;
+        
+    }
+    if (!((localStorage.RankedImages) == "undefined")) {
       this.uploadAlt();
+      console.log("tried alt");
+    }
+    else if(!((localStorage.is_submitted) == "undefined"))
+    {
+        this.uploadExtra();
+        console.log("tried Extras");
     }
     else {
       this.uploadImages();
+      console.log("tried regular");
     }
   },
 };
