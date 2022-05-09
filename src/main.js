@@ -112,6 +112,9 @@ const shared_data = {
     address:'http://localhost:443/',
     user_score: localStorage.user_score,
     last_time: localStorage.last_time,
+    is_submitted: localStorage.is_submitted,
+    extra_pics: localStorage.extra_pics,
+    is_done: localStorage.is_done,
 
 
   login(username) {
