@@ -35,7 +35,7 @@ onRowSelected(items) {
 async uploadLeaders() {
       try {
         const response = await this.axios.get(
-          `https://coil2.cs.bgu.ac.il/images/getLeaders`
+          this.$root.store.address+`images/getLeaders`
         );
 
         this.leaders = response.data;

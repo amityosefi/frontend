@@ -109,7 +109,7 @@ const shared_data = {
     numRanked:undefined,
     RankedImages:undefined,
     unRankedImages:undefined,
-    
+    address:'http://localhost:443/',
     user_score: localStorage.user_score,
     last_time: localStorage.last_time,
 

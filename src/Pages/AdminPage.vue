@@ -77,7 +77,7 @@ export default {
       } else {
         try {
           const response = await this.axios.post(
-            "https://coil2.cs.bgu.ac.il/admin/changeSettings",
+            (this.$root.store.address+"admin/changeSettings"),
             {
               isAdmin: this.$root.store.isAdmin,
               rankImages: Number(this.form.rankImages),
@@ -130,33 +130,36 @@ export default {
     async getAllUsers() {
       try {
         const response = await this.axios.post(
-          "https://coil2.cs.bgu.ac.il/admin/users",
+          this.$root.store.address+"admin/users",
           {
             isAdmin: this.$root.store.isAdmin,
           }
         );
-        console.log(response.data.data);
 
         let csv = 'Id, Email,FullName,Gender,Age \n';
-            response.data.data.forEach((row) => {
-                    csv += row.Id + ',';
-                    csv += row.Email + ',';
-                    csv += row.FullName + ',';
-                    csv += row.Gender + ',';
-                    csv += row.Age + ',';
-                    csv += "\n";
-            });
-
-
-
-        const anchor = document.createElement('a');
+        response.data.forEach((row) => {
+                csv += row.Id + ',';
+                csv += row.Email + ',';
+                csv += row.FullName + ',';
+                if (row.Gender)
+                  csv += 'Female' + ',';
+                else
+                  csv += 'Male' + ',';
+                csv += row.Age + ',';
+                csv += "\n";
+        });
+        this.downloadCSV(csv);
+        
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    downloadCSV(csv){
+      const anchor = document.createElement('a');
         anchor.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
         anchor.target = '_blank';
         anchor.download = 'Users.csv';
         anchor.click();
-      } catch (error) {
-        console.log(error);
-      }
     },
   },
 };

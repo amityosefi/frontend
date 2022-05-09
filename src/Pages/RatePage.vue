@@ -112,7 +112,7 @@ export default {
           localStorage.unRankedImages
         );
 
-        await this.axios.post(`http://localhost:443/images/submitRatings`, {
+        await this.axios.post(this.$root.store.address+`images/submitRatings`, {
           data_ratings: rates,
           id: user_id,
         });
@@ -161,7 +161,7 @@ export default {
       this.$root.store.RankedImages = undefined;
       this.$root.store.unRankedImages = undefined;
 
-      await this.axios.post(`https://coil2.cs.bgu.ac.il/images/submitRatings`, {
+      await this.axios.post(this.$root.store.address+`images/submitRatings`, {
         data_ratings: rates,
         id: user_id,
       });
@@ -170,7 +170,7 @@ export default {
     async uploadImages() {
       try {
         const response = await this.axios.get(
-          `https://coil2.cs.bgu.ac.il/images/getImages`
+          this.$root.store.address+`images/getImages`
         );
 
         let arr = [];
@@ -195,7 +195,7 @@ export default {
         this.$root.store.numRanked = JSON.parse(localStorage.numRanked);
         console.log("pics", this.$root.store.RankedImages);
         const res = await this.axios.post(
-          `https://coil2.cs.bgu.ac.il/images/fetchSpecificImages`,
+          this.$root.store.address+`images/fetchSpecificImages`,
           {
             pics: this.$root.store.unRankedImages,
             bins: this.$root.store.RankedImages,

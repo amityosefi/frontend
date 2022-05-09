@@ -100,7 +100,7 @@ export default {
     async uploadImages() {
       try {       
         const response = await this.axios.post(
-          `https://coil2.cs.bgu.ac.il/images/getSecondGameImages`,
+          this.$root.store.address+`images/getSecondGameImages`,
           {
             id:this.$root.store.u_id,
           }
@@ -158,7 +158,7 @@ export default {
           this.wins = [];
           try { 
             await this.axios.post(
-              "https://coil2.cs.bgu.ac.il/images/submitFirstGame",
+              this.$root.store.address+"images/submitFirstGame",
               {
                 id: this.$root.store.u_id,
                 score: score,
@@ -168,7 +168,7 @@ export default {
             );
             this.$root.store.setUserScoreAndDate(score);
             this.goodImages = [];
-            this.$router.push("/MainPage");
+            this.$router.push("LastPage");
           } catch (err) {
             console.log(err);
           }
@@ -265,6 +265,10 @@ export default {
       left: 0;
       z-index: -1;
       transition: all .4s;
+  }
+
+  .vue-select-image__thumbnail{
+    padding: 10px;
   }
   
   .btn-white::after {
