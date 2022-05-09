@@ -45,7 +45,7 @@
     </div>
 
     <!-- case 3 -->
-    <div v-if="this.$root.store.numRanked >= 126 &&
+    <div v-if="this.$root.store.is_done &&
                this.$root.store.last_time &&
                this.now != this.$root.store.last_time">
       <p class="parr">
@@ -79,7 +79,7 @@
     </div>
 
     <!-- case 5 -->
-    <div v-if="this.$root.store.numRanked >= 126 &&
+    <div v-if="this.$root.store.is_done &&
                this.$root.store.last_time &&
                this.now == this.$root.store.last_time">
       <p class="parr">

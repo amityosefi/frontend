@@ -100,7 +100,7 @@ export default {
     async uploadImages() {
       try {       
         const response = await this.axios.post(
-          this.$root.store.address+`images/getSecondGameImages`,
+         this.$root.store.address+`images/getSecondGameImages`,
           {
             id:this.$root.store.u_id,
           }
@@ -168,7 +168,7 @@ export default {
             );
             this.$root.store.setUserScoreAndDate(score);
             this.goodImages = [];
-            this.$router.push("LastPage");
+            this.$router.push("/MainPage");
           } catch (err) {
             console.log(err);
           }
@@ -265,10 +265,6 @@ export default {
       left: 0;
       z-index: -1;
       transition: all .4s;
-  }
-
-  .vue-select-image__thumbnail{
-    padding: 10px;
   }
   
   .btn-white::after {
