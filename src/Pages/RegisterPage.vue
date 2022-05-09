@@ -45,12 +45,12 @@
                     <b-form-invalid-feedback v-if="!$v.form.password.required">
                       Password is required
                     </b-form-invalid-feedback>
-                    <b-form-invalid-feedback v-if="$v.form.password.required && !$v.form.password.length">
+                    <!-- <b-form-invalid-feedback v-if="$v.form.password.required && !$v.form.password.length">
                       Password length should be between 5-10 characters
                     </b-form-invalid-feedback>
                     <b-form-invalid-feedback v-else-if="!$v.form.password.style">
                       Password must contain at least one digit and one letter
-                    </b-form-invalid-feedback>
+                    </b-form-invalid-feedback> -->
                   </b-form-group>
 
                   <b-form-group id="input-group-confirmedPassword" label-cols-sm="3" label="Repeat your password" label-for="confirmedPassword" style="margin-bottom: 1px">
@@ -63,8 +63,8 @@
                     </b-form-invalid-feedback>
                   </b-form-group>
 
-                  <b-form-group id="input-group-gender" label-cols-sm="3" label="Gender" label-for="gender">
-                    <b-form-select id="gender" v-model="$v.form.gender.$model" :options="genderList" :state="validateState('gender')" style="width: 300px;"></b-form-select>
+                  <b-form-group id="input-group-gender" label-cols-sm="2" label="Gender" label-for="gender">
+                    <b-form-select id="gender" class="gender" v-model="$v.form.gender.$model" :options="genderList" :state="validateState('gender')" style="width: 300px;"></b-form-select>
                     <b-form-invalid-feedback v-if="!$v.form.gender.required">
                       Gender is required
                     </b-form-invalid-feedback>
@@ -107,8 +107,8 @@
 <script>
 import {
   required,
-  minLength,
-  maxLength,
+  // minLength,
+  // maxLength,
   alpha,
   sameAs,
 } from "vuelidate/lib/validators";
@@ -235,8 +235,6 @@ export default {
       },
       password: {
         required,
-        length: (p) => minLength(5)(p) && maxLength(10)(p),
-        style: v => /^(?=.*[0-9])(?=.*[a-zA-Z])/.test(v)
       },
       confirmedPassword: {
         required,
@@ -338,6 +336,10 @@ export default {
   background-size: cover;
 
 }
+
+/* .gender {
+  margin-left: -2px;
+} */
 
 .btnn {
   cursor: pointer;

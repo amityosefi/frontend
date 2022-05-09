@@ -35,7 +35,14 @@
         <br />
         <div>
         <div v-if="this.isLoading">
-        <b-spinner variant="danger" style="width: 4rem; height: 4rem; margin-left: 50%;" label="Large Spinner"></b-spinner>
+        <div class="load"> Loading ... </div>
+        <div style="margin-top: 2%; position: absolute; left: 51%; margin-left: -51px;">
+        <b-spinner
+          variant="danger"
+          style="width: 4rem; height: 4rem;"
+          label="Large Spinner"
+        ></b-spinner>
+        </div>
         </div>
         <div v-else>
         <h3 style="text-align: center;">Page {{this.runs}} / 4</h3>
@@ -104,10 +111,7 @@ export default {
       selectedImages: [],
       res: [],
       isLoading: true,
-      text: `הגענו לשלב המשחק! כעת נציג בפניכם ארבעה מסכים. בכל מסך ${this.$root.store.firstGameImages} תמונות מוקטנות שלקוחות משלב הדירוג של משתמש אחר. מתוך ${this.$root.store.firstGameImages} התמונות עליכם לבחור את ${this.$root.store.firstGameImagesSelected} התמונות להן המשתמש נתן את הדירוגים הגבוהים ביותר. על כל תמונה שבחרתם נכון תקבלו נקודה.
-הבחירה בתמונה נעשית באמצעות לחיצה עם העכבר עליה. ניתן לבטל בחירה של תמונה מסוימת על ידי לחיצה נוספת עליה`
-      // text: `Welcome to the Second Game! In front of you there are ${this.$root.store.firstGameImages} you need to rate, 
-      //     according to the choices of other user. You need guess which pictures he liked the most.`
+      text: []
     };
   },
 
@@ -197,7 +201,7 @@ export default {
         const response = await this.axios.post(
           `https://coil2.cs.bgu.ac.il/images/getSecondGameImagesOtherPerson`,
           {
-            id:this.$root.store.u_id,
+            id: this.$root.store.u_id,
           }
         );
         const arr = response.data.ans.best.concat(response.data.ans.worst); // best: 8, worst: 24 by default
@@ -221,6 +225,10 @@ export default {
     },
   },
   created() {
+
+    this.text = [`הגענו לשלב המשחק! כעת נציג בפניכם ארבעה מסכים. בכל מסך ${this.$root.store.firstGameImages} תמונות מוקטנות שלקוחות משלב הדירוג של משתמש אחר.`,
+                `מתוך ${this.$root.store.firstGameImages} התמונות עליכם לבחור את ${this.$root.store.firstGameImagesSelected} התמונות להן המשתמש נתן את הדירוגים הגבוהים ביותר. על כל תמונה שבחרתם נכון תקבלו נקודה.`,
+                `הבחירה בתמונה נעשית באמצעות לחיצה עם העכבר עליה. ניתן לבטל בחירה של תמונה מסוימת על ידי לחיצה נוספת עליה.`];
       this.uploadImages();
     },
 };
@@ -306,4 +314,11 @@ export default {
           transform: translateY(0px);
       }
   }
+
+  .load {
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 8%;
+}
 </style>

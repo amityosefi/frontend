@@ -1,15 +1,18 @@
 <template>
   <div>
     <Modal ref="modal" :Text="this.text"> </Modal>
-    <br /><br />
+    <br />
     <div>
-      <div v-if="this.isLoading">
+        <div v-if="this.isLoading">
+        <div class="load"> Loading ... </div>
+        <div style="margin-top: 2%; position: absolute; left: 51%; margin-left: -51px;">
         <b-spinner
           variant="danger"
-          style="width: 4rem; height: 4rem; margin-left: 50%;"
+          style="width: 4rem; height: 4rem;"
           label="Large Spinner"
         ></b-spinner>
-      </div>
+        </div>
+        </div>
       <div v-else>
         <!-- <b-button variant="outline-secondary" class="but" @click="show=true">Instructions</b-button> -->
         <div class="secondery">
@@ -71,7 +74,7 @@ export default {
       disableButton: true,
       flag: true,
       isLoading: true,
-      text: "בשלב הראשון של המשחק, עליכם לצפות ב- 72 תמונות, ולתת להן ציון שמשקף עד כמה אתם אוהבים אותן. \n\n\n אנחנו נציג בפניכם את כל 72 התמונות בתוך חלון כשהן מוקטנות. השהיית העכבר על כל תמונה תגדיל אותה קצת, ולחיצה עם העכבר על התמונה תגדיל אותה עוד.  \n הציונים לכל תמונה נותנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.  \n כדי שתצליחו במשחק, אנחנו ממליצים מאד שתהיה כמות דומה (לא בהכרח זהה) של תמונות בתאי הציון השונים.  \nתנו ציונים נמוכים יותר. \n אחר שתסיימו לתת ציונים ל-72 התמונות, תוכלו לבחור בין האפשרות לראות עוד תמונות ולתת להם ציונים או לעבור לשלב המשחק ",
+      text: []
     };
   },
   methods: {
@@ -227,6 +230,10 @@ export default {
   created() {
     // console.log(this.$root.store);
 
+    this.text = [`בשלב הראשון של המשחק, עליכם לצפות ב-${this.$root.store.rankImages} תמונות, ולתת להן ציון שמשקף עד כמה אתם אוהבים אותן. אנחנו נציג בפניכם את כל ${this.$root.store.rankImages} התמונות בתוך חלון קטן כשהן מוקטנות. השהיית העכבר על כל תמונה תגדיל אותה קצת, ולחיצה עם העכבר על כל התמונה תגדיל אותה עוד.`, 
+                            "הציונים לכל תמונה ניתנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.", 
+                            `כדי שתצליחו במשחק, אנחנו ממליצים מאד שתהיה כמות דומה (לא בהכרח זהה) של תמונות בתאי הציון השונים. אחרי שתסיימו לתת ציונים ל-${this.$root.store.rankImages} התמונות, תוכלו לבחור בין האפשרות לראות עוד תמונות ולתת להם ציונים או לעבור לשלב המשחק.`]
+
     if (localStorage.RankedImages != undefined) {
       this.uploadAlt();
     }
@@ -329,5 +336,12 @@ margin-left: 10px;
     opacity: 1;
     transform: translateY(0px);
   }
+}
+
+.load {
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 8%;
 }
 </style>
