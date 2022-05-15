@@ -163,7 +163,7 @@ export default {
 
         if (no_runs == 4) {
           let score = wins.reduce((x, y) => x + y);
-          this.$root.toast("Score", "you scored " + score +" out of " + 4*this.$root.store.firstGameImagesSelected, "success");
+          // this.$root.toast("Score", "your scored " + score +" out of " + 4*this.$root.store.firstGameImagesSelected, "success");
           this.runs = 0;
           this.wins = [];
           this.$root.store.setUserScoreAndDate(score);

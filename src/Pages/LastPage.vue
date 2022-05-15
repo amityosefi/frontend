@@ -3,7 +3,7 @@
     <p class="parr">
       hello {{ this.$root.store.fullname }}
       <br />
-      Game Over! You earned {{this.$root.store.today_score}} points today. See you tomorrow!
+      Game Over! You earned {{this.$root.store.today_score}} points out of {{4*this.$root.store.firstGameImagesSelected}} today. See you tomorrow!
       <br />
       Until now you earned: {{ this.$root.store.user_score }} points
     </p>

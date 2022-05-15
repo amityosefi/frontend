@@ -15,7 +15,7 @@
  
     <div v-if="!this.submitted">
       <p class="parr">
-        hello {{ this.$root.store.fullname }}
+        Hello {{ this.$root.store.fullname }}
       <br />
       <p class="parr">To participate in the game you must first complete the grading of the pictures.
         <br> Please choose "Continue Ratings"
@@ -28,7 +28,7 @@
                this.$root.store.last_time &&
                this.now != this.$root.store.last_time">
       <p class="parr">
-        hello {{ this.$root.store.fullname }}
+        Hello {{ this.$root.store.fullname }}
         <br />
         Your last time you played was in {{ this.$root.store.last_time }}
         <br />
@@ -48,7 +48,7 @@
                 this.$root.store.is_done &&
                 this.now != this.$root.store.last_time">
       <p class="parr">
-        hello {{ this.$root.store.fullname }}
+        Hello {{ this.$root.store.fullname }}
         <br />
         Your last time you played was in {{ this.$root.store.last_time }}
         <br />
@@ -66,7 +66,7 @@
                this.$root.store.last_time &&
                this.now == this.$root.store.last_time">
       <p class="parr">
-        hello {{ this.$root.store.fullname }}
+        Hello {{ this.$root.store.fullname }}
         <br />
         According to our records you have already played today, and according to the rules of the game you can only play again tomorrow.
         <br />
@@ -82,7 +82,7 @@
                this.$root.store.last_time &&
                this.now == this.$root.store.last_time">
       <p class="parr">
-        hello {{ this.$root.store.fullname }}
+        Hello {{ this.$root.store.fullname }}
         <br />
         Until now you earned: {{ this.$root.store.user_score }} points
         <br />
