@@ -2,9 +2,9 @@
  <div>
   <!-- 5 possible cases:
   1. didnt finish rating
-  2. didnt played today and can rate - good
+  2. didnt played today and can rate
   3. didnt played today and can not rate because already rate 126 images
-  4. played today and can rate - good
+  4. played today and can rate
   5. played today and can not rate because already rate 126 images
 
   rankImages = 72
@@ -13,9 +13,9 @@
   
   <!-- case 1 -->
  
-    <div v-if="!this.submitted">
+    <div v-if="!localStorage.is_submitted">
       <p class="parr">
-        Hello {{ this.$root.store.fullname }}
+        hello {{ this.$root.store.fullname }}
       <br />
       <p class="parr">To participate in the game you must first complete the grading of the pictures.
         <br> Please choose "Continue Ratings"
@@ -24,11 +24,12 @@
     </div>
 
   <!-- case 2 -->
-    <div v-if="!this.is_done &&
+    <div v-if="this.$root.store.numRanked >= this.$root.store.rankImages &&
+               this.$root.store.numRanked < 126 &&
                this.$root.store.last_time &&
                this.now != this.$root.store.last_time">
       <p class="parr">
-        Hello {{ this.$root.store.fullname }}
+        hello {{ this.$root.store.fullname }}
         <br />
         Your last time you played was in {{ this.$root.store.last_time }}
         <br />
@@ -44,11 +45,10 @@
     </div>
 
     <!-- case 3 -->
-    <div v-if="this.is_done && 
-                this.$root.store.is_done &&
-                this.now != this.$root.store.last_time">
+    <div v-if="this.$root.store.is_done &&
+               this.now != this.$root.store.last_time">
       <p class="parr">
-        Hello {{ this.$root.store.fullname }}
+        hello {{ this.$root.store.fullname }}
         <br />
         Your last time you played was in {{ this.$root.store.last_time }}
         <br />
@@ -62,11 +62,12 @@
     </div>
 
     <!-- case 4 -->
-    <div v-if="!this.is_done &&
+    <div v-if="this.$root.store.numRanked >= this.$root.store.rankImages &&
+               this.$root.store.numRanked < 126 &&
                this.$root.store.last_time &&
                this.now == this.$root.store.last_time">
       <p class="parr">
-        Hello {{ this.$root.store.fullname }}
+        hello {{ this.$root.store.fullname }}
         <br />
         According to our records you have already played today, and according to the rules of the game you can only play again tomorrow.
         <br />
@@ -77,12 +78,11 @@
     </div>
 
     <!-- case 5 -->
-    <div v-if="this.is_done && 
-               this.$root.store.is_done &&
+    <div v-if="this.$root.store.is_done &&
                this.$root.store.last_time &&
                this.now == this.$root.store.last_time">
       <p class="parr">
-        Hello {{ this.$root.store.fullname }}
+        hello {{ this.$root.store.fullname }}
         <br />
         Until now you earned: {{ this.$root.store.user_score }} points
         <br />
@@ -106,10 +106,8 @@ export default {
         String(Number(new Date().getMonth()) + 1) +
         "-" +
         new Date().getFullYear(),
-        submitted: true,
-        done: true,
     };
-    
+
   },
   methods: {
     rate() {
@@ -120,14 +118,13 @@ export default {
     },
   },
   created() {
-    if (localStorage.is_submitted== undefined || !localStorage.is_submitted){
-      this.submitted = false
-    }
-    console.log(this.submitted);
+    
+    console.log("numRanked ", this.$root.store.numRanked)
+    console.log("rankImages ", this.$root.store.rankImages)
+    console.log("now ", this.now)
+    console.log("last time ", this.$root.store.last_time)
+    console.log("typeof last time ", typeof (this.$root.store.last_time))
 
-    if (localStorage.is_done == undefined || !localStorage.is_done){
-      this.is_done = false
-    }
 
   },
 };
