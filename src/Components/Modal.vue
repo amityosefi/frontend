@@ -4,14 +4,17 @@
     <h1 class="header">Instructions</h1>
     <p class="content" style="font-weight: bold; font-size: 20px; margin-bottom: 0px;">{{this.text}}</p>
 </div>  -->
-    <b-modal size="lg" v-model="this.Show" title="הוראות" style="width: 20px">
+    <b-modal id="modal-tall" v-model="this.Show">
+    <div class="modeTitle"> הוראות</div>
+    <p class="right-to-left" dir="rtl" v-for="i in this.$props.Text" :key="i">
         <b-container fluid>
-        {{this.$props.Text}}
+        {{i}}
         </b-container>
+        </p>
 
         <template #modal-footer>
         <div class="w-100">
-            <b-button variant="primary" size="sm" class="float-right" @click="setShow">
+            <b-button variant="primary" size="sm" class="right-to-left" @click="setShow">
             סגור
             </b-button>
         </div>
@@ -25,7 +28,7 @@ export default {
   
   props: {
     Text: {
-      type: String,
+      type: Array,
       require: true,
     },
   },
@@ -37,7 +40,6 @@ export default {
   },
   methods: {
       setShow() {
-          console.log("vdfdvvffdfvvfvf");
           this.Show = !this.Show;
       },
   },
@@ -76,8 +78,25 @@ export default {
     color: black;
     text-shadow: 1px 1px #599e93;
 } */
+
+.right-to-left {
+display:block;
+direction:rtl;
+unicode-bidi:bidi-override;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
 .modal-content{
     text-align: right;
+}
+
+.modeTitle {
+    margin-top: 3px;
+    font-weight: bold;
+    font-size: 32px;
+    font-family: Calibri, san-serif; 
+    text-align: center;
 }
 
 </style>

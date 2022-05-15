@@ -5,7 +5,14 @@
         <br />
         <div>
         <div v-if="this.isLoading">
-        <b-spinner variant="danger" style="width: 4rem; height: 4rem; margin-left: 50%;" label="Large Spinner"></b-spinner>
+        <div class="load"> Loading ... </div>
+        <div style="margin-top: 2%; position: absolute; left: 51%; margin-left: -51px;">
+        <b-spinner
+          variant="danger"
+          style="width: 4rem; height: 4rem;"
+          label="Large Spinner"
+        ></b-spinner>
+        </div>
         </div>
         <div v-else>
         <h3 style="text-align: center;">Page {{this.runs}} / 4</h3>
@@ -73,10 +80,7 @@ export default {
       isLoading: true,
       selectedImages: [],
       res: [],
-      text: `הגענו לשלב המשחק! כעת נציג בפניכם ארבעה מסכים. בכל מסך ${this.$root.store.firstGameImages} תמונות מוקטנות שלקוחות מהתמונות שראיתם בשלב הקודם. מתוך ${this.$root.store.firstGameImages} התמונות עליכם לבחור את ${this.$root.store.firstGameImagesSelected} התמונות להן נתתם את הציונים הגבוהים ביותר בשלב הקודם. על כל תמונה שבחרתם נכון תקבלו נקודה.
-הבחירה בתמונה נעשית באמצעות לחיצה עם העכבר עליה. ניתן לבטל בחירה של תמונה מסוימת על ידי לחיצה נוספת עליה`
-      // text: `Welcome to the First Game! In front of you there are ${this.$root.store.firstGameImages} pictures you have rated previously.
-      //     ${this.$root.store.firstGameImagesSelected} of which you have rated high and the others low, can you guess which ones?`
+      text: []
     };
   },
   methods: {
@@ -96,7 +100,7 @@ export default {
     async uploadImages() {
       try {       
         const response = await this.axios.post(
-          this.$root.store.address+`images/getSecondGameImages`,
+         this.$root.store.address+`images/getSecondGameImages`,
           {
             id:this.$root.store.u_id,
           }
@@ -188,6 +192,11 @@ export default {
     },
   },
   created() {
+
+    this.text = [`הגענו לשלב המשחק! כעת נציג בפניכם ארבעה מסכים. בכל מסך ${this.$root.store.firstGameImages} תמונות מוקטנות שלקוחות מהתמונות שראיתם בשלב הקודם.`,
+                `מתוך ${this.$root.store.firstGameImages} התמונות עליכם לבחור את ${this.$root.store.firstGameImagesSelected} התמונות להן נתתם את הציונים הגבוהים ביותר בשלב הקודם. על כל תמונה שבחרתם נכון תקבלו נקודה.`,
+                `הבחירה בתמונה נעשית באמצעות לחיצה עם העכבר עליה. ניתן לבטל בחירה של תמונה מסוימת על ידי לחיצה נוספת עליה.`];
+
       if(localStorage.numRanked == undefined)
       {
        
@@ -311,5 +320,12 @@ export default {
           transform: translateY(0px);
       }
   }
+
+.load {
+  font-weight: bold;
+  font-size: 15px;
+  text-align: center;
+  margin-top: 8%;
+}
 
 </style>

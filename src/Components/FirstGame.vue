@@ -65,8 +65,8 @@ export default {
 
   data() {
     return {
-      height: "180px",
-      weight: "320px",
+      height: "200px",
+      weight: "300px",
       selectedImages: [],
       res: [],
       wins: [],

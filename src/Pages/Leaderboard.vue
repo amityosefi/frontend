@@ -18,9 +18,9 @@ data() {
         sortBy: 'TotalScore',
         sortDesc: false,
         fields: [
-          { key: 'Index', label: 'Index'},
-          { key: 'FullName', label: 'Name'},
-          { key: 'TotalScore', label: 'Score'},
+          { key: 'Index', label: 'Position', thClass: 'text-left', tdClass: 'text-left'},
+          { key: 'FullName', label: 'Name', thClass: 'text-left', tdClass: 'text-left'},
+          { key: 'TotalScore', label: 'Score', thClass: 'text-left', tdClass: 'text-left'},
         ],
         // fields: ['FullName', 'TotalScore'],
         selected: [],
@@ -46,7 +46,6 @@ async uploadLeaders() {
         console.log(username);
         for (let i=0; i<this.leaders.length; i++) {
           if (this.leaders[i].FullName.localeCompare(username) == 0) {
-            console.log("here");
             user_index = i+1;
             user_score = this.leaders[i].TotalScore;
             username = this.leaders[i].FullName;
@@ -65,7 +64,6 @@ async uploadLeaders() {
           }
         }
 
-        console.log(this.leaders);
       } catch (err) {
         console.log(err.response);
       }
@@ -79,29 +77,19 @@ created() {
 </script>
 
 <style>
-button {
-  margin: 2%;
-  text-align: center;
-}
-p {
-  text-align: center;
-}
 template {
   margin: 4%;
 }
-h3 {
-  text-align: center;
-}
-#body{
+/* #body{
   padding: 5%;
-}
+} */
 
 .lead {
     margin: 0 auto;
     margin-top: 20px;
     font-size: 16px;
-    width: 900px;
+    width: 800px;
     /* height: 1000px; */
-    text-align: right;
+    /* text-align: right; */
 }
 </style>
