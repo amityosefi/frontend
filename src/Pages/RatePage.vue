@@ -153,10 +153,10 @@ export default {
       this.$root.store.numRanked = JSON.parse(localStorage.numRanked);
       console.log(this.$root.store.numRanked);
       if (
-        this.$root.store.is_submitted == undefined ||
-        !this.$root.store.is_submitted
+        localStorage.is_submitted==undefined 
       ) {
         try {
+          console.log("submitted regular");
           await this.submit_regular(this.$root.store.rankImages);
           localStorage.setItem("is_submitted", true);
           this.$root.store.is_submitted = true;
@@ -165,6 +165,7 @@ export default {
         }
       } else {
         try {
+          console.log("submitted 6");
           await this.submit_regular(6);
         } catch (err) {
           console.log(err.response);
@@ -188,8 +189,10 @@ export default {
         return;
       }
 
-      localStorage.setItem("RankedImages", undefined);
-      localStorage.setItem("unRankedImages", undefined);
+      // localStorage.setItem("RankedImages", undefined);
+      // localStorage.setItem("unRankedImages", undefined);
+      localStorage.removeItem("RankedImages");
+      localStorage.removeItem("unRankedImages");
 
       this.$root.store.RankedImages = undefined;
       this.$root.store.unRankedImages = undefined;
@@ -321,8 +324,8 @@ export default {
       "הציונים לכל תמונה ניתנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.",
       `כדי שתצליחו במשחק, אנחנו ממליצים מאד שתהיה כמות דומה (לא בהכרח זהה) של תמונות בתאי הציון השונים. אחרי שתסיימו לתת ציונים ל-${this.$root.store.rankImages} התמונות, תוכלו לבחור בין האפשרות לראות עוד תמונות ולתת להם ציונים או לעבור לשלב המשחק.`,
     ];
-    // console.log(localStorage.is_submitted);
-    
+    console.log(localStorage.is_submitted);
+    console.log(localStorage.RankedImages);
       // localStorage.removeItem("is_submitted");
       // localStorage.removeItem("is_done");
       // localStorage.removeItem("RankedImages");
@@ -335,13 +338,17 @@ export default {
         this.$router.push("/MainPage");
         return;
       }
-      if (!(localStorage.RankedImages == undefined)) {
+      let ranked_a  = localStorage.RankedImages == undefined;
+      let submitted_a = localStorage.is_submitted == undefined;
+      // let ranked_b = typeof(localStorage.RankedImages) == "undefined";
+      // let submitted_b = typeof(localStorage.is_submitted) == "undefined";
+      if (!ranked_a) {
         console.log(localStorage.RankedImages)
         console.log(localStorage.RankedImages == undefined)
         this.uploadAlt();
         console.log("tried alt");
       } 
-      else if (!(localStorage.is_submitted == undefined)) {
+      else if (!submitted_a) {
         this.uploadExtra();
         console.log("tried Extras");
       } 
