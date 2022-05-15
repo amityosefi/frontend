@@ -96,8 +96,8 @@ export default {
       return sizeFull.bins.sizeFull != this.size;
     },
     async saveRate(isContinue) {
-      let rates = this.$refs.bins.ratingAll();
-      let user_id = this.$root.store.u_id;
+      // let rates = this.$refs.bins.ratingAll();
+      // let user_id = this.$root.store.u_id;
       localStorage.setItem(
         "numRanked",
         JSON.stringify(this.$refs.bins.sizeFull)
@@ -119,13 +119,13 @@ export default {
           localStorage.unRankedImages
         );
 
-        await this.axios.post(
-          this.$root.store.address + `images/submitRatings`,
-          {
-            data_ratings: rates,
-            id: user_id,
-          }
-        );
+        // await this.axios.post(
+        //   this.$root.store.address + `images/submitRatings`,
+        //   {
+        //     data_ratings: rates,
+        //     id: user_id,
+        //   }
+        // );
         this.$root.toast(
           "State saved",
           "The rating saved successfully! \n You can keep rate",

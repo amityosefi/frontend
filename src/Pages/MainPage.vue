@@ -2,9 +2,9 @@
  <div>
   <!-- 5 possible cases:
   1. didnt finish rating
-  2. didnt played today and can rate
+  2. didnt played today and can rate - good
   3. didnt played today and can not rate because already rate 126 images
-  4. played today and can rate
+  4. played today and can rate - good
   5. played today and can not rate because already rate 126 images
 
   rankImages = 72
@@ -13,7 +13,7 @@
   
   <!-- case 1 -->
  
-    <div v-if="localStorage.is_submitted">
+    <div v-if="!this.submitted">
       <p class="parr">
         hello {{ this.$root.store.fullname }}
       <br />
@@ -24,8 +24,7 @@
     </div>
 
   <!-- case 2 -->
-    <div v-if="this.$root.store.numRanked >= this.$root.store.rankImages &&
-               this.$root.store.numRanked < 126 &&
+    <div v-if="!this.is_done &&
                this.$root.store.last_time &&
                this.now != this.$root.store.last_time">
       <p class="parr">
@@ -45,8 +44,9 @@
     </div>
 
     <!-- case 3 -->
-    <div v-if="this.$root.store.is_done &&
-               this.now != this.$root.store.last_time">
+    <div v-if="this.is_done && 
+                this.$root.store.is_done &&
+                this.now != this.$root.store.last_time">
       <p class="parr">
         hello {{ this.$root.store.fullname }}
         <br />
@@ -62,8 +62,7 @@
     </div>
 
     <!-- case 4 -->
-    <div v-if="this.$root.store.numRanked >= this.$root.store.rankImages &&
-               this.$root.store.numRanked < 126 &&
+    <div v-if="!this.is_done &&
                this.$root.store.last_time &&
                this.now == this.$root.store.last_time">
       <p class="parr">
@@ -78,7 +77,8 @@
     </div>
 
     <!-- case 5 -->
-    <div v-if="this.$root.store.is_done &&
+    <div v-if="this.is_done && 
+               this.$root.store.is_done &&
                this.$root.store.last_time &&
                this.now == this.$root.store.last_time">
       <p class="parr">
@@ -106,7 +106,10 @@ export default {
         String(Number(new Date().getMonth()) + 1) +
         "-" +
         new Date().getFullYear(),
+        submitted: true,
+        done: true,
     };
+    
   },
   methods: {
     rate() {
@@ -117,11 +120,14 @@ export default {
     },
   },
   created() {
-    console.log("numRanked ", this.$root.store.numRanked)
-    console.log("numRanked ", this.$root.store.rankImages)
-    console.log("now ", this.now)
-    console.log("last time ", this.$root.store.last_time)
-    console.log("typeof last time ", typeof (this.$root.store.last_time))
+    if (localStorage.is_submitted== undefined || !localStorage.is_submitted){
+      this.submitted = false
+    }
+    console.log(this.submitted);
+
+    if (localStorage.is_done == undefined || !localStorage.is_done){
+      this.is_done = false
+    }
 
   },
 };

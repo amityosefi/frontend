@@ -88,6 +88,7 @@ export default {
       // this.$refs.modal['myModal'].show()
     },
     shuffleArr(array){
+
       let currentIndex = array.length,  randomIndex;
         while (currentIndex != 0) {
           randomIndex = Math.floor(Math.random() * currentIndex);
@@ -106,14 +107,23 @@ export default {
           }
         );
         const arr = response.data.best.concat(response.data.worst); // best: 8, worst: 24 by default
+        
         const res = [];
         arr.map((img) => {
           let str = "data:image/jpg;base64, " + img.src;
           res.push({id: img.id, src:str});
         });
         this.allImages = res;
+        
         this.allImagesId = this.allImages.map(image => image.id);
-        const first_iteration = this.allImages.slice(0,this.$root.store.firstGameImagesSelected).concat(this.allImages.slice(this.$root.store.firstGameImages,this.$root.store.firstGameImages*2-this.$root.store.firstGameImagesSelected));
+        // const first_iteration = this.allImages.slice(0,this.$root.store.firstGameImagesSelected).concat(this.allImages.slice(this.$root.store.firstGameImages,this.$root.store.firstGameImages*2-this.$root.store.firstGameImagesSelected));
+        
+
+        let select = Number(this.$root.store.firstGameImagesSelected);
+        let runImages = Number(this.$root.store.firstGameImages);
+
+        const first_iteration = this.allImages.slice(0,select).concat(this.allImages.slice(select*4, select*4+runImages-select));
+
         this.shuffleArr(first_iteration);
         this.best = (this.allImages.slice(0,response.data.best.length)).map((x)=>x.id);
         this.isLoading = false;
@@ -156,6 +166,8 @@ export default {
           this.$root.toast("Score", "you scored " + score +" out of " + 4*this.$root.store.firstGameImagesSelected, "success");
           this.runs = 0;
           this.wins = [];
+          this.$root.store.setUserScoreAndDate(score);
+
           try { 
             await this.axios.post(
               this.$root.store.address+"images/submitFirstGame",
@@ -166,9 +178,8 @@ export default {
                 allImages: this.allImagesId,
               }
             );
-            this.$root.store.setUserScoreAndDate(score);
             this.goodImages = [];
-            this.$router.push("/MainPage");
+            this.$router.push("/LastPage");
           } catch (err) {
             console.log(err);
           }
@@ -178,10 +189,9 @@ export default {
         }
         let select = Number(this.$root.store.firstGameImagesSelected);
         let runImages = Number(this.$root.store.firstGameImages);
-        console.log("select",select)
-        console.log("runImages",runImages)
-        let goodSection = this.allImages.slice(select*this.runs+1,select*this.runs+select+1);
-        let badSection = this.allImages.slice(runImages*this.runs,runImages*this.runs+runImages-select);
+
+        let goodSection = this.allImages.slice(select*this.runs,select*this.runs+select);
+        let badSection = this.allImages.slice(select*4 + (runImages-select)*this.runs,select*4 + (runImages-select)*this.runs + runImages-select);
 
         this.shuffleArr(goodSection.concat(badSection)) //2,4 - 14,20 app.runs=2
         this.runs++;

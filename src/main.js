@@ -113,6 +113,7 @@ const shared_data = {
     numRanked:undefined,
     RankedImages:undefined,
     unRankedImages:undefined,
+    // address:'http://localhost:443/',
     address:'https://coil2.cs.bgu.ac.il/',
     user_score: localStorage.user_score,
     last_time: localStorage.last_time,
@@ -157,6 +158,8 @@ const shared_data = {
         this.RankedImages = undefined;
         localStorage.removeItem("unRankedImages");
         this.unRankedImages = undefined;
+        localStorage.removeItem("today_score");
+        this.today_score = undefined;
         console.log("logout");
     },
     setGlobalSettings(globalSettings){
@@ -168,9 +171,12 @@ const shared_data = {
         this.firstGameImagesSelected = globalSettings.firstGameImagesSelected;
         console.log("setGlobalSettings", this.rankImages, this.firstGameImages, this.firstGameImagesSelected);
     },
-    setUserScoreAndDate(score){
-        localStorage.setItem("user_score", this.score + score)
-        this.user_score = score;
+    setUserScoreAndDate(score1){
+        localStorage.setItem("today_score", Number(score1));
+        this.today_score = score1;
+
+        localStorage.setItem("user_score", Number(localStorage.getItem("user_score")) + Number(score1))
+        this.user_score = Number(localStorage.getItem("user_score")) + Number(score1);
         const now = new Date().getDate() + "-" + String(Number(new Date().getMonth()) + 1) + "-" + new Date().getFullYear();
         localStorage.setItem("last_time", now);
         this.last_time = now;

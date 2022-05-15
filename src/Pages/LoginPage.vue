@@ -69,7 +69,8 @@
                   </div>
                   <p class="text-center text-muted mt-4 mb-0">
                     Don't have an account yet?
-                    <router-link to="InstructionsPage"> Register here</router-link>
+                    <!-- <router-link to="InstructionsPage"> Register here</router-link> -->
+                    <router-link to="Register"> Register here</router-link>
                   </p>
                   <!--                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>-->
                 </form>

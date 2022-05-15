@@ -56,6 +56,7 @@
        המשך      </button>
     </div>
     <br>
+    </div>
   </div>
 </template>
 
