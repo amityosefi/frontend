@@ -35,8 +35,19 @@
     .שכל הנתונים על המשחק ישמרו על מחשב מאובטח וישמשו אך ורק לניתוחים סטטיסטיים. בשום אופן לא יפורסמו נתונים אישיים לגביכם -
     <br><br>
     <label for="checkboxG1" class="select-label" style="margin-right: 4px">אני מסכימ/ה לתנאים לעיל</label>
-    <input type="checkbox" id="checkboxG1" class="css-checkbox" v-model="checkSelect" />
-    </div>
+    <b-form-checkbox-group
+      v-model="value"
+      :options="options"
+      :state="state"
+      id="checkboxG1"
+      class="css-checkbox"
+      name="checkbox-validation"
+    >
+      <b-form-invalid-feedback :state="state">You must confirm the terms and conditions </b-form-invalid-feedback>
+      <b-form-valid-feedback :state="state"></b-form-valid-feedback>
+    </b-form-checkbox-group>
+    <!-- <input type="checkbox" id="checkboxG1" class="css-checkbox" v-model="checkSelect" /> -->
+    <!-- </div> -->
     <div class="d-flex justify-content-center">
       <br>
       <button type="button" class="btn btn-outline-danger" v-on:click="submit">
@@ -52,7 +63,11 @@ export default {
   name: "InstructionsPage",
   date() {
     return {
-      checkSelect: false
+      checkSelect: false,
+      value: [],
+      options: [
+          { text: '', value: 'approve' },
+        ]
     }
   },
   components: {
@@ -65,10 +80,15 @@ export default {
         }
         else
         {
-          this.$root.toast("warning", "You must confirm the terms and conditions", "warning");
+          this.$root.toast("Warning", "You must confirm the terms and conditions", "warning");
         }
       }
   },
+  computed: {
+      state() {
+        return this.value === 'approve';
+      }
+    },
   created() {},
 };
 </script>

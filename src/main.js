@@ -14,6 +14,10 @@ import { VBModal } from 'bootstrap-vue'
 // import { TablePlugin } from 'bootstrap-vue'
 // Vue.use(TablePlugin)
 import { BTable } from 'bootstrap-vue'
+import { FormRadioPlugin } from 'bootstrap-vue'
+import { FormCheckboxPlugin } from 'bootstrap-vue'
+Vue.use(FormCheckboxPlugin)
+Vue.use(FormRadioPlugin)
 Vue.use(ModalPlugin)
 Vue.directive('b-modal', VBModal)
 Vue.use(VueRouter);
@@ -109,7 +113,7 @@ const shared_data = {
     numRanked:undefined,
     RankedImages:undefined,
     unRankedImages:undefined,
-    address:'http://localhost:443/',
+    address:'https://coil2.cs.bgu.ac.il/',
     user_score: localStorage.user_score,
     last_time: localStorage.last_time,
     is_submitted: localStorage.is_submitted,

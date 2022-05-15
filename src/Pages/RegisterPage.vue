@@ -3,20 +3,20 @@
     <div class="gradient-custom-3">
       <div class="container h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
-          <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="col-12 col-md-9 col-lg-7 col-xl-7">
             <div class="card" style="border-radius: 15px;">
               <div class="card-body p-5">
                 <h2 class="text-uppercase text-center mb-5">Create an account</h2>
 
                 <form>
-                  <b-form-group id="input-group-fullname" label-cols-sm="3" label="Name / Nickname" label-for="fullname">
+                  <b-form-group id="input-group-fullname" label-cols="4" label-cols-lg="4" label="Name / Nickname" label-for="fullname">
                     <b-form-input id="fullname" v-model="$v.form.fullname.$model" type="text" :state="validateState('fullname')" style="width: 300px;" > </b-form-input>
                     <b-form-invalid-feedback v-if="!$v.form.fullname.required">
                       Name is required
                     </b-form-invalid-feedback>
-                    <b-form-invalid-feedback v-if="!$v.form.fullname.alpha">
+                    <!-- <b-form-invalid-feedback v-if="!$v.form.fullname.alpha">
                       Name should contain only letters
-                    </b-form-invalid-feedback>
+                    </b-form-invalid-feedback> -->
                   </b-form-group>
 
                   <!-- <b-form-group id="input-group-lastname" label-cols-sm="3" label="Last Name" label-for="lastname">
@@ -29,7 +29,7 @@
                     </b-form-invalid-feedback>
                   </b-form-group> -->
 
-                  <b-form-group id="input-group-email" label-cols-sm="3" label="Email" label-for="email" >
+                  <b-form-group id="input-group-email"  label-cols="4" label-cols-lg="4" label="Email" label-for="email" >
                     <b-form-input id="email" type="text" v-model="$v.form.email.$model" :state="validateState('email')" style="width: 300px;"></b-form-input>
                     <b-form-invalid-feedback v-if="!$v.form.email.required">
                       Email is required
@@ -40,7 +40,7 @@
                     </b-form-invalid-feedback>
                   </b-form-group>
 
-                  <b-form-group id="input-group-password" label-cols-sm="3" label="Password" label-for="password">
+                  <b-form-group id="input-group-password" label-cols="4" label-cols-lg="4" label="Password" label-for="password">
                     <b-form-input id="password" type="password" v-model="$v.form.password.$model" :state="validateState('password')" style="width: 300px;"></b-form-input>
                     <b-form-invalid-feedback v-if="!$v.form.password.required">
                       Password is required
@@ -53,7 +53,7 @@
                     </b-form-invalid-feedback> -->
                   </b-form-group>
 
-                  <b-form-group id="input-group-confirmedPassword" label-cols-sm="3" label="Repeat your password" label-for="confirmedPassword" style="margin-bottom: 1px">
+                  <b-form-group id="input-group-confirmedPassword" label-cols="4" label-cols-lg="4" label="Repeat your password" label-for="confirmedPassword" style="margin-bottom: 1px">
                     <b-form-input id="confirmedPassword" type="password" v-model="$v.form.confirmedPassword.$model" :state="validateState('confirmedPassword')" style="width: 300px;"></b-form-input>
                     <b-form-invalid-feedback v-if="!$v.form.confirmedPassword.required">
                       Password confirmation is required
@@ -63,14 +63,27 @@
                     </b-form-invalid-feedback>
                   </b-form-group>
 
-                  <b-form-group id="input-group-gender" label-cols-sm="2" label="Gender" label-for="gender">
-                    <b-form-select id="gender" class="gender" v-model="$v.form.gender.$model" :options="genderList" :state="validateState('gender')" style="width: 300px;"></b-form-select>
-                    <b-form-invalid-feedback v-if="!$v.form.gender.required">
+                  <br>
+
+                  <b-form-group id="input-group-gender" label-cols="4" label-cols-lg="4" label="Gender" label-for="gender">
+                    <!-- <b-form-select id="gender" class="gender" v-model="$v.form.gender.$model" :options="genderList" :state="validateState('gender')" style="width: 300px;"></b-form-select> -->
+                    <b-form-radio-group
+                      id="gender"
+                      v-model="$v.form.gender.$model"
+                      :options="genderList"
+                      :aria-describedby="ariaDescribedby"
+                    ></b-form-radio-group>
+                    <!-- <b-form-valid-feedback :state="state">Thank you</b-form-valid-feedback> -->
+                    <!-- <div v-if="this.start == 1"> -->
+                    <b-form-invalid-feedback :state="$v.form.gender.required" v-if="this.start == 1">
                       Gender is required
                     </b-form-invalid-feedback>
+                    <b-form-valid-feedback :state="!$v.form.gender.required" v-if="this.start == 1">
+                    </b-form-valid-feedback>
+                    <!-- </div> -->
                   </b-form-group>
 
-                  <b-form-group id="input-group-age" label-cols-sm="3" label="Age" label-for="age">
+                  <b-form-group id="input-group-age" label-cols="4" label-cols-lg="4" label="Age" label-for="age">
                     <b-form-input id="age" v-model="$v.form.age.$model" type="text" :state="validateState('age')" style="width: 300px;" > </b-form-input>
                     <b-form-invalid-feedback v-if="!$v.form.age.required">
                       Age is required
@@ -109,7 +122,7 @@ import {
   required,
   // minLength,
   // maxLength,
-  alpha,
+  // alpha,
   sameAs,
 } from "vuelidate/lib/validators";
 import numeric from "vuelidate/lib/validators/numeric";
@@ -119,29 +132,44 @@ export default {
 
   data() {
     return {
+      start: 0,
       form: {
         fullname: "",
         // lastname: "",
         email: null,
         password: "",
         confirmedPassword: "",
-        gender: 0,
-        age: ""
+        gender: null,
+        age: "",
       },
-      genderList: [
-        {value: "Female", text: "Female"},
-        {value: "Male", text: "Male"},
-      ],
+      // genderList: [
+      //   {value: "Female", text: "Female"},
+      //   {value: "Male", text: "Male"},
+      // ],
+        genderList: [
+          { text: 'Female', value: 'Female' },
+          { text: 'Male', value: 'Male' },
+          { text: 'Other', value: 'Other' }
+        ],
       errors: [],
       validated: false
     }
   },
+  created() {
+    this.start = 0;
+  },
+  // computed: {
+  //     state() {
+  //       return ($v.form.password.required);
+  //     },
+  // },
   methods: {
     validateState(param) {
       const {$dirty, $error} = this.$v.form[param];
       return $dirty ? !$error : null;
     },
     onRegister() {
+      this.start = 1;
       this.$v.form.$touch();
       if (this.$v.form.$anyError) {
         return;
@@ -222,8 +250,8 @@ export default {
   validations: {
     form: {
       fullname: {
-        required,
-        alpha
+        required
+        // alpha
       },
       // lastname: {
       //   required,

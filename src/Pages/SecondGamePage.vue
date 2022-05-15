@@ -45,16 +45,16 @@
         </div>
         </div>
         <div v-else>
-        <h3 style="text-align: center;">Page {{this.runs}} / 4</h3>
+        <h3 style="text-align: center;">Round {{this.runs}} / 4</h3>
         <br>
 
-        <div v-if="this.Images.length==8">
+        <div class="selectImagesEight" v-if="this.Images.length==8">
           <VueSelectImage
             ref="selector"
             :dataImages="this.Images"
             :is-multiple="true"
             :h="`180px`"
-            :w="`320px`"
+            :w="`270px`"
             :limit="Number(this.$root.store.firstGameImagesSelected)"
             @onselectmultipleimage="onSelectMultipleImage"
             @onreachlimit="onreachlimit">
@@ -63,26 +63,25 @@
           <br />
         </div>
 
-         <div v-else class="selector">
+         <div class="selectImagesRest" v-else>
           <VueSelectImage
             ref="selector"
             :dataImages="this.Images"
             :is-multiple="true"
             :h="`180px`"
-            :w="`320px`"
+            :w="`270px`"
             :limit="Number(this.$root.store.firstGameImagesSelected)"
             @onselectmultipleimage="onSelectMultipleImage"
-            @onreachlimit="onreachlimit"
-            class="aaa">
+            @onreachlimit="onreachlimit">
           </VueSelectImage>
           <br />
           <br />
         </div>
         
         </div>
-            <div v-if="!this.isLoading" style="margin-bottom: 15px; margin-top: 30px; margin-left: 18em; ">
-            <a href="#" class="btn btn-white btn-animate" id="butt1" @click.prevent="showModal">Instructions</a>
-            <a href="#" class="btn btn-white btn-animate" id="butt2" @click="submit">Submit</a> 
+            <div v-if="!this.isLoading">
+            <a href="#" class="btn btn-white btn-animate" id="butt1" @click="submit">Submit</a>
+            <a href="#" class="btn btn-white btn-animate" id="butt2" @click.prevent="showModal">Instructions</a> 
             </div>
         </div>
 
@@ -234,12 +233,25 @@ export default {
 };
 </script>
 <style>
+.selectImagesEight {
+   margin-left: 90px;
+}
+
+.selectImagesRest {
+    margin-left: 250px;
+    margin-right: 250px;
+}
+
   #butt2 {
-    margin-left: 25%;
+    float: left;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
   
   #butt1 {
-    margin-right: 25%;
+    float: right;
+    margin-bottom: 20px;
+    margin-top: 20px;
   }
 
   .btn:link,

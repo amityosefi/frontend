@@ -59,9 +59,9 @@ export default {
   data() {
     return {
       form: {
-        rankImages: "",
-        firstGameImages: "",
-        firstGameImagesSelected: "",
+        rankImages: 72,
+        firstGameImages: 8,
+        firstGameImagesSelected: 2,
       },
     };
   },

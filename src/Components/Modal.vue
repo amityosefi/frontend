@@ -4,7 +4,7 @@
     <h1 class="header">Instructions</h1>
     <p class="content" style="font-weight: bold; font-size: 20px; margin-bottom: 0px;">{{this.text}}</p>
 </div>  -->
-    <b-modal id="modal-tall" v-model="this.Show">
+    <b-modal ref="mymodal" id="modal-tall">
     <div class="modeTitle"> הוראות</div>
     <p class="right-to-left" dir="rtl" v-for="i in this.$props.Text" :key="i">
         <b-container fluid>
@@ -14,7 +14,7 @@
 
         <template #modal-footer>
         <div class="w-100">
-            <b-button variant="primary" size="sm" class="right-to-left" @click="setShow">
+            <b-button variant="primary" size="sm" class="right-to-left" @click="setHide">
             סגור
             </b-button>
         </div>
@@ -40,7 +40,11 @@ export default {
   },
   methods: {
       setShow() {
-          this.Show = !this.Show;
+          this.$refs.mymodal.show();
+        //   this.Show = !this.Show;
+      },
+      setHide() {
+          this.$refs.mymodal.hide();
       },
   },
 };

@@ -70,10 +70,14 @@ export default {
 <style>
 .app {
      background-image: url("view5.jpg");
-   background-attachment: fixed;
+   /* background-attachment: fixed; */
    /* height: 50%; */
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
+  /* background-size: cover; */
+    overflow: hidden;
   background-size: cover;
+  width: 100%;
+  min-height: 100vh;
 
    font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
