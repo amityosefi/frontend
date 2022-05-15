@@ -325,7 +325,7 @@ export default {
       
       this.$root.toast(
       "warning",
-      "get yo' broke ass outta here nigga",
+      "Ranked all Images",
        "warning"
       );
      this.$router.push("/MainPage");
