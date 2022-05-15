@@ -321,29 +321,37 @@ export default {
       "הציונים לכל תמונה ניתנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.",
       `כדי שתצליחו במשחק, אנחנו ממליצים מאד שתהיה כמות דומה (לא בהכרח זהה) של תמונות בתאי הציון השונים. אחרי שתסיימו לתת ציונים ל-${this.$root.store.rankImages} התמונות, תוכלו לבחור בין האפשרות לראות עוד תמונות ולתת להם ציונים או לעבור לשלב המשחק.`,
     ];
-
-    if (localStorage.RankedImages != undefined) {
+    // console.log(localStorage.is_submitted);
+    
       // localStorage.removeItem("is_submitted");
+      // localStorage.removeItem("is_done");
+      // localStorage.removeItem("RankedImages");
       if (localStorage.is_done) {
         this.$root.toast(
           "warning",
-          "get yo' broke ass outta here nigga",
+          "you have rated all the pictures and cannot rate anymore",
           "warning"
         );
         this.$router.push("/MainPage");
         return;
       }
-      if (!(localStorage.RankedImages == "undefined")) {
+      if (!(localStorage.RankedImages == undefined)) {
+        console.log(localStorage.RankedImages)
+        console.log(localStorage.RankedImages == undefined)
         this.uploadAlt();
         console.log("tried alt");
-      } else if (!(localStorage.is_submitted == "undefined")) {
+      } 
+      else if (!(localStorage.is_submitted == undefined)) {
         this.uploadExtra();
         console.log("tried Extras");
-      } else {
+      } 
+      else {
         this.uploadImages();
         console.log("tried regular");
       }
-    }
+        //       this.uploadImages();
+        // console.log("tried regular");
+    
   },
 };
 </script>

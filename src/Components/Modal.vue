@@ -28,7 +28,7 @@ export default {
   
   props: {
     Text: {
-      type: String,
+      type: Array,
       require: true,
     },
   },
