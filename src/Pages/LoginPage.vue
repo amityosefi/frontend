@@ -46,18 +46,18 @@
                     <b-form-invalid-feedback v-if="!$v.form.password.required">
                       Password is required
                     </b-form-invalid-feedback>
-                    <b-form-invalid-feedback
+                    <!-- <b-form-invalid-feedback
                       v-if="
                         $v.form.password.required && !$v.form.password.length
                       "
                     >
                       Password length should be between 5-10 characters
-                    </b-form-invalid-feedback>
+                    </b-form-invalid-feedback> 
                     <b-form-invalid-feedback
                       v-else-if="!$v.form.password.style"
                     >
                       Password must contain at least one digit and one letter
-                    </b-form-invalid-feedback>
+                    </b-form-invalid-feedback> -->
                   </b-form-group>
 
                   <div class="button-container">
@@ -69,7 +69,7 @@
                   </div>
                   <p class="text-center text-muted mt-4 mb-0">
                     Don't have an account yet?
-                    <router-link to="register"> Register here</router-link>
+                    <router-link to="InstructionsPage"> Register here</router-link>
                   </p>
                   <!--                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>-->
                 </form>

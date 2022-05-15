@@ -37,12 +37,14 @@
     <label for="checkboxG1" class="select-label" style="margin-right: 4px">אני מסכימ/ה לתנאים לעיל</label>
     <b-form-checkbox-group
       v-model="value"
-      :options="options"
+      value="accepted"
       :state="state"
       id="checkboxG1"
       class="css-checkbox"
       name="checkbox-validation"
+      unchecked-value="not_accepted"
     >
+    אני מסכימ/ה לתנאים לעיל
       <b-form-invalid-feedback :state="state">You must confirm the terms and conditions </b-form-invalid-feedback>
       <b-form-valid-feedback :state="state"></b-form-valid-feedback>
     </b-form-checkbox-group>
@@ -65,6 +67,7 @@ export default {
     return {
       checkSelect: false,
       value: [],
+      status: 'not_accepted',
       options: [
           { text: '', value: 'approve' },
         ]
@@ -86,7 +89,7 @@ export default {
   },
   computed: {
       state() {
-        return this.value === 'approve';
+        return this.value === 'accepted';
       }
     },
   created() {},

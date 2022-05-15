@@ -13,7 +13,7 @@
   
   <!-- case 1 -->
  
-    <div v-if="this.$root.store.numRanked < this.$root.store.rankImages">
+    <div v-if="localStorage.is_submitted">
       <p class="parr">
         hello {{ this.$root.store.fullname }}
       <br />
@@ -46,7 +46,6 @@
 
     <!-- case 3 -->
     <div v-if="this.$root.store.is_done &&
-               this.$root.store.last_time &&
                this.now != this.$root.store.last_time">
       <p class="parr">
         hello {{ this.$root.store.fullname }}
@@ -122,6 +121,7 @@ export default {
     console.log("numRanked ", this.$root.store.rankImages)
     console.log("now ", this.now)
     console.log("last time ", this.$root.store.last_time)
+    console.log("typeof last time ", typeof (this.$root.store.last_time))
 
   },
 };
