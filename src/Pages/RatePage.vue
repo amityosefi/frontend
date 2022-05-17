@@ -1,6 +1,35 @@
 <template>
   <div>
     <Modal ref="modal" :Text="this.text"> </Modal>
+<!-- <div class= "div">
+    <h1 class="header">Instructions</h1>
+    <p class="content" style="font-weight: bold; font-size: 20px; margin-bottom: 0px;">{{this.text}}</p>
+</div>  -->
+    <b-modal ref="mymodal" id="modal-tall">
+      <div class="modeTitle"> !סיימת לדרג </div>
+
+      <p class="right-to-left" dir="rtl">
+        <b-container fluid>
+        האם תרצה/י להמשיך לדרג תמונות נוספות?
+        </b-container>
+        </p>
+
+        <template #modal-footer>
+          <div class="w-100">
+          <div class="c1">
+            <b-button variant="primary" size="sm" class="right-to-left" @click="setHide">
+            לעבור למשחק
+            </b-button>
+            </div>
+          <div class="c2">
+            <b-button variant="primary" size="sm" class="right-to-left" @click="uploadExtra">
+            להמשיך לדרג
+            </b-button>            
+        </div>
+        </div>
+        </template>
+    </b-modal>
+
     <br />
     <div>
       <div v-if="this.isLoading">
@@ -80,6 +109,7 @@ export default {
       Bins: [],
       disableButton: true,
       flag: true,
+      ask_more: false,
       isLoading: true,
       text: [],
     };
@@ -95,6 +125,14 @@ export default {
 
       return sizeFull.bins.sizeFull != this.size;
     },
+    setHide() {
+          this.$refs.mymodal.hide();
+          this.$router.push("/FirstGamePage");
+      },
+      setShow() {
+          this.$refs.mymodal.show();
+        //   this.Show = !this.Show;
+      },
     async saveRate(isContinue) {
       // let rates = this.$refs.bins.ratingAll();
       // let user_id = this.$root.store.u_id;
@@ -152,9 +190,7 @@ export default {
       );
       this.$root.store.numRanked = JSON.parse(localStorage.numRanked);
       console.log(this.$root.store.numRanked);
-      if (
-        localStorage.is_submitted==undefined 
-      ) {
+      if (localStorage.is_submitted==undefined) {
         try {
           console.log("submitted regular");
           await this.submit_regular(this.$root.store.rankImages);
@@ -174,22 +210,24 @@ export default {
     },
 
     async submit_regular(size_full) {
+      console.log(size_full)
       let rates = this.$refs.bins.ratingAll();
       let user_id = this.$root.store.u_id;
 
       console.log("numRanked", this.$root.store.numRanked);
-      if (this.$root.store.numRanked < size_full) {
+      if (this.$root.store.numRanked < size_full) { //CHANGE = size_full
         this.$root.toast(
           "warning",
           "You must rate at least " +
-            this.$root.store.rankImages +
+            size_full +
             " images in order to continue",
           "warning"
         );
         return;
       }
+      else{
 
-      // localStorage.setItem("RankedImages", undefined);
+        // localStorage.setItem("RankedImages", undefined);
       // localStorage.setItem("unRankedImages", undefined);
       localStorage.removeItem("RankedImages");
       localStorage.removeItem("unRankedImages");
@@ -202,7 +240,14 @@ export default {
         id: user_id,
       });
 
-      this.$router.push("/FirstGamePage");
+      this.setShow(); 
+
+
+
+      }
+
+      
+      // this.$router.push("/FirstGamePage");
     },
     async uploadImages() {
       try {
@@ -230,6 +275,8 @@ export default {
       }
     },
     async uploadExtra() {
+      this.$refs.mymodal.hide();
+      this.$refs.bins.clear_bins();
       try {
         this.$root.store.extra_pics = JSON.parse(localStorage.extra_pics);
         console.log(this.$root.store.extra_pics);
@@ -270,7 +317,7 @@ export default {
         this.Images = arr;
         this.Bins = arr2;
         this.isLoading = false;
-        this.showModal();
+        // this.showModal();
       } catch (err) {
         console.log(err.response);
       }
@@ -319,16 +366,25 @@ export default {
   created() {
     // console.log(this.$root.store);
 
+    if(!localStorage.is_submitted){
     this.text = [
       `בשלב הראשון של המשחק, עליכם לצפות ב-${this.$root.store.rankImages} תמונות, ולתת להן ציון שמשקף עד כמה אתם אוהבים אותן. אנחנו נציג בפניכם את כל ${this.$root.store.rankImages} התמונות בתוך חלון קטן כשהן מוקטנות. השהיית העכבר על כל תמונה תגדיל אותה קצת, ולחיצה עם העכבר על כל התמונה תגדיל אותה עוד.`,
       "הציונים לכל תמונה ניתנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.",
       `כדי שתצליחו במשחק, אנחנו ממליצים מאד שתהיה כמות דומה (לא בהכרח זהה) של תמונות בתאי הציון השונים. אחרי שתסיימו לתת ציונים ל-${this.$root.store.rankImages} התמונות, תוכלו לבחור בין האפשרות לראות עוד תמונות ולתת להם ציונים או לעבור לשלב המשחק.`,
     ];
+    } else{
+      this.text = [
+      `בשלב הראשון של המשחק, עליכם לצפות ב-6 תמונות, ולתת להן ציון שמשקף עד כמה אתם אוהבים אותן. אנחנו נציג בפניכם את כל ${this.$root.store.rankImages} התמונות בתוך חלון קטן כשהן מוקטנות. השהיית העכבר על כל תמונה תגדיל אותה קצת, ולחיצה עם העכבר על כל התמונה תגדיל אותה עוד.`,
+      "הציונים לכל תמונה ניתנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.",
+      `כדי שתצליחו במשחק, אנחנו ממליצים מאד שתהיה כמות דומה (לא בהכרח זהה) של תמונות בתאי הציון השונים. אחרי שתסיימו לתת ציונים ל-${this.$root.store.rankImages} התמונות, תוכלו לבחור בין האפשרות לראות עוד תמונות ולתת להם ציונים או לעבור לשלב המשחק.`,
+    ];
+    }
+    
     console.log(localStorage.is_submitted);
     console.log(localStorage.RankedImages);
-      // localStorage.removeItem("is_submitted");
-      // localStorage.removeItem("is_done");
-      // localStorage.removeItem("RankedImages");
+      localStorage.removeItem("is_submitted");
+      localStorage.removeItem("is_done");
+      localStorage.removeItem("RankedImages");
       if (localStorage.is_done) {
         this.$root.toast(
           "warning",
@@ -380,11 +436,17 @@ margin-left: 10px;
 }
 
 #butt2 {
-  margin-left: 25%;
+  margin-left: 35%;
+}
+#butt4{
+  margin-left: 1%;
 }
 
 #butt1 {
-  margin-right: 25%;
+  margin-left: 1%;
+}
+#butt3 {
+  margin-left: 1%;
 }
 
 .btn:link,
@@ -444,6 +506,68 @@ margin-left: 10px;
   animation: moveInBottom 5s ease-out;
   animation-fill-mode: backwards;
 }
+.rtl {
+    direction: rtl;
+}
+/* .div
+{
+    padding: 20px;
+    background-color: beige;
+    width: 30%;
+    height: fit-content;
+    box-shadow: 1px 1px 1px 1px black;
+    
+}
+
+.header
+{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    text-shadow: 1px 1px #599e93;
+}
+.wrapper
+{
+    display: flex;
+    justify-content: center;
+    margin:5px;
+    
+}
+.content
+{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: black;
+    text-shadow: 1px 1px #599e93;
+} */
+
+.c1{
+  float: left;
+  margin-left: 1%;
+
+}
+.c2{
+  float: right;
+}
+
+.right-to-left {
+display: flex;
+direction:rtl;
+unicode-bidi:bidi-override;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+.modal-content{
+    text-align: right;
+}
+
+.modeTitle {
+    margin-top: 3px;
+    font-weight: bold;
+    font-size: 32px;
+    font-family: Calibri, san-serif; 
+    text-align: center;
+}
+
 
 @keyframes moveInBottom {
   0% {

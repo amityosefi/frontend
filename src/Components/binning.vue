@@ -296,6 +296,18 @@ export default {
       }
       return arr;
     },
+    clear_bins(){
+        this.arrGrade1 = [];
+        this.arrGrade2 = [];
+        this.arrGrade3 = [];
+        this.arrGrade4 = [];
+        this.arrGrade5 = [];
+        this.arrGrade6 = [];
+        this.arrGrade7 = [];
+        this.arrGrade8 = [];
+        this.arrGrade9 = [];
+        this.arrGrade10 = [];
+    },
     ratingAll() {
       let arr = [
         this.arrGrade1,

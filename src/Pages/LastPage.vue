@@ -5,12 +5,9 @@
       <br />
       Game Over! You earned {{this.$root.store.today_score}} points out of {{4*this.$root.store.firstGameImagesSelected}} today. See you tomorrow!
       <br />
-      Until now you earned: {{ this.$root.store.user_score }} points
-    </p>
-    <p class="parr">For starting the game please choose: Take me to the game</p>
-      <a href="#" class="btn btn-white btn-animate" id="butt5" @click="contactPage"
-        >Take me to the game!</a
-      >
+      Until now you earned: {{ this.$root.store.user_score -1 }} points
+
+      </p>
     <br />
   </div>
 </template>
