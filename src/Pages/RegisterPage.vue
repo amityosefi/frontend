@@ -71,7 +71,6 @@
                       id="gender"
                       v-model="$v.form.gender.$model"
                       :options="genderList"
-                      :aria-describedby="ariaDescribedby"
                     ></b-form-radio-group>
                     <!-- <b-form-valid-feedback :state="state">Thank you</b-form-valid-feedback> -->
                     <!-- <div v-if="this.start == 1"> -->

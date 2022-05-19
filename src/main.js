@@ -113,8 +113,8 @@ const shared_data = {
     numRanked:undefined,
     RankedImages:undefined,
     unRankedImages:undefined,
-    // address:'http://localhost:443/',
-    address:'https://coil2.cs.bgu.ac.il/',
+    address:'http://localhost:443/',
+    // address:'https://coil2.cs.bgu.ac.il/',
     user_score: localStorage.user_score,
     last_time: localStorage.last_time,
     is_submitted: localStorage.is_submitted,
@@ -160,6 +160,10 @@ const shared_data = {
         this.unRankedImages = undefined;
         localStorage.removeItem("today_score");
         this.today_score = undefined;
+        this.is_submitted = false;
+        localStorage.removeItem("is_submitted");
+        this.is_done = false;
+        localStorage.removeItem("is_done");
         console.log("logout");
     },
     setGlobalSettings(globalSettings){
@@ -180,7 +184,7 @@ const shared_data = {
         const now = new Date().getDate() + "-" + String(Number(new Date().getMonth()) + 1) + "-" + new Date().getFullYear();
         localStorage.setItem("last_time", now);
         this.last_time = now;
-    }
+    },
 };
 
 // shared_data.username = "s" 

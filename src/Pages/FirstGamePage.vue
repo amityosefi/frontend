@@ -50,8 +50,8 @@
         
         </div>
             <div v-if="!this.isLoading">
-            <a href="#" class="btn btn-white btn-animate" id="butt1" @click="submit">Submit</a>
-            <a href="#" class="btn btn-white btn-animate" id="butt2" @click.prevent="showModal">Instructions</a> 
+            <a href="#" class="btn btn-white btn-animate" id="buttt1" @click="submit">Submit</a>
+            <a href="#" class="btn btn-white btn-animate" id="buttt2" @click.prevent="showModal">Instructions</a> 
             </div>
         </div>
 
@@ -235,16 +235,18 @@ export default {
   margin-bottom: 2px;
 }
 
-  #butt2 {
+  #buttt2 {
     float: left;
     margin-bottom: 20px;
     margin-top: 20px;
+    margin-left: 20%;
   }
   
-  #butt1 {
+  #buttt1 {
     float: right;
     margin-bottom: 20px;
     margin-top: 20px;
+    margin-right: 20%;
   }
 
   .btn:link,

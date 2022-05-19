@@ -35,21 +35,10 @@
     .שכל הנתונים על המשחק ישמרו על מחשב מאובטח וישמשו אך ורק לניתוחים סטטיסטיים. בשום אופן לא יפורסמו נתונים אישיים לגביכם -
     <br><br>
     <label for="checkboxG1" class="select-label" style="margin-right: 4px">אני מסכימ/ה לתנאים לעיל</label>
-    <b-form-checkbox-group
-      v-model="value"
-      value="accepted"
-      :state="state"
-      id="checkboxG1"
-      class="css-checkbox"
-      name="checkbox-validation"
-      unchecked-value="not_accepted"
-    >
-    אני מסכימ/ה לתנאים לעיל
-      <b-form-invalid-feedback :state="state">You must confirm the terms and conditions </b-form-invalid-feedback>
-      <b-form-valid-feedback :state="state"></b-form-valid-feedback>
-    </b-form-checkbox-group>
-    <!-- <input type="checkbox" id="checkboxG1" class="css-checkbox" v-model="checkSelect" /> -->
-    <!-- </div> -->
+    <input type="checkbox" id="checkboxG1" value="Mike" class="css-checkbox" v-model="checkSelect" />
+    <br>
+    <div v-if="this.feedback" style="color: red;" > יש להסכים לתנאים כדי להמשיך בהרשמה</div>
+    <br>
     <div class="d-flex justify-content-center">
       <br>
       <button type="button" class="btn btn-outline-danger" v-on:click="submit">
@@ -66,34 +55,40 @@ export default {
   name: "InstructionsPage",
   date() {
     return {
-      checkSelect: false,
-      value: [],
-      status: 'not_accepted',
-      options: [
-          { text: '', value: 'approve' },
-        ]
+      checkSelect: [],
+      feedback: true
     }
   },
   components: {
   },
   methods: {
       submit(){
-        if (this.checkSelect == true)
+        console.log(this.checkSelect.length);
+        if (this.checkSelect.length != 0)
         {
+          this.feedback = false;
           this.$router.push("Register");
         }
         else
         {
-          this.$root.toast("Warning", "You must confirm the terms and conditions", "warning");
+          this.feedback = true;
         }
+
+        console.log(this.feedback);
+        // if (this.checkSelect == true)
+        // {
+          
+        // }
+        // else
+        // {
+        //   this.$root.toast("Warning", "You must confirm the terms and conditions", "warning");
+        // }
       }
   },
-  computed: {
-      state() {
-        return this.value === 'accepted';
-      }
-    },
-  created() {},
+  created() {
+    this.checkSelect = [];
+    this.feedback = true;
+  },
 };
 </script>
 <style scoped>
@@ -111,5 +106,8 @@ export default {
 /* border: 5px solid #FFFF00; */
 padding: 10px;
  
+}
+.confirm{
+  color: red;
 }
 </style>
