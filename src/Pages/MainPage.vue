@@ -78,6 +78,7 @@
         Until now you earned: {{ this.$root.store.user_score }} points
       <br />
         For starting the game please choose: Take me to the game
+        <br><br>
       <a
         href="#"
         class="btn btn-white btn-animate"

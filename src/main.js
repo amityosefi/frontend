@@ -136,7 +136,18 @@ const shared_data = {
             this.user_score = username.user_score;
             localStorage.setItem("last_time", username.last_time);
             this.last_time = username.last_time;
-            console.log("login", this.u_id);            
+            console.log("login", this.u_id);
+            let is = true;
+            let id = true;
+            if(username.is_submitted == 0)
+                is = false;
+            if(username.is_done == 0)
+                id = false;
+            localStorage.setItem("is_submitted",is)
+            localStorage.setItem("is_done",id)
+            this.is_submitted = is;
+            this.is_done = id;
+            console.log("user details",this);           
         }
     },
     logout() {

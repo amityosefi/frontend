@@ -59,7 +59,7 @@
                       Password confirmation is required
                     </b-form-invalid-feedback>
                     <b-form-invalid-feedback v-else-if="!$v.form.confirmedPassword.sameAsPassword">
-                      Password is not equal
+                      Passwords don't match
                     </b-form-invalid-feedback>
                   </b-form-group>
 

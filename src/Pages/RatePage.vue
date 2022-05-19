@@ -382,10 +382,12 @@ export default {
     
     console.log(localStorage.is_submitted);
     console.log(localStorage.RankedImages);
-      localStorage.removeItem("is_submitted");
-      localStorage.removeItem("is_done");
-      localStorage.removeItem("RankedImages");
-      if (localStorage.is_done) {
+      // localStorage.removeItem("is_submitted");
+      // localStorage.removeItem("is_done");
+      // localStorage.removeItem("RankedImages");
+      console.log("is done?",this.$root.store.is_done);
+      if (this.$root.store.is_done == true) {
+        console.log("is done?",this.$root.store.is_done);
         this.$root.toast(
           "warning",
           "you have rated all the pictures and cannot rate anymore",
@@ -395,16 +397,15 @@ export default {
         return;
       }
       let ranked_a  = localStorage.RankedImages == undefined;
-      let submitted_a = localStorage.is_submitted == undefined;
-      // let ranked_b = typeof(localStorage.RankedImages) == "undefined";
-      // let submitted_b = typeof(localStorage.is_submitted) == "undefined";
+      
+      
       if (!ranked_a) {
         console.log(localStorage.RankedImages)
         console.log(localStorage.RankedImages == undefined)
         this.uploadAlt();
         console.log("tried alt");
       } 
-      else if (!submitted_a) {
+      else if (this.$root.store.is_submitted == true) {
         this.uploadExtra();
         console.log("tried Extras");
       } 
