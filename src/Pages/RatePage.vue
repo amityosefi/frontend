@@ -5,14 +5,14 @@
     <h1 class="header">Instructions</h1>
     <p class="content" style="font-weight: bold; font-size: 20px; margin-bottom: 0px;">{{this.text}}</p>
 </div>  -->
-    <b-modal ref="mymodal" id="modal-tall">
+    <b-modal ref="modalRate" id="modal-tall">
       <div class="modeTitle"> !סיימת לדרג </div>
 
-      <p class="right-to-left" dir="rtl">
+      <div class="right-to-left" dir="rtl">
         <b-container fluid>
         האם תרצה/י להמשיך לדרג תמונות נוספות?
         </b-container>
-        </p>
+        </div>
 
         <template #modal-footer>
           <div class="w-100">
@@ -126,11 +126,11 @@ export default {
       return sizeFull.bins.sizeFull != this.size;
     },
     setHide() {
-          this.$refs.mymodal.hide();
+          this.$refs.modalRate.hide();
           this.$router.push("/FirstGamePage");
       },
       setShow() {
-          this.$refs.mymodal.show();
+          this.$refs.modalRate.show();
         //   this.Show = !this.Show;
       },
     async saveRate(isContinue) {
@@ -166,47 +166,50 @@ export default {
         // );
         this.$root.toast(
           "State saved",
-          "The rating saved successfully! \n You can keep rate",
+          "The rating saved successfully! \n You can keep rating",
           "success"
         );
         if (isContinue) {
           return;
-        } else {
-          this.$router.push("/MainPage");
+        } 
+        else 
+        {
+          this.$router.push("/HomePage");
         }
-      } else {
+      } 
+      else {
         this.$root.toast(
           "warning",
-          "You have to start rate before saving",
+          "You have to rate at least one picture before saving",
           "warning"
         );
       }
     },
 
     async submit() {
-      localStorage.setItem(
-        "numRanked",
-        JSON.stringify(this.$refs.bins.sizeFull)
-      );
-      this.$root.store.numRanked = JSON.parse(localStorage.numRanked);
-      console.log(this.$root.store.numRanked);
-      if (localStorage.is_submitted==undefined) {
-        try {
-          console.log("submitted regular");
-          await this.submit_regular(this.$root.store.rankImages);
-          localStorage.setItem("is_submitted", true);
-          this.$root.store.is_submitted = true;
-        } catch (err) {
-          console.log(err.response);
+        localStorage.setItem(
+          "numRanked",
+          JSON.stringify(this.$refs.bins.sizeFull)
+        );
+        this.$root.store.numRanked = JSON.parse(localStorage.numRanked);
+        console.log(this.$root.store.numRanked);
+        if (localStorage.is_submitted==undefined) {
+          try {
+            console.log("submitted regular");
+            await this.submit_regular(this.$root.store.rankImages);
+            localStorage.setItem("is_submitted", true);
+            this.$root.store.is_submitted = true;
+          } catch (err) {
+            console.log(err.response);
+          }
+        } else {
+          try {
+            console.log("submitted 6");
+            await this.submit_regular(6);
+          } catch (err) {
+            console.log(err.response);
+          }
         }
-      } else {
-        try {
-          console.log("submitted 6");
-          await this.submit_regular(6);
-        } catch (err) {
-          console.log(err.response);
-        }
-      }
     },
 
     async submit_regular(size_full) {
@@ -275,7 +278,7 @@ export default {
       }
     },
     async uploadExtra() {
-      this.$refs.mymodal.hide();
+      this.$refs.modalRate.hide();
       this.$refs.bins.clear_bins();
       try {
         this.$root.store.extra_pics = JSON.parse(localStorage.extra_pics);
@@ -385,27 +388,26 @@ export default {
       // localStorage.removeItem("is_submitted");
       // localStorage.removeItem("is_done");
       // localStorage.removeItem("RankedImages");
-      console.log("is done?",this.$root.store.is_done);
       if (this.$root.store.is_done == true) {
-        console.log("is done?",this.$root.store.is_done);
         this.$root.toast(
           "warning",
           "you have rated all the pictures and cannot rate anymore",
           "warning"
         );
-        this.$router.push("/MainPage");
+        this.$router.push("/HomePage");
         return;
       }
       let ranked_a  = localStorage.RankedImages == undefined;
-      
-      
+      let submitted_a = this.$root.store.is_submitted == true;
+      // let ranked_b = typeof(localStorage.RankedImages) == "undefined";
+      // let submitted_b = typeof(localStorage.is_submitted) == "undefined";
       if (!ranked_a) {
         console.log(localStorage.RankedImages)
         console.log(localStorage.RankedImages == undefined)
         this.uploadAlt();
         console.log("tried alt");
       } 
-      else if (this.$root.store.is_submitted == true) {
+      else if (submitted_a) {
         this.uploadExtra();
         console.log("tried Extras");
       } 

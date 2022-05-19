@@ -31,7 +31,7 @@
     <div
       v-if="
         !this.is_done &&
-          this.$root.store.last_time &&
+          this.last_date != 'never' &&
           this.now != this.$root.store.last_time
       "
     >
@@ -65,8 +65,8 @@
     <div
       v-if="
         this.is_done &&
-          this.$root.store.is_done &&
-          this.now != this.$root.store.last_time
+          (this.last_date != 'never' ||
+          this.now != this.$root.store.last_time)
       "
     >
       <div class="parr">
@@ -162,6 +162,8 @@ export default {
     },
   },
   created() {
+    // console.log("hhhh");
+    // console.log(this.$root.store.last_time );
     if (localStorage.is_submitted == undefined || !localStorage.is_submitted) {
       this.submitted = false;
     }
@@ -170,7 +172,7 @@ export default {
     if (localStorage.is_done == undefined || !localStorage.is_done) {
       this.is_done = false;
     }
-    if (this.$root.store.last_time){
+    if (!this.$root.store.last_time){
       this.last_date = "never";
     }
   },
