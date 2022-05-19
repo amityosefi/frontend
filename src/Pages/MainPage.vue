@@ -14,7 +14,6 @@
   <!-- case 1 -->
  
     <div v-if="!localStorage.is_submitted">
-      <p class="parr">
         hello {{ this.$root.store.fullname }}
       <br />
       <p class="parr">To participate in the game you must first complete the grading of the pictures.
