@@ -137,8 +137,8 @@ const shared_data = {
             localStorage.setItem("last_time", username.last_time);
             this.last_time = username.last_time;
             console.log("login", this.u_id);
-            let is = true;
-            let id = true;
+            let is = false;
+            let id = false;
             if(username.is_submitted == 0)
                 is = false;
             if(username.is_done == 0)

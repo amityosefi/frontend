@@ -36,10 +36,12 @@
       "
     >
       <div class="parr">
+        <br>
         Hello {{ this.$root.store.fullname }}
         <br />
-        <div v-if="this.last_date == 'never'">You didnt play yet</div>
-        <div v-else>Your last time you played was in {{ this.last_date }}</div>
+        <br>
+        <div v-if="this.last_date == 'never'">You didnt play today</div>
+        <div v-else>Your last time you played was {{ this.last_date }}</div>
         Until now you earned: {{ this.$root.store.user_score }} points
              <br />
       <br />
@@ -70,14 +72,16 @@
       "
     >
       <div class="parr">
-        Hello {{ this.$root.store.fullname }}
+        <br>
+        <b>Hello {{ this.$root.store.fullname }} </b>
         <br />
-        <div v-if="this.last_date == 'never'">You didnt play yet</div>
-        <div v-else>Your last time you played was in {{ this.last_date }}</div>
+        <br>
+        <div v-if="this.last_date == 'never'">You didnt play today,</div>
+        <div v-else>The last time you played the game was {{ this.last_date }}</div>
         <br />
-        Until now you earned: {{ this.$root.store.user_score }} points
+        Your current score is {{ this.$root.store.user_score }} points
       <br />
-        For starting the game please choose: Take me to the game
+        For start the game please click the buttom below
         <br><br>
       <a
         href="#"
@@ -182,6 +186,7 @@ export default {
 @import "../assets/style.css";
 
 .parr {
+  font-family: sans-serif;
   padding-top: 1%;
   color: black;
   font-size: 2.5ch;
