@@ -214,6 +214,8 @@ export default {
                     fullname: response.data.FullName,
                     user_score: 0,
                     last_time: undefined,
+                    is_submitted: 0,
+                    is_done: 0,
                   };
 
                   localStorage.setItem("numRanked", 0);           

@@ -174,7 +174,7 @@ export default {
         } 
         else 
         {
-          this.$router.push("/HomePage");
+          this.$router.push("MainPage");
         }
       } 
       else {
@@ -193,7 +193,8 @@ export default {
         );
         this.$root.store.numRanked = JSON.parse(localStorage.numRanked);
         console.log(this.$root.store.numRanked);
-        if (localStorage.is_submitted==undefined) {
+        if (localStorage.is_submitted==undefined || !localStorage.is_submitted ||
+        this.$root.store.is_submitted==undefined || !this.$root.store.is_submitted) {
           try {
             console.log("submitted regular");
             await this.submit_regular(this.$root.store.rankImages);
@@ -237,15 +238,13 @@ export default {
 
       this.$root.store.RankedImages = undefined;
       this.$root.store.unRankedImages = undefined;
-
+      
       await this.axios.post(this.$root.store.address + `images/submitRatings`, {
         data_ratings: rates,
         id: user_id,
       });
 
       this.setShow(); 
-
-
 
       }
 
@@ -285,7 +284,6 @@ export default {
         console.log(this.$root.store.extra_pics);
         let arr1 = [];
         let len = this.$root.store.extra_pics.length;
-
         for (var i = 0; i < 6; i++) {
           arr1.push(this.$root.store.extra_pics[i]);
         }
@@ -298,6 +296,14 @@ export default {
         }
         if (temp.length == 0) {
           localStorage.setItem("is_done", true);
+          this.$root.store.is_done = true;
+          await this.axios.post(
+          this.$root.store.address + `images/is_done`,
+            {
+              is_done: true,
+              user_id: this.$root.store.u_id
+            }
+          );
         }
         this.$root.store.extra_pics = temp;
         localStorage.extra_pics = JSON.stringify(this.$root.store.extra_pics);
@@ -394,7 +400,7 @@ export default {
           "you have rated all the pictures and cannot rate anymore",
           "warning"
         );
-        this.$router.push("/HomePage");
+        this.$router.push("/MainPage");
         return;
       }
       let ranked_a  = localStorage.RankedImages == undefined;

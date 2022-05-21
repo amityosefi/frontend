@@ -11,17 +11,14 @@
             <b-nav-item v-if="!$root.store.email" :to="{ name: 'login' }">Login</b-nav-item>
             <b-nav-item v-if="!$root.store.email" :to="{ name: 'InstructionsPage' }">Register</b-nav-item>           
             <b-nav-item v-if="$root.store.email" :to="{ name: 'RatePage' }">Rate</b-nav-item>
-            <b-nav-item v-if="$root.store.email" :to="{ name: 'FirstGamePage' }">Game-1</b-nav-item>
-            <b-nav-item v-if="$root.store.email" :to="{ name: 'SecondGamePage' }">Game-2</b-nav-item>
+            <!-- <b-nav-item v-if="$root.store.email" :to="{ name: 'FirstGamePage' }">Game-1</b-nav-item> -->
+            <!-- <b-nav-item v-if="$root.store.email" :to="{ name: 'SecondGamePage' }">Game-2</b-nav-item> -->
             <b-nav-item v-if="$root.store.email" :to="{ name: 'ReviewPage' }">Contact us</b-nav-item>
             <b-nav-item v-if="$root.store.email && $root.store.isAdmin" :to="{ name: 'AdminPage' }">Admin</b-nav-item>
           </b-navbar-nav>
 
           <!-- right side -->
           <b-navbar-nav class="ml-auto">
-            <!-- <b-nav-item :to="{ name: 'login' }">Login</b-nav-item>
-            <b-nav-item :to="{ name: 'register' }">Register</b-nav-item>
-            <b-nav-item :to="{ name: 'About' }">About</b-nav-item> -->
             <b-nav-item class="name" v-if="$root.store.fullname"> Hello {{$root.store.fullname}} </b-nav-item>
             <b-nav-item v-if="$root.store.email" v-on:click="Logout">Log Out</b-nav-item>
           </b-navbar-nav>

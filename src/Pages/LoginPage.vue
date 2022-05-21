@@ -70,7 +70,7 @@
                   <p class="text-center text-muted mt-4 mb-0">
                     Don't have an account yet?
                     <!-- <router-link to="InstructionsPage"> Register here</router-link> -->
-                    <router-link to="Register"> Register here</router-link>
+                    <router-link to="InstructionsPage"> Register here</router-link>
                   </p>
                   <!--                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>-->
                 </form>
@@ -130,6 +130,7 @@ export default {
             fullname: response.data.FullName,
             user_score: response.data.user_score,
             last_time: response.data.last_time,
+            numRanked: response.data.numRanked,
             is_submitted: response.data.is_submitted,
             is_done: response.data.is_done,
           };
@@ -148,7 +149,7 @@ export default {
           this.$root.store.setGlobalSettings(globalSettings);
 
           this.$root.toast("Login", "User logged in successfully", "success");
-          if (response.data.numRanked >= response.data.globalSettings.rankImages){
+          if (response.data.is_submitted){
             this.$router.push("MainPage");
           }
           else{
