@@ -42,12 +42,32 @@ export default {
     
     async Logout() {
       try {
+        let Ranked = this.$root.store.RankedImages;
+        
+        let UnRanked = this.$root.store.unRankedImages;
+
+        let Extras = this.$root.store.extra_pics;
+        // if(Extras)
+        //   Extras = JSON.parse(Extras);
+        // if(Ranked)
+        //   Ranked = JSON.parse(Ranked);
+        // if(UnRanked)
+        //   UnRanked = JSON.parse(Ranked);
+        await this.axios.post(this.$root.store.address + `images/save_pics`,{
+            user_id:this.$root.store.u_id,
+            ranked:Ranked,
+            unranked:UnRanked,
+            extras:Extras,
+        });
+
         const response = await this.axios.post(
             this.$root.store.address+"logout",
         );
         console.log(response.data)
+
+        
       } catch (error) {
-        console.log("there was a problem in the logout from server");
+        console.log(error);
       }
       this.$root.store.logout();
       this.$root.toast("Logout", "User logged out successfully", "success");

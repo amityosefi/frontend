@@ -21,8 +21,8 @@
             לעבור למשחק
             </b-button>
             </div>
-          <div class="c2">
-            <b-button variant="primary" size="sm" class="right-to-left" @click="uploadExtra">
+          <div class="c2" >
+            <b-button  variant="primary" size="sm" class="right-to-left" @click="uploadExtra" >
             להמשיך לדרג
             </b-button>            
         </div>
@@ -112,6 +112,7 @@ export default {
       ask_more: false,
       isLoading: true,
       text: [],
+      
     };
   },
   methods: {
@@ -211,6 +212,16 @@ export default {
             console.log(err.response);
           }
         }
+        if(Boolean(this.$root.store.is_done) == true)
+        {
+          this.$root.toast(
+          "warning",
+          "you have rated all the pictures and cannot rate anymore",
+          "warning"
+          );
+          this.$router.push("/MainPage");
+          return;
+        }
     },
 
     async submit_regular(size_full) {
@@ -277,11 +288,15 @@ export default {
       }
     },
     async uploadExtra() {
-      this.$refs.modalRate.hide();
-      this.$refs.bins.clear_bins();
+      if(this.$refs.modalRate)
+        this.$refs.modalRate.hide();
+      if(this.$refs.bins)
+        this.$refs.bins.clear_bins();
+      // this.$refs.modalRate.hide();
+      // this.$refs.bins.clear_bins();
       try {
         this.$root.store.extra_pics = JSON.parse(localStorage.extra_pics);
-        console.log(this.$root.store.extra_pics);
+        console.log("extra",this.$root.store.extra_pics);
         let arr1 = [];
         let len = this.$root.store.extra_pics.length;
         for (var i = 0; i < 6; i++) {
@@ -297,6 +312,7 @@ export default {
         if (temp.length == 0) {
           localStorage.setItem("is_done", true);
           this.$root.store.is_done = true;
+          
           await this.axios.post(
           this.$root.store.address + `images/is_done`,
             {
@@ -304,6 +320,7 @@ export default {
               user_id: this.$root.store.u_id
             }
           );
+          
         }
         this.$root.store.extra_pics = temp;
         localStorage.extra_pics = JSON.stringify(this.$root.store.extra_pics);
@@ -375,7 +392,7 @@ export default {
   created() {
     // console.log(this.$root.store);
 
-    if(!localStorage.is_submitted){
+    if(!(Boolean(localStorage.is_submitted) == true)){
     this.text = [
       `בשלב הראשון של המשחק, עליכם לצפות ב-${this.$root.store.rankImages} תמונות, ולתת להן ציון שמשקף עד כמה אתם אוהבים אותן. אנחנו נציג בפניכם את כל ${this.$root.store.rankImages} התמונות בתוך חלון קטן כשהן מוקטנות. השהיית העכבר על כל תמונה תגדיל אותה קצת, ולחיצה עם העכבר על כל התמונה תגדיל אותה עוד.`,
       "הציונים לכל תמונה ניתנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.",
@@ -394,7 +411,7 @@ export default {
       // localStorage.removeItem("is_submitted");
       // localStorage.removeItem("is_done");
       // localStorage.removeItem("RankedImages");
-      if (this.$root.store.is_done == true) {
+      if (Boolean(this.$root.store.is_done) == true) {
         this.$root.toast(
           "warning",
           "you have rated all the pictures and cannot rate anymore",
@@ -404,7 +421,9 @@ export default {
         return;
       }
       let ranked_a  = localStorage.RankedImages == undefined;
-      let submitted_a = this.$root.store.is_submitted == true;
+      let submitted_a = Boolean(this.$root.store.is_submitted) == true;
+      console.log("is done?",this.$root.store.is_submitted);
+      console.log("why?", submitted_a);
       // let ranked_b = typeof(localStorage.RankedImages) == "undefined";
       // let submitted_b = typeof(localStorage.is_submitted) == "undefined";
       if (!ranked_a) {
@@ -418,6 +437,7 @@ export default {
         console.log("tried Extras");
       } 
       else {
+        
         this.uploadImages();
         console.log("tried regular");
       }

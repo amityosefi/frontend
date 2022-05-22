@@ -30,12 +30,12 @@
     <!-- case 2 -->
     <div
       v-if="
-        !this.is_done &&
+        !this.is_done && this.submitted &&
           (this.last_date != 'never' ||
           this.now != this.$root.store.last_time)
       "
     >
-      <div class="parr">
+      <div class="parr" >
         <br>
         Hello {{ this.$root.store.fullname }}
         <br />
@@ -45,7 +45,7 @@
         Until now you earned: {{ this.$root.store.user_score }} points
              <br />
       <br />
-        For starting the game please choose Take me to the game
+        To start the game please choose Take me to the game
       <br /><br>
       <a
         href="#"
@@ -165,24 +165,17 @@ export default {
     },
   },
   created() {
-    // console.log("localStorage.is_submitted: ", localStorage.is_submitted);
-    // console.log("typeof localStorage.is_submitted: ", typeof localStorage.is_submitted);
-    // console.log("this.$root.store.is_submitted: ", this.$root.store.is_submitted);
-    // console.log("typeof this.$root.store.is_submitted: ", typeof this.$root.store.is_submitted);
-
-    // console.log("localStorage.is_done: ", localStorage.is_done);
-    // console.log("typeof localStorage.is_done: ", typeof localStorage.is_done);
-    // console.log("this.$root.store.is_done: ", this.$root.store.is_done);
-    // console.log("typeof this.$root.store.is_done: ", typeof this.$root.store.is_done);
-
-    if (localStorage.is_submitted == undefined || !localStorage.is_submitted ||
-      this.$root.store.is_submitted == undefined || !this.$root.store.is_submitted) {
+    console.log("is_submitted? ", this.$root.store.is_submitted);
+    console.log("is_done? ", this.$root.store.is_done);
+    console.log("is_submitted? ", Boolean(this.$root.store.is_submitted));
+    console.log("is_done? ", Boolean(this.$root.store.is_done));
+    
+    if (Boolean(this.$root.store.is_submitted) == false) {
         this.submitted = false;
     }
     console.log("this.submitted ", this.submitted);
 
-    if (localStorage.is_done == undefined || !localStorage.is_done ||
-    this.$root.store.is_done == undefined || !this.$root.store.is_done) {
+    if (Boolean(this.$root.store.is_done) == false) {
       this.is_done = false;
     }
         console.log("this.is_done ", this.is_done);

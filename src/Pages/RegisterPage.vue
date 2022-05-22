@@ -226,12 +226,17 @@ export default {
                   //   firstGameImages: response2.data.globalSettings.firstGameImages,
                   //   firstGameImagesSelected: response2.data.globalSettings.firstGameImagesSelected
                   // };
+                  let reg = false;
 
-                  this.$root.store.login(user);
+                  while(!reg)
+                  {
+                    reg = this.$root.store.login(user);
+                  }
                   this.$root.store.setGlobalSettings(response.data.globalSettings);
 
                   this.$root.toast("Register", "The user has registered successfully", "success");
                   this.$router.push("RatePage");
+                  // this.$router.go(0);
                 // }
               }
               // catch (err) {

@@ -133,6 +133,9 @@ export default {
             numRanked: response.data.numRanked,
             is_submitted: response.data.is_submitted,
             is_done: response.data.is_done,
+            ranked : response.data.ranked,
+            unranked : response.data.unranked,
+            extras : response.data.extras
           };
           
           console.log("response",response.data);
