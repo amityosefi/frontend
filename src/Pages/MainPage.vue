@@ -13,7 +13,7 @@
 
     <!-- case 1 -->
 
-    <div v-if="!this.submitted">
+    <div v-if="!this.$root.store.is_submitted">
       <p class="parr">Hello {{ this.$root.store.fullname }}
         <br />
         To participate in the game you must first complete the grading of the
@@ -29,11 +29,7 @@
 
     <!-- case 2 -->
     <div
-      v-if="
-        !this.is_done &&
-          this.$root.store.last_time &&
-          this.now != this.$root.store.last_time
-      "
+      v-if="this.$root.store.is_submitted && !this.$root.store.is_done && this.now != this.$root.store.last_time"
     >
       <div class="parr">
         Hello {{ this.$root.store.fullname }}
@@ -63,21 +59,17 @@
 
     <!-- case 3 -->
     <div
-      v-if="
-        this.is_done &&
-          this.$root.store.is_done &&
-          this.now != this.$root.store.last_time
-      "
+      v-if="this.$root.store.is_done && this.now != this.$root.store.last_time"
     >
       <div class="parr">
         Hello {{ this.$root.store.fullname }}
         <br />
-        <div v-if="this.last_date == 'never'">You didnt play yet</div>
+        <div v-if="this.last_date == 'never'">You didnt play today</div>
         <div v-else>Your last time you played was in {{ this.last_date }}</div>
         <br />
         Until now you earned: {{ this.$root.store.user_score }} points
       <br />
-        For starting the game please choose: Take me to the game
+        For starting the game please click the bottom:
       <a
         href="#"
         class="btn btn-white btn-animate"
@@ -89,14 +81,10 @@
 
     <!-- case 4 -->
     <div
-      v-if="
-        !this.is_done &&
-          this.$root.store.last_time &&
-          this.now == this.$root.store.last_time
-      "
+      v-if="this.$root.store.is_submitted && !this.$root.store.is_done && this.now == this.$root.store.last_time"
     >
       <p class="parr">
-        hello {{ this.$root.store.fullname }}
+        Hello {{ this.$root.store.fullname }}
         <br />
         According to our records you have already played today, and according to
         the rules of the game you can only play again tomorrow.
@@ -113,12 +101,7 @@
 
     <!-- case 5 -->
     <div
-      v-if="
-        this.is_done &&
-          this.$root.store.is_done &&
-          this.$root.store.last_time &&
-          this.now == this.$root.store.last_time
-      "
+      v-if="this.$root.store.is_done && this.now == this.$root.store.last_time"
     >
       <p class="parr">
         hello {{ this.$root.store.fullname }}
@@ -164,7 +147,8 @@ export default {
     if (localStorage.is_submitted == undefined || !localStorage.is_submitted) {
       this.submitted = false;
     }
-    console.log(this.submitted);
+    
+    console.log(this.$root.store.is_submitted);
 
     if (localStorage.is_done == undefined || !localStorage.is_done) {
       this.is_done = false;

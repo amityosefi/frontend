@@ -1,34 +1,11 @@
 <template>
   <div>
-    <Modal ref="modal" :Text="this.text"> </Modal>
+    <Modal @my-event="uploadExtra" ref="modal" :Text="this.text"> </Modal>
 <!-- <div class= "div">
     <h1 class="header">Instructions</h1>
     <p class="content" style="font-weight: bold; font-size: 20px; margin-bottom: 0px;">{{this.text}}</p>
 </div>  -->
-    <b-modal ref="mymodal" id="modal-tall">
-      <div class="modeTitle"> !סיימת לדרג </div>
 
-      <p class="right-to-left" dir="rtl">
-        <b-container fluid>
-        האם תרצה/י להמשיך לדרג תמונות נוספות?
-        </b-container>
-        </p>
-
-        <template #modal-footer>
-          <div class="w-100">
-          <div class="c1">
-            <b-button variant="primary" size="sm" class="right-to-left" @click="setHide">
-            לעבור למשחק
-            </b-button>
-            </div>
-          <div class="c2">
-            <b-button variant="primary" size="sm" class="right-to-left" @click="uploadExtra">
-            להמשיך לדרג
-            </b-button>            
-        </div>
-        </div>
-        </template>
-    </b-modal>
 
     <br />
     <div>
@@ -51,7 +28,7 @@
       </div>
       <div v-else>
         <!-- <b-button variant="outline-secondary" class="but" @click="show=true">Instructions</b-button> -->
-        <div class="secondery">
+        <div v-if="!this.$root.store.is_done" class="secondery">
           <binning ref="bins" :Bins="this.Bins" :Images="this.Images"></binning>
           <div
             class="d-flex justify-content-center"
@@ -61,7 +38,7 @@
               href="#"
               class="btn btn-white btn-animate"
               id="butt1"
-              @click.prevent="showModal"
+              @click.prevent="showModal('mymodalA')"
               >Instructions</a
             >
             <a
@@ -115,9 +92,14 @@ export default {
     };
   },
   methods: {
-    showModal() {
-      this.$refs.modal.setShow();
+    showModal(selectedModal) {
+      console.log("selectedModal:");
+      console.log(selectedModal);
+      this.$refs.modal.setShow(selectedModal);
     },
+    // hideModal(selectedModal) {
+    //   this.$refs.modal.setHide(selectedModal);
+    // },
     async checkFull() {
       let sizeFull = this.$refs;
 
@@ -125,14 +107,6 @@ export default {
 
       return sizeFull.bins.sizeFull != this.size;
     },
-    setHide() {
-          this.$refs.mymodal.hide();
-          this.$router.push("/FirstGamePage");
-      },
-      setShow() {
-          this.$refs.mymodal.show();
-        //   this.Show = !this.Show;
-      },
     async saveRate(isContinue) {
       // let rates = this.$refs.bins.ratingAll();
       // let user_id = this.$root.store.u_id;
@@ -169,7 +143,7 @@ export default {
           "The rating saved successfully! \n You can keep rate",
           "success"
         );
-        if (isContinue) {
+        if (isContinue == true) {
           return;
         } else {
           this.$router.push("/MainPage");
@@ -240,7 +214,12 @@ export default {
         id: user_id,
       });
 
-      this.setShow(); 
+      if (this.$root.store.is_done == true || this.$root.store.extra_pics.length == 0) {
+        this.showModal("mymodalC"); 
+      }
+      else {
+        this.showModal("mymodalB"); 
+      }
 
 
 
@@ -269,13 +248,13 @@ export default {
         });
         this.Images = arr;
         this.isLoading = false;
-        this.showModal();
+        this.showModal("mymodalA");
       } catch (err) {
         console.log(err.response);
       }
     },
     async uploadExtra() {
-      this.$refs.mymodal.hide();
+      // this.hideModal("mymodalB");
       this.$refs.bins.clear_bins();
       try {
         this.$root.store.extra_pics = JSON.parse(localStorage.extra_pics);
@@ -356,7 +335,7 @@ export default {
         this.Bins = arr2;
 
         this.isLoading = false;
-        this.showModal();
+        this.showModal("mymodalA");
       } catch (err) {
         console.log(err.response);
       }
@@ -374,17 +353,17 @@ export default {
     ];
     } else{
       this.text = [
-      `בשלב הראשון של המשחק, עליכם לצפות ב-6 תמונות, ולתת להן ציון שמשקף עד כמה אתם אוהבים אותן. אנחנו נציג בפניכם את כל ${this.$root.store.rankImages} התמונות בתוך חלון קטן כשהן מוקטנות. השהיית העכבר על כל תמונה תגדיל אותה קצת, ולחיצה עם העכבר על כל התמונה תגדיל אותה עוד.`,
-      "הציונים לכל תמונה ניתנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.",
-      `כדי שתצליחו במשחק, אנחנו ממליצים מאד שתהיה כמות דומה (לא בהכרח זהה) של תמונות בתאי הציון השונים. אחרי שתסיימו לתת ציונים ל-${this.$root.store.rankImages} התמונות, תוכלו לבחור בין האפשרות לראות עוד תמונות ולתת להם ציונים או לעבור לשלב המשחק.`,
+        "כעת, תצפו ב-6 תמונות נוספות, להן עליכם לתת ציון שמשקף עד כמה אתם אוהבים אותן. הציונים לכל תמונה ניתנים על ידי גרירתה לתא המתאים בתחתית המסך (בדיוק כמו לפניכן).",
+        "המערכת תאפשר להעביר תמונתו מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.",
+        "כדי שתצליחו במשחק, אנחנו ממליצים מאד שתהיה כמות דומה (לא בהכרח זהה) של תמונות בתאי הציון השונים. לאחר שתסיימו לתת ציונים ל-6 התמונתו הללו, וכל עוד לא הגעתם לכמות המירבית, תוכלו להמשיך לדרג תמונות נוספות או לעבור למשחק."
     ];
     }
     
     console.log(localStorage.is_submitted);
     console.log(localStorage.RankedImages);
-      localStorage.removeItem("is_submitted");
-      localStorage.removeItem("is_done");
-      localStorage.removeItem("RankedImages");
+      // localStorage.removeItem("is_submitted");
+      // localStorage.removeItem("is_done");
+      // localStorage.removeItem("RankedImages");
       if (localStorage.is_done) {
         this.$root.toast(
           "warning",
@@ -538,36 +517,6 @@ margin-left: 10px;
     color: black;
     text-shadow: 1px 1px #599e93;
 } */
-
-.c1{
-  float: left;
-  margin-left: 1%;
-
-}
-.c2{
-  float: right;
-}
-
-.right-to-left {
-display: flex;
-direction:rtl;
-unicode-bidi:bidi-override;
-margin-top: 10px;
-margin-bottom: 10px;
-}
-
-.modal-content{
-    text-align: right;
-}
-
-.modeTitle {
-    margin-top: 3px;
-    font-weight: bold;
-    font-size: 32px;
-    font-family: Calibri, san-serif; 
-    text-align: center;
-}
-
 
 @keyframes moveInBottom {
   0% {

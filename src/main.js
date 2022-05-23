@@ -99,7 +99,7 @@ axios.interceptors.response.use(
 
 Vue.use(VueAxios, axios);
 
-Vue.config.productionTip = false;
+Vue.config.productionTip = true;
 
 const shared_data = {
     email: localStorage.email,
@@ -113,8 +113,8 @@ const shared_data = {
     numRanked:undefined,
     RankedImages:undefined,
     unRankedImages:undefined,
-    address:'http://localhost:443/',
-    // address:'https://coil2.cs.bgu.ac.il/',
+    // address:'http://localhost:443/',
+    address:'https://coil2.cs.bgu.ac.il/',
     user_score: localStorage.user_score,
     last_time: localStorage.last_time,
     is_submitted: localStorage.is_submitted,
