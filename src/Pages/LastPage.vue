@@ -1,11 +1,13 @@
 <template>
   <div>
     <p class="parr">
-      hello {{ this.$root.store.fullname }}
+      <br>
+      <b><div style="font-size: 18px;">Hello {{ this.$root.store.fullname }}! </div></b>
       <br />
+      <br>
       Game Over! You earned {{this.$root.store.today_score}} points out of {{4*this.$root.store.firstGameImagesSelected}} today. See you tomorrow!
       <br />
-      Until now you earned: {{ this.$root.store.user_score -1 }} points
+      In total, now you have {{ this.$root.store.user_score }} points
 
       </p>
     <br />
@@ -38,6 +40,7 @@ export default {
 @import "../assets/style.css";
 
 .parr {
+  font-family: sans-serif;
   padding-top: 1%;
   color: black;
   font-size: 2.5ch;

@@ -117,9 +117,9 @@ const shared_data = {
     address:'https://coil2.cs.bgu.ac.il/',
     user_score: localStorage.user_score,
     last_time: localStorage.last_time,
-    is_submitted: localStorage.is_submitted,
+    is_submitted: JSON.parse(localStorage.is_submitted),
     extra_pics: localStorage.extra_pics,
-    is_done: localStorage.is_done,
+    is_done: JSON.parse(localStorage.is_done),
 
 
   login(username) {
@@ -136,10 +136,40 @@ const shared_data = {
             this.user_score = username.user_score;
             localStorage.setItem("last_time", username.last_time);
             this.last_time = username.last_time;
-            console.log("login", this.u_id);            
+            localStorage.setItem("numRanked", username.numRanked);
+            this.numRanked = username.numRanked;
+            localStorage.setItem("is_submitted",Boolean(username.is_submitted))
+            this.is_submitted = Boolean(username.is_submitted);
+            localStorage.setItem("is_done",Boolean(username.is_done))
+            this.is_done = Boolean(username.is_done);
+            if(username.ranked && username.ranked.length > 0)
+            {
+                localStorage.setItem("RankedImages",JSON.stringify(username.ranked))
+                this.RankedImages = JSON.stringify(username.ranked);
+            }
+            if(username.unranked  )
+            {
+                localStorage.setItem("unRankedImages",JSON.stringify(username.unranked))
+                this.unRankedImages = JSON.stringify(username.unranked);
+            }
+            if(username.extras && username.extras.length > 0)
+            {
+                localStorage.setItem("extra_pics",JSON.stringify(username.extras))
+                this.extra_pics = JSON.stringify(username.extras);
+            }
+            
+            
+            
+            console.log("user details", this);
+            console.log("is submitted?", Boolean(this.is_submitted))
+            console.log("is_done?", Boolean(this.is_done))
+
+            return true;        
         }
+        return undefined;
     },
-    logout() {
+     logout() {
+        
         localStorage.removeItem("u_id");
         this.u_id = undefined;
         localStorage.removeItem("email");
@@ -179,8 +209,8 @@ const shared_data = {
         localStorage.setItem("today_score", Number(score1));
         this.today_score = score1;
 
-        localStorage.setItem("user_score", Number(localStorage.getItem("user_score")) + Number(score1))
-        this.user_score = Number(localStorage.getItem("user_score")) + Number(score1);
+        localStorage.user_score = Number(localStorage.user_score)+Number(score1);
+        this.user_score = Number(localStorage.user_score);
         const now = new Date().getDate() + "-" + String(Number(new Date().getMonth()) + 1) + "-" + new Date().getFullYear();
         localStorage.setItem("last_time", now);
         this.last_time = now;

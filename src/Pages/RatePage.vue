@@ -6,7 +6,6 @@
     <p class="content" style="font-weight: bold; font-size: 20px; margin-bottom: 0px;">{{this.text}}</p>
 </div>  -->
 
-
     <br />
     <div>
       <div v-if="this.isLoading">
@@ -89,6 +88,7 @@ export default {
       ask_more: false,
       isLoading: true,
       text: [],
+      
     };
   },
   methods: {
@@ -140,47 +140,61 @@ export default {
         // );
         this.$root.toast(
           "State saved",
-          "The rating saved successfully! \n You can keep rate",
+          "The rating saved successfully! \n You can keep rating",
           "success"
         );
         if (isContinue == true) {
           return;
-        } else {
-          this.$router.push("/MainPage");
+        } 
+        else 
+        {
+          this.$router.push("MainPage");
         }
-      } else {
+      } 
+      else {
         this.$root.toast(
           "warning",
-          "You have to start rate before saving",
+          "You have to rate at least one picture before saving",
           "warning"
         );
       }
     },
 
     async submit() {
-      localStorage.setItem(
-        "numRanked",
-        JSON.stringify(this.$refs.bins.sizeFull)
-      );
-      this.$root.store.numRanked = JSON.parse(localStorage.numRanked);
-      console.log(this.$root.store.numRanked);
-      if (localStorage.is_submitted==undefined) {
-        try {
-          console.log("submitted regular");
-          await this.submit_regular(this.$root.store.rankImages);
-          localStorage.setItem("is_submitted", true);
-          this.$root.store.is_submitted = true;
-        } catch (err) {
-          console.log(err.response);
+        localStorage.setItem(
+          "numRanked",
+          JSON.stringify(this.$refs.bins.sizeFull)
+        );
+        this.$root.store.numRanked = JSON.parse(localStorage.numRanked);
+        console.log(this.$root.store.numRanked);
+        if (localStorage.is_submitted==undefined || !localStorage.is_submitted ||
+        this.$root.store.is_submitted==undefined || !this.$root.store.is_submitted) {
+          try {
+            console.log("submitted regular");
+            await this.submit_regular(this.$root.store.rankImages);
+            localStorage.setItem("is_submitted", true);
+            this.$root.store.is_submitted = true;
+          } catch (err) {
+            console.log(err.response);
+          }
+        } else {
+          try {
+            console.log("submitted 6");
+            await this.submit_regular(6);
+          } catch (err) {
+            console.log(err.response);
+          }
         }
-      } else {
-        try {
-          console.log("submitted 6");
-          await this.submit_regular(6);
-        } catch (err) {
-          console.log(err.response);
+        if(Boolean(this.$root.store.is_done) == true)
+        {
+          this.$root.toast(
+          "warning",
+          "you have rated all the pictures and cannot rate anymore",
+          "warning"
+          );
+          this.$router.push("/MainPage");
+          return;
         }
-      }
     },
 
     async submit_regular(size_full) {
@@ -208,7 +222,7 @@ export default {
 
       this.$root.store.RankedImages = undefined;
       this.$root.store.unRankedImages = undefined;
-
+      
       await this.axios.post(this.$root.store.address + `images/submitRatings`, {
         data_ratings: rates,
         id: user_id,
@@ -220,8 +234,6 @@ export default {
       else {
         this.showModal("mymodalB"); 
       }
-
-
 
       }
 
@@ -254,14 +266,15 @@ export default {
       }
     },
     async uploadExtra() {
-      // this.hideModal("mymodalB");
-      this.$refs.bins.clear_bins();
+      if(this.$refs.bins)
+        this.$refs.bins.clear_bins();
+      // this.$refs.modalRate.hide();
+      // this.$refs.bins.clear_bins();
       try {
         this.$root.store.extra_pics = JSON.parse(localStorage.extra_pics);
-        console.log(this.$root.store.extra_pics);
+        console.log("extra",this.$root.store.extra_pics);
         let arr1 = [];
         let len = this.$root.store.extra_pics.length;
-
         for (var i = 0; i < 6; i++) {
           arr1.push(this.$root.store.extra_pics[i]);
         }
@@ -274,6 +287,16 @@ export default {
         }
         if (temp.length == 0) {
           localStorage.setItem("is_done", true);
+          this.$root.store.is_done = true;
+          
+          await this.axios.post(
+          this.$root.store.address + `images/is_done`,
+            {
+              is_done: true,
+              user_id: this.$root.store.u_id
+            }
+          );
+          
         }
         this.$root.store.extra_pics = temp;
         localStorage.extra_pics = JSON.stringify(this.$root.store.extra_pics);
@@ -345,7 +368,7 @@ export default {
   created() {
     // console.log(this.$root.store);
 
-    if(!localStorage.is_submitted){
+    if(!(Boolean(localStorage.is_submitted) == true)){
     this.text = [
       `בשלב הראשון של המשחק, עליכם לצפות ב-${this.$root.store.rankImages} תמונות, ולתת להן ציון שמשקף עד כמה אתם אוהבים אותן. אנחנו נציג בפניכם את כל ${this.$root.store.rankImages} התמונות בתוך חלון קטן כשהן מוקטנות. השהיית העכבר על כל תמונה תגדיל אותה קצת, ולחיצה עם העכבר על כל התמונה תגדיל אותה עוד.`,
       "הציונים לכל תמונה ניתנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.",
@@ -364,7 +387,7 @@ export default {
       // localStorage.removeItem("is_submitted");
       // localStorage.removeItem("is_done");
       // localStorage.removeItem("RankedImages");
-      if (localStorage.is_done) {
+      if (Boolean(this.$root.store.is_done) == true) {
         this.$root.toast(
           "warning",
           "you have rated all the pictures and cannot rate anymore",
@@ -374,7 +397,9 @@ export default {
         return;
       }
       let ranked_a  = localStorage.RankedImages == undefined;
-      let submitted_a = localStorage.is_submitted == undefined;
+      let submitted_a = Boolean(this.$root.store.is_submitted) == true;
+      console.log("is done?",this.$root.store.is_submitted);
+      console.log("why?", submitted_a);
       // let ranked_b = typeof(localStorage.RankedImages) == "undefined";
       // let submitted_b = typeof(localStorage.is_submitted) == "undefined";
       if (!ranked_a) {
@@ -383,11 +408,12 @@ export default {
         this.uploadAlt();
         console.log("tried alt");
       } 
-      else if (!submitted_a) {
+      else if (submitted_a) {
         this.uploadExtra();
         console.log("tried Extras");
       } 
       else {
+        
         this.uploadImages();
         console.log("tried regular");
       }

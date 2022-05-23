@@ -29,17 +29,23 @@
 
     <!-- case 2 -->
     <div
-      v-if="this.$root.store.is_submitted && !this.$root.store.is_done && this.now != this.$root.store.last_time"
+      v-if="
+        !this.is_done && this.submitted &&
+          (this.last_date != 'never' ||
+          this.now != this.$root.store.last_time)
+      "
     >
-      <div class="parr">
+      <div class="parr" >
+        <br>
         Hello {{ this.$root.store.fullname }}
         <br />
-        <div v-if="this.last_date == 'never'">You didnt play yet</div>
-        <div v-else>Your last time you played was in {{ this.last_date }}</div>
+        <br>
+        <div v-if="this.last_date == 'never'">You didnt play today</div>
+        <div v-else>Your last time you played was {{ this.last_date }}</div>
         Until now you earned: {{ this.$root.store.user_score }} points
              <br />
       <br />
-        For starting the game please choose Take me to the game
+        To start the game please choose Take me to the game
       <br /><br>
       <a
         href="#"
@@ -59,17 +65,24 @@
 
     <!-- case 3 -->
     <div
-      v-if="this.$root.store.is_done && this.now != this.$root.store.last_time"
+      v-if="
+        this.is_done &&
+          (this.last_date != 'never' ||
+          this.now != this.$root.store.last_time)
+      "
     >
       <div class="parr">
-        Hello {{ this.$root.store.fullname }}
+        <br>
+        <b>Hello {{ this.$root.store.fullname }} </b>
         <br />
-        <div v-if="this.last_date == 'never'">You didnt play today</div>
-        <div v-else>Your last time you played was in {{ this.last_date }}</div>
+        <br>
+        <div v-if="this.last_date == 'never'">You didnt play today,</div>
+        <div v-else>The last time you played the game was {{ this.last_date }}</div>
         <br />
-        Until now you earned: {{ this.$root.store.user_score }} points
+        Your current score is {{ this.$root.store.user_score }} points
       <br />
-        For starting the game please click the bottom:
+        For start the game please click the buttom below
+        <br><br>
       <a
         href="#"
         class="btn btn-white btn-animate"
@@ -101,7 +114,11 @@
 
     <!-- case 5 -->
     <div
-      v-if="this.$root.store.is_done && this.now == this.$root.store.last_time"
+      v-if="
+        this.is_done &&
+          this.$root.store.last_time &&
+          this.now == this.$root.store.last_time
+      "
     >
       <p class="parr">
         hello {{ this.$root.store.fullname }}
@@ -144,16 +161,22 @@ export default {
     },
   },
   created() {
-    if (localStorage.is_submitted == undefined || !localStorage.is_submitted) {
-      this.submitted = false;
-    }
+    console.log("is_submitted? ", this.$root.store.is_submitted);
+    console.log("is_done? ", this.$root.store.is_done);
+    console.log("is_submitted? ", Boolean(this.$root.store.is_submitted));
+    console.log("is_done? ", Boolean(this.$root.store.is_done));
     
-    console.log(this.$root.store.is_submitted);
+    if (Boolean(this.$root.store.is_submitted) == false) {
+        this.submitted = false;
+    }
+    console.log("this.submitted ", this.submitted);
 
-    if (localStorage.is_done == undefined || !localStorage.is_done) {
+    if (Boolean(this.$root.store.is_done) == false) {
       this.is_done = false;
     }
-    if (this.$root.store.last_time){
+        console.log("this.is_done ", this.is_done);
+
+    if (!this.$root.store.last_time){
       this.last_date = "never";
     }
   },
@@ -163,6 +186,7 @@ export default {
 @import "../assets/style.css";
 
 .parr {
+  font-family: sans-serif;
   padding-top: 1%;
   color: black;
   font-size: 2.5ch;

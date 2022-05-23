@@ -70,7 +70,7 @@
                   <p class="text-center text-muted mt-4 mb-0">
                     Don't have an account yet?
                     <!-- <router-link to="InstructionsPage"> Register here</router-link> -->
-                    <router-link to="Register"> Register here</router-link>
+                    <router-link to="InstructionsPage"> Register here</router-link>
                   </p>
                   <!--                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>-->
                 </form>
@@ -86,8 +86,8 @@
 <script>
 import {
   required,
-  minLength,
-  maxLength,
+  // minLength,
+  // maxLength,
   alpha,
   sameAs,
 } from "vuelidate/lib/validators";
@@ -130,8 +130,15 @@ export default {
             fullname: response.data.FullName,
             user_score: response.data.user_score,
             last_time: response.data.last_time,
+            numRanked: response.data.numRanked,
+            is_submitted: response.data.is_submitted,
+            is_done: response.data.is_done,
+            ranked : response.data.ranked,
+            unranked : response.data.unranked,
+            extras : response.data.extras
           };
-
+          
+          console.log("response",response.data);
           localStorage.setItem("numRanked", response.data.numRanked);           
           this.$root.store.numRanked = response.data.numRanked;
 
@@ -145,7 +152,7 @@ export default {
           this.$root.store.setGlobalSettings(globalSettings);
 
           this.$root.toast("Login", "User logged in successfully", "success");
-          if (response.data.numRanked >= 72){
+          if (response.data.is_submitted){
             this.$router.push("MainPage");
           }
           else{
@@ -186,8 +193,8 @@ export default {
       },
       password: {
         required,
-        length: (p) => minLength(5)(p) && maxLength(10)(p),
-        style: (v) => /^(?=.*[0-9])(?=.*[a-zA-Z])/.test(v),
+        // length: (p) => minLength(5)(p) && maxLength(10)(p),
+        // style: (v) => /^(?=.*[0-9])(?=.*[a-zA-Z])/.test(v),
       },
       confirmedPassword: {
         required,

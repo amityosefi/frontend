@@ -59,7 +59,7 @@
                       Password confirmation is required
                     </b-form-invalid-feedback>
                     <b-form-invalid-feedback v-else-if="!$v.form.confirmedPassword.sameAsPassword">
-                      Password is not equal
+                      Passwords don't match
                     </b-form-invalid-feedback>
                   </b-form-group>
 
@@ -214,6 +214,8 @@ export default {
                     fullname: response.data.FullName,
                     user_score: 0,
                     last_time: undefined,
+                    is_submitted: 0,
+                    is_done: 0,
                   };
 
                   localStorage.setItem("numRanked", 0);           
@@ -224,12 +226,17 @@ export default {
                   //   firstGameImages: response2.data.globalSettings.firstGameImages,
                   //   firstGameImagesSelected: response2.data.globalSettings.firstGameImagesSelected
                   // };
+                  let reg = false;
 
-                  this.$root.store.login(user);
+                  while(!reg)
+                  {
+                    reg = this.$root.store.login(user);
+                  }
                   this.$root.store.setGlobalSettings(response.data.globalSettings);
 
                   this.$root.toast("Register", "The user has registered successfully", "success");
                   this.$router.push("RatePage");
+                  // this.$router.go(0);
                 // }
               }
               // catch (err) {
