@@ -185,16 +185,16 @@ export default {
             console.log(err.response);
           }
         }
-        if(Boolean(this.$root.store.is_done) == true)
-        {
-          this.$root.toast(
-          "warning",
-          "you have rated all the pictures and cannot rate anymore",
-          "warning"
-          );
-          this.$router.push("/MainPage");
-          return;
-        }
+        // if(Boolean(this.$root.store.is_done) == true)
+        // {
+        //   this.$root.toast(
+        //   "warning",
+        //   "you have rated all the pictures and cannot rate anymore",
+        //   "warning"
+        //   );
+        //   this.$router.push("/MainPage");
+        //   return;
+        // }
     },
 
     async submit_regular(size_full) {
@@ -368,7 +368,7 @@ export default {
   created() {
     // console.log(this.$root.store);
 
-    if(!(Boolean(localStorage.is_submitted) == true)){
+    if(!(Boolean(localStorage.is_submitted) == false)){
     this.text = [
       `בשלב הראשון של המשחק, עליכם לצפות ב-${this.$root.store.rankImages} תמונות, ולתת להן ציון שמשקף עד כמה אתם אוהבים אותן. אנחנו נציג בפניכם את כל ${this.$root.store.rankImages} התמונות בתוך חלון קטן כשהן מוקטנות. השהיית העכבר על כל תמונה תגדיל אותה קצת, ולחיצה עם העכבר על כל התמונה תגדיל אותה עוד.`,
       "הציונים לכל תמונה ניתנים על ידי גרירתה לתא המתאים בתחתית המסך. המערכת מאפשרת להעביר תמונות מתא אחד לתא אחר, עד שתרגישו שהציונים לכל התמונות אכן משקפים את טעמכם.",
