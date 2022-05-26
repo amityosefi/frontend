@@ -84,7 +84,7 @@ export default {
   },
   methods: {
     showModal() {
-      this.$refs.modal.setShow();
+      this.$refs.modal.setShow("mymodalA");
       // this.$refs.modal['myModal'].show()
     },
     shuffleArr(array){

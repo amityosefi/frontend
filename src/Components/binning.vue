@@ -1,5 +1,5 @@
 <template>
-  <div id="binning" @dragover.prevent>
+  <div v-if="!this.$root.store.is_done" id="binning" @dragover.prevent>
     
    <div>
     <div class="selection" >

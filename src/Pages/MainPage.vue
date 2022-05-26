@@ -2,9 +2,9 @@
   <div>
     <!-- 5 possible cases:
   1. didnt finish rating
-  2. didnt played today and can rate - good
+  2. didnt played today and can rate
   3. didnt played today and can not rate because already rate 126 images
-  4. played today and can rate - good
+  4. played today and can rate
   5. played today and can not rate because already rate 126 images
 
   rankImages = 72
@@ -13,7 +13,7 @@
 
     <!-- case 1 -->
 
-    <div v-if="!this.submitted">
+    <div v-if="!this.$root.store.is_submitted">
       <p class="parr">Hello {{ this.$root.store.fullname }}
         <br />
         To participate in the game you must first complete the grading of the
@@ -94,11 +94,7 @@
 
     <!-- case 4 -->
     <div
-      v-if="
-        !this.is_done &&
-          this.$root.store.last_time &&
-          this.now == this.$root.store.last_time
-      "
+      v-if="this.$root.store.is_submitted && !this.$root.store.is_done && this.now == this.$root.store.last_time"
     >
       <p class="parr">
         Hello {{ this.$root.store.fullname }}
@@ -125,7 +121,7 @@
       "
     >
       <p class="parr">
-        Hello {{ this.$root.store.fullname }}
+        hello {{ this.$root.store.fullname }}
         <br />
         Until now you earned: {{ this.$root.store.user_score }} points
         <br />

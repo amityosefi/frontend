@@ -116,7 +116,7 @@ export default {
 
   methods: {
     showModal() {
-      this.$refs.modal.setShow();
+      this.$refs.modal.setShow("mymodalA");
     },
     onSelectMultipleImage(selectedImages) {
       // console.log(this.Images);
