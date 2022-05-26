@@ -117,9 +117,9 @@ const shared_data = {
     // address:'https://coil2.cs.bgu.ac.il/',
     user_score: localStorage.user_score,
     last_time: localStorage.last_time,
-    is_submitted: JSON.parse(localStorage.is_submitted),
+    is_submitted: localStorage.is_submitted,
     extra_pics: localStorage.extra_pics,
-    is_done: JSON.parse(localStorage.is_done),
+    is_done: localStorage.is_done,
 
 
   login(username) {
@@ -216,7 +216,16 @@ const shared_data = {
         this.last_time = now;
     },
 };
-
+if(localStorage.is_submitted)
+{
+    shared_data.is_submitted = JSON.parse(localStorage.is_submitted);
+    console.log(shared_data.is_submitted)
+}
+if(localStorage.is_done)
+{
+    shared_data.is_done = JSON.parse(localStorage.is_done);
+    console.log(shared_data.is_done)
+}
 // shared_data.username = "s" 
 
 new Vue({
