@@ -1,8 +1,8 @@
 <template>
   <div class="mainDiv">
-    <h3>
+      <div class="title">
       Leave here a review for the webmasters
-    </h3>
+    </div>
     <br>
     <div class="text">
       <b-form-textarea
@@ -66,9 +66,18 @@ export default {
   margin: 10%;
   text-align: center;
 }
+
 .text{
     text-align: center;
         /* width: 30%; */
-
 }
+
+ .title {
+   margin: 0 auto;
+   font-family: Georgia, serif;
+  font-weight: 800;
+  font-size: 2.3vw;
+  color: #15555a;
+ }
+
 </style>

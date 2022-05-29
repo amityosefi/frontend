@@ -1,44 +1,62 @@
 <template>
   <div id="admin">
     <br />
-    <h1>Settings</h1>
-    <b-form id="form" @submit="onSubmit" @reset="onReset">
-      <div class="inputs">
-        <label for="range-1">Rank page - images amount</label>
-        <b-form-input
+    <div class="title">Settings</div>
+    <b-form id="form">
+      <!-- <div class="inputs"> -->
+        <!-- <label for="range-1">Rank page - images amount</label> -->
+        <!-- <b-form-input
           id="range-1"
           v-model="form.rankImages"
           type="range"
           min="60"
           max="126"
           step="6"
-        ></b-form-input>
-        <div class="mt-2">Value: {{ form.rankImages }}</div>
+        ></b-form-input> -->
+        <!-- <div class="mt-2">Value: {{ form.rankImages }}</div> -->
+        <div class="inputs">
+       <b><label for="range-1">Set images amount of rank page:</label></b>
+       <br />
+        <b-form-select
+          v-model="form.rankImages"
+          :options="[60, 66, 72, 78, 84, 90, 96, 102, 108, 114, 120, 126]"
+        ></b-form-select>
       </div>
       <div class="inputs">
-        <label for="range-2">Games - images amount</label>
+        <b><label for="range-2">Set images amount of the games:</label></b>
+        <br />
         <b-form-select
           v-model="form.firstGameImages"
           :options="[6, 8, 9, 12]"
         ></b-form-select>
       </div>
       <div class="inputs">
-        <label for="range-3">Games - selected images amount</label>
+        <b><label for="range-3">Set selected images amount of the games:</label></b>
+        <br />
         <b-form-select
           v-model="form.firstGameImagesSelected"
           :options="[1, 2, 3, 4, 5]"
         ></b-form-select>
       </div>
-      <b-button type="submit" variant="primary">Submit</b-button>
-      <b-button type="reset" variant="danger">Reset</b-button>
+      <br>
+      <!-- <b-button type="submit" variant="primary">Submit</b-button>
+      <b-button type="reset" variant="danger">Reset</b-button> -->
+      <div class="buttons">
+      <a href="#" class="btn btn-white btn-animate" id="butt1" @click="submit">Save</a>
+      <br>
+       <a href="#" class="btn btn-white btn-animate" @click="getAllUsers">Download CSV of users data</a>
+      <!-- <a href="#" class="btn btn-white btn-animate" id="butt2" @click="reset">Reset</a>  -->
+      </div>
     </b-form>
 
-    <br /><br />
-
-    <div class="getCSV">
-      <label for="range-3">Select here to downlowd users data</label>
-      <b-button @click="getAllUsers" variant="primary">download</b-button>
-    </div>
+    <!-- <div class="getCSV"> -->
+        <!-- <div style="margin: 0 auto"> -->
+      <!-- <b><label for="range-3">Get users data in CSV:</label></b>
+      <br> -->
+      <!-- <a href="#" class="btn btn-white btn-animate" @click="getAllUsers">Download CSV of users data</a> -->
+      <!-- <b-button @click="getAllUsers" variant="primary">Download</b-button> -->
+      <!-- </div> -->
+    <!-- </div> -->
     <!-- <div>
       <download-csv
         class="btn btn-default"
@@ -66,8 +84,8 @@ export default {
     };
   },
   methods: {
-    async onSubmit(event) {
-      event.preventDefault();
+    async submit() {
+      // event.preventDefault();
       if (this.firstGameImages <= this.firstGameImagesSelected) {
         this.$root.toast(
           "First game",
@@ -120,8 +138,8 @@ export default {
         }
       }
     },
-    onReset(event) {
-      event.preventDefault();
+    reset() {
+      // event.preventDefault();
       // Reset our form values
       this.form.rankImages = "72";
       this.form.firstGameImages = "8";
@@ -169,6 +187,10 @@ export default {
 #admin {
   text-align: center;
 }
+
+#form {
+  margin-top: 5px;
+}
 .custom-range {
   width: 40%;
   margin-left: 5%;
@@ -185,4 +207,81 @@ export default {
 .inputs {
   margin-top: 3%;
 }
+ .title {
+   font-family: Georgia, serif;
+  font-weight: 800;
+  font-size: 2.5vw;
+  color: #15555a;
+ }
+
+ .input-wrapper {
+  /* display: inline-block; */
+  text-align: left;
+}
+
+  .btn:link,
+  .btn:visited {
+    margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 16px;
+      font-family:Arial, Helvetica, sans-serif;
+      /* text-transform: uppercase; */
+      text-decoration: none;
+      padding: 12px 30px;
+      display: inline-block;
+      border-radius: 100px;
+      transition: all .2s;
+      /* position: absolute; */
+       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn:active {
+      transform: translateY(-1px);
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .btn-white {
+      background-color: #fff;
+      color: rgb(133, 133, 133);
+  }
+  
+  .btn::after {
+      content: "";
+      display: inline-block;
+      /* height: 100%;
+      width: 100%; */
+      border-radius: 100px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      transition: all .4s;
+  }
+  
+  .btn-white::after {
+      background-color: #fff;
+  }
+  
+  .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+  }
+  
+  .btn-animated {
+      animation: moveInBottom 5s ease-out;
+      animation-fill-mode: backwards;
+  }
+  .vue-select-image__thumbnail{
+    padding: 10px;
+  }
+
+  .buttons {
+    margin: 0 auto;
+  }
+
 </style>

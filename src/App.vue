@@ -1,11 +1,12 @@
 <template>
-  <div id="app">
-    <div class="app" v-if="!$root.store.username" >
+  <div>
+    <div class="app" v-if="!$root.store.username" :class="{ otherBackground: isSignIn }">
       <b-navbar toggleable="lg" type="dark"  class="navn">
-        <b-navbar-brand :to="{ name: 'HomePage' }">Home page</b-navbar-brand>
+        <!-- <b-navbar-brand :to="{ name: 'HomePage' }">Home page</b-navbar-brand> -->
         <!-- left side -->
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
+            <b-nav-item :to="{ name: 'HomePage' }">Home</b-nav-item>
             <b-nav-item :to="{ name: 'About' }">About</b-nav-item>
             <b-nav-item :to="{ name: 'Leaderboard' }">Leaderboard</b-nav-item>
             <b-nav-item v-if="!$root.store.email" :to="{ name: 'login' }">Login</b-nav-item>
@@ -20,7 +21,7 @@
           <!-- right side -->
           <b-navbar-nav class="ml-auto">
             <b-nav-item class="name" v-if="$root.store.fullname"> Hello {{$root.store.fullname}} </b-nav-item>
-            <b-nav-item v-if="$root.store.email" v-on:click="Logout">Log Out</b-nav-item>
+            <b-nav-item v-if="$root.store.email" v-on:click="Logout">Logout</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
@@ -32,11 +33,17 @@
 <script>
 
 export default {
+
   name: 'app',
   data() {
     return {
 
     };
+  },
+  computed: {
+    isSignIn() {
+      return this.$route.name === 'HomePage';
+    }
   },
   methods: {
     
@@ -100,13 +107,20 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
-  min-height: 100vh;
 }
+
+/* .otherBackground {
+  background-image: url("back6.jpg");
+} */
 
 .navn {
   font-weight: 550;
-  background-color: #e2c9af;
-  color: #ffffff;
+  /* background-color: #e2c9af; */
+  /* background-color: rgba(222, 184, 160, 0.949); */
+  background-color: rgba(255, 255, 255, 0.863);
+  /* border: #2c3e50; */
+  border: 2px solid #2c3e50;
+  color: #254553;
 }
 
 #nav {
@@ -119,8 +133,17 @@ export default {
 }
 
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+/* #nav a.router-link-exact-active { */
+  /* color: #42b983; */
+/* } */
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #254553;
+}
+
+.navbar-dark .navbar-nav .nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover {
+  color: #334d58;
 }
 
 .name {

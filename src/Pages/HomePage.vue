@@ -1,41 +1,62 @@
 <template>
-  <div class="home">
-    <!-- <div class="container">
-    <h2 class="title">
-        <span class="title-word title-word-1">Welcome</span>
-        <span class="title-word title-word-2">to</span>
-        <span class="title-word title-word-3">beautiful</span>
-        <br>
-        <span class="title-word title-word-4">Images</span>
-        <span class="title-word title-word-5">Game</span>
-    </h2>
-    </div> -->
+  <div>
+    <br>
     <div class="container">
   <div class="row">
     <div class="col-md-12 text-center" style="margin-bottom: 3px">
-      <div class="animate-charcter"> Welcome To Beautiful
+      <div class="title"> Welcome To The Game
         <br>
-         Images Game</div>
+         Of Beautiful Images</div>
     </div>
   </div>
 </div>
-<div class="imgg">
-  <img v-bind:src="'https://i.ibb.co/KGG6TW1/15.jpg'" alt="..." class="img-thumbnail" style="width: 600px; height: 400px;">
-</div>
 <br>
-<div class="start">
-    <div class="sign" v-if="!$root.store.email" >
-    <p class="text-center text-muted mt-2 mb-1">In order to play, 
-    <router-link to="InstructionsPage"> Sign up here</router-link></p>
-     <p class="text-center text-muted mt-2 mb-1">If you have an acoount,
-    <router-link to="login"> Log in here</router-link></p>
+<div class="content">
+<!-- <div class="im"> -->
+  <img v-bind:src="'https://i.ibb.co/KGG6TW1/15.jpg'" class="in-im">
+<!-- </div> -->
+<!-- <div class="text"> -->
+  <!-- <div class="exp">
+  This game made as a part of a research
+  <br>
+  in the field of aesthetics of images.
+  </div> -->
+  <div class="start">
+    <!-- <div class="text"> -->
+      <!-- <br> -->
+    <!-- <h3><strong>Info</strong></h3> -->
+    <!-- <br> -->
+    <p>This game made as a part of a research</p>
+    <p>in the field of aesthetics of images.</p>
+    <!-- </div> -->
+  <br>
+    <div v-if="!$root.store.email" >
+    <div style="font-size: 1.2vw">
+    <p>If you are new here </p>
+    </div>
+    <a href="#" class="btn btn-white btn-animate" style="margin-top: 4px" @click="register"> Sign up</a>
+    <br>
+    <!-- <router-link to="InstructionsPage"> Sign up</router-link></p> -->
+    <br>
+    <div style="font-size: 1.2vw">
+     <p>If you already have an account</p>
+     </div>
+     <a href="#" class="btn btn-white btn-animate" style="margin-top: 4px" @click="login">Log in</a> 
+    <!-- <router-link to="login"> Log in here</router-link></p> -->
     </div>
     <div v-if="$root.store.email">
         <!-- <p class="mt-4 mb-0"> -->
           <!-- <router-link to="RatePage">Click here</router-link> to start the game </p> -->
+          <div style="font-size: 1.2vw">
+          <p>In order to get to the game,</p>
+          <p>please click the button below</p>
+          </div>
+          <br>
           <a href="#" class="btn btn-white btn-animate" @click="submit">Start Play</a>  
     </div>
     </div>
+      </div>
+    <!-- </div> -->
   </div>
 </template>
 
@@ -61,189 +82,31 @@ export default {
     register() {
       this.$router.push("InstructionsPage");
     },
-      // submit(){
-      //   // console.log(this.checkSelect)
-      //   if (this.checkSelect != undefined)
-      //   {
-      //     this.$root.store.setAgree();
-      //     this.$router.push("MainPage");
-      //   }
-      //   else
-      //   {
-      //     alert("In order to proceed, you must confirm the terms and conditions")
-      //   }
-      // }vh;
   },
   created() {},
 };
 </script>
 <style >
-/* .home  {  */
-    /* height: 100%; */
 
-  /* background-image: url("15.jpg");
-  overflow: hidden;
-  background-size: cover;
-  width: 100%;
-  min-height: 100vh;
-  overflow-y: hidden; */
- /* } */
-.lead{
-  text-align: right;
-}
-.par{
- text-align: right;
- font-family: Calibri;
- /* margin-right: 5%;  */
- margin: 0 auto;
- margin-bottom: 10px;
- width: 60%;
- border: 5xp;
- border-style: groove;
- /* margin: auto; */
-/* width: 60%; */
-/* border: 5px solid #FFFF00; */
-padding: 10px;
- 
-}
-
-.title-word {
-  animation: color-animation 4s linear infinite;
-}
-
-.title-word-1 {
-  --color-1: #DF8453;
-  --color-2: #3D8DAE;
-  --color-3: #E4A9A8;
-    margin-left: 20px;
-}
-
-.title-word-2 {
-  --color-1: #DBAD4A;
-  --color-2: #ACCFCB;
-  --color-3: #17494D;
-    margin-left: 20px;
-}
-
-.title-word-3 {
-  --color-1: #ACCFCB;
-  --color-2: #E4A9A8;
-  --color-3: #ACCFCB;
-    margin-left: 20px;
-}
-
-.title-word-4 {
-  --color-1: #3D8DAE;
-  --color-2: #DF8453;
-  --color-3: #d3bd74;
-    margin-left: 20px;
-}
-
-.title-word-5 {
-  --color-1: #dd3c52;
-  --color-2: #dda2e9;
-  --color-3: #56a5c4;
-    margin-left: 20px;
-}
-
-@keyframes color-animation {
-  0%    {color: var(--color-1)}
-  32%   {color: var(--color-1)}
-  33%   {color: var(--color-2)}
-  65%   {color: var(--color-2)}
-  66%   {color: var(--color-3)}
-  99%   {color: var(--color-3)}
-  100%  {color: var(--color-1)}
-}
-
-/* Here are just some visual styles. 🖌 */
-
-.container {
-  /* display: grid; */
-  place-items: center;  
-  text-align: center;
-  /* margin-top: 30px; */
-  /* height: 33vh */
-}
-
-.title {
-  font-family: "Montserrat", sans-serif;
+ .title {
+   font-family: Georgia, serif;
   font-weight: 800;
-  font-size: 4vw;
-  /* margin-top: 30px; */
-  text-transform: uppercase;
-}
-
-.animate-charcter
-{
-   /* text-transform: uppercase; */
-     font-family: "Montserrat", sans-serif;
-     text-transform: uppercase;
-  font-weight: 1000;
-  font-size: 3.5vw;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  /* background-image: linear-gradient(
-    -225deg,
-     #ce9b7a 29%,
-    #FFFBD0 70%,
-    #c0562f 100%
-
-  ); */
-  color: #9e8672;
-  background-clip: text;
-  display: inline-block;
-  margin-bottom: 5px;
-
-  -moz-text-fill-color: white;
--webkit-text-fill-color: white;
--moz-text-stroke-color: #beb7b0;
--webkit-text-stroke-color: #beb7b0;
--moz-text-stroke-width: 2px;  
--webkit-text-stroke-width: 2px
-  /* height: 50vh */
-      /* font-size: 100px; */
-}
-
-@keyframes textclip {
-  to {
-    background-position: 200% center;
-  }
-}
+  font-size: 3.4vw;
+  color: #15555a;
+ }
 
 .start
 {
     /* margin-left: 400px; */
-    margin-top: 5px;
+    margin: 0 auto;
+    margin-top: 20px;
     text-align: center;
-    /* font-family: "Montserrat", sans-serif; */
     font-weight: 600;
-    font-size: 20px;
+    font-size: 1.3vw;
+    font-style: italic;
+    margin-right: 22vw;
     /* font-family: 'Blippo, fantasy' */
 }
-
-.sign {
-    font-style: italic;
-}
-
-.imgg {
-  width: 600px;
-  height: 400px;
-  margin: 0 auto;
-      display:block;
-    margin:auto;
-    margin-top: 5px;
-    margin-bottom: 2px;
-    /* border: 2px solid rgba(197, 197, 197, 0.918); */
-}
-
-  #butt2 {
-    margin-left: 25%;
-  }
-  
-  #butt1 {
-    margin-right: 25%;
-  }
 
   .btn:link,
   .btn:visited {
@@ -314,4 +177,29 @@ padding: 10px;
           transform: translateY(0px);
       }
   }
+
+
+  .in-im {
+    display:block;
+    margin-top: 5px;
+    margin-bottom: 30px;
+    width: 34vw;
+    height: 22vw;
+    border-radius: 8px;
+  }
+
+  .content {
+  display: flex;
+  /* margin: 0 auto; */
+}
+
+.content img {
+  margin-left: 16vw;
+  margin-right: 10px;
+  display: block;
+}
+
+.content h3,
+.content p {margin: 0;}
+
 </style>

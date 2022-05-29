@@ -31,7 +31,7 @@
           <binning ref="bins" :Bins="this.Bins" :Images="this.Images"></binning>
           <div
             class="d-flex justify-content-center"
-            style="margin-bottom: 15px; margin-top: 15px"
+            style="margin-bottom: 5px; margin-top: 5px"
           >
             <a
               href="#"
@@ -424,18 +424,7 @@ export default {
 };
 </script>
 <style>
-/* .main {
-  overflow: auto;
-  float: right;
-} */
 
-/* .moda {
-margin-left: 10px;
-} */
-
-/* .but {
-  outline: none !important;
-} */
 .instructor {
   margin-bottom: 0px;
 }
@@ -514,35 +503,6 @@ margin-left: 10px;
 .rtl {
     direction: rtl;
 }
-/* .div
-{
-    padding: 20px;
-    background-color: beige;
-    width: 30%;
-    height: fit-content;
-    box-shadow: 1px 1px 1px 1px black;
-    
-}
-
-.header
-{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: black;
-    text-shadow: 1px 1px #599e93;
-}
-.wrapper
-{
-    display: flex;
-    justify-content: center;
-    margin:5px;
-    
-}
-.content
-{
-    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    color: black;
-    text-shadow: 1px 1px #599e93;
-} */
 
 @keyframes moveInBottom {
   0% {

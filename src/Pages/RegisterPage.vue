@@ -97,11 +97,14 @@
 
                   <div class="button-container">
                     <div class="btnn btnn-succes btnn-lg text-body">
+                      <div class="text-center text-muted mt-4 mb-0">
                       <a class="btnn" @click="this.onRegister">
                         <h3>Register</h3>
-                      </a>
+                        </a>
+                        </div>
                     </div>
                   </div>
+                  
                   <p class="text-center text-muted mt-4 mb-0">Already have an account?
                     <router-link to="login"> Login here</router-link></p>
 <!--                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>-->
@@ -289,6 +292,9 @@ export default {
 </script>
 
 <style scoped>
+.center {
+  margin: 0 auto;
+}
 .gradient-custom-3 {
   /* fallback for old browsers */
   /* background: #84fab0; */
@@ -312,9 +318,9 @@ export default {
 
 
 .button-container{
-  position: relative;
+  /* position: relative; */
   overflow: hidden !important;
-  display: inline-block;
+  /* display: inline-block; */
 }
 
 
@@ -377,5 +383,10 @@ export default {
 
 .btnn {
   cursor: pointer;
+  /*
+  text-align: center;
+  margin: auto; */
+  /* display: flex;
+  justify-content: center; */
 }
 </style>

@@ -405,7 +405,7 @@ body {
   max-height: 400px;
   overflow-y: scroll;
   justify-self: center;
-  margin-bottom: 3%;
+  margin-bottom: 1.5%;
   margin-left: auto;
   margin-right: auto;
   display: flex;
@@ -418,7 +418,6 @@ body {
 }
 .bin {
   cursor: pointer;
-  margin-top: 2px;
 }
 .break {
   flex-basis: 100%;

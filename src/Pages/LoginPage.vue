@@ -62,9 +62,11 @@
 
                   <div class="button-container">
                     <div class="btnn btnn-succes btnn-lg text-body">
+                    <div class="text-center text-muted mt-4 mb-0">
                       <a class="btnn" @click="this.onLogin">
                         <h3>Login</h3>
                       </a>
+                      </div>
                     </div>
                   </div>
                   <p class="text-center text-muted mt-4 mb-0">
@@ -236,11 +238,11 @@ export default {
 }
 
 
-.button-container{
-  position: relative;
-  overflow: hidden !important;
-  display: inline-block;
-}
+/* .button-container{ */
+  /* position: relative; */
+  /* overflow: hidden !important; */
+  /* display: inline-block; */
+/* } */
 
 
 
@@ -298,5 +300,9 @@ export default {
 
 .btnn {
   cursor: pointer;
+  /* text-align: center;
+  margin: auto;
+  display: flex;
+  justify-content: center; */
 }
 </style>
