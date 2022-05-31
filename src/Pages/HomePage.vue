@@ -4,9 +4,9 @@
     <div class="container">
   <div class="row">
     <div class="col-md-12 text-center" style="margin-bottom: 3px">
-      <div class="title"> Welcome To The Game
+      <div class="title"> Welcome to the Game of
         <br>
-         Of Beautiful Images</div>
+         Beautiful Images</div>
     </div>
   </div>
 </div>
@@ -26,8 +26,9 @@
       <!-- <br> -->
     <!-- <h3><strong>Info</strong></h3> -->
     <!-- <br> -->
-    <p>This game made as a part of a research</p>
-    <p>in the field of aesthetics of images.</p>
+    <p>This game was developed as a part
+</p>
+    <p>of research on aesthetic preferences.</p>
     <!-- </div> -->
   <br>
     <div v-if="!$root.store.email" >
@@ -48,11 +49,11 @@
         <!-- <p class="mt-4 mb-0"> -->
           <!-- <router-link to="RatePage">Click here</router-link> to start the game </p> -->
           <div style="font-size: 1.2vw">
-          <p>In order to get to the game,</p>
-          <p>please click the button below</p>
+          <p>To play the game,</p>
+          <p>please click Start playing</p>
           </div>
           <br>
-          <a href="#" class="btn btn-white btn-animate" @click="submit">Start Play</a>  
+          <a href="#" class="btn btn-white btn-animate" @click="submit">Start playing</a>  
     </div>
     </div>
       </div>

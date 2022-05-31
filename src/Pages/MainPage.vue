@@ -45,7 +45,7 @@
         Until now you earned: {{ this.$root.store.user_score }} points
              <br />
       <br />
-        To start the game please choose Take me to the game
+        To start the game please choose Take me to the game!
       <br /><br>
       <a
         href="#"
@@ -55,10 +55,10 @@
       >
       </div>
       <br>
-      <p class="parr">For rating more images please choose Continue Ratings
+      <p class="parr">For rate additional images please choose Continue Ratings
         <br /><br>
       <a href="#" class="btn btn-white btn-animate" @click="rate"
-        >Continue Ratings</a
+        >Continue Rating</a
       >
       </p>
     </div>
@@ -81,7 +81,7 @@
         <br />
         Your current score is {{ this.$root.store.user_score }} points
       <br />
-        For start the game please click the buttom below
+        To start the game please choose Take me to the game!
         <br><br>
       <a
         href="#"
@@ -107,7 +107,7 @@
       
       <br /><br />
       <a href="#" class="btn btn-white btn-animate" @click="rate"
-        >Continue Ratings</a
+        >Continue Rating</a
       >
       </p>
     </div>

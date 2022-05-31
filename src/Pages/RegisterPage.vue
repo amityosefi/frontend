@@ -40,18 +40,18 @@
                     </b-form-invalid-feedback>
                   </b-form-group>
 
-                  <b-form-group id="input-group-password" label-cols="4" label-cols-lg="4" label="Password" label-for="password">
+                  <!-- <b-form-group id="input-group-password" label-cols="4" label-cols-lg="4" label="Password" label-for="password">
                     <b-form-input id="password" type="password" v-model="$v.form.password.$model" :state="validateState('password')" style="width: 300px;"></b-form-input>
                     <b-form-invalid-feedback v-if="!$v.form.password.required">
                       Password is required
-                    </b-form-invalid-feedback>
+                    </b-form-invalid-feedback> -->
                     <!-- <b-form-invalid-feedback v-if="$v.form.password.required && !$v.form.password.length">
                       Password length should be between 5-10 characters
                     </b-form-invalid-feedback>
                     <b-form-invalid-feedback v-else-if="!$v.form.password.style">
                       Password must contain at least one digit and one letter
                     </b-form-invalid-feedback> -->
-                  </b-form-group>
+                  <!-- </b-form-group>
 
                   <b-form-group id="input-group-confirmedPassword" label-cols="4" label-cols-lg="4" label="Repeat your password" label-for="confirmedPassword" style="margin-bottom: 1px">
                     <b-form-input id="confirmedPassword" type="password" v-model="$v.form.confirmedPassword.$model" :state="validateState('confirmedPassword')" style="width: 300px;"></b-form-input>
@@ -61,7 +61,7 @@
                     <b-form-invalid-feedback v-else-if="!$v.form.confirmedPassword.sameAsPassword">
                       Passwords don't match
                     </b-form-invalid-feedback>
-                  </b-form-group>
+                  </b-form-group> -->
 
                   <br>
 
@@ -125,7 +125,7 @@ import {
   // minLength,
   // maxLength,
   // alpha,
-  sameAs,
+  // sameAs,
 } from "vuelidate/lib/validators";
 import numeric from "vuelidate/lib/validators/numeric";
 // import numeric from "vuelidate/lib/validators/numeric";
@@ -139,8 +139,8 @@ export default {
         fullname: "",
         // lastname: "",
         email: null,
-        password: "",
-        confirmedPassword: "",
+        // password: "",
+        // confirmedPassword: "",
         gender: null,
         age: "",
       },
@@ -189,11 +189,11 @@ export default {
               this.$root.store.address+"register",
               {
                 Email: this.form.email,
-                Password: this.form.password,
+                // Password: this.form.password,
                 Fullname:  this.form.fullname,
                 // LastName: this.form.lastname,
                 Gender: genderToSend,
-                Age: Number(this.form.age),
+                Age: Math.floor(this.form.age),
               }
             );
             console.log(response.data)
@@ -270,13 +270,13 @@ export default {
         required,
         style: (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v)
       },
-      password: {
-        required,
-      },
-      confirmedPassword: {
-        required,
-        sameAsPassword: sameAs("password")
-      },
+      // password: {
+      //   required,
+      // },
+      // confirmedPassword: {
+      //   required,
+      //   sameAsPassword: sameAs("password")
+      // },
       gender: {
         required
       },

@@ -3,11 +3,14 @@
   <br>
   <br>
   <div style="font-weight: bold; font-size: 20px">
-  We are three students that built this project for Prof. Noam Tracktinsky and Dr. Denis Klimov,
+  We are undergraduate students at the department of Software and Information Systems Engineering,
+  <br> 
+  Ben-Gurion University of the Negev. We developed this site as part of our capstone engineering
   <br>
-   who are interested in a research of the field of aesthetics of images.
+  project under the supervisions of Prof. Noam Tractinsky and Dr. Denis Klimov, wo are interested in
   <br>
-  We study at the Ben-Gurion University, and have a BSc in Software and Information Systems Engineering. 
+  studying people’s preferences of aesthetic images.
+
   <br>
 
   </div>

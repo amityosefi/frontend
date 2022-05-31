@@ -9,7 +9,7 @@
     <br />
     <div>
       <div v-if="this.isLoading">
-        <div class="load">Loading ...</div>
+        <div class="load">Loading ... please wait</div>
         <div
           style="
             margin-top: 2%;
@@ -367,6 +367,7 @@ export default {
 
   created() {
     // console.log(this.$root.store);
+    // this.showModal("mymodalA");
 
     if(!(Boolean(localStorage.is_submitted) == false)){
     this.text = [

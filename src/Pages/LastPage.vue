@@ -7,7 +7,7 @@
       <br>
       Game Over! You earned {{this.$root.store.today_score}} points out of {{4*this.$root.store.firstGameImagesSelected}} today. See you tomorrow!
       <br />
-      In total, now you have {{ this.$root.store.user_score }} points
+      In total, now you have {{ this.$root.store.user_score }} points.
 
       </p>
     <br />

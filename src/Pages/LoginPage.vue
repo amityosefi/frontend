@@ -30,7 +30,7 @@
                     </b-form-invalid-feedback>
                   </b-form-group>
 
-                  <b-form-group
+                  <!-- <b-form-group
                     id="input-group-password"
                     label-cols-sm="3"
                     label="Password"
@@ -45,7 +45,7 @@
                     ></b-form-input>
                     <b-form-invalid-feedback v-if="!$v.form.password.required">
                       Password is required
-                    </b-form-invalid-feedback>
+                    </b-form-invalid-feedback> -->
                     <!-- <b-form-invalid-feedback
                       v-if="
                         $v.form.password.required && !$v.form.password.length
@@ -58,7 +58,7 @@
                     >
                       Password must contain at least one digit and one letter
                     </b-form-invalid-feedback> -->
-                  </b-form-group>
+                  <!-- </b-form-group> -->
 
                   <div class="button-container">
                     <div class="btnn btnn-succes btnn-lg text-body">
@@ -102,7 +102,7 @@ export default {
     return {
       form: {
         email: null,
-        password: "",
+        // password: "",
       },
       errors: [],
       validated: false,
@@ -118,7 +118,7 @@ export default {
       try {
         const response = await this.axios.post(this.$root.store.address+"login", {
           Email: this.form.email,
-          Password: this.form.password,
+          // Password: this.form.password,
         });
 
         // const response2 = await this.axios.get(`https://coil2.cs.bgu.ac.il/getFullname/${this.form.email}`, {
@@ -162,12 +162,12 @@ export default {
           }
         } 
         else {
-          this.$root.toast("Can't login", "Username or password incorrect", "warning");
+          this.$root.toast("Can't login", "Email  incorrect", "warning");
           // this.form.email = "";
           // this.form.password = "";
         }
       } catch (err) {
-          this.$root.toast("Can't login", "Username or password incorrect", "warning");
+          this.$root.toast("Can't login", "Email incorrect", "warning");
           // this.form.email = "";
           // this.form.password = "";
           // console.log(err.response);
@@ -193,15 +193,15 @@ export default {
         required,
         style: (v) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(v),
       },
-      password: {
-        required,
+      // password: {
+      //   required,
         // length: (p) => minLength(5)(p) && maxLength(10)(p),
         // style: (v) => /^(?=.*[0-9])(?=.*[a-zA-Z])/.test(v),
-      },
-      confirmedPassword: {
-        required,
-        sameAsPassword: sameAs("password"),
-      },
+      // },
+      // confirmedPassword: {
+      //   required,
+      //   sameAsPassword: sameAs("password"),
+      // },
       gender: {
         required,
       },

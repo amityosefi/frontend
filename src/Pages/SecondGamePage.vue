@@ -35,7 +35,7 @@
         <br />
         <div>
         <div v-if="this.isLoading">
-        <div class="load"> Loading ... </div>
+        <div class="load"> Loading ... please wait </div>
         <div style="margin-top: 2%; position: absolute; left: 51%; margin-left: -51px;">
         <b-spinner
           variant="danger"
