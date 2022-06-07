@@ -215,7 +215,6 @@ const shared_data = {
         this.last_time = now;
     },
 };
-
 if(localStorage.is_submitted)
 {
     shared_data.is_submitted = JSON.parse(localStorage.is_submitted);
@@ -226,8 +225,6 @@ if(localStorage.is_done)
     shared_data.is_done = JSON.parse(localStorage.is_done);
     console.log(shared_data.is_done)
 }
-
-
 // shared_data.username = "s" 
 
 new Vue({
