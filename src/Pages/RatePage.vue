@@ -197,6 +197,13 @@ export default {
           } catch (err) {
             console.log(err.response);
           }
+
+          console.log("h2");
+
+          if (this.$root.store.is_done == true)
+          {
+            this.showModal("mymodalC");
+          }
         }
         // if(Boolean(this.$root.store.is_done) == true)
         // {
@@ -241,6 +248,7 @@ export default {
         id: user_id,
       });
 
+      console.log("h1");
       if (this.$root.store.is_done == true ) {
         this.showModal("mymodalC"); 
       }
@@ -448,17 +456,20 @@ export default {
     position:absolute;
     right: 5.5em;
     top: 11em;
+    margin-bottom: 5em;
 }
 #butt4{
     position:absolute;
     right: 5.5em;
     top: 7em;
+    margin-bottom: 5em;
 }
 
 #butt1 {
     position:absolute;
     left: 4em;
     top: 7em;
+    margin-bottom: 5em;
 }
 #butt3 {
   margin-left: 1%;

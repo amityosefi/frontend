@@ -107,7 +107,7 @@ export default {
           }
         );
         const arr = response.data.best.concat(response.data.worst); // best: 8, worst: 24 by default
-        
+        console.log(arr);
         const res = [];
         arr.map((img) => {
           let str = "data:image/jpg;base64, " + img.src;

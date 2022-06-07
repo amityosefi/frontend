@@ -30,8 +30,8 @@
     <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
     <br /><br /><br />
 
-    <div class="same-divs" style="float: left; margin-left: 80px">Least liked</div>
-    <div class="same-divs" style="float: right; margin-right: 80px">Most liked</div>
+    <div class="leastLiked">Least liked</div>
+    <div class="mostLiked">Most liked</div>
 
     <div class="bins">
       <div class="Row">
@@ -439,6 +439,18 @@ body {
 
 div.modal.model-1{
   width: 400px;
+}
+
+.leastLiked {
+  float: left;
+  margin-left: 7em;
+  /* margin-top: 1em; */
+}
+
+.mostLiked {
+  float: right;
+  margin-right: 7em;
+  /* margin-top: 1em; */
 }
 
 /* .pic:hover
