@@ -113,7 +113,7 @@ const shared_data = {
     numRanked:undefined,
     RankedImages:undefined,
     unRankedImages:undefined,
-    address:'http://localhost:8080/',
+    address:'http://localhost:443/',
     // address:'https://coil2.cs.bgu.ac.il/',
     user_score: localStorage.user_score,
     last_time: localStorage.last_time,

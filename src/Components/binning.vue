@@ -341,6 +341,7 @@ export default {
     this.instructionsModal = true
     let binDict = {1:this.arrGrade1, 2:this.arrGrade2, 3:this.arrGrade3, 4:this.arrGrade4, 5:this.arrGrade5
       , 6:this.arrGrade6, 7:this.arrGrade7, 8:this.arrGrade8, 9:this.arrGrade9, 10:this.arrGrade10}
+    console.log("my bins", this.$props.Bins);
     for(var i in this.$props.Bins)
     {
       let img = this.$props.Bins[i]

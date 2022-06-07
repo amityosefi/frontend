@@ -342,7 +342,7 @@ export default {
 
         let response = res.data[0];
         let response2 = res.data[1];
-
+        console.log("response2",response2);
         let arr = [];
         let arr2 = [];
         response.map((img) => {
@@ -356,7 +356,7 @@ export default {
 
         this.Images = arr;
         this.Bins = arr2;
-
+        console.log("BEANS", this.Bins);
         this.isLoading = false;
         this.showModal("mymodalA");
       } catch (err) {
