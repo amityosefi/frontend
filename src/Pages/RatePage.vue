@@ -181,6 +181,19 @@ export default {
           try {
             console.log("submitted 6");
             await this.submit_regular(6);
+            if(this.$root.store.extra_pics.length == 0)
+            {
+               localStorage.setItem("is_done", true);
+              this.$root.store.is_done = true;
+          
+              await this.axios.post(
+              this.$root.store.address + `images/is_done`,
+              {
+                is_done: true,
+                user_id: this.$root.store.u_id
+              }
+              );
+            }
           } catch (err) {
             console.log(err.response);
           }
@@ -228,7 +241,7 @@ export default {
         id: user_id,
       });
 
-      if (this.$root.store.is_done == true || this.$root.store.extra_pics.length == 0) {
+      if (this.$root.store.is_done == true ) {
         this.showModal("mymodalC"); 
       }
       else {
@@ -319,7 +332,6 @@ export default {
         this.Images = arr;
         this.Bins = arr2;
         this.isLoading = false;
-        this.showModal();
       } catch (err) {
         console.log(err.response);
       }
