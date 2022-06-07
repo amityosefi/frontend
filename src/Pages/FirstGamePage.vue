@@ -1,6 +1,5 @@
 <template>
   <div>
-
         <Modal ref="modal" :Text="this.text"> </Modal>
         <br />
         <div>
@@ -107,7 +106,7 @@ export default {
           }
         );
         const arr = response.data.best.concat(response.data.worst); // best: 8, worst: 24 by default
-        console.log(arr);
+        // console.log(arr);
         const res = [];
         arr.map((img) => {
           let str = "data:image/jpg;base64, " + img.src;
@@ -179,7 +178,7 @@ export default {
               }
             );
             this.goodImages = [];
-            this.$router.push("/LastPage");
+            this.$router.push("/SecondGamePage");
           } catch (err) {
             console.log(err);
           }
