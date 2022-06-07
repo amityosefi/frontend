@@ -14,7 +14,9 @@
     <!-- case 1 -->
 
     <div v-if="!this.$root.store.is_submitted">
-      <p class="parr">Hello {{ this.$root.store.fullname }}
+      <p class="parr">
+        <b>Hello {{ this.$root.store.fullname }}</b>
+      <br>
         <br />
         To participate in the game you must first complete the grading of the
         pictures.
@@ -37,7 +39,7 @@
     >
       <div class="parr" >
         <br>
-        Hello {{ this.$root.store.fullname }}
+        <b>Hello {{ this.$root.store.fullname }}</b>
         <br />
         <br>
         <div v-if="this.last_date == 'never'">You didnt play today</div>
@@ -73,7 +75,7 @@
     >
       <div class="parr">
         <br>
-        <b>Hello {{ this.$root.store.fullname }} </b>
+        <b>Hello {{ this.$root.store.fullname }}</b>
         <br />
         <br>
         <div v-if="this.last_date == 'never'">You didnt play today,</div>
@@ -97,7 +99,8 @@
       v-if="this.$root.store.is_submitted && !this.$root.store.is_done && this.now == this.$root.store.last_time"
     >
       <p class="parr">
-        Hello {{ this.$root.store.fullname }}
+        <b>Hello {{ this.$root.store.fullname }}</b>
+        <br>
         <br />
         According to our records you have already played today, and according to
         the rules of the game you can only play again tomorrow.
@@ -121,7 +124,8 @@
       "
     >
       <p class="parr">
-        hello {{ this.$root.store.fullname }}
+        <b>Hello {{ this.$root.store.fullname }}</b>
+        <br>
         <br />
         Until now you earned: {{ this.$root.store.user_score }} points
         <br />
@@ -191,6 +195,7 @@ export default {
   color: black;
   font-size: 2.5ch;
   text-align: center;
+  margin-top: 5px;
   /* padding-right: 25%; */
 }
 /* #butt5 {

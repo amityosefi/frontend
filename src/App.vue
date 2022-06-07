@@ -119,8 +119,10 @@ export default {
   /* background-color: rgba(222, 184, 160, 0.949); */
   background-color: rgba(255, 255, 255, 0.863);
   /* border: #2c3e50; */
-  border: 2px solid #2c3e50;
-  color: #254553;
+  /* border: 2px solid #2c3e50; */
+  color: #d9a86c;
+  text-shadow: 0.5px 0.5px #ebebeb;
+  border-bottom: 0.5px solid rgb(103, 83, 64);
 }
 
 #nav {
@@ -138,12 +140,12 @@ export default {
 /* } */
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #254553;
+  color: #947964;
 }
 
 .navbar-dark .navbar-nav .nav-link:focus,
 .navbar-dark .navbar-nav .nav-link:hover {
-  color: #334d58;
+  color: #a58975;
 }
 
 .name {

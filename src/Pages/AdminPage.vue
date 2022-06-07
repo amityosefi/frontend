@@ -42,7 +42,7 @@
       <!-- <b-button type="submit" variant="primary">Submit</b-button>
       <b-button type="reset" variant="danger">Reset</b-button> -->
       <div class="buttons">
-      <a href="#" class="btn btn-white btn-animate" id="butt1" @click="submit">Save</a>
+      <a href="#" class="btn btn-white btn-animate" @click="submit">Save</a>
       <br>
        <a href="#" class="btn btn-white btn-animate" @click="getAllUsers">Download CSV of users data</a>
       <!-- <a href="#" class="btn btn-white btn-animate" id="butt2" @click="reset">Reset</a>  -->

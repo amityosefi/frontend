@@ -47,13 +47,13 @@
               @click="saveRate(true)"
               >Save</a
             >
-            <a
+            <!-- <a
               href="#"
               class="btn btn-white btn-animate"
               id="butt3"
               @click="saveRate(false)"
               >Save and exit</a
-            >
+            > -->
             <a
               href="#"
               class="btn btn-white btn-animate"
@@ -319,7 +319,7 @@ export default {
         this.Images = arr;
         this.Bins = arr2;
         this.isLoading = false;
-        // this.showModal();
+        this.showModal();
       } catch (err) {
         console.log(err.response);
       }
@@ -358,7 +358,7 @@ export default {
         this.Bins = arr2;
 
         this.isLoading = false;
-        this.showModal("mymodalA");
+        // this.showModal("mymodalA");
       } catch (err) {
         console.log(err.response);
       }
@@ -425,20 +425,28 @@ export default {
 };
 </script>
 <style>
-
+.content {
+  position:relative;
+}
 .instructor {
   margin-bottom: 0px;
 }
 
 #butt2 {
-  margin-left: 35%;
+    position:absolute;
+    right: 5.5em;
+    top: 11em;
 }
 #butt4{
-  margin-left: 1%;
+    position:absolute;
+    right: 5.5em;
+    top: 7em;
 }
 
 #butt1 {
-  margin-left: 1%;
+    position:absolute;
+    left: 4em;
+    top: 7em;
 }
 #butt3 {
   margin-left: 1%;
