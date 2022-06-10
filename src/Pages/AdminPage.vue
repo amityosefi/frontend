@@ -166,17 +166,17 @@ export default {
                 csv += row.Age + ',';
                 csv += "\n";
         });
-        this.downloadCSV(csv);
+        this.downloadCSV(csv, 'Users.csv');
         
       } catch (error) {
         console.log(error);
       }
     },
-    downloadCSV(csv){
+    downloadCSV(csv, csvName){
       const anchor = document.createElement('a');
         anchor.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
         anchor.target = '_blank';
-        anchor.download = 'Users.csv';
+        anchor.download = csvName;
         anchor.click();
     },
   },
