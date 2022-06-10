@@ -28,7 +28,7 @@
       <!-- </viewer> -->
     </div>
     <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
-    <br /><br /><br />
+    <br><br><br><br>
 
     <div class="leastLiked">Least liked</div>
     <div class="mostLiked">Most liked</div>
@@ -368,6 +368,7 @@ export default {
   margin: 0 auto;
   padding: 0;
   display: block;
+  top: 15px;
 }
 body {
   background-color: #fff0f0;
@@ -427,6 +428,7 @@ body {
 .bins {
   align-items: center;
   margin-left: 5px;
+  margin-top: 1em;
 }
 #instructor{
   margin-bottom: 5%;
@@ -444,13 +446,13 @@ div.modal.model-1{
 .leastLiked {
   float: left;
   margin-left: 7em;
-  /* margin-top: 1em; */
+  margin-top: 1.5em;
 }
 
 .mostLiked {
   float: right;
   margin-right: 7em;
-  /* margin-top: 1em; */
+  margin-top: 1.5em;
 }
 
 /* .pic:hover

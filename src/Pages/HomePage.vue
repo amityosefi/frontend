@@ -50,7 +50,7 @@
           <!-- <router-link to="RatePage">Click here</router-link> to start the game </p> -->
           <div style="font-size: 1.2vw">
           <p>To play the game,</p>
-          <p>please click Start playing</p>
+          <p>please click the button below</p>
           </div>
           <br>
           <a href="#" class="btn btn-white btn-animate" @click="submit">Start playing</a>  
@@ -106,6 +106,7 @@ export default {
     font-size: 1.3vw;
     font-style: italic;
     margin-right: 22vw;
+    color: #805745;
     /* font-family: 'Blippo, fantasy' */
 }
 

@@ -237,14 +237,14 @@ export default {
   #buttt2 {
     float: left;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
     margin-left: 20%;
   }
   
   #buttt1 {
     float: right;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
     margin-right: 20%;
   }
 

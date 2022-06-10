@@ -220,13 +220,15 @@ export default {
   #butt2 {
     float: left;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
+    margin-left: 20%;
   }
   
   #butt1 {
     float: right;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
+    margin-right: 20%;
   }
 
   .btn:link,

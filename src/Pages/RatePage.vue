@@ -454,22 +454,22 @@ export default {
 
 #butt2 {
     position:absolute;
-    right: 5.5em;
-    top: 11em;
-    margin-bottom: 5em;
+    right: 88px;
+    top: 158px;
+    margin-bottom: 80px;
 }
 #butt4{
     position:absolute;
-    right: 5.5em;
-    top: 7em;
-    margin-bottom: 5em;
+    right: 88px;
+    top: 96px;
+    margin-bottom: 80px;
 }
 
 #butt1 {
     position:absolute;
-    left: 4em;
-    top: 7em;
-    margin-bottom: 5em;
+    left: 64px;
+    top: 96px;
+    margin-bottom: 80px;
 }
 #butt3 {
   margin-left: 1%;

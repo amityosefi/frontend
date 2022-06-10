@@ -40,10 +40,9 @@
     <br>
     <div class="d-flex justify-content-center">
       <br>
-      <button type="button" class="btn btn-outline-danger" v-on:click="submit">
+      <button type="button" class="btn btn-outline-secondary" v-on:click="submit">
        המשך      </button>
     </div>
-    <br>
     </div>
   </div>
 </template>
