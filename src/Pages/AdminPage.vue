@@ -45,27 +45,13 @@
       <a href="#" class="btn btn-white btn-animate" @click="submit">Save</a>
       <br>
        <a href="#" class="btn btn-white btn-animate" @click="getAllUsers">Download CSV of users data</a>
-      <!-- <a href="#" class="btn btn-white btn-animate" id="butt2" @click="reset">Reset</a>  -->
+      <br>
+       <a href="#" class="btn btn-white btn-animate" @click="getAllReview">Download CSV of reviews</a>
+      <br>
+       <a href="#" class="btn btn-white btn-animate" @click="getAllImages">Download CSV of images id & category</a>
+      
       </div>
     </b-form>
-
-    <!-- <div class="getCSV"> -->
-        <!-- <div style="margin: 0 auto"> -->
-      <!-- <b><label for="range-3">Get users data in CSV:</label></b>
-      <br> -->
-      <!-- <a href="#" class="btn btn-white btn-animate" @click="getAllUsers">Download CSV of users data</a> -->
-      <!-- <b-button @click="getAllUsers" variant="primary">Download</b-button> -->
-      <!-- </div> -->
-    <!-- </div> -->
-    <!-- <div>
-      <download-csv
-        class="btn btn-default"
-        :data="json_data"
-        name="filename.csv"
-      >
-        Download CSV (This is a slot)
-      </download-csv>
-    </div> -->
   </div>
 </template>
 
@@ -145,6 +131,52 @@ export default {
       this.form.firstGameImages = "8";
       this.form.firstGameImagesSelected = "2";
     },
+
+    async getAllImages(){
+     try {
+        const response = await this.axios.post(
+          this.$root.store.address+"admin/images",
+          {
+            isAdmin: this.$root.store.isAdmin,
+          }
+        );
+
+
+        let csv = 'Id, imagesInFolder, Category \n';
+        response.data.forEach((row) => {
+                csv += row.Id + ',';
+                csv += row.Url.slice(17) + ',';
+                csv += row.Category + ',';
+                csv += "\n";
+        });
+        this.downloadCSV(csv, 'Images.csv');
+        
+      } catch (error) {
+        console.log(error);
+      }
+    },
+
+    async getAllReview(){
+     try {
+        const response = await this.axios.post(
+          this.$root.store.address+"admin/reviews",
+          {
+            isAdmin: this.$root.store.isAdmin,
+          }
+        );
+
+
+        let csv = 'review \n';
+        response.data.forEach((row) => {
+                csv += row.review + ',';
+                csv += "\n";
+        });
+        this.downloadCSV(csv, 'Reviews.csv');
+        
+      } catch (error) {
+        console.log(error);
+      }
+    },
     async getAllUsers() {
       try {
         const response = await this.axios.post(
@@ -153,6 +185,7 @@ export default {
             isAdmin: this.$root.store.isAdmin,
           }
         );
+
 
         let csv = 'Id, Email,FullName,Gender,Age \n';
         response.data.forEach((row) => {
