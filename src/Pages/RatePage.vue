@@ -306,19 +306,7 @@ export default {
         for (var j = 6; j < len; j++) {
           temp.push(this.$root.store.extra_pics[j]);
         }
-        // if (temp.length == 0) {
-        //   localStorage.setItem("is_done", true);
-        //   this.$root.store.is_done = true;
-          
-        //   await this.axios.post(
-        //   this.$root.store.address + `images/is_done`,
-        //     {
-        //       is_done: true,
-        //       user_id: this.$root.store.u_id
-        //     }
-        //   );
-          
-        // }
+        
         this.$root.store.extra_pics = temp;
         localStorage.extra_pics = JSON.stringify(this.$root.store.extra_pics);
 
@@ -419,7 +407,7 @@ export default {
       }
       let ranked_a  = localStorage.RankedImages == undefined;
       let submitted_a = Boolean(this.$root.store.is_submitted) == true;
-      console.log("is done?",this.$root.store.is_submitted);
+      console.log("is submitted?",this.$root.store.is_submitted);
       console.log("why?", submitted_a);
       // let ranked_b = typeof(localStorage.RankedImages) == "undefined";
       // let submitted_b = typeof(localStorage.is_submitted) == "undefined";

@@ -15,7 +15,7 @@
         ></b-form-input> -->
         <!-- <div class="mt-2">Value: {{ form.rankImages }}</div> -->
         <div class="inputs">
-       <b><label for="range-1">Set images amount of rank page:</label></b>
+       <b><label for="range-1">Choose number of images to appear in initial ranking:</label></b>
        <br />
         <b-form-select
           v-model="form.rankImages"
@@ -23,7 +23,7 @@
         ></b-form-select>
       </div>
       <div class="inputs">
-        <b><label for="range-2">Set images amount of the games:</label></b>
+        <b><label for="range-2">Choose number of images to appear in each round of the games:</label></b>
         <br />
         <b-form-select
           v-model="form.firstGameImages"
@@ -31,7 +31,7 @@
         ></b-form-select>
       </div>
       <div class="inputs">
-        <b><label for="range-3">Set selected images amount of the games:</label></b>
+        <b><label for="range-3">Choose number of 'correct' images to appear in each round of the games:</label></b>
         <br />
         <b-form-select
           v-model="form.firstGameImagesSelected"
@@ -57,6 +57,15 @@
       <br>
        <a href="#" class="btn btn-white btn-animate" @click="getAllImages">Download CSV of images id & category</a>
       
+      
+      <!-- <a href="#" class="btn btn-white btn-animate" id="butt2" @click="reset">Reset</a>  -->
+      <br>
+       <a href="#" class="btn btn-white btn-animate" @click="getRanksByImage">Download CSV of ranks data per image</a>
+      <!-- <a href="#" class="btn btn-white btn-animate" id="butt2" @click="reset">Reset</a>  -->
+      <br>
+       <a href="#" class="btn btn-white btn-animate" @click="getRanksByUser">Download CSV of ranks data per user</a>
+      <br>
+       <a href="#" class="btn btn-white btn-animate" @click="getRanksPerUser">Download CSV of ranks per user</a>
       </div>
     </b-form>
   </div>
@@ -82,7 +91,7 @@ export default {
       if (this.firstGameImages <= this.firstGameImagesSelected) {
         this.$root.toast(
           "First game",
-          "You cant choose first game images less or equl than first game images selected",
+          "Number of correct images has to be less than or equal to the total number of images",
           "error"
         );
       } else {
@@ -263,6 +272,112 @@ export default {
                 csv += "\n";
         });
         this.downloadCSV(csv, 'Users.csv');
+        
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getRanksByImage()
+    {
+      try {
+        const response = await this.axios.post(
+          this.$root.store.address+"admin/ranksbyimage",
+          {
+            isAdmin: this.$root.store.isAdmin,
+          }
+        );
+        let dict = response.data;
+        console.log(response.data);
+        let csv = 'Image, Rating1, Rating2, Rating3, Rating4, Rating5, Rating6, Rating7, Rating8, Rating9, Rating10, \n';
+        console.log(csv);
+        for(var key in dict)
+        {
+          let value = dict[key]
+          csv += key + ',';
+          for(var i = 0; i < value.length; i++)
+          {
+            csv+=value[i]+',';
+          } 
+          csv += "\n";
+        }
+        this.downloadCSV(csv, 'InitialRating_Images.csv');
+        
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getRanksByUser()
+    {
+      try {
+        const response = await this.axios.post(
+          this.$root.store.address+"admin/ranksbyuser",
+          {
+            isAdmin: this.$root.store.isAdmin,
+          }
+        );
+        console.log(response.data);
+        let dict = response.data[0];
+        let size = response.data[1]
+        let csv = 'User,'
+        for(var i = 1; i <= size; i++)
+        {
+          csv+=" Image "+i+","
+        }
+        csv+="\n"
+        for(var key in dict)
+        {
+          let value = dict[key]
+          csv+=key+","
+          for(var j = 0; j < value.length; j++)
+          {
+            if(value[j]!=null)
+              csv+=value[j]+',';
+            else
+              csv+=',';
+          } 
+          csv += "\n";
+
+        }
+        this.downloadCSV(csv, 'InitialRating_Users.csv');
+        console.log(csv);
+        console.log(dict);
+        
+        
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getRanksPerUser()
+    {
+        try {
+        const response = await this.axios.post(
+          this.$root.store.address+"admin/ranksperuser",
+          {
+            isAdmin: this.$root.store.isAdmin,
+          }
+        );
+        let dict = response.data;
+        let csv = 'User, Rating1, Rating2, Rating3, Rating4, Rating5, Rating6, Rating7, Rating8, Rating9, Rating10, \n';
+        for(var key in dict)
+        {
+          let value = dict[key]
+          let rate_arr = new Array(10).fill(0);
+          for(let i=0; i < value.length;i++)
+          {
+            let ind = value[i][0];
+            let rates = value[i][1];
+            rate_arr[ind - 1] = rates;
+          }
+          csv+= key+',';
+          for(let i=0; i < rate_arr.length;i++)
+          {
+            csv+=rate_arr[i]+", ";
+          }
+          csv+="\n";
+
+        }
+       
+        this.downloadCSV(csv, 'RatePerUser.csv');
         
       } catch (error) {
         console.log(error);
