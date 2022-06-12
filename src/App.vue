@@ -114,7 +114,7 @@ export default {
 } */
 
 .navn {
-  font-weight: 550;
+  font-weight: 450;
   /* background-color: #e2c9af; */
   /* background-color: rgba(222, 184, 160, 0.949); */
   background-color: rgba(255, 255, 255, 0.863);
@@ -123,6 +123,7 @@ export default {
   color: #d9a86c;
   text-shadow: 0.5px 0.5px #ebebeb;
   border-bottom: 0.5px solid #788586;
+  font-family: sans-serif;
 }
 
 #nav {

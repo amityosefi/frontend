@@ -44,7 +44,14 @@
       <div class="buttons">
       <a href="#" class="btn btn-white btn-animate" @click="submit">Save</a>
       <br>
-       <a href="#" class="btn btn-white btn-animate" @click="getAllUsers">Download CSV of users data</a>
+      <br>
+      Download CSV:
+      <br>
+       <a href="#" class="btn btn-white btn-animate" @click="getAllUsers">Users data</a>
+        <br>
+       <a href="#" class="btn btn-white btn-animate" @click="advancedFirstGames">Advanced first game data</a>
+        <br>
+       <a href="#" class="btn btn-white btn-animate" @click="advancedSecondGames">Advanced second game data</a>
       <!-- <a href="#" class="btn btn-white btn-animate" id="butt2" @click="reset">Reset</a>  -->
       </div>
     </b-form>
@@ -144,6 +151,65 @@ export default {
       this.form.rankImages = "72";
       this.form.firstGameImages = "8";
       this.form.firstGameImagesSelected = "2";
+    },
+    async advancedFirstGames() {
+      try {
+        const response = await this.axios.post(
+          this.$root.store.address+"admin/firstGameData",
+          {
+            isAdmin: this.$root.store.isAdmin,
+          }
+        );
+
+        let num;
+        let csv = 'User1_id, Game_time, Images_id, Target, User_successful_selection, Score, Max_score\n';
+        response.data.forEach((row) => {
+                csv += row.user_id + ',';
+                console.log(row.timestamp);
+                csv += row.timestamp + ',';
+                csv += row.allImages.toString().replaceAll(',','.') + ',';
+                num = parseInt(row.max_score);
+                csv += row.allImages.split(',').slice(0, num).toString().replaceAll(',','.') + ',';
+                csv += row.goodImages.toString().replaceAll(',','.') + ',';
+                csv += row.score + ',';
+                csv += row.max_score + ',';
+                csv += "\n";
+        });
+        this.downloadCSV(csv, 'AdvancedFirstGames.csv');
+        
+      } catch (error) {
+        console.log(error);
+      }
+    },
+        async advancedSecondGames() {
+      try {
+        const response = await this.axios.post(
+          this.$root.store.address+"admin/secondGameData",
+          {
+            isAdmin: this.$root.store.isAdmin,
+          }
+        );
+
+        let num;
+        let csv = 'User1_id, User2_id, Game_time, Images_id, Target, User_successful_selection, Score, Max_score\n';
+        response.data.forEach((row) => {
+                csv += row.user_id + ',';
+                csv += row.other_id + ',';
+                console.log(row.timestamp);
+                csv += row.timestamp + ',';
+                csv += row.allImages.toString().replaceAll(',','.') + ',';
+                num = parseInt(row.max_score);
+                csv += row.allImages.split(',').slice(0, num).toString().replaceAll(',','.') + ',';
+                csv += row.goodImages.toString().replaceAll(',','.') + ',';
+                csv += row.score + ',';
+                csv += row.max_score + ',';
+                csv += "\n";
+        });
+        this.downloadCSV(csv, 'AdvancedSecondGames.csv');
+        
+      } catch (error) {
+        console.log(error);
+      }
     },
     async getAllUsers() {
       try {

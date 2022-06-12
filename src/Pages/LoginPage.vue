@@ -255,7 +255,7 @@ export default {
   /*border: 1px solid;*/
   /* border-image-source: -webkit-linear-gradient(-45deg, rgb(255, 255, 255) 0%, rgb(255, 183, 183) 100%); */
   /* background: -webkit-linear-gradient(-45deg, rgb(248, 206, 196) 0%, rgb(241, 140, 115) 100%); */
-  background: linear-gradient(to right, rgb(177, 225, 237), rgb(70, 154, 193));
+  background: linear-gradient(to right, rgb(184, 224, 233), rgb(9, 118, 151));
 }
 
 .button-container a h3:after {
