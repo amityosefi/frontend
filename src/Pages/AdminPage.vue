@@ -51,6 +51,8 @@
       <!-- <a href="#" class="btn btn-white btn-animate" id="butt2" @click="reset">Reset</a>  -->
       <br>
        <a href="#" class="btn btn-white btn-animate" @click="getRanksByUser">Download CSV of ranks data per user</a>
+      <br>
+       <a href="#" class="btn btn-white btn-animate" @click="getRanksPerUser">Download CSV of ranks per user</a>
       </div>
     </b-form>
 
@@ -242,6 +244,42 @@ export default {
         console.log(csv);
         console.log(dict);
         
+        
+      } catch (error) {
+        console.log(error);
+      }
+    },
+    async getRanksPerUser()
+    {
+        try {
+        const response = await this.axios.post(
+          this.$root.store.address+"admin/ranksperuser",
+          {
+            isAdmin: this.$root.store.isAdmin,
+          }
+        );
+        let dict = response.data;
+        let csv = 'User, Rating1, Rating2, Rating3, Rating4, Rating5, Rating6, Rating7, Rating8, Rating9, Rating10, \n';
+        for(var key in dict)
+        {
+          let value = dict[key]
+          let rate_arr = new Array(10).fill(0);
+          for(let i=0; i < value.length;i++)
+          {
+            let ind = value[i][0];
+            let rates = value[i][1];
+            rate_arr[ind - 1] = rates;
+          }
+          csv+= key+',';
+          for(let i=0; i < rate_arr.length;i++)
+          {
+            csv+=rate_arr[i]+", ";
+          }
+          csv+="\n";
+
+        }
+       
+        this.downloadCSV(csv, 'RatePerUser.csv');
         
       } catch (error) {
         console.log(error);
