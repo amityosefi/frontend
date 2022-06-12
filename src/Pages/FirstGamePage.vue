@@ -178,7 +178,7 @@ export default {
               }
             );
             this.goodImages = [];
-            this.$router.push("/SecondGamePage");
+            this.$router.push("/LastPage");
           } catch (err) {
             console.log(err);
           }

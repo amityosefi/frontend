@@ -43,7 +43,7 @@
             <a
               href="#"
               class="btn btn-white btn-animate"
-              id="butt2"
+              id="butt4"
               @click="saveRate(true)"
               >Save</a
             >
@@ -57,7 +57,7 @@
             <a
               href="#"
               class="btn btn-white btn-animate"
-              id="butt4"
+              id="butt2"
               @click="submit"
               >Submit</a
             >
@@ -199,7 +199,7 @@ export default {
           }
 
           console.log("h2");
-
+          console.log(this.$root.store.is_done == true);
           if (this.$root.store.is_done == true)
           {
             this.showModal("mymodalC");
@@ -306,19 +306,19 @@ export default {
         for (var j = 6; j < len; j++) {
           temp.push(this.$root.store.extra_pics[j]);
         }
-        if (temp.length == 0) {
-          localStorage.setItem("is_done", true);
-          this.$root.store.is_done = true;
+        // if (temp.length == 0) {
+        //   localStorage.setItem("is_done", true);
+        //   this.$root.store.is_done = true;
           
-          await this.axios.post(
-          this.$root.store.address + `images/is_done`,
-            {
-              is_done: true,
-              user_id: this.$root.store.u_id
-            }
-          );
+        //   await this.axios.post(
+        //   this.$root.store.address + `images/is_done`,
+        //     {
+        //       is_done: true,
+        //       user_id: this.$root.store.u_id
+        //     }
+        //   );
           
-        }
+        // }
         this.$root.store.extra_pics = temp;
         localStorage.extra_pics = JSON.stringify(this.$root.store.extra_pics);
 
@@ -460,7 +460,7 @@ export default {
 }
 #butt4{
     position:absolute;
-    right: 88px;
+    right: 95px;
     top: 96px;
     margin-bottom: 80px;
 }

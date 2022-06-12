@@ -57,7 +57,7 @@
       >
       </div>
       <br>
-      <p class="parr">For rate additional images please choose Continue Ratings
+      <p class="parr">To rate additional images please choose Continue Ratings
         <br /><br>
       <a href="#" class="btn btn-white btn-animate" @click="rate"
         >Continue Rating</a

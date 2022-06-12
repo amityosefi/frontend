@@ -49,8 +49,8 @@
         
         </div>
             <div v-if="!this.isLoading">
-            <a href="#" class="btn btn-white btn-animate" id="butt1" @click="submit">Submit</a>
-            <a href="#" class="btn btn-white btn-animate" id="butt2" @click.prevent="showModal">Instructions</a> 
+            <a href="#" class="btn btn-white btn-animate" id="butt11" @click="submit">Submit</a>
+            <a href="#" class="btn btn-white btn-animate" id="butt22" @click.prevent="showModal">Instructions</a> 
             </div>
         </div>
 
@@ -132,7 +132,7 @@ export default {
               }
             );
             this.goodImages = [];
-            this.$router.push("/LastPage");
+            this.$router.push("/HomePage");
           } catch (err) {
             console.log(err);
           }
@@ -217,14 +217,14 @@ export default {
     margin-right: 250px;
 }
 
-  #butt2 {
+  #butt22 {
     float: left;
     margin-bottom: 20px;
     margin-top: 15px;
     margin-left: 20%;
   }
   
-  #butt1 {
+  #butt11 {
     float: right;
     margin-bottom: 20px;
     margin-top: 15px;
