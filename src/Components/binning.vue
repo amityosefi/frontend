@@ -28,10 +28,10 @@
       <!-- </viewer> -->
     </div>
     <!-- <img class="pic" v-bind:src="image" width="150px" height="100px" alt=".."> -->
-    <br /><br /><br />
+    <br><br><br><br>
 
-    <div class="same-divs" style="float: left; margin-left: 80px">Least liked</div>
-    <div class="same-divs" style="float: right; margin-right: 80px">Most liked</div>
+    <div class="leastLiked">Least liked</div>
+    <div class="mostLiked">Most liked</div>
 
     <div class="bins">
       <div class="Row">
@@ -341,6 +341,7 @@ export default {
     this.instructionsModal = true
     let binDict = {1:this.arrGrade1, 2:this.arrGrade2, 3:this.arrGrade3, 4:this.arrGrade4, 5:this.arrGrade5
       , 6:this.arrGrade6, 7:this.arrGrade7, 8:this.arrGrade8, 9:this.arrGrade9, 10:this.arrGrade10}
+    console.log("my bins", this.$props.Bins);
     for(var i in this.$props.Bins)
     {
       let img = this.$props.Bins[i]
@@ -367,6 +368,7 @@ export default {
   margin: 0 auto;
   padding: 0;
   display: block;
+  top: 15px;
 }
 body {
   background-color: #fff0f0;
@@ -426,6 +428,7 @@ body {
 .bins {
   align-items: center;
   margin-left: 5px;
+  margin-top: 1em;
 }
 #instructor{
   margin-bottom: 5%;
@@ -438,6 +441,18 @@ body {
 
 div.modal.model-1{
   width: 400px;
+}
+
+.leastLiked {
+  float: left;
+  margin-left: 7em;
+  margin-top: 1.5em;
+}
+
+.mostLiked {
+  float: right;
+  margin-right: 7em;
+  margin-top: 1.5em;
 }
 
 /* .pic:hover

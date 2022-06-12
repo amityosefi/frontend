@@ -122,7 +122,7 @@ export default {
   /* border: 2px solid #2c3e50; */
   color: #d9a86c;
   text-shadow: 0.5px 0.5px #ebebeb;
-  border-bottom: 0.5px solid rgb(103, 83, 64);
+  border-bottom: 0.5px solid #788586;
 }
 
 #nav {
@@ -140,12 +140,13 @@ export default {
 /* } */
 
 .navbar-dark .navbar-nav .nav-link {
-  color: #947964;
+  /* color: #947964; */
+  color: #14484b;
 }
 
 .navbar-dark .navbar-nav .nav-link:focus,
 .navbar-dark .navbar-nav .nav-link:hover {
-  color: #a58975;
+  color: #15555a;
 }
 
 .name {

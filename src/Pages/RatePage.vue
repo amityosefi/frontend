@@ -197,6 +197,13 @@ export default {
           } catch (err) {
             console.log(err.response);
           }
+
+          console.log("h2");
+
+          if (this.$root.store.is_done == true)
+          {
+            this.showModal("mymodalC");
+          }
         }
         // if(Boolean(this.$root.store.is_done) == true)
         // {
@@ -240,9 +247,9 @@ export default {
         data_ratings: rates,
         id: user_id,
       });
-      console.log("is done?",this.$root.store.is_done)
-      console.log("is really done?",Boolean(this.$root.store.is_done) == true )
-      if (Boolean(this.$root.store.is_done) == true ) {
+
+      console.log("h1");
+      if (this.$root.store.is_done == true ) {
         this.showModal("mymodalC"); 
       }
       else {
@@ -321,7 +328,6 @@ export default {
         this.Images = arr;
         this.Bins = arr2;
         this.isLoading = false;
-        // this.showModal();
       } catch (err) {
         console.log(err.response);
       }
@@ -344,7 +350,7 @@ export default {
 
         let response = res.data[0];
         let response2 = res.data[1];
-
+        console.log("response2",response2);
         let arr = [];
         let arr2 = [];
         response.map((img) => {
@@ -358,7 +364,7 @@ export default {
 
         this.Images = arr;
         this.Bins = arr2;
-
+        console.log("BEANS", this.Bins);
         this.isLoading = false;
         // this.showModal("mymodalA");
       } catch (err) {
@@ -436,19 +442,22 @@ export default {
 
 #butt2 {
     position:absolute;
-    right: 5.5em;
-    top: 11em;
+    right: 88px;
+    top: 158px;
+    margin-bottom: 80px;
 }
 #butt4{
     position:absolute;
-    right: 5.5em;
-    top: 7em;
+    right: 88px;
+    top: 96px;
+    margin-bottom: 80px;
 }
 
 #butt1 {
     position:absolute;
-    left: 4em;
-    top: 7em;
+    left: 64px;
+    top: 96px;
+    margin-bottom: 80px;
 }
 #butt3 {
   margin-left: 1%;

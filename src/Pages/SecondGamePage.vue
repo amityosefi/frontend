@@ -1,36 +1,5 @@
 <template>
   <div>
-
-        <!-- <Modal ref="modal" :Text="this.text"> </Modal>
-        <br />
-        <div>
-        <div v-if="this.isLoading">
-        <b-spinner variant="danger" style="width: 4rem; height: 4rem; margin-left: 50%;" label="Large Spinner"></b-spinner>
-        </div>
-        <div v-else>
-        <h3 style="text-align: center;">Page {{this.runs}} / 4</h3>
-        <br>
-        <div class="selector">
-        <VueSelectImage
-          ref="selector"
-          :dataImages="this.Images"
-          :is-multiple="true"
-          :h="`180px`"
-          :w="`320px`"
-          :limit="Number(this.$root.store.firstGameImagesSelected)"
-          @onselectmultipleimage="onSelectMultipleImage"
-          @onreachlimit="onreachlimit"
-        >
-        </VueSelectImage>
-          <br />
-            <div class="d-flex justify-content-center" style="margin-bottom: 15px; margin-top: 30px;">
-            <a href="#" class="btn btn-white btn-animate" id="butt1" @click.prevent="showModal">Instructions</a>
-            <a href="#" class="btn btn-white btn-animate" id="butt2" @click="submit">Submit</a> 
-            </div>
-          <br />
-        </div>
-        </div>
-        </div> -->
         <Modal ref="modal" :Text="this.text"> </Modal>
         <br />
         <div>
@@ -113,7 +82,6 @@ export default {
       text: []
     };
   },
-
   methods: {
     showModal() {
       this.$refs.modal.setShow("mymodalA");
@@ -126,7 +94,8 @@ export default {
     resetMultipleSelection() {
       return [];
     },
-    onreachlimit() {this.$root.toast("warning", "got the limit selected images \r You have to choose up to " + this.$root.store.firstGameImagesSelected + " images.","warning");
+    onreachlimit() {
+      this.$root.toast("warning", "got the limit selected images \r You have to choose up to " + this.$root.store.firstGameImagesSelected + " images.","warning");
     },
     async submit() {
       // let app = this.$parent;
@@ -145,9 +114,10 @@ export default {
         let wins = this.wins;
         wins.push(result);
         let no_runs = this.runs;
+
         if (no_runs == 4) {
           let score = wins.reduce((x, y) => x + y);
-          this.$root.toast( "Score", "you scored " + score + " out of " + 4*this.$root.store.firstGameImagesSelected, "success");
+          // this.$root.toast( "Score", "you scored " + score + " out of " + 4*this.$root.store.firstGameImagesSelected, "success");
           this.runs = 0;
           this.wins = [];
           try {
@@ -162,7 +132,7 @@ export default {
               }
             );
             this.goodImages = [];
-            this.$router.push("/MainPage");
+            this.$router.push("/LastPage");
           } catch (err) {
             console.log(err);
           }
@@ -174,8 +144,8 @@ export default {
         let select = Number(this.$root.store.firstGameImagesSelected);
         let runImages = Number(this.$root.store.firstGameImages);
 
-        let goodSection = this.allImages.slice(select*this.runs+1,select*this.runs+select+1);
-        let badSection = this.allImages.slice(runImages*this.runs,runImages*this.runs+runImages-select);
+        let goodSection = this.allImages.slice(select*this.runs,select*this.runs+select);
+        let badSection = this.allImages.slice(select*4 + (runImages-select)*this.runs,select*4 + (runImages-select)*this.runs + runImages-select);
 
         this.shuffleArr(goodSection.concat(badSection)) //2,4 - 14,20 app.runs=2
 
@@ -211,7 +181,12 @@ export default {
         });
         this.allImages = res;
         this.allImagesId = this.allImages.map(image => image.id);
-        const first_iteration = this.allImages.slice(0,this.$root.store.firstGameImagesSelected).concat(this.allImages.slice(this.$root.store.firstGameImages,this.$root.store.firstGameImages*2-this.$root.store.firstGameImagesSelected));
+
+        let select = Number(this.$root.store.firstGameImagesSelected);
+        let runImages = Number(this.$root.store.firstGameImages);
+
+        const first_iteration = this.allImages.slice(0,select).concat(this.allImages.slice(select*4, select*4+runImages-select));
+        
         this.shuffleArr(first_iteration);
         this.best = (this.allImages.slice(0,response.data.ans.best.length)).map((x)=>x.id);
         this.other_id = response.data.other_id;
@@ -245,13 +220,15 @@ export default {
   #butt2 {
     float: left;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
+    margin-left: 20%;
   }
   
   #butt1 {
     float: right;
     margin-bottom: 20px;
-    margin-top: 20px;
+    margin-top: 15px;
+    margin-right: 20%;
   }
 
   .btn:link,
