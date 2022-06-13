@@ -221,12 +221,12 @@ export default {
 
 
 .selectImagesEight {
-   margin-left: 90px;
+   margin-left: 5.625em;
 }
 
 .selectImagesRest {
-    margin-left: 250px;
-    margin-right: 250px;
+    margin-left: 15.625em;
+    margin-right: 15.625em;
 }
 
 .ins{
@@ -238,14 +238,14 @@ export default {
     float: left;
     margin-bottom: 20px;
     margin-top: 15px;
-    margin-left: 20%;
+    margin-left: 22%;
   }
   
   #buttt1 {
     float: right;
     margin-bottom: 20px;
     margin-top: 15px;
-    margin-right: 20%;
+    margin-right: 22%;
   }
 
   .btn:link,

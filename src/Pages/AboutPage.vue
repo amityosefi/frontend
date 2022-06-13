@@ -7,7 +7,7 @@
   <br> 
   Ben-Gurion University of the Negev. We developed this site as part of our capstone engineering
   <br>
-  project under the supervisions of Prof. Noam Tractinsky and Dr. Denis Klimov, wo are interested in
+  project under the supervisions of Prof. Noam Tractinsky and Dr. Denis Klimov, who are interested in
   <br>
   studying people’s preferences of aesthetic images.
 

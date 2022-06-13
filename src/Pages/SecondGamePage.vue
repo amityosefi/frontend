@@ -200,8 +200,8 @@ export default {
   },
   created() {
 
-    this.text = [`הגענו לשלב המשחק! כעת נציג בפניכם ארבעה מסכים. בכל מסך ${this.$root.store.firstGameImages} תמונות מוקטנות שלקוחות משלב הדירוג של משתמש אחר.`,
-                `מתוך ${this.$root.store.firstGameImages} התמונות עליכם לבחור את ${this.$root.store.firstGameImagesSelected} התמונות להן המשתמש נתן את הדירוגים הגבוהים ביותר. על כל תמונה שבחרתם נכון תקבלו נקודה.`,
+    this.text = [`הגענו למשחק 2! במשחק הזה האתגר הוא לנסות לנחש את התמונות המועדפות של משתמש אחר. כמו במשחק המרכזי, יוצגו בפניכם ארבעה מסכים. בכל מסך ${this.$root.store.firstGameImages} תמונות מוקטנות שקיבלו ציונים ממשתמש אחר.`,
+                `מתוך ${this.$root.store.firstGameImages} התמונות עליכם לנחש מהן את ${this.$root.store.firstGameImagesSelected} התמונות להן המשתמש נתן את הציונים הגבוהים ביותר. על כל תמונה שבחרתם נכון תקבלו נקודה.`,
                 `הבחירה בתמונה נעשית באמצעות לחיצה עם העכבר עליה. ניתן לבטל בחירה של תמונה מסוימת על ידי לחיצה נוספת עליה.`];
       this.uploadImages();
     },
@@ -209,26 +209,25 @@ export default {
 </script>
 <style>
 .selectImagesEight {
-   margin-left: 90px;
+   margin-left: 5.625em;
 }
 
 .selectImagesRest {
-    margin-left: 250px;
-    margin-right: 250px;
+    margin-left: 15.625em;
+    margin-right: 15.625em;
 }
-
   #butt22 {
     float: left;
     margin-bottom: 20px;
     margin-top: 15px;
-    margin-left: 20%;
+    margin-left: 22%;
   }
   
   #butt11 {
     float: right;
     margin-bottom: 20px;
     margin-top: 15px;
-    margin-right: 20%;
+    margin-right: 22%;
   }
 
   .btn:link,
