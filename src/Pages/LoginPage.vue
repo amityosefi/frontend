@@ -59,16 +59,16 @@
                       Password must contain at least one digit and one letter
                     </b-form-invalid-feedback> -->
                   <!-- </b-form-group> -->
-
-                  <div class="button-container">
+                  <div class="button-container" >
                     <div class="btnn btnn-succes btnn-lg text-body">
                     <div class="text-center text-muted mt-4 mb-0">
-                      <a class="btnn" @click="this.onLogin">
+                      <a  @click="this.onLogin">
                         <h3>Login</h3>
                       </a>
                       </div>
                     </div>
                   </div>
+                  
                   <p class="text-center text-muted mt-4 mb-0">
                     Don't have an account yet?
                     <!-- <router-link to="InstructionsPage"> Register here</router-link> -->
@@ -76,8 +76,10 @@
                   </p>
                   <!--                    <a href="#!" class="fw-bold text-body"><u>Login here</u></a></p>-->
                 </form>
+                
               </div>
             </div>
+            
           </div>
         </div>
       </div>
@@ -115,6 +117,7 @@ export default {
       return $dirty ? !$error : null;
     },
     async Login() {
+      console.log("tried to log in");
       try {
         const response = await this.axios.post(this.$root.store.address+"login", {
           Email: this.form.email,
@@ -155,10 +158,21 @@ export default {
 
           this.$root.toast("Login", "User logged in successfully", "success");
           if (response.data.is_submitted){
-            this.$router.push("MainPage");
+            
+            this.$router.push("MainPage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("MainPage");
+            });
+
           }
           else{
-            this.$router.push("RatePage");
+            this.$router.push("RatePage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("RatePage");
+            });
+
           }
         } 
         else {
@@ -263,8 +277,8 @@ export default {
   position: absolute;
   top: -130%;
   left: -200%;
-  width: 200%;
-  height: 300%;
+  width: 100%;
+  height: 100%;
   opacity: 0;
   transform: skew(-40deg);
   background: rgb(98, 250, 232);

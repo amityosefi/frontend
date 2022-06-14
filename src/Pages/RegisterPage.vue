@@ -238,7 +238,12 @@ export default {
                   this.$root.store.setGlobalSettings(response.data.globalSettings);
 
                   this.$root.toast("Register", "The user has registered successfully", "success");
-                  this.$router.push("RatePage");
+                  this.$router.push("RatePage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("RatePage");
+            });
+
                   // this.$router.go(0);
                 // }
               }

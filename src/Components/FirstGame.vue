@@ -134,7 +134,12 @@ export default {
               }
             );
             app.goodImages = [];
-            this.$router.push("/SecondGamePage");
+            this.$router.push("/SecondGamePage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("/SecondGamePage");
+            });
+
           } catch (err) {
             console.log(err);
           }

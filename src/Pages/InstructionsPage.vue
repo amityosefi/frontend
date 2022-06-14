@@ -64,7 +64,12 @@ export default {
         if (this.checkSelect.length != 0)
         {
           this.feedback = false;
-          this.$router.push("Register");
+          this.$router.push("Register").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("Register");
+            });
+
         }
         else
         {

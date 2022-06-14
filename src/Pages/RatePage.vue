@@ -148,7 +148,11 @@ export default {
         } 
         else 
         {
-          this.$router.push("MainPage");
+          this.$router.push("MainPage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("MainPage");
+            });
         }
       } 
       else {
@@ -181,6 +185,14 @@ export default {
           try {
             console.log("submitted 6");
             await this.submit_regular(6);
+            let temp = [];
+            let len = this.$root.store.extra_pics.length;
+            for (var j = 6; j < len; j++) {
+                temp.push(this.$root.store.extra_pics[j]);
+            }
+        
+            this.$root.store.extra_pics = temp;
+            localStorage.extra_pics = JSON.stringify(this.$root.store.extra_pics);
             if(this.$root.store.extra_pics.length == 0)
             {
                localStorage.setItem("is_done", true);
@@ -194,6 +206,7 @@ export default {
               }
               );
             }
+            
           } catch (err) {
             console.log(err.response);
           }
@@ -295,20 +308,14 @@ export default {
         this.$root.store.extra_pics = JSON.parse(localStorage.extra_pics);
         console.log("extra",this.$root.store.extra_pics);
         let arr1 = [];
-        let len = this.$root.store.extra_pics.length;
+        // let len = this.$root.store.extra_pics.length;
         for (var i = 0; i < 6; i++) {
           arr1.push(this.$root.store.extra_pics[i]);
         }
 
         let pic_arr = [];
         arr1.map((x) => pic_arr.push(x.id));
-        let temp = [];
-        for (var j = 6; j < len; j++) {
-          temp.push(this.$root.store.extra_pics[j]);
-        }
         
-        this.$root.store.extra_pics = temp;
-        localStorage.extra_pics = JSON.stringify(this.$root.store.extra_pics);
 
         const res = await this.axios.post(
           this.$root.store.address + `images/fetchSpecificImages`,
@@ -402,7 +409,11 @@ export default {
           "you have rated all the pictures and cannot rate anymore",
           "warning"
         );
-        this.$router.push("/MainPage");
+        this.$router.push("MainPage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("MainPage");
+            });
         return;
       }
       let ranked_a  = localStorage.RankedImages == undefined;

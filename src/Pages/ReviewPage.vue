@@ -50,7 +50,11 @@ export default {
             else{
                 this.$root.toast("Error", "There was a problem", "error");
             }
-            this.$router.push("MainPage");
+            this.$router.push("MainPage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("MainPage");
+            });
           }
         catch(err){
             console.log(err)

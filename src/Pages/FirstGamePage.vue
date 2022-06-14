@@ -178,7 +178,11 @@ export default {
               }
             );
             this.goodImages = [];
-            this.$router.push("/LastPage");
+            this.$router.push("/LastPage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("/LastPage");
+            });
           } catch (err) {
             console.log(err);
           }
@@ -201,6 +205,34 @@ export default {
     },
   },
   created() {
+    let last_time = this.$root.store.last_time;
+    if(last_time == "undefined")
+    {
+      last_time = undefined;
+    }
+    const date_played = Date(this.$root.store.last_time);
+    const ndp = new Date(date_played);
+    const ndp_formatted = ndp.toDateString();
+    const now = (new Date()).toDateString();
+    console.log("last time",last_time);
+    console.log("last time is undefined?",last_time == undefined);
+    // console.log(ndp.toDateString());
+    // console.log((new Date()).toDateString());
+    // console.log(ndp_formatted == now);
+    if (ndp_formatted == now && last_time != undefined)
+    {
+       this.$root.toast("warning", "You can only play once a day","warning");
+       
+        this.$router.push("MainPage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("MainPage");
+            });
+
+
+       
+       
+    }
 
     this.text = [`הגענו לשלב המשחק! כעת נציג בפניכם ארבעה מסכים. בכל מסך ${this.$root.store.firstGameImages} תמונות מוקטנות שלקוחות מהתמונות שראיתם בשלב הקודם.`,
                 `מתוך ${this.$root.store.firstGameImages} התמונות עליכם לבחור את ${this.$root.store.firstGameImagesSelected} התמונות להן נתתם את הציונים הגבוהים ביותר בשלב הקודם. על כל תמונה שבחרתם נכון תקבלו נקודה.`,

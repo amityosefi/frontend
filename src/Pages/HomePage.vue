@@ -75,13 +75,31 @@ export default {
   },
   methods: {
     submit() {
-      this.$router.push("MainPage");
+      
+      this.$router.push("MainPage").catch(failure =>
+      {
+        console.log(failure);
+        this.$router.push("MainPage");
+      });
+
     },
     login() {
-      this.$router.push("login");
+      this.$router.push("/login").catch(failure =>
+      {
+       console.log(failure);
+      this.$router.push("/login");
+      });
+      
+
     },
     register() {
-      this.$router.push("InstructionsPage");
+      
+      this.$router.push("InstructionsPage").catch(failure =>
+      {
+        console.log(failure);
+        this.$router.push("InstructionsPage");
+      });
+
     },
   },
   created() {},

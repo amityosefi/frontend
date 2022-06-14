@@ -30,7 +30,12 @@ export default {
   },
   methods: {
     contactPage() {
-      this.$router.push("RatePage");
+      this.$router.push("RatePage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("RatePage");
+            });
+
     },
   },
 };
