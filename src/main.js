@@ -24,8 +24,7 @@ Vue.use(VueRouter);
 // Vue.component("downloadCsv", JsonCSV);
 
 const router = new VueRouter({
-    routes: routes,
-    mode: "history"
+     routes
 });
 
 import Vuelidate from "vuelidate";
@@ -113,8 +112,8 @@ const shared_data = {
     numRanked:undefined,
     RankedImages:undefined,
     unRankedImages:undefined,
-    address:'http://localhost:443/',
-    // address:'https://coil2.cs.bgu.ac.il/',
+    // address:'http://localhost:443/',
+    address:'https://coil2.cs.bgu.ac.il/',
     user_score: localStorage.user_score,
     last_time: localStorage.last_time,
     is_submitted: localStorage.is_submitted,

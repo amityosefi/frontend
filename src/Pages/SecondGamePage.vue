@@ -132,10 +132,10 @@ export default {
               }
             );
             this.goodImages = [];
-            this.$router.push("/HomePage").catch(failure =>
+            this.$router.push("/").catch(failure =>
             {
               console.log(failure);
-              this.$router.push("/HomePage");
+              this.$router.push("/");
             });
           } catch (err) {
             console.log(err);
