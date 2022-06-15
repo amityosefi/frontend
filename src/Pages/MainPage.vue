@@ -158,7 +158,7 @@ export default {
   },
   methods: {
     rate() {
-      
+          console.log("hello");
           this.$router.push("RatePage").catch(failure =>
             {
               console.log(failure);
