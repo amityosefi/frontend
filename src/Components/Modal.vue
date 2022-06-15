@@ -110,11 +110,21 @@ export default {
           }
           else if (modalSelected == "mymodalB") {
               this.$refs.mymodalB.hide();
+              this.$router.push("/FirstGamePage").catch(failure =>
+            {
+              console.log(failure);
               this.$router.push("/FirstGamePage");
+            });
+
           }
           else {
              this.$refs.mymodalC.hide();
-             this.$router.push("/FirstGamePage"); 
+             this.$router.push("/FirstGamePage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("/FirstGamePage");
+            });
+
           }
       },
   },

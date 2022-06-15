@@ -49,6 +49,7 @@ export default {
     
     async Logout() {
       try {
+        console.log("try");
         let Ranked = this.$root.store.RankedImages;
         
         let UnRanked = this.$root.store.unRankedImages;
@@ -70,12 +71,14 @@ export default {
         const response = await this.axios.post(
             this.$root.store.address+"logout",
         );
-        console.log(response.data)
+        console.log("response",response.data)
 
         
       } catch (error) {
+        console.log("catch");
         console.log(error);
       }
+      console.log("help");
       this.$root.store.logout();
       this.$root.toast("Logout", "User logged out successfully", "success");
       this.axios.defaults.withCredentials = false;

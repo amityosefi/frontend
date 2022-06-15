@@ -134,6 +134,7 @@ export default {
             );
             app.goodImages = [];
             this.$router.push("/"); // cahnge to HomePage
+
           } catch (err) {
             console.log(err);
           }

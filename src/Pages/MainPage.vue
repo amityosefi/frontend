@@ -158,27 +158,40 @@ export default {
   },
   methods: {
     rate() {
-      this.$router.push("RatePage");
+      
+          this.$router.push("RatePage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("RatePage");
+            });
+
+      
+      
     },
     firstGame() {
-      this.$router.push("FirstGamePage");
+        this.$router.push("FirstGamePage").catch(failure =>
+            {
+              console.log(failure);
+              this.$router.push("FirstGamePage");
+            });
+      
     },
   },
   created() {
-    console.log("is_submitted? ", this.$root.store.is_submitted);
-    console.log("is_done? ", this.$root.store.is_done);
-    console.log("is_submitted? ", Boolean(this.$root.store.is_submitted));
-    console.log("is_done? ", Boolean(this.$root.store.is_done));
+    // console.log("is_submitted? ", this.$root.store.is_submitted);
+    // console.log("is_done? ", this.$root.store.is_done);
+    // console.log("is_submitted? ", Boolean(this.$root.store.is_submitted));
+    // console.log("is_done? ", Boolean(this.$root.store.is_done));
     
     if (Boolean(this.$root.store.is_submitted) == false) {
         this.submitted = false;
     }
-    console.log("this.submitted ", this.submitted);
+    // console.log("this.submitted ", this.submitted);
 
     if (Boolean(this.$root.store.is_done) == false) {
       this.is_done = false;
     }
-        console.log("this.is_done ", this.is_done);
+        // console.log("this.is_done ", this.is_done);
 
     if (!this.$root.store.last_time){
       this.last_date = "never";
