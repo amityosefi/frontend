@@ -1,7 +1,7 @@
 <template>
 <div>
   <br>
-    <h3 class="titleLeader">Game 2</h3>
+    <h3 class="titleLeader">Game 1</h3>
   <br>
     <b-table
       :items="this.leaders"
@@ -93,5 +93,8 @@ template {
     width: 800px;
     /* height: 1000px; */
     /* text-align: right; */
+}
+.titleLeader{
+  text-align: center;
 }
 </style>
