@@ -1,8 +1,8 @@
 <template>
 <div>
-  <br>
-    <h3 class="titleLeader">Game 2</h3>
-  <br>
+<br>
+<h3 class="titleLeader">Game 2</h3>
+<br>
     <b-table
       :items="this.leaders"
       :fields="fields"
@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: "LeaderboardPage",
+  name: "LeaderboardTwoPage",
 data() {
     return {
         sortBy: 'TotalScore',
@@ -37,7 +37,7 @@ onRowSelected(items) {
 async uploadLeaders() {
       try {
         const response = await this.axios.get(
-          this.$root.store.address+`images/getLeaders`
+          this.$root.store.address+`images/getLeadersTwo`
         );
 
         this.leaders = response.data;

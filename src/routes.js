@@ -12,6 +12,11 @@ const routes = [{
     component: () => import("./Pages/Leaderboard")
 },
 {
+    path: "/LeaderboardTwo",
+    name: "LeaderboardTwo",
+    component: () => import("./Pages/LeaderboardTwo")
+},
+{
     path: "/InstructionsPage",
     name: "InstructionsPage",
     component: () => import("./Pages/InstructionsPage")

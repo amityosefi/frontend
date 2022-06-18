@@ -8,7 +8,8 @@
           <b-navbar-nav>
             <b-nav-item :to="{ name: 'HomePage' }">Home</b-nav-item>
             <b-nav-item :to="{ name: 'About' }">About</b-nav-item>
-            <b-nav-item :to="{ name: 'Leaderboard' }">Leaderboard</b-nav-item>
+            <b-nav-item :to="{ name: 'Leaderboard' }">Leaderboard game-1</b-nav-item>
+            <b-nav-item :to="{ name: 'LeaderboardTwo' }">Leaderboard game-2</b-nav-item>
             <b-nav-item v-if="!$root.store.email" :to="{ name: 'login' }">Login</b-nav-item>
             <b-nav-item v-if="!$root.store.email" :to="{ name: 'InstructionsPage' }">Register</b-nav-item>           
             <b-nav-item v-if="$root.store.email" :to="{ name: 'RatePage' }">Rate</b-nav-item>

@@ -213,24 +213,25 @@ export default {
 </script>
 <style>
 .selectImagesEight {
-   margin-left: 5.625em;
+    margin: 5.625em;
+    margin-top: 0em;
+    margin-bottom: 1em;
 }
 
 .selectImagesRest {
-    margin-left: 15.625em;
-    margin-right: 15.625em;
+    margin: 15.625em;
+    margin-top: 0em;
+    margin-bottom: 1em;
 }
   #butt22 {
     float: left;
-    margin-bottom: 20px;
-    margin-top: 15px;
+    margin-bottom: 15px;
     margin-left: 22%;
   }
   
   #butt11 {
     float: right;
-    margin-bottom: 20px;
-    margin-top: 15px;
+    margin-bottom: 15px;
     margin-right: 22%;
   }
 

@@ -247,33 +247,27 @@ export default {
 
 
 .selectImagesEight {
-   margin-left: 5.625em;
+    margin: 5.625em;
+    margin-top: 0em;
+    margin-bottom: 1em;
 }
 
 .selectImagesRest {
-    margin-left: 15.625em;
-    margin-right: 15.625em;
+    margin: 15.625em;
+    margin-top: 0em;
+    margin-bottom: 1em;
 }
-
-.ins{
-  /* background-color: lawngreen; */
-  margin-bottom: 2px;
-}
-
   #buttt2 {
     float: left;
-    margin-bottom: 20px;
-    margin-top: 15px;
+    margin-bottom: 15px;
     margin-left: 22%;
   }
   
   #buttt1 {
     float: right;
-    margin-bottom: 20px;
-    margin-top: 15px;
+    margin-bottom: 15px;
     margin-right: 22%;
   }
-
   .btn:link,
   .btn:visited {
     margin-bottom: 5px;

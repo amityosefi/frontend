@@ -131,7 +131,7 @@
         <br />
         According to our records you have already played today, 
         <br>and according to
-        the rules of the game you can only play again tomorrow. 
+        the rules of the game you can only play once on any given day. 
         <br>
         See you!
       </p>

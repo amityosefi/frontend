@@ -241,7 +241,7 @@ new Vue({
                 variant: variant,
                 solid: true,
                 appendToast: append,
-                autoHideDelay: 3000
+                autoHideDelay: 6000
             });
         }
     },
